@@ -1,0 +1,25 @@
+{
+  "dependencies": {
+    "async": "^1.4.2",
+    "aws-sdk": "^2.2.15",
+    "cheerio": "^0.19.0",
+    "continuation-local-storage": "^3.1.4",
+    "dateformat": "^1.0.11",
+    "lodash": "^3.10.1",
+    "mailparser": "^0.5.2",
+    "merge": "^1.2.0",
+    "moment": "^2.10.6",
+    "promise": "^7.0.4",
+    "siteleaf-api": "git+ssh://git@github.com/siteleaf/siteleaf-node.git",
+    "slug": "^0.9.1",
+    "truncate": "^2.0.0",
+    "uuid": "^2.0.1"
+  },
+  "jshintConfig": {
+    "esnext": true,
+    "node": true,
+    "quotmark": false,
+    "sub": true,
+    "strict": false
+  }
+}
