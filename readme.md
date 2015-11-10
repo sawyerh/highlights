@@ -1,3 +1,7 @@
+- [Installation](#installation)
+- [Saving highlights](#saving-highlights)
+- [Known issues](#known-issues)
+
 # Installation
 
 ### Siteleaf
