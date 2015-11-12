@@ -8,7 +8,8 @@ var _ = require('lodash'),
     parsers = {
       ibooks: require("./ibooks"),
       readmill: require("./readmill"),
-      kindle: require("./kindle")
+      kindle: require("./kindle"),
+      text: require("./text")
     },
     Promise = require('promise'), // AWS Lambda uses Node 0.10.x
     Siteleaf = require("siteleaf-api"),
@@ -195,15 +196,27 @@ var parse = function(mail) {
     var ibooks = new parsers.ibooks(mail);
     var readmill = new parsers.readmill(mail);
     var fukindle = new parsers.kindle(mail);
+    var plaintext = new parsers.text(mail);
 
-    // iBooks can only include the highlights in the body
-    if (ibooks.parseable()) results.push(ibooks.parse());
+    if (ibooks.parseable()){
+      // iBooks can only include the highlights in the body
+      results.push(ibooks.parse());
+    } else if(plaintext.parseable()){
+      // Check the body if we've identified that it's not an iBooks email:
+      results.push(plaintext.parse());
+    }
 
     // The exported reading-data.json or liked-highlights-data.json
     if (readmill.parseable()) results = results.concat(readmill.parse());
 
     // A JSON file exported using the bookmarklet OR "My Clippings.txt"
     if (fukindle.parseable()) results = results.concat(fukindle.parse());
+
+    if(!results.length){
+      console.log("No results, exiting.");
+      console.timeEnd('complete');
+      return resolve();
+    }
 
     // Use async so we don't kill the Siteleaf API:
     async.eachSeries(results, function (result, cb) {

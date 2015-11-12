@@ -16,6 +16,8 @@ exports.handler = function(event, context) {
     parseMail(mail)
       .then(function(){
         context.succeed("Parsed mail");
+      }).catch(function(message){
+        context.fail(message);
       });
   });
 

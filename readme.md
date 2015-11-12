@@ -60,6 +60,30 @@ After your Lambda function is created, add an event source to it that listens fo
 1. Hopefully you downloaded the export file before they shut everything down on July 1, 2014.
 2. Email `liked-highlights-data.json` and/or `reading-data.json` as attachments.
 
+### Plain text
+
+You can also email your highlights in the body of an email. This is handy if you can't access your Kindle highlights or if you'd like to share a highlight from an app that's not supported.
+
+_Your email must follow a specific format to work properly:_
+
+1. Enter the title of the book/article/website/etc as the email's Subject.
+2. On the first line of the body, enter `++` followed by two empty lines. Optionally, enter the author's name directly after the two plus signs.
+3. Paste your highlights, separating each highlight with two blank lines.
+
+Example email body:
+
+**Subject:** Creativity Inc.
+
+```
+++Amy Wallace and Edwin Catmull
+
+
+Be patient. Be authentic. And be consistent.
+
+
+The more people there are in the room, the more pressure there is to perform well
+```
+
 # Known issues
 
 - Due to AWS Lambda functions having a maximum runtime of 5 minutes, if you're trying to save more than 100 highlights, it might timeout before fully saving all the highlights. If all highlights don't save the first time, re-send the email and it will pick up where it left off, only adding highlights that weren't added the first time.

@@ -7,9 +7,11 @@ var Parser = function(mail) {
 };
 
 Parser.prototype.parseable = function () {
-  var $ = cheerio.load(this.mail.html);
-  var annotations = $('.annotation');
-  return annotations.length > 0;
+  if(this.mail.html){
+    var $ = cheerio.load(this.mail.html);
+    var annotations = $('.annotation');
+    return annotations.length > 0;
+  }
 };
 
 Parser.prototype.parse = function () {
