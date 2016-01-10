@@ -7,9 +7,9 @@
 ### Siteleaf
 
 1. Create a new [Siteleaf](http://siteleaf.com) site
-2. Create two collections, one for your "books" and another for your highlights. Take note of each collection's ID, which can be found in the URL after it's created.
+2. Create two collections, one for your "books" and another for your highlights. Take note of each collection's `path`, which can be found in the sidebar after it's created (click "Edit"). Typically it will be the slugified collection title (eg. "Books" is `books`).
 3. Grab your API keys from your [account page](https://manage.siteleaf.com/account)
-4. Using the ID's and Keys from steps 2 and 3, set your config variables in `siteleaf.config.js` (see `siteleaf.config.example.js`)
+4. Using the info from the above steps, set your config variables in `siteleaf.config.js` (see `siteleaf.config.example.js`). Note that `site` is the site `id` whereas `books` and `highlights` are the collections' `path`
 
 ### AWS SES (and S3)
 
