@@ -48,7 +48,7 @@ var addBookAndHighlights = function(book, highlights) {
 var getHighlights = function() {
   if (cache.highlights) return Promise.resolve(cache.highlights);
 
-  return siteleaf.request('collections/' + config.highlights + '/documents', {
+  return siteleaf.request('sites/' + config.site + '/collections/' + config.highlights + '/documents', {
     qs: { limit: 9999 }
   })
     .then(function (highlights) {
@@ -131,7 +131,7 @@ var createHighlight = function(highlight, book) {
 
   if (highlight.user) params.metadata.highlight_by = highlight.user;
 
-  return siteleaf.request('collections/' + config.highlights + '/documents', {
+  return siteleaf.request('sites/' + config.site + '/collections/' + config.highlights + '/documents', {
     method: 'POST',
     body: params
   })
@@ -143,7 +143,7 @@ var createHighlight = function(highlight, book) {
 var getBooks = function() {
   if (cache.books) return Promise.resolve(cache.books);
 
-  return siteleaf.request('collections/' + config.books + '/documents', {
+  return siteleaf.request('sites/' + config.site + '/collections/' + config.books + '/documents', {
     qs: { limit: 9999 }
   })
     .then(function (books) {
@@ -177,7 +177,7 @@ var createBook = function(params) {
     date: moment().utcOffset('-05:00').format()
   });
 
-  return siteleaf.request('collections/' + config.books + '/documents', {
+  return siteleaf.request('sites/' + config.site + '/collections/' + config.books + '/documents', {
     method: 'POST',
     body: params
   })
