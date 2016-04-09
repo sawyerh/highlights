@@ -9,7 +9,6 @@
     "mailparser": "^0.5.2",
     "merge": "^1.2.0",
     "moment": "^2.10.6",
-    "promise": "^7.0.4",
     "siteleaf-api": "git+ssh://git@github.com/siteleaf/siteleaf-node.git",
     "slug": "^0.9.1",
     "truncate": "^2.0.0",

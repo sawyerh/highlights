@@ -11,7 +11,6 @@ var _ = require('lodash'),
       kindle: require("./kindle"),
       text: require("./text")
     },
-    Promise = require('promise'), // AWS Lambda uses Node 0.10.x
     Siteleaf = require("siteleaf-api"),
     slug = require('slug'),
     truncate = require('truncate'),
