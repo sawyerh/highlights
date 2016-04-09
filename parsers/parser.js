@@ -122,7 +122,7 @@ var createHighlight = function(highlight, book) {
     var highlightMoment = moment(highlight.date, [moment.ISO_8601, 'MMMM D, YYYY']);
 
     if (highlightMoment.isValid()) {
-      params.metadata.highlighted_on = highlightMoment.toISOString();
+      params.metadata.highlighted_on = highlightMoment.utcOffset('-05:00').format();
     } else {
       console.log("Invalid date: %s", highlight.date);
     }
