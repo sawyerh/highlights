@@ -172,10 +172,8 @@ var getBook = function(bookParams) {
 };
 
 var createBook = function(params) {
-  params.metadata = merge(params.metadata, {
-    original_title: params.title,
-    date: moment().utcOffset('-05:00').format()
-  });
+  params.metadata = merge(params.metadata, { original_title: params.title });
+  params.date = moment().utcOffset('-05:00').format();
 
   return siteleaf.request('sites/' + config.site + '/collections/' + config.books + '/documents', {
     method: 'POST',
