@@ -48,7 +48,7 @@ var getHighlights = function() {
   if (cache.highlights) return Promise.resolve(cache.highlights);
 
   return siteleaf.request('sites/' + config.site + '/collections/' + config.highlights + '/documents', {
-    qs: { limit: 9999 }
+    qs: { per_page: 9999 }
   })
     .then(function (highlights) {
       cache.highlights = highlights;
@@ -143,7 +143,7 @@ var getBooks = function() {
   if (cache.books) return Promise.resolve(cache.books);
 
   return siteleaf.request('sites/' + config.site + '/collections/' + config.books + '/documents', {
-    qs: { limit: 9999 }
+    qs: { per_page: 9999 }
   })
     .then(function (books) {
       cache.books = books;
