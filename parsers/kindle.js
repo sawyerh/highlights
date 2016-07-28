@@ -2,6 +2,7 @@
 
 var parseAttachment = require('./helpers/parse-attachment');
 var Clipper = require('./kindle-clipper');
+var KindleHTMLParser = require('./kindle-html');
 var _ = require('lodash');
 
 var Parser = function(mail) {
@@ -19,7 +20,8 @@ Parser.prototype.parseableAttachments = function () {
 
   return attachments.filter(function (attachment) {
     var parsedAtt = parseAttachment(attachment);
-    return parsedAtt.type == 'json' && parsedAtt.content.hasOwnProperty('totalHighlights') || parsedAtt.type == 'text';
+    var isValidJson = (parsedAtt.type === 'json' && parsedAtt.content.hasOwnProperty('totalHighlights'));
+    return (isValidJson || parsedAtt.type === 'text' || parsedAtt.type === 'html');
   });
 };
 
@@ -35,6 +37,10 @@ Parser.prototype.parse = function () {
       self.parseBookmarkletExport(parsedAtt.content);
     } else if (parsedAtt.type == 'text') {
       self.parseClippings(parsedAtt.content);
+    } else {
+      var parser = new KindleHTMLParser(parsedAtt.content);
+      if (parser.parseable())
+        self.results.push(parser.parse());
     }
   });
 

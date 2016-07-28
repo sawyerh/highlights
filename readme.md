@@ -49,11 +49,18 @@ After your Lambda function is created, add an event source to it that listens fo
 
 ### Kindle
 
+**If you're reading in a Kindle app (iOS/Android)**:
+
+1. Open the "Notebook" section of your book where your annotations are kept
+2. Tap the "Share" icon, then tap "Export as HTML"
+3. Email the export as an attachment
+
+**If you're reading on a Kindle device** (and are unable to do the above):
+
 1. Install [this bookmarklet](https://github.com/cmenscher/kindleHighlightLiberator) and follow the instructions on the bookmarklet's page to export a JSON file with all Kindle highlights.
 1. Email the `json` file from step 1 and/or `My Clippings.txt` (see below) as attachments
-1. Never user the Kindle reader again.
 
-**Don't see all of your highlights?** That's likely because you tried reading a book on your Kindle (or in the Kindle app) that wasn't purchased on Amazon. Yes, seriously. If you have a Kindle device, plug it into your computer and find `documents/My Clippings.txt`. If you're lucky, you'll find additional highlights in there. Never use the Kindle reader again.
+**Don't see all of your highlights?** That's likely because you tried reading a book on your Kindle (or in the Kindle app) that wasn't purchased on Amazon. Yes, seriously. If you have a Kindle device, plug it into your computer and find `documents/My Clippings.txt`. If you're lucky, you'll find additional highlights in there.
 
 ### Readmill
 

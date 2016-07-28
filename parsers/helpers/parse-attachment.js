@@ -2,9 +2,11 @@
 
 module.exports = function (attachment) {
   var type, content;
+  var index = ['application/json', 'text/html', 'text/plain'].indexOf(attachment.contentType);
 
-  if (attachment.contentType == 'application/json' || attachment.contentType == 'text/plain') {
-    type = attachment.contentType == 'application/json' ? 'json' : 'text';
+  if (index >= 0) {
+    var types = ['json', 'html', 'text']; // IDK
+    type = types[index];
     content = attachment.content.toString('utf8');
   } else {
     type = attachment.contentType;

@@ -192,7 +192,7 @@ var parse = function(mail) {
     var results = [];
     var ibooks = new parsers.ibooks(mail);
     var readmill = new parsers.readmill(mail);
-    var fukindle = new parsers.kindle(mail);
+    var kindle = new parsers.kindle(mail);
     var plaintext = new parsers.text(mail);
 
     if (ibooks.parseable()){
@@ -207,7 +207,7 @@ var parse = function(mail) {
     if (readmill.parseable()) results = results.concat(readmill.parse());
 
     // A JSON file exported using the bookmarklet OR "My Clippings.txt"
-    if (fukindle.parseable()) results = results.concat(fukindle.parse());
+    if (kindle.parseable()) results = results.concat(kindle.parse());
 
     if(!results.length){
       console.log("No results, exiting.");
