@@ -1,7 +1,6 @@
 {
   "dependencies": {
     "async": "^1.4.2",
-    "aws-sdk": "^2.2.15",
     "cheerio": "^0.19.0",
     "continuation-local-storage": "^3.1.4",
     "dateformat": "^1.0.11",

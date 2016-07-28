@@ -6,6 +6,8 @@ var aws = require("aws-sdk"),
 var s3 = new aws.S3({ apiVersion: '2006-03-01' });
 
 exports.handler = function(event, context) {
+  console.log("Received event", event);
+
   // Get the object from the event and show its content type
   var bucket = event.Records[0].s3.bucket.name;
   var key = decodeURIComponent(event.Records[0].s3.object.key.replace(/\+/g, ' '));
