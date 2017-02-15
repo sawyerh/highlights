@@ -1,0 +1,11 @@
+sudo: false
+language: node_js
+node_js:
+  - "4.0"
+  - stable
+before_install:
+  - "npm install -g npm"
+  - "npm config set spin false"
+before_script:
+  - "npm install jshint"
+  - "npm install mocha"
