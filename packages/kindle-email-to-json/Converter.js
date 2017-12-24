@@ -76,8 +76,7 @@ Converter.prototype.parseHighlightAfterElement = function(location, el) {
       content: cheerio(nextEl)
         .text()
         .trim(),
-      location: location,
-      source: "kindle"
+      location: location
     };
 
     highlights.push(highlight);
