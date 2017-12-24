@@ -25,7 +25,7 @@ const siteleaf = new Siteleaf({
   apiSecret: config.secret
 });
 
-const addBookAndHighlights = function(book, highlights) {
+function addBookAndHighlights(book, highlights) {
   if (!highlights.length) return Promise.resolve();
 
   const timerName =
@@ -43,9 +43,9 @@ const addBookAndHighlights = function(book, highlights) {
   })
     .then(createHighlights.bind(null, highlights))
     .then(console.timeEnd.bind(null, timerName));
-};
+}
 
-const getHighlights = function() {
+function getHighlights() {
   if (cache.highlights) return Promise.resolve(cache.highlights);
 
   return siteleaf
@@ -63,13 +63,9 @@ const getHighlights = function() {
       cache.highlights = highlights;
       return highlights;
     });
-};
+}
 
-const filterOutExistingHighlights = function(
-  book,
-  newHighlights,
-  existingHighlights
-) {
+function filterOutExistingHighlights(book, newHighlights, existingHighlights) {
   if (!existingHighlights.length) return newHighlights;
 
   existingHighlights = _.where(existingHighlights, {
@@ -100,7 +96,7 @@ const filterOutExistingHighlights = function(
   }
 
   return newHighlights;
-};
+}
 
 function createHighlights(highlights, book) {
   return getHighlights() // First we check if any of these highlights already exist and ignore them if so.
@@ -188,7 +184,7 @@ function createHighlight(highlight, book) {
     });
 }
 
-const getBooks = function() {
+function getBooks() {
   if (cache.books) return Promise.resolve(cache.books);
 
   return siteleaf
@@ -202,7 +198,7 @@ const getBooks = function() {
       cache.books = books;
       return books;
     });
-};
+}
 
 function getBook(bookParams) {
   return getBooks().then(function(books) {
@@ -242,7 +238,7 @@ function createBook(params) {
     });
 }
 
-const parse = function(mail) {
+function parse(mail) {
   console.time("complete");
 
   return new Promise(function(resolve) {
@@ -287,6 +283,6 @@ const parse = function(mail) {
       }
     );
   });
-};
+}
 
 module.exports = parse;
