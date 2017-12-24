@@ -1,0 +1,292 @@
+Return-Path: <sender@example.com>
+Received: from mail-qk0-f173.google.com (mail-qk0-f173.google.com [209.85.220.173])
+ by inbound-smtp.us-east-1.amazonaws.com with SMTP id o2ibflngtp88ejckqig55dqdu4874dng52a0ce01
+ for receiver@example.com;
+ Fri, 29 Sep 2017 00:33:51 +0000 (UTC)
+X-SES-Spam-Verdict: PASS
+X-SES-Virus-Verdict: PASS
+Received-SPF: pass (spfCheck: domain of _spf.google.com designates 209.85.220.173 as permitted sender) client-ip=209.85.220.173; envelope-from=sender@example.com; helo=mail-qk0-f173.google.com;
+Authentication-Results: amazonses.com;
+ spf=pass (spfCheck: domain of _spf.google.com designates 209.85.220.173 as permitted sender) client-ip=209.85.220.173; envelope-from=sender@example.com; helo=mail-qk0-f173.google.com;
+ dkim=pass header.i=@example.com;
+X-SES-RECEIPT: AEFBQUFBQUFBQUFIUFhZWGdQaEsweFU2ZEdVeVUwSkhpRXBPTGlWWXNuODh3YVQrdXNub2VyWFA1NEswbjlKTDZDS2psd3ZCaHNXUUJYakdPM05ZWlhCUWJLMXR2Q0wwYXNlRnQ0c09PdlpHZzBKck1FZ095aGlYa3ZzQjZhdGdNbWhndkllckxGNGdhWnRraVQvNmJKTzFjcWpab3ZnVGVaU3ZXMENMa24wVGRKbVVxUVJHQzZZNjFvbTlDODZ5cGlSd3FDVUlXb0xJTmFlVjhNR0gxS0hzdVJSYldGcUlETG1HQlFCWUlnQnp5S0NKZ0dUdU1VZHBOMFdhbnNVd3R4cytwTWQyQlh2QlErUDI2RWg3NFBLelNzMkhaeGlkMA==
+X-SES-DKIM-SIGNATURE: a=rsa-sha256; q=dns/txt; b=oAivsBdoOtVKhk/NkDgpJGzxummxV08RLREZrHBr2atMQB4IcBWFXpxk4ONrIjgJe+TsNtBWBtg4/eIm1tiyiLvanpNalmrR4R9GoyFgrt+HY/mK34KirTgJfDQ2DGvPPQVoa82Blrbz4jesq1bp0VzW+NAqGs7sI0BTtOZee6Y=; c=relaxed/simple; s=224i4yxa5dv7c2xz3womw6peuasteono; d=amazonses.com; t=1506645232; v=1; bh=kXI7lI0qWpvuC9qz1q9XCugDmPbigAVoGrLMq2exHLU=; h=From:To:Cc:Bcc:Subject:Date:Message-ID:MIME-Version:Content-Type:X-SES-RECEIPT;
+Received: by mail-qk0-f173.google.com with SMTP id z143so3116677qkb.3
+        for <receiver@example.com>; Thu, 28 Sep 2017 17:33:51 -0700 (PDT)
+Return-Path: <sender@example.com>
+Received: from [192.168.0.103] (ool-18b9e1b0.dyn.optonline.net. [24.185.225.176])
+        by smtp.example.com with ESMTPSA id v40sm1996024qta.9.2017.09.28.17.33.49
+        for <receiver@example.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 28 Sep 2017 17:33:49 -0700 (PDT)
+Content-Type: multipart/mixed; boundary=Apple-Mail-06334A80-A7E9-4671-924A-3F777BA5A55D
+Content-Transfer-Encoding: 7bit
+From: Sawyer Hollenshead <sender@example.com>
+Mime-Version: 1.0 (1.0)
+Date: Thu, 28 Sep 2017 20:33:48 -0400
+Subject: iPhone Notebook export for Sorting Things Out: Classification and Its Consequences (Inside Technology)
+Message-Id: <9975F3A5-43BF-4782-9273-DC6595B7107A@example.com>
+To: receiver@example.com
+X-Mailer: iPhone Mail (15A372)
+
+
+--Apple-Mail-06334A80-A7E9-4671-924A-3F777BA5A55D
+Content-Type: text/plain;
+	charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
+
+Your Notebook exported from Sorting Things Out: Classification and Its Conse=
+quences (Inside Technology) is attached to this email.
+
+
+
+--Apple-Mail-06334A80-A7E9-4671-924A-3F777BA5A55D
+Content-Type: text/html;
+	name*0="Sorting Things Out: Classification and Its Consequences (Inside ";
+	name*1="Technology) - Notebook.html";
+	x-apple-part-url=BB82301E-7F30-499B-B862-8E336344F2B8
+Content-Disposition: attachment;
+	filename*0="Sorting Things Out: Classification and Its Consequences (Inside ";
+	filename*1="Technology) - Notebook.html"
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html PUBLIC
+"-//W3C//DTD XHTML 1.0 Strict//EN"
+"XHTML1-s.dtd" >
+<html xmlns=3D"http://www.w3.org/TR/1999/REC-html-in-xml" xml:lang=3D"en" la=
+ng=3D"en">
+    <head>
+    <meta charset=3D"UTF-8">
+    <style>
+        .bodyContainer {
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+            padding-left: 32px;
+            padding-right: 32px;
+        }
+       =20
+        .notebookFor {
+            font-size: 18px;
+            font-weight: 700;
+            text-align: center;
+            color: rgb(119, 119, 119);
+            margin: 24px 0px 0px;
+            padding: 0px;
+        }
+       =20
+        .bookTitle {
+            font-size: 24px;
+            font-weight: 700;
+            text-align: center;
+            color: #333333;
+            margin-top: 22px;
+            padding: 0px;
+        }
+       =20
+        .authors {
+            font-size: 18px;
+            font-weight: 700;
+            text-align: center;
+            color: rgb(119, 119, 119);
+            margin-top: 22px;
+            margin-bottom: 24px;
+            padding: 0px;
+        }
+   =20
+        .citation {
+            font-size: 18px;
+            font-weight: 500;
+            text-align: center;
+            color: #333333;
+            margin-top: 22px;
+            margin-bottom: 24px;
+            padding: 0px;
+        }
+   =20
+        .sectionHeading {
+            font-size: 24px;
+            font-weight: 700;
+            text-align: left;
+            color: #333333;
+            margin-top: 24px;
+            padding: 0px;
+        }
+       =20
+        .noteHeading {
+            font-size: 18px;
+            font-weight: 700;
+            text-align: left;
+            color: #333333;
+            margin-top: 20px;
+            padding: 0px;
+        }
+       =20
+        .noteText {
+            font-size: 18px;
+            font-weight: 500;
+            text-align: left;
+            color: #333333;
+            margin: 2px 0px 0px;
+            padding: 0px;
+        }
+       =20
+        .highlight_blue {
+            color: rgb(178, 205, 251);
+        }
+       =20
+        .highlight_orange {
+            color: #ffd7ae;
+        }
+       =20
+        .highlight_pink {
+            color: rgb(255, 191, 206);
+        }
+       =20
+        .highlight_yellow {
+            color: rgb(247, 206, 0);
+        }
+       =20
+        .notebookGraphic {
+            margin-top: 10px;
+            text-align: left;
+        }
+       =20
+        .notebookGraphic img {
+            -o-box-shadow:      0px 0px 5px #888;
+            -icab-box-shadow:   0px 0px 5px #888;
+            -khtml-box-shadow:  0px 0px 5px #888;
+            -moz-box-shadow:    0px 0px 5px #888;
+            -webkit-box-shadow: 0px 0px 5px #888;
+            box-shadow:         0px 0px 5px #888;=20
+            max-width: 100%;
+            height: auto;
+        }
+       =20
+        hr {
+            border: 0px none;
+            height: 1px;
+            background: none repeat scroll 0% 0% rgb(221, 221, 221);
+        }
+        </style>
+        <script>
+            </script>
+    </head>
+    <body>
+        <div class=3D"bodyContainer">
+            <div class=3D"notebookFor">
+                Notebook Export
+            </div>
+            <div class=3D"bookTitle">
+                Sorting Things Out: Classification and Its Consequences (Ins=
+ide Technology)
+            </div>
+            <div class=3D"authors">
+                Bowker, Geoffrey C.; Star, Susan Leigh
+            </div>
+            <div class=3D"citation">
+               =20
+            </div>
+            <hr />
+            <div class=3D"sectionHeading">
+    Introduction: To Classify Is Human
+</div><div class=3D"noteHeading">
+    Highlight(<span class=3D"highlight_yellow">yellow</span>) - Page 4 =C2=B7=
+ Location 194
+</div>
+<div class=3D"noteText">
+    Information scientists work every day on the design, delegation, and cho=
+ice of classification systems and standards, yet few see them as artifacts e=
+mbodying moral and aesthetic choices that in turn craft people=E2=80=99s ide=
+ntities, aspirations, and dignity.
+</div><div class=3D"noteHeading">
+    Highlight(<span class=3D"highlight_yellow">yellow</span>) - Page 13 =C2=B7=
+ Location 383
+</div>
+<div class=3D"noteText">
+    1. A =E2=80=9Cstandard=E2=80=9D is any set of agreed-upon rules for the p=
+roduction of (textual or material) objects. 2. A standard spans more than on=
+e community of practice (or site of activity). It has temporal reach as well=
+ in that it persists over time. 3. Standards are deployed in making things w=
+ork together over distance and heterogeneous metrics.
+</div><div class=3D"noteHeading">
+    Highlight(<span class=3D"highlight_yellow">yellow</span>) - Page 14 =C2=B7=
+ Location 393
+</div>
+<div class=3D"noteText">
+    5. There is no natural law that the best standard shall win=E2=80=94QWER=
+TY, Lotus 123, DOS, and VHS are often cited as examples in this context. The=
+ standards that do win may do so for a variety of other reasons: they build o=
+n an installed base, they had better marketing at the outset, or they were u=
+sed by a community of gatekeepers who favored their use. Sometimes standards=
+ win due to an outright conspiracy, as in the case of the gas refrigerator d=
+ocumented by Cowan (1985). 6. Standards have significant inertia and can be v=
+ery difficult and expensive to change.
+</div><div class=3D"noteHeading">
+    Highlight(<span class=3D"highlight_yellow">yellow</span>) - Page 15 =C2=B7=
+ Location 408
+</div>
+<div class=3D"noteText">
+    these dimensions of standards are in some sense idealized. They embody g=
+oals of practice and production that are never perfectly realized, like Plat=
+o=E2=80=99s triangles. The process of building to a standardized code, for e=
+xample, usually includes a face-to-face negotiation between builder(s) and i=
+nspector(s), which itself includes a history of relations between those peop=
+le. Small deviations are routinely overlooked, unless the inspector is makin=
+g a political point. The idiom =E2=80=9Cgood enough for government use=E2=80=
+=9D embodies the common-sense accommodations of the slip between the ideal s=
+tandard and the contingencies of practice.
+</div><div class=3D"sectionHeading">
+    1: Some Tricks of the Trade in Analyzing Classification
+</div><div class=3D"noteHeading">
+    Highlight(<span class=3D"highlight_yellow">yellow</span>) - Page 35 =C2=B7=
+ Location 701
+</div>
+<div class=3D"noteText">
+    A definition of infrastructure =E2=80=A2 Embeddedness . Infrastructure i=
+s sunk into, inside of, other structures, social arrangements, and technolog=
+ies, =E2=80=A2 Transparency . Infrastructure is transparent to use in the se=
+nse that it does not have to be reinvented each time or assembled for each t=
+ask, but invisibly supports those tasks. =E2=80=A2 Reach or scope . This may=
+ be either spatial or temporal=E2=80=94infrastructure has reach beyond a sin=
+gle event or one-site practice; =E2=80=A2 Learned as part of membership . Th=
+e taken-for-grantedness of artifacts and organizational arrangements is a si=
+ne qua non of membership in a community of practice (Lave and Wenger 1991, S=
+tar 1996). Strangers and outsiders encounter infrastructure as a target obje=
+ct to be learned about. New participants acquire a naturalized familiarity w=
+ith its objects as they become members. =E2=80=A2 Links with conventions of p=
+ractice . Infrastructure both shapes and is shaped by the conventions of a c=
+ommunity of practice; for example, the ways that cycles of day-night work ar=
+e affected by and affect electrical power rates and needs. Generations of ty=
+pists have learned the QWERTY keyboard; its limitations are inherited by the=
+ computer keyboard and thence by the design of today=E2=80=99s computer furn=
+iture (Becker 1982). =E2=80=A2 Embodiment of standards . Modified by scope a=
+nd often by conflicting conventions, infrastructure takes on transparency by=
+ plugging into other infrastructures and tools in a standardized fashion. =E2=
+=80=A2 Built on an installed base . Infrastructure does not grow de novo; it=
+ wrestles with the inertia of the installed base and inherits strengths and l=
+imitations from that base. Optical fibers run along old railroad lines, new s=
+ystems are designed for backward compatibility; and failing to account for t=
+hese constraints may be fatal or distorting to new development processes (Mo=
+nteiro and Hanseth 1996). =E2=80=A2 Becomes visible upon breakdown . The nor=
+mally invisible quality of working infrastructure becomes visible when it br=
+eaks: the server is down, the bridge washes out, there is a power blackout. E=
+ven when there are backup mechanisms or procedures, their existence further h=
+ighlights the now visible infrastructure. =E2=80=A2 Is fixed in modular incr=
+ements, not all at once or globally . Because infrastructure is big, layered=
+, and complex, and because it means different things locally, it is never ch=
+anged from above. Changes take time and negotiation, and adjustment with oth=
+er aspects of the systems involved. 7 Source: Star and Rohleder 1996.
+</div>
+        </div>
+    </body>
+</html>=
+
+--Apple-Mail-06334A80-A7E9-4671-924A-3F777BA5A55D
+Content-Type: text/plain;
+	charset=us-ascii
+Content-Transfer-Encoding: 7bit
+
+
+
+Sent from my iPhone
+--Apple-Mail-06334A80-A7E9-4671-924A-3F777BA5A55D--

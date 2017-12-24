@@ -24,6 +24,7 @@
     "eslint-config-prettier": "^2.9.0",
     "jest": "^22.0.3",
     "lerna": "^2.5.1",
+    "mz": "^2.7.0",
     "prettier": "^1.9.2"
   },
   "engines": {
