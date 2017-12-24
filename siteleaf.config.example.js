@@ -4,4 +4,4 @@ module.exports = {
   site: "",
   books: "",
   highlights: ""
-}
+};

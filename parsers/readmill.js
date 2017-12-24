@@ -1,37 +1,41 @@
 "use strict";
 
-var parseAttachment = require('./helpers/parse-attachment');
+const parseAttachment = require("./helpers/parse-attachment");
 
-var Parser = function(mail) {
+const Parser = function(mail) {
   this.mail = mail;
   this.results = [];
 };
 
-Parser.prototype.parseable = function () {
+Parser.prototype.parseable = function() {
   return this.parseableAttachments().length > 0;
 };
 
-Parser.prototype.parseableAttachments = function () {
-  var attachments = this.mail.attachments;
+Parser.prototype.parseableAttachments = function() {
+  const attachments = this.mail.attachments;
   if (!attachments) return [];
 
-  return attachments.filter(function (attachment) {
-    var parsedAtt = parseAttachment(attachment);
-    var content = parsedAtt.content;
-    return parsedAtt.type == 'json' && (content.hasOwnProperty('readings') || content.hasOwnProperty('liked_highlights'));
+  return attachments.filter(function(attachment) {
+    const parsedAtt = parseAttachment(attachment);
+    const content = parsedAtt.content;
+    return (
+      parsedAtt.type === "json" &&
+      (content.hasOwnProperty("readings") ||
+        content.hasOwnProperty("liked_highlights"))
+    );
   });
 };
 
-Parser.prototype.parse = function () {
-  var self = this;
-  var attachments = this.parseableAttachments();
+Parser.prototype.parse = function() {
+  const self = this;
+  const attachments = this.parseableAttachments();
 
-  attachments.forEach(function (attachment) {
-    var parsedAtt = parseAttachment(attachment);
+  attachments.forEach(function(attachment) {
+    const parsedAtt = parseAttachment(attachment);
 
-    if (parsedAtt.content.hasOwnProperty('readings')) {
+    if (parsedAtt.content.hasOwnProperty("readings")) {
       self.parseReadings(parsedAtt.content);
-    } else if (parsedAtt.content.hasOwnProperty('liked_highlights')) {
+    } else if (parsedAtt.content.hasOwnProperty("liked_highlights")) {
       self.parseLikedHighlights(parsedAtt.content);
     }
   });
@@ -39,11 +43,11 @@ Parser.prototype.parse = function () {
   return this.results;
 };
 
-Parser.prototype.parseReadings = function (content) {
-  var self = this;
+Parser.prototype.parseReadings = function(content) {
+  const self = this;
 
-  content.readings.forEach(function (reading) {
-    var highlights = self.parseHighlights(reading);
+  content.readings.forEach(function(reading) {
+    const highlights = self.parseHighlights(reading);
     if (!highlights.length) return;
 
     self.results.push({
@@ -53,10 +57,10 @@ Parser.prototype.parseReadings = function (content) {
   });
 };
 
-Parser.prototype.parseLikedHighlights = function (content) {
-  var self = this;
+Parser.prototype.parseLikedHighlights = function(content) {
+  const self = this;
 
-  content.liked_highlights.forEach(function (highlight) {
+  content.liked_highlights.forEach(function(highlight) {
     self.results.push({
       book: highlight.book,
       highlights: [self.createHighlight(highlight, true)]
@@ -64,23 +68,23 @@ Parser.prototype.parseLikedHighlights = function (content) {
   });
 };
 
-Parser.prototype.parseHighlights = function (reading) {
-  var self = this;
-  var highlights = [];
+Parser.prototype.parseHighlights = function(reading) {
+  const self = this;
+  const highlights = [];
 
-  reading.highlights.forEach(function (highlight) {
+  reading.highlights.forEach(function(highlight) {
     highlights.push(self.createHighlight(highlight));
   });
 
   return highlights;
 };
 
-Parser.prototype.parseComments = function (highlight) {
+Parser.prototype.parseComments = function(highlight) {
   if (!highlight.comments.length) return;
 
-  var comments = [];
+  const comments = [];
 
-  highlight.comments.forEach(function (comment) {
+  highlight.comments.forEach(function(comment) {
     comments.push({
       body: comment.content,
       date: comment.posted_at,
@@ -91,14 +95,14 @@ Parser.prototype.parseComments = function (highlight) {
   return comments;
 };
 
-Parser.prototype.createHighlight = function (highlight, includeUser) {
-  var obj = {
+Parser.prototype.createHighlight = function(highlight, includeUser) {
+  const obj = {
     content: highlight.content,
     date: highlight.highlighted_at,
-    source: 'readmill'
+    source: "readmill"
   };
 
-  var comments = this.parseComments(highlight);
+  const comments = this.parseComments(highlight);
 
   if (comments) obj.comments = comments;
 

@@ -1,18 +1,17 @@
-var MailParser = require("mailparser").MailParser,
-    path = require('path'),
-    util = require('util'),
-    fs = require('fs')
-    Plaintext = require('./parsers/text');
+const MailParser = require("mailparser").MailParser;
+const path = require("path");
+const fs = require("fs");
+const Plaintext = require("./parsers/text");
 
-var _import = function _import() {
-  var mailparser = new MailParser();
-  mailparser.on("end", function(mail){
-    var plaintext = new Plaintext(mail);
+const _import = function _import() {
+  const mailparser = new MailParser();
+  mailparser.on("end", function(mail) {
+    const plaintext = new Plaintext(mail);
 
     console.log("Parseable: ", plaintext.parseable());
     console.log(plaintext.parse(mail));
-  });;
-  fs.createReadStream(path.resolve('exports/text-email')).pipe(mailparser);
+  });
+  fs.createReadStream(path.resolve("exports/text-email")).pipe(mailparser);
 };
 
 _import();

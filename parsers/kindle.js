@@ -1,46 +1,49 @@
 "use strict";
 
-var parseAttachment = require('./helpers/parse-attachment');
-var Clipper = require('./kindle-clipper');
-var KindleHTMLParser = require('./kindle-html');
-var _ = require('lodash');
+const parseAttachment = require("./helpers/parse-attachment");
+const Clipper = require("./kindle-clipper");
+const KindleHTMLParser = require("./kindle-html");
+const _ = require("lodash");
 
-var Parser = function(mail) {
+const Parser = function(mail) {
   this.mail = mail;
   this.results = [];
 };
 
-Parser.prototype.parseable = function () {
+Parser.prototype.parseable = function() {
   return this.parseableAttachments().length > 0;
 };
 
-Parser.prototype.parseableAttachments = function () {
-  var attachments = this.mail.attachments;
+Parser.prototype.parseableAttachments = function() {
+  const attachments = this.mail.attachments;
   if (!attachments) return [];
 
-  return attachments.filter(function (attachment) {
-    var parsedAtt = parseAttachment(attachment);
-    var isValidJson = (parsedAtt.type === 'json' && parsedAtt.content.hasOwnProperty('totalHighlights'));
-    return (isValidJson || parsedAtt.type === 'text' || parsedAtt.type === 'html');
+  return attachments.filter(function(attachment) {
+    const parsedAtt = parseAttachment(attachment);
+    const isValidJson =
+      parsedAtt.type === "json" &&
+      parsedAtt.content.hasOwnProperty("totalHighlights");
+    return (
+      isValidJson || parsedAtt.type === "text" || parsedAtt.type === "html"
+    );
   });
 };
 
-Parser.prototype.parse = function () {
-  var self = this;
+Parser.prototype.parse = function() {
+  const self = this;
 
-  var attachments = this.parseableAttachments();
+  const attachments = this.parseableAttachments();
 
-  attachments.forEach(function (attachment) {
-    var parsedAtt = parseAttachment(attachment);
+  attachments.forEach(function(attachment) {
+    const parsedAtt = parseAttachment(attachment);
 
-    if (parsedAtt.type == 'json') {
+    if (parsedAtt.type === "json") {
       self.parseBookmarkletExport(parsedAtt.content);
-    } else if (parsedAtt.type == 'text') {
+    } else if (parsedAtt.type === "text") {
       self.parseClippings(parsedAtt.content);
     } else {
-      var parser = new KindleHTMLParser(parsedAtt.content);
-      if (parser.parseable())
-        self.results.push(parser.parse());
+      const parser = new KindleHTMLParser(parsedAtt.content);
+      if (parser.parseable()) self.results.push(parser.parse());
     }
   });
 
@@ -49,10 +52,10 @@ Parser.prototype.parse = function () {
 
 // BOOKMARKLET
 // =================================
-Parser.prototype.parseBookmarkletExport = function (content) {
-  var self = this;
+Parser.prototype.parseBookmarkletExport = function(content) {
+  const self = this;
 
-  content.highlights.forEach(function (content) {
+  content.highlights.forEach(function(content) {
     if (!content.highlightedText.length) return;
 
     self.results.push({
@@ -65,44 +68,45 @@ Parser.prototype.parseBookmarkletExport = function (content) {
   });
 };
 
-Parser.prototype.parseBookmarkletHighlights = function (highlightedText) {
-  var self = this;
+Parser.prototype.parseBookmarkletHighlights = function(highlightedText) {
+  const self = this;
 
-  var highlights = [];
+  const highlights = [];
 
-  highlightedText.forEach(function (highlight) {
+  highlightedText.forEach(function(highlight) {
     highlights.push(self.createBookmarkletHighlight(highlight));
   });
 
   return highlights;
 };
 
-Parser.prototype.createBookmarkletHighlight = function (btHighlight) {
-  var highlight = {
+Parser.prototype.createBookmarkletHighlight = function(btHighlight) {
+  const highlight = {
     content: btHighlight.content,
     location: btHighlight.kindleLocation,
-    source: 'kindle'
+    source: "kindle"
   };
 
-  if (btHighlight.comment && btHighlight.comment !== '') highlight.comments = [{ body: btHighlight.comment }];
+  if (btHighlight.comment && btHighlight.comment !== "")
+    highlight.comments = [{ body: btHighlight.comment }];
 
   return highlight;
 };
 
 // CLIPPINGS
 // =================================
-Parser.prototype.parseClippings = function (content) {
-  var self = this;
+Parser.prototype.parseClippings = function(content) {
+  const self = this;
 
-  var clipper = new Clipper();
-  var clippings = clipper.getParsed(content);
-  clippings = _.groupBy(clippings, 'title');
-  var groups = Object.getOwnPropertyNames(clippings);
+  const clipper = new Clipper();
+  let clippings = clipper.getParsed(content);
+  clippings = _.groupBy(clippings, "title");
+  const groups = Object.getOwnPropertyNames(clippings);
 
-  groups.forEach(function (name) {
-    var group = clippings[name];
+  groups.forEach(function(name) {
+    const group = clippings[name];
     if (!group.length) return;
-    var first = group[0];
+    const first = group[0];
     self.results.push({
       book: {
         title: first.title,
@@ -113,19 +117,19 @@ Parser.prototype.parseClippings = function (content) {
   });
 };
 
-Parser.prototype.parseClippingHighlights = function (group) {
-  var self = this;
+Parser.prototype.parseClippingHighlights = function(group) {
+  const self = this;
 
-  return group.map(function (clipping) {
+  return group.map(function(clipping) {
     return self.createClippingHighlight(clipping);
   });
 };
 
-Parser.prototype.createClippingHighlight = function (clipping) {
+Parser.prototype.createClippingHighlight = function(clipping) {
   return {
     content: clipping.text,
     location: clipping.location,
-    source: 'kindle'
+    source: "kindle"
   };
 };
 

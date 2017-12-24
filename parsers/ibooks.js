@@ -1,25 +1,28 @@
 "use strict";
 
-var cheerio = require('cheerio');
+const cheerio = require("cheerio");
 
-var Parser = function(mail) {
+const Parser = function(mail) {
   this.mail = mail;
 };
 
-Parser.prototype.parseable = function () {
-  if(this.mail.html){
-    var $ = cheerio.load(this.mail.html);
-    var annotations = $('.annotation');
+Parser.prototype.parseable = function() {
+  if (this.mail.html) {
+    const $ = cheerio.load(this.mail.html);
+    const annotations = $(".annotation");
     return annotations.length > 0;
   }
 };
 
-Parser.prototype.parse = function () {
-  var $ = cheerio.load(this.mail.html);
-  var annotations = $('.annotation');
-  var titleEl = $('.booktitle');
-  var title = titleEl.text().trim();
-  var author = titleEl.next('h2').text().trim();
+Parser.prototype.parse = function() {
+  const $ = cheerio.load(this.mail.html);
+  const annotations = $(".annotation");
+  const titleEl = $(".booktitle");
+  const title = titleEl.text().trim();
+  const author = titleEl
+    .next("h2")
+    .text()
+    .trim();
 
   return {
     book: {
@@ -30,16 +33,28 @@ Parser.prototype.parse = function () {
   };
 };
 
-Parser.prototype.parseHighlights = function (annotations) {
-  var highlights = [];
+Parser.prototype.parseHighlights = function(annotations) {
+  const highlights = [];
 
-  annotations.each(function (i, el) {
-    var note = cheerio(el).find('.annotationnote').html().trim();
-    var highlight = {
-      content: cheerio(el).find('.annotationrepresentativetext').text().trim(),
-      date: cheerio(el).find('.annotationdate').text().trim(),
-      location: cheerio(el).find('.annotationchapter').text().trim(),
-      source: 'ibooks'
+  annotations.each(function(i, el) {
+    const note = cheerio(el)
+      .find(".annotationnote")
+      .html()
+      .trim();
+    const highlight = {
+      content: cheerio(el)
+        .find(".annotationrepresentativetext")
+        .text()
+        .trim(),
+      date: cheerio(el)
+        .find(".annotationdate")
+        .text()
+        .trim(),
+      location: cheerio(el)
+        .find(".annotationchapter")
+        .text()
+        .trim(),
+      source: "ibooks"
     };
 
     if (note) highlight.comments = [{ body: note }];

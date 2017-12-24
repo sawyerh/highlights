@@ -1,25 +1,25 @@
 "use strict";
 
-var cheerio = require('cheerio');
+const cheerio = require("cheerio");
 
-var Parser = function(html) {
+const Parser = function(html) {
   this.html = html;
 };
 
-Parser.prototype.parseable = function () {
-  if(this.html){
-    var $ = cheerio.load(this.html);
-    var notes = $('.noteText');
+Parser.prototype.parseable = function() {
+  if (this.html) {
+    const $ = cheerio.load(this.html);
+    const notes = $(".noteText");
     return notes.length > 0;
   }
 };
 
-Parser.prototype.parse = function () {
-  var $ = cheerio.load(this.html);
-  var titleEl = $('.bookTitle');
-  var authorEl = $('.authors');
-  var title = titleEl.text().trim();
-  var author = authorEl.text().trim();
+Parser.prototype.parse = function() {
+  const $ = cheerio.load(this.html);
+  const titleEl = $(".bookTitle");
+  const authorEl = $(".authors");
+  const title = titleEl.text().trim();
+  const author = authorEl.text().trim();
 
   return {
     book: {
@@ -30,16 +30,20 @@ Parser.prototype.parse = function () {
   };
 };
 
-Parser.prototype.parseHighlights = function ($) {
-  var locations = $('.noteHeading');
-  var highlights = [];
+Parser.prototype.parseHighlights = function($) {
+  const locations = $(".noteHeading");
+  let highlights = [];
 
   locations.each((index, el) => {
-    var location = cheerio(el).text().trim();
-    var locationMatch = location.match(/location\s(\d*)/i);
+    const location = cheerio(el)
+      .text()
+      .trim();
+    const locationMatch = location.match(/location\s(\d*)/i);
 
     if (locationMatch)
-      highlights = highlights.concat(this.parseHighlightAfterElement(locationMatch[1], el));
+      highlights = highlights.concat(
+        this.parseHighlightAfterElement(locationMatch[1], el)
+      );
   });
 
   return highlights;
@@ -51,24 +55,28 @@ Parser.prototype.parseHighlights = function ($) {
  * @param  {Node} el
  * @return {Array} The parsed highlight objects
  */
-Parser.prototype.parseHighlightAfterElement = function (location, el) {
-  var highlights = [];
-  var nextEl = cheerio(el).next();
+Parser.prototype.parseHighlightAfterElement = function(location, el) {
+  let highlights = [];
+  const nextEl = cheerio(el).next();
 
-  if (nextEl.hasClass('noteText')) {
-    var highlight = {
-      content: cheerio(nextEl).text().trim(),
+  if (nextEl.hasClass("noteText")) {
+    const highlight = {
+      content: cheerio(nextEl)
+        .text()
+        .trim(),
       location: location,
-      source: 'kindle'
+      source: "kindle"
     };
 
     highlights.push(highlight);
 
-    if (nextEl.next().hasClass('noteText'))
-      highlights = highlights.concat(this.parseHighlightAfterElement(location, nextEl));
+    if (nextEl.next().hasClass("noteText"))
+      highlights = highlights.concat(
+        this.parseHighlightAfterElement(location, nextEl)
+      );
   }
 
   return highlights;
-}
+};
 
 module.exports = Parser;
