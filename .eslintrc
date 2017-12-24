@@ -1,0 +1,7 @@
+{
+  "extends": ["nava", "prettier"],
+  "env": {
+    "node": true,
+    "jest": true
+  }
+}
