@@ -1,14 +1,16 @@
 {
+  "private": true,
   "scripts": {
     "lint": "eslint ./ --ext .js -f table",
+    "postinstall": "lerna bootstrap",
     "test": "jest"
   },
   "dependencies": {
     "async": "^1.4.2",
-    "cheerio": "^0.19.0",
+    "cheerio": "^1.0.0-rc.2",
     "dateformat": "^1.0.11",
     "lodash": "^3.10.1",
-    "mailparser": "^0.5.2",
+    "mailparser": "^2.1.0",
     "merge": "^1.2.0",
     "moment": "^2.10.6",
     "siteleaf-api": "git+ssh://git@github.com/siteleaf/siteleaf-node.git",
@@ -21,9 +23,10 @@
     "eslint-config-nava": "^2.1.0",
     "eslint-config-prettier": "^2.9.0",
     "jest": "^22.0.3",
+    "lerna": "^2.5.1",
     "prettier": "^1.9.2"
   },
   "engines": {
-    "node": "6.1.0"
+    "node": "^6.1.0"
   }
 }
