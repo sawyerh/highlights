@@ -1,6 +1,6 @@
-- [Installation](#installation)
-- [Saving highlights](#saving-highlights)
-- [Known issues](#known-issues)
+* [Installation](#installation)
+* [Saving highlights](#saving-highlights)
+* [Known issues](#known-issues)
 
 # Installation
 
@@ -19,25 +19,25 @@ There are a couple ways you can set this up, but here's what I did:
 
 Through my domain registar I created a specific subdomain for receiving my highlight emails (eg my-highlights.example.com) and [verified my domain](http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-verification.html) using a TXT record.
 
-![DNS Settings](https://github.com/sawyerh/highlights-email-to-lambda-to-siteleaf/blob/master/readme-images/dns.png)
+![DNS Settings](https://github.com/sawyerh/highlights-email-to-lambda-to-siteleaf/blob/master/.github/dns.png)
 
 In AWS SES I added my verified domain
 
-![SES Settings](https://github.com/sawyerh/highlights-email-to-lambda-to-siteleaf/blob/master/readme-images/ses-1.png)
+![SES Settings](https://github.com/sawyerh/highlights-email-to-lambda-to-siteleaf/blob/master/.github/ses-1.png)
 
 and created a rule set that would send my emails to S3 (you can create the bucket in this step if one doesn't already exist)
 
-![SES Rule set](https://github.com/sawyerh/highlights-email-to-lambda-to-siteleaf/blob/master/readme-images/ses-2.png)
+![SES Rule set](https://github.com/sawyerh/highlights-email-to-lambda-to-siteleaf/blob/master/.github/ses-2.png)
 
 ### AWS Lambda
 
 Create a new [AWS Lambda](https://aws.amazon.com/documentation/lambda/) function using the code in this repo (you can upload it as a Zip).
 
-![Lambda Settings](https://github.com/sawyerh/highlights-email-to-lambda-to-siteleaf/blob/master/readme-images/lambda.png)
+![Lambda Settings](https://github.com/sawyerh/highlights-email-to-lambda-to-siteleaf/blob/master/.github/lambda.png)
 
 After your Lambda function is created, add an event source to it that listens for Object Created events in S3. Now your Lambda function will be called anytime a new object is added to the S3 bucket you setup to store your emails.
 
-![Lambda Settings](https://github.com/sawyerh/highlights-email-to-lambda-to-siteleaf/blob/master/readme-images/lambda-event.png)
+![Lambda Settings](https://github.com/sawyerh/highlights-email-to-lambda-to-siteleaf/blob/master/.github/lambda-event.png)
 
 # Saving Highlights
 
@@ -93,4 +93,4 @@ The more people there are in the room, the more pressure there is to perform wel
 
 # Known issues
 
-- Due to AWS Lambda functions having a maximum runtime of 5 minutes, if you're trying to save more than 100 highlights, it might timeout before fully saving all the highlights. If all highlights don't save the first time, re-send the email and it will pick up where it left off, only adding highlights that weren't added the first time.
+* Due to AWS Lambda functions having a maximum runtime of 5 minutes, if you're trying to save more than 100 highlights, it might timeout before fully saving all the highlights. If all highlights don't save the first time, re-send the email and it will pick up where it left off, only adding highlights that weren't added the first time.
