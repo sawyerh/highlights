@@ -1,32 +1,267 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`kindle-email-to-json parses book title and authors 1`] = `
+exports[`kindle-email-to-json converts export with only locations 1`] = `
 Object {
   "highlights": Array [
     Object {
-      "content": "Information scientists work every day on the design, delegation, and choice of classification systems and standards, yet few see them as artifacts embodying moral and aesthetic choices that in turn craft people’s identities, aspirations, and dignity.",
-      "location": "194",
+      "content": "The earliest cars and components were individually crafted, which led to many safety and maintainability nightmares. Ford broke the automobile down into its component parts and modularized the assembly process. The results spoke for themselves: more uniform, more reliable, safer cars rolled out of the factory, and in record time to boot.",
+      "location": "80",
     },
     Object {
-      "content": "1. A “standard” is any set of agreed-upon rules for the production of (textual or material) objects. 2. A standard spans more than one community of practice (or site of activity). It has temporal reach as well in that it persists over time. 3. Standards are deployed in making things work together over distance and heterogeneous metrics.",
-      "location": "383",
+      "content": "Atmosphere describes the feelings we get that are evoked by colour, texture and typography. You might already think of atmosphere in different terms. You might call it “feel”, “mood” or even “visual identity.” Whatever words you choose, the atmosphere of a design doesn’t depend on layout. It’s independent of arrangement and visual placement. It will be seen, or felt, at every screen size and on every device. Andy Clarke",
+      "location": "161",
     },
     Object {
-      "content": "5. There is no natural law that the best standard shall win—QWERTY, Lotus 123, DOS, and VHS are often cited as examples in this context. The standards that do win may do so for a variety of other reasons: they build on an installed base, they had better marketing at the outset, or they were used by a community of gatekeepers who favored their use. Sometimes standards win due to an outright conspiracy, as in the case of the gas refrigerator documented by Cowan (1985). 6. Standards have significant inertia and can be very difficult and expensive to change.",
-      "location": "393",
+      "content": "At some point, a threshold is crossed where the initial benefits of using a framework–namely development speed–are outweighed by the time spent modifying, extending, and fixing the framework.",
+      "location": "228",
     },
     Object {
-      "content": "these dimensions of standards are in some sense idealized. They embody goals of practice and production that are never perfectly realized, like Plato’s triangles. The process of building to a standardized code, for example, usually includes a face-to-face negotiation between builder(s) and inspector(s), which itself includes a history of relations between those people. Small deviations are routinely overlooked, unless the inspector is making a political point. The idiom “good enough for government use” embodies the common-sense accommodations of the slip between the ideal standard and the contingencies of practice.",
-      "location": "408",
+      "content": "I recently visited my health insurance provider’s website to pay my bill. In the course of five clicks, I was hit with four distinct interface designs, some of which looked like they were last touched in 1999. This inconsistent experience put the burden on me, the user, to figure out what went where and how to interpret disparate interface elements. By the time I got to the payment form, I felt like I couldn’t trust the company to successfully and securely process my payment. Style guides help iron out these inconsistencies by encouraging reuse of interface elements. Designers and developers can refer back to existing patterns to ensure the work they’re producing is consistent with what’s already been established.",
+      "location": "301",
     },
     Object {
-      "content": "A definition of infrastructure • Embeddedness . Infrastructure is sunk into, inside of, other structures, social arrangements, and technologies, • Transparency . Infrastructure is transparent to use in the sense that it does not have to be reinvented each time or assembled for each task, but invisibly supports those tasks. • Reach or scope . This may be either spatial or temporal—infrastructure has reach beyond a single event or one-site practice; • Learned as part of membership . The taken-for-grantedness of artifacts and organizational arrangements is a sine qua non of membership in a community of practice (Lave and Wenger 1991, Star 1996). Strangers and outsiders encounter infrastructure as a target object to be learned about. New participants acquire a naturalized familiarity with its objects as they become members. • Links with conventions of practice . Infrastructure both shapes and is shaped by the conventions of a community of practice; for example, the ways that cycles of day-night work are affected by and affect electrical power rates and needs. Generations of typists have learned the QWERTY keyboard; its limitations are inherited by the computer keyboard and thence by the design of today’s computer furniture (Becker 1982). • Embodiment of standards . Modified by scope and often by conflicting conventions, infrastructure takes on transparency by plugging into other infrastructures and tools in a standardized fashion. • Built on an installed base . Infrastructure does not grow de novo; it wrestles with the inertia of the installed base and inherits strengths and limitations from that base. Optical fibers run along old railroad lines, new systems are designed for backward compatibility; and failing to account for these constraints may be fatal or distorting to new development processes (Monteiro and Hanseth 1996). • Becomes visible upon breakdown . The normally invisible quality of working infrastructure becomes visible when it breaks: the server is down, the bridge washes out, there is a power blackout. Even when there are backup mechanisms or procedures, their existence further highlights the now visible infrastructure. • Is fixed in modular increments, not all at once or globally . Because infrastructure is big, layered, and complex, and because it means different things locally, it is never changed from above. Changes take time and negotiation, and adjustment with other aspects of the systems involved. 7 Source: Star and Rohleder 1996.",
-      "location": "701",
+      "content": "Style guides establish a consistent, shared vocabulary between everyone involved in a project, encouraging collaboration between disciplines and reducing communication breakdowns.",
+      "location": "316",
+    },
+    Object {
+      "content": "Style guides demonstrate to clients, stakeholders, and other disciplines that there’s a lot of really thoughtful work going into a website’s design and development beyond just “Hey, let’s make a new website.” A pattern library communicates the design language in a very tangible way, which helps stakeholders understand that an underlying system is determining the final interface. Style guides can help alleviate what I call special snowflake syndrome, where certain departments in an organization think that they have unique problems and therefore demand unique solutions. By exposing the design system in the form of a style guide, these special snowflakes can better appreciate consistency and understand why their requests for custom designs receive pushback.",
+      "location": "321",
+    },
+    Object {
+      "content": "designers and developers are forced to think about how their decisions affect the broader design system. It becomes harder to go rogue and easier to think of the greater good.",
+      "location": "330",
+    },
+    Object {
+      "content": "The five stages of atomic design are: Atoms Molecules Organisms Templates Pages",
+      "location": "441",
+    },
+    Object {
+      "content": "atoms of our interfaces serve as the foundational building blocks that comprise all our user interfaces. These atoms include basic HTML elements like form labels, inputs, buttons, and others that can’t be broken down any further without ceasing to be functional.",
+      "location": "448",
+    },
+    Object {
+      "content": "In the context of a pattern library, atoms demonstrate all your base styles at a glance, which can be a helpful reference to keep coming back to as you develop and maintain your design system.",
+      "location": "456",
+    },
+    Object {
+      "content": "molecules are relatively simple groups of UI elements functioning together as a unit. For example, a form label, search input, and button can join together to create a search form molecule.",
+      "location": "462",
+    },
+    Object {
+      "content": "Creating simple components helps UI designers and developers adhere to the single responsibility principle, an age-old computer science precept that encourages a “do one thing and do it well” mentality. Burdening a single pattern with too much complexity makes software unwieldy. Therefore, creating simple UI molecules makes testing easier, encourages reusability, and promotes consistency throughout the interface.",
+      "location": "468",
+    },
+    Object {
+      "content": "Organisms are relatively complex UI components composed of groups of molecules and/or atoms and/or other organisms. These organisms form distinct sections of an interface.",
+      "location": "474",
+    },
+    Object {
+      "content": "Organisms like website headers consist of smaller molecules like primary navigation, search forms, utility navigation, and logos.",
+      "location": "482",
+    },
+    Object {
+      "content": "Templates are page-level objects that place components into a layout and articulate the design’s underlying content structure.",
+      "location": "496",
+    },
+    Object {
+      "content": "This homepage template displays all the necessary page components functioning together, which provides context for these relatively abstract molecules and organisms. When crafting an effective design system, it’s critical to demonstrate how components look and function together in the context of a layout to prove the parts add up to a well-functioning whole.",
+      "location": "499",
+    },
+    Object {
+      "content": "Pages are specific instances of templates that show what a UI looks like with real representative content in place.",
+      "location": "514",
+    },
+    Object {
+      "content": "Pages also provide a place to articulate variations in templates, which is crucial for establishing robust and reliant design systems.",
+      "location": "529",
+    },
+    Object {
+      "content": "To sum up atomic design in a nutshell: Atoms are UI elements that can’t be broken down any further and serve as the elemental building blocks of an interface. Molecules are collections of atoms that form relatively simple UI components. Organisms are relatively complex components that form discrete sections of an interface. Templates place components within a layout and demonstrate the design’s underlying content structure. Pages apply real content to templates and articulate variations to demonstrate the final UI and test the resilience of the design system.",
+      "location": "538",
+    },
+    Object {
+      "content": "In his book  The Shape of Design, Frank Chimero beautifully articulates the power this traversal provides: The painter, when at a distance from the easel, can assess and analyze the whole of the work from this vantage. He scrutinizes and listens, chooses the next stroke to make, then approaches the canvas to do it. Then, he steps back again to see what he’s done in relation to the whole. It is a dance of switching contexts, a pitter-patter pacing across the studio floor that produces a tight feedback loop between mark-making and mark-assessing. Frank Chimero Atomic design lets us dance between contexts like the painter Frank so eloquently describes. The atoms, molecules, and organisms that comprise our interfaces do not live in a vacuum. And our interfaces’ templates and pages are indeed composed of smaller parts. The parts of our designs influence the whole, and the whole influences the parts. The two are intertwined, and atomic design embraces this fact.",
+      "location": "550",
+    },
+    Object {
+      "content": "don’t interpret the five stages of atomic design as “Step 1: atoms; Step 2: molecules; Step 3: organisms; Step 4: templates; Step 5: pages.” Instead, think of the stages of atomic design as a mental model that allows us to concurrently create final UIs and their underlying design systems.",
+      "location": "564",
+    },
+    Object {
+      "content": "Mark Boulton explains: Content needs to be structured and structuring alters your content, designing alters content. It’s not ‘content then design’, or ‘content or design’. It’s ‘content and design’.",
+      "location": "568",
+    },
+    Object {
+      "content": "The issue with terms like components and modules is that a sense of hierarchy can’t be deduced from the names alone. Atoms, molecules, and organisms imply a hierarchy that anyone with a basic knowledge of chemistry can hopefully wrap their head around.",
+      "location": "587",
+    },
+    Object {
+      "content": "Effective pattern libraries carve out a space to define and describe UI components, articulating considerations ranging from accessibility to performance to aesthetics and beyond.",
+      "location": "930",
+    },
+    Object {
+      "content": "The design process is weird and complicated, because people are weird and complicated. Mark Boulton",
+      "location": "977",
+    },
+    Object {
+      "content": "design systems promote consistency and cohesion, speed up your team’s productivity, establish a more collaborative workflow, establish a shared vocabulary, provide helpful documentation, make testing easier, and serve as a future-friendly foundation.",
+      "location": "994",
+    },
+    Object {
+      "content": "One of the most powerful benefits of interface inventories is that you can show them to anyone, including non-designers and developers, and they’ll understand why inconsistent UIs are problematic. You don’t need to be a designer to recognize that having 37 unique button styles probably isn’t a good idea.",
+      "location": "1113",
+    },
+    Object {
+      "content": "It’s ludicrous for anyone to utter the phrase, “This is how we’ve always done things” in an industry that’s only 25 years old.",
+      "location": "1187",
+    },
+    Object {
+      "content": "Rather than jumping straight into such high-fidelity documents, it’s better to start with lo-fi sketches that establish what appears on a particular screen and in what general order. Establishing the experience’s basic information architecture can be accomplished with a simple bulleted list and a conversation.",
+      "location": "1350",
+    },
+    Object {
+      "content": "Making lo-fi wireframes mobile-first means using the constraints of small screens to force the team to focus on the core content and hierarchy. You can now ask, “Do we have the right things on this screen?” “Are they in the right general order?”",
+      "location": "1356",
+    },
+    Object {
+      "content": "With a few simple spreadsheet columns, we can articulate which display patterns should be included in a given template, and what content patterns they’ll contain. More importantly, we’re able to articulate each pattern’s relative hierarchy and the role it plays on the screen. If you read the leftmost column vertically, you’re effectively looking at the mobile-first view of what the UI could be.",
+      "location": "1370",
+    },
+    Object {
+      "content": "A fantastic exercise for quickly establishing aesthetic values is the 20-second gut test. Typically done as part of the project kick-off meeting, the exercise involves showing the stakeholders a handful of pertinent websites (about twenty to thirty of them) for twenty seconds each. The sites you choose should be a healthy blend of industry-specific sites and other visually interesting sites from other industries. For added believability, you can photoshop in your client’s logo in place of the site’s actual logo. For each site presented, each person votes on a scale from 1 to 10, where a score of 1 means “If this were our site I would quit my job and cry myself to sleep,” while a score of 10 means “If this were our site I would be absolutely ecstatic!” Instruct participants to consider visual properties they find interesting, such as typography, color, density, layout, illustration style, and general vibe.",
+      "location": "1383",
+    },
+    Object {
+      "content": "This exercise exposes stakeholders to a variety of aesthetic directions early in the process, allows them to work through differences in taste, and (with any luck) helps arrive at some shared aesthetic values.",
+      "location": "1396",
+    },
+    Object {
+      "content": "20-second tests",
+      "location": "1398",
+    },
+    Object {
+      "content": "Style tiles (along with their in-browser counterparts, style prototypes) allow designers to explore color, typography, texture, icons, and other aspects of design atmosphere without making assumptions about layout or worrying about polish. They can be designed much faster because they’re not encumbered by the expectations of high-fidelity comps, which means feedback and discussion can happen sooner. Style tiles facilitate conversation to uncover what stakeholders value and what they don’t. “Does this style tile resonate better with you rather than this one? Why?” “Why does this color palette not sit well with you?” “What is it about this typeface you like?” You can have important conversations about aesthetic design without having to create full comps. Crucially, style tiles also reinforce pattern-based thinking by educating stakeholders about design systems rather than pages. Presenting color swatches, type examples, and textures exposes stakeholders to the ingredients that will underpin any implementation of the design system.",
+      "location": "1408",
+    },
+    Object {
+      "content": "Somewhere in between style tiles and full comps live element collages, which are collections of UI component design explorations. Element collages provide a playground for designers to apply design atmosphere to actual interface elements, yet still be free from layout and highly polished presentation.",
+      "location": "1419",
+    },
+    Object {
+      "content": "Front-end developers need to be the prep chefs of the web design process.",
+      "location": "1441",
+    },
+    Object {
+      "content": "front-end prep chef work frees up developers’ time to collaborate with designers, rather than working after design is complete. With basic markup in place, developers can work with designers to help validate UX design decisions through conversations and working prototypes. They can help visual designers better understand source order and web layout, and can quickly produce a fledgling codebase that will eventually evolve into the final product.",
+      "location": "1450",
+    },
+    Object {
+      "content": "Let’s quickly review what establishing design direction looks like across disciplines: UX designers can create lo-fi sketches to establish basic information architecture and some anticipated UI patterns. Visual designers can gather the teams’ aesthetic values by conducting a 20-second gut test exercise, then create style tiles and element collages to explore initial design directions. Frontend developers can set up project dependencies, stub out basic templates, and write structural markup for patterns the team anticipates using in the project. This work can happen concurrently but shouldn’t happen in isolation. Sure, there will need to be some initial head-down time for each discipline to get set up, but all team members should be fully aware of each discipline’s explorations in anticipation of working together to evolve these ideas.",
+      "location": "1454",
+    },
+    Object {
+      "content": "Seeing these partially designed prototypes might look unusual to those used to more traditional, pixel-perfect design deliverables. But it’s far more important to communicate progress than a false sense of perfection, which is why rolling updates are preferable to big reveals.",
+      "location": "1499",
+    },
+    Object {
+      "content": "For the TechCrunch project, we created a comp for the article template only after the client was feeling good about our element collage explorations. Creating full comps requires a lot of effort, which is why we established the design direction first to mitigate the risk of all that full-comp effort going straight into the trash if we got it totally wrong.",
+      "location": "1516",
+    },
+    Object {
+      "content": "Working in the browser allows teams to address layout issues across the entire resolution spectrum, design around dynamic data (such as variable character lengths, image sizes, and other dynamic content), demonstrate interaction and animation, gauge performance, factor in ergonomics, and confront technical considerations (such as pixel density, text rendering, scrolling performance, and browser quirks). Static design comps cannot deal with all these considerations, so they should be treated merely as hypotheses rather than set-in-stone specifications. Only when transferred to the browser can any design hypothesis truly be confirmed or rejected.",
+      "location": "1524",
+    },
+    Object {
+      "content": "This “design system first” mentality inserts a bit of friction into the maintenance process, and that friction can be friendly. It forces us to step back and consider how any improvements, client requests, feature additions, and iterations affect the overall system rather than only a sliver of the whole ecosystem.",
+      "location": "1579",
+    },
+    Object {
+      "content": "The vastness and decentralized nature of the organization means that a synchronized pattern library isn’t really achievable without some dramatic restructuring of how federal government websites get built. If a relatively scattered, decentralized culture is your reality, don’t be disheartened! Even getting some design system in place –a handful of go-to UI patterns, some helpful documentation, and guiding principles –can show your organization the light that points towards the grail.",
+      "location": "1832",
+    },
+    Object {
+      "content": "Evangelizing your design system efforts can and should happen even before the system is off the ground. At the onset of your project, you can set up places to document progress of the project to help garner awareness and excitement for the design system effort. One client of mine set up an internal blog to publish updates to the project, as well as a design system Yammer channel where developers and other interested parties can share ideas, address concerns, give feedback, and ask questions. Establishing a culture of communication early in the process will increase the likelihood of the design system taking root.",
+      "location": "1873",
+    },
+    Object {
+      "content": "A great way of injecting your design system into your company culture is to bake design system training right into the onboarding process for new employees. New colleagues will understand the importance of modularity, reuse, and all the other benefits a design system brings.",
+      "location": "1910",
+    },
+    Object {
+      "content": "Publishing your style guide for the world to see increases its visibility, increases accountability, and serves as an amazing recruitment tool.",
+      "location": "1945",
     },
   ],
   "volume": Object {
-    "authors": "Bowker, Geoffrey C.; Star, Susan Leigh",
-    "title": "Sorting Things Out: Classification and Its Consequences (Inside Technology)",
+    "authors": "Brad Frost",
+    "title": "Atomic Design by Brad Frost",
+  },
+}
+`;
+
+exports[`kindle-email-to-json converts export with page data and multiple authors 1`] = `
+Object {
+  "highlights": Array [
+    Object {
+      "content": "libraries have acquisitions departments and card catalogs, magazines have editors and tables of contents, and so on. In the early years of the web, numerous attempts were made to apply some of these approaches to the content generated by the crowd. Yahoo originally stood for “Yet Another Hierarchically Organized Oracle,” and it rose to prominence as a sort of card catalog for the net; a human-created and -maintained set of website categories and subcategories.†",
+      "location": "3305",
+    },
+    Object {
+      "content": "one of Wikipedia’s pillars: “Act in good faith, and assume good faith on the part of others.”",
+      "location": "3333",
+    },
+    Object {
+      "content": "By adopting the right principles, norms, institutions, and technologies, the crowd can do a great deal to maintain quality standards, though there may be other trade-offs, like how easily or quickly participants can post new items, how quickly they are shared, who gets to see them, and, yes, how much profit can be earned from the content.",
+      "location": "3339",
+    },
+    Object {
+      "content": "This is generally true: the crowd wants clarity not just on how contributions will be evaluated, but also on how they’ll be used, and who will be able to benefit from them.",
+      "location": "3469",
+    },
+    Object {
+      "content": "how can the effort as a whole ensure that the really important work gets done? By realizing that in this case, “important” actually means the work that’s most relevant to the community of end users, by enabling these users to contribute, and by having some confidence that they will do so.",
+      "location": "3472",
+    },
+    Object {
+      "content": "In fact, there was not even an attempt to stick to one version of Linux. Instead, the operating system could “fork” so that it had one version called Raspbian optimized for the Raspberry Pi, a credit card–sized programmable computer that costs less than $ 40, while other Linux variants were optimized for giant servers. Forking was seen as evidence of Linux’s success, rather than as a loss of control, and it showed the benefits of letting contributors organize themselves and their work.",
+      "location": "3475",
+    },
+    Object {
+      "content": "Large crowds can be brought together to build highly useful products like Linux. Such efforts require “geeky leadership” that follows principles of openness, noncredentialism, self-selection, verifiability, and clarity about goals and outcomes.",
+      "location": "3550",
+    },
+    Object {
+      "content": "When such rapid progress is occurring, the knowledge of the core in organizations within these industries can easily become out of date. Somewhere out there in the crowd, meanwhile, are, in all likelihood, at least some of the people who help come up with the latest advances, or their students, and thus are quite familiar with them. The core can become stale, in short, while the crowd really can’t.",
+      "location": "3673",
+    },
+    Object {
+      "content": "The freedom of all is essential to my freedom. —Mikhail Bakunin, 1871",
+      "location": "3971",
+    },
+    Object {
+      "content": "The second reason human social skills remain so valuable is that most of us don’t find numbers and algorithms alone very persuasive. We’re much more swayed by a good story or compelling anecdote then we are by a table full of statistically significant results.",
+      "location": "4600",
+    },
+    Object {
+      "content": "analytical ability is even more valuable when it’s paired with high social skills; this combination is what helps good ideas spread and be accepted.",
+      "location": "4603",
+    },
+    Object {
+      "content": "the key practice for managers within these companies is that they try not to let their own biases and judgments play too large a role in determining which of the ideas they hear are the good ones, and thus worthy of implementation. Instead, they fall back whenever possible on the processes of iteration and experimentation to find unbiased evidence on the quality of a new idea. Managers, in other words, step away from their traditional roles as evaluators and gatekeepers of ideas. This shift is uncomfortable for some, who fear (with justification) that some bad ideas will see the light of day, but many of the most impressive companies and managers we’ve encountered believe the benefits are far greater than the risks.",
+      "location": "4618",
+    },
+    Object {
+      "content": "companies will also exist for a much more important reason: they are one of the best ways we’ve ever come up with to get big things done in the world. To feed people and improve their health; to provide entertainment and access to knowledge; to improve material conditions of life and to do so for more and more people over time, all around the planet. The new technologies of the crowd will help greatly with all this, but they will not displace companies, which are one of the cornerstone technologies of the core.",
+      "location": "4655",
+    },
+    Object {
+      "content": "So we should ask not “What will technology do to us?” but rather “What do we want to do with technology?”",
+      "location": "4754",
+    },
+  ],
+  "volume": Object {
+    "authors": "McAfee, Andrew; Brynjolfsson, Erik",
+    "title": "Machine, Platform, Crowd: Harnessing Our Digital Future",
   },
 }
 `;
