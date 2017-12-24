@@ -38,36 +38,52 @@ Converter.prototype.getJSON = function() {
       title: title,
       authors: authors
     },
-    highlights: this.parseHighlights()
+    highlights: this.parseNotes()
   };
 };
 
-Converter.prototype.parseHighlights = function($) {
-  const locations = this.$(".noteHeading");
+/**
+ * Parse the highlights and notes from the HTML
+ * @returns {Array} highlights
+ */
+Converter.prototype.parseNotes = function() {
+  const headings = this.$(".noteHeading");
   let highlights = [];
 
-  locations.each((index, el) => {
-    const location = cheerio(el)
+  headings.each((index, el) => {
+    const heading = cheerio(el)
       .text()
       .trim();
-    const locationMatch = location.match(/location\s(\d*)/i);
 
-    if (locationMatch)
-      highlights = highlights.concat(
-        this.parseHighlightAfterElement(locationMatch[1], el)
-      );
+    const location = heading.match(/location\s(\d*)/i);
+
+    if (location) {
+      if (heading.match(/^Note \-/i)) {
+        // We're making the assumption that notes are only added on top of
+        // a highlight. When that's the case, the exported file will include
+        // the note directly after the text it's added on.
+        if (highlights.length) {
+          const highlight = highlights[highlights.length - 1];
+          highlight.notes = this.parseTextAfterElement(location[1], el);
+        }
+      } else {
+        highlights = highlights.concat(
+          this.parseTextAfterElement(location[1], el)
+        );
+      }
+    }
   });
 
   return highlights;
 };
 
 /**
- * Find the next highlight(s) after the given element
+ * Find the next note text after the given element
  * @param  {String} location - The highlight location
  * @param  {Node} el
  * @return {Array} The parsed highlight objects
  */
-Converter.prototype.parseHighlightAfterElement = function(location, el) {
+Converter.prototype.parseTextAfterElement = function(location, el) {
   let highlights = [];
   const nextEl = cheerio(el).next();
 
@@ -83,7 +99,7 @@ Converter.prototype.parseHighlightAfterElement = function(location, el) {
 
     if (nextEl.next().hasClass("noteText"))
       highlights = highlights.concat(
-        this.parseHighlightAfterElement(location, nextEl)
+        this.parseTextAfterElement(location, nextEl)
       );
   }
 

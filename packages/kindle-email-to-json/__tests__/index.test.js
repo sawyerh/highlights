@@ -9,7 +9,7 @@ function readMail(filename = "atomic-design") {
 }
 
 describe("kindle-email-to-json", () => {
-  it("converts export with only locations", () => {
+  it("converts export with a note", () => {
     return readMail()
       .then(toJSON)
       .then(data => {
