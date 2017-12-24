@@ -3,3 +3,5 @@
 *.env
 event.json
 *.zip
+node_modules
+*.log
