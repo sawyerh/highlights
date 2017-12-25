@@ -18,7 +18,8 @@ exports.handler = function(event, context, debug = false) {
 
   s3.getObject(params, (err, data) => {
     if (err) {
-      console.log(err);
+      console.error(err);
+
       return context.fail(
         `Error getting object ${params.Key} from bucket ${params.Bucket}`
       );

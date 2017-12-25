@@ -14,3 +14,8 @@ The Lambda function relies on the following environment variables. You'll need t
 * `KEY_PREFIX` - The directory within the bucket where the email objects can be found (SES only gives us the message ID, which is used for the object's name).
 * `S3_BUCKET` - The bucket where the emails are added to
 * `SERVICE_ACCOUNT` - Google Cloud Service Account JSON object
+
+### Testing locally
+
+1. Set the environment variables in a `.env` file within the package directory
+1. Run `node_modules/.bin/nodenv index.js`

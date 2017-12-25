@@ -1,20 +1,23 @@
-const config = require("../siteleaf.config.js");
-const Siteleaf = require("siteleaf-api");
-const slug = require("slug");
-const truncate = require("truncate");
-const uuid = require("uuid");
+function Highlight() {}
 
-const siteleaf = new Siteleaf({
-  apiKey: config.key,
-  apiSecret: config.secret
-});
+/**
+ * @returns {Promise<Object>}
+ */
+function getHighlights() {
+  return siteleaf.request(
+    `sites/${config.site}/collections/${config.highlights}/documents`,
+    {
+      qs: { per_page: 9999 }
+    }
+  );
+}
 
 /**
  * @param {Object} highlight
  * @param {Object} volume
  * @returns {Promise<Object>}
  */
-function createHighlight(highlight, volume) {
+function create(highlight, volume) {
   const truncatedTitle = truncate(volume.title, 20, { ellipsis: null });
 
   const params = {
@@ -37,4 +40,4 @@ function createHighlight(highlight, volume) {
   );
 }
 
-module.exports = createHighlight;
+module.exports = Highlight;

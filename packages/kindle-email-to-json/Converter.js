@@ -24,7 +24,7 @@ Converter.prototype.valid = function() {
 };
 
 /**
- * Parse the HTML to pull out the book's title, author, and highlights
+ * Parse the HTML to pull out the volume's title, author, and highlights
  * @returns {Object}
  */
 Converter.prototype.getJSON = function() {
@@ -41,7 +41,7 @@ Converter.prototype.getJSON = function() {
       title: title,
       authors: authors
     },
-    highlights: this.parseNotes()
+    highlights: this.highlights()
   };
 };
 
@@ -49,7 +49,7 @@ Converter.prototype.getJSON = function() {
  * Parse the highlights and notes from the HTML
  * @returns {Array} highlights
  */
-Converter.prototype.parseNotes = function() {
+Converter.prototype.highlights = function() {
   const headings = this.$(".noteHeading");
   let highlights = [];
 
