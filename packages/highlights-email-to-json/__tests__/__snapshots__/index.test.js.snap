@@ -1,0 +1,101 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`highlights-email-to-json converts email 1`] = `
+Object {
+  "book": Object {
+    "author": "Jo Freeman aka Joreen",
+    "title": "The Tyranny of Stuctureless",
+  },
+  "highlights": Array [
+    Object {
+      "content": "Diffusion of information to everyone as frequently as possible. Information
+is power. Access to information enhances one's power. When an informal
+network spreads new ideas and information among themselves outside the
+group, they are already engaged in the process of forming an opinion --
+without the group participating. The more one knows about how things work
+and what is happening, the more politically effective one can be.",
+    },
+    Object {
+      "content": "Rotation of tasks among individuals. Responsibilities which are held too
+long by one person, formally or informally, come to be seen as that
+person's \\"property\\" and are not easily relinquished or controlled by the
+group. Conversely, if tasks are rotated too frequently the individual does
+not have time to learn her job well and acquire the sense of satisfaction
+of doing a good job.",
+    },
+    Object {
+      "content": "Distribution of authority among as many people as is reasonably possible.
+This prevents monopoly of power and requires those in positions of
+authority to consult with many others in the process of exercising it. It
+also gives many people the opportunity to have responsibility for specific
+tasks and thereby to learn different skills.",
+    },
+    Object {
+      "content": "If the movement continues deliberately to not select who shall exercise
+power, it does not thereby abolish power. All it does is abdicate the right
+to demand that those who do exercise power and influence be responsible for
+it. If the movement continues to keep power as diffuse as possible because
+it knows it cannot demand responsibility from those who have it, it does
+prevent any group or person from totally dominating. But it simultaneously
+insures that the movement is as ineffective as possible. Some middle ground
+between domination and ineffectiveness can and must be found.",
+    },
+    Object {
+      "content": "because there are no official spokespeople nor any decision-making body
+that the press can query when it wants to know the movement's position on a
+subject, these women are perceived as the spokespeople. Thus, whether they
+want to or not, whether the movement likes it or not, women of public note
+are put in the role of spokespeople by default.
+This is one main source of the ire that is often felt toward the women who
+are labeled \\"stars.\\" Because they were not selected by the women in the
+movement to represent the movement's views, they are resented when the
+press presumes that they speak for the movement. But as long as the
+movement does not select its own spokeswomen, such women will be placed in
+that role by the press and the public, regardless of their own desires.",
+    },
+    Object {
+      "content": "Because elites are informal does not mean they are invisible. At any small
+group meeting anyone with a sharp eye and an acute ear can tell who is
+influencing whom. The members of a friendship group will relate more to
+each other than to other people. They listen more attentively, and
+interrupt less; they repeat each other's points and give in amiably; they
+tend to ignore or grapple with the \\"outs\\" whose approval is not necessary
+for making a decision.",
+    },
+    Object {
+      "content": "For everyone to have the opportunity to be involved in a given group and to
+participate in its activities the structure must be explicit, not implicit.
+The rules of decision-making must be open and available to everyone, and
+this can happen only if they are formalized. This is not to say that
+formalization of a structure of a group will destroy the informal
+structure. It usually doesn't. But it does hinder the informal structure
+from having predominant control and make available some means of attacking
+it if the people involved are not at least responsible to the needs of the
+group at large. \\"Structurelessness\\" is organizationally impossible. We
+cannot decide whether to have a structured or structureless group, only
+whether or not to have a formally structured one.",
+    },
+    Object {
+      "content": "structurelessness becomes a way of masking power, and within the women's
+movement is usually most strongly advocated by those who are the most
+powerful (whether they are conscious of their power or not). As long as the
+structure of the group is informal, the rules of how decisions are made are
+known only to a few and awareness of power is limited to those who know the
+rules. Those who do not know the rules and are not chosen for initiation
+must remain in confusion, or suffer from paranoid delusions that something
+is happening of which they are not quite aware.",
+    },
+    Object {
+      "content": "Contrary to what we would like to believe, there is no such thing as a
+structureless group. Any group of people of whatever nature that comes
+together for any length of time for any purpose will inevitably structure
+itself in some fashion. The structure may be flexible; it may vary over
+time; it may evenly or unevenly distribute tasks, power and resources over
+the members of the group. But it will be formed regardless of the
+abilities, personalities, or intentions of the people involved. The very
+fact that we are individuals, with different talents, predispositions, and
+backgrounds makes this inevitable.",
+    },
+  ],
+}
+`;
