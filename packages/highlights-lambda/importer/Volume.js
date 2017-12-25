@@ -2,21 +2,6 @@ const db = require("./firestore")();
 const Volume = {};
 
 /**
- * @param {Object} props
- * @property {String} props.title
- * @returns {Promise<Object>} Resolves with volume object
- */
-Volume.findOrCreate = function(props) {
-  return this.findByImportTitle(props.title).then(snapshot => {
-    if (snapshot.empty) {
-      return this.create(props);
-    } else {
-      return snapshot.docs[0].ref;
-    }
-  });
-};
-
-/**
  * @param {Objects} props
  * @property {String} props.title
  * @property {String} props.importTitle
@@ -40,6 +25,20 @@ Volume.findByImportTitle = function(title) {
     .collection("volumes")
     .where("importTitle", "==", title)
     .get();
+};
+
+/**
+ * @param {Object} props
+ * @property {String} props.title
+ * @returns {Promise<Object>} Resolves with volume object
+ */
+Volume.findOrCreate = function(props) {
+  return this.findByImportTitle(props.title).then(snapshot => {
+    if (snapshot.empty) {
+      return this.create(props);
+    }
+    return snapshot.docs[0].ref;
+  });
 };
 
 module.exports = Volume;
