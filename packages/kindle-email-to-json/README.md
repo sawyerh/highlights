@@ -8,8 +8,6 @@ Convert a Kindle notes email export into a JSON object. Rejects
 if the mail isn't a valid Kindle notes export. The email is
 expected to contain at least one HTML attachment.
 
-**Kind**: global function
-
 | Param | Type                                                              |
 | ----- | ----------------------------------------------------------------- |
 | email | <code>Buffer</code> \| <code>Stream</code> \| <code>String</code> |
