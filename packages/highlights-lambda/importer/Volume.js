@@ -11,7 +11,7 @@ Volume.findOrCreate = function(props) {
     if (snapshot.empty) {
       return this.create(props);
     } else {
-      return Promise.resolve(snapshot.docs);
+      return snapshot.docs[0].ref;
     }
   });
 };
