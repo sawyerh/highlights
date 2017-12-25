@@ -3,7 +3,7 @@ const MailParser = require("mailparser").MailParser;
 const parseMail = require("./parsers/parser");
 const s3 = new aws.S3({ apiVersion: "2006-03-01" });
 
-exports.handler = function(event, context) {
+exports.handler = function(event, context, debug = false) {
   console.log("Received event", event);
 
   // Get the object from the event and show its content type

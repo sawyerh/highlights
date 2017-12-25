@@ -58,7 +58,7 @@ Converter.prototype.parseNotes = function() {
     const location = heading.match(/location\s(\d*)/i);
 
     if (location) {
-      if (heading.match(/^Note \-/i)) {
+      if (heading.match(/^Note -/i)) {
         // We're making the assumption that notes are only added on top of
         // a highlight. When that's the case, the exported file will include
         // the note directly after the text it's added on.

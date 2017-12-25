@@ -2,6 +2,7 @@
   "name": "kindle-email-to-json",
   "description": "Converts an email export of Kindle notes into a JSON object",
   "version": "1.0.0",
+  "main": "index.js",
   "author": {
     "name": "Sawyer Hollenshead",
     "url": "https://github.com/sawyerh"
