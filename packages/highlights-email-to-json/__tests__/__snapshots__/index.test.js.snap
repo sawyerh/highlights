@@ -3,7 +3,10 @@
 exports[`highlights-email-to-json converts email 1`] = `
 Object {
   "book": Object {
-    "author": "Jo Freeman aka Joreen",
+    "authors": Array [
+      "Jo Freeman aka Joreen",
+      "Foo bar",
+    ],
     "title": "The Tyranny of Stuctureless",
   },
   "highlights": Array [

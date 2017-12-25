@@ -195,7 +195,9 @@ Object {
     },
   ],
   "volume": Object {
-    "authors": "Brad Frost",
+    "authors": Array [
+      "Brad Frost",
+    ],
     "title": "Atomic Design by Brad Frost",
   },
 }
@@ -262,7 +264,10 @@ Object {
     },
   ],
   "volume": Object {
-    "authors": "McAfee, Andrew; Brynjolfsson, Erik",
+    "authors": Array [
+      "McAfee, Andrew",
+      "Brynjolfsson, Erik",
+    ],
     "title": "Machine, Platform, Crowd: Harnessing Our Digital Future",
   },
 }

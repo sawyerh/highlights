@@ -31,7 +31,10 @@ Converter.prototype.getJSON = function() {
   const titleEl = this.$(".bookTitle");
   const authorEl = this.$(".authors");
   const title = titleEl.text().trim();
-  const authors = authorEl.text().trim();
+  const authors = authorEl
+    .text()
+    .split(";")
+    .map(s => s.trim());
 
   return {
     volume: {

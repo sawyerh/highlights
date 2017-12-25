@@ -11,7 +11,7 @@ Content-Type: text/plain; charset="UTF-8"
 
 ---
 title: The Tyranny of Stuctureless
-author: Jo Freeman aka Joreen
+authors: Jo Freeman aka Joreen; Foo bar
 ---
 Diffusion of information to everyone as frequently as possible. Information
 is power. Access to information enhances one's power. When an informal
