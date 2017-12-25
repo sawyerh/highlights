@@ -7,10 +7,10 @@ const s3 = new AWS.S3();
  * This file is expected to be an email message conforming
  * to one of the supported highlight exports (Kindle or
  * or plain text).
- * @param {Object} event
+ * @param {Object} event - SES event
  * @param {Array<Object>} event.Records
  * @param {Object} context
- * @param {Boolean} debug - Disable saving the highlights to Siteleaf/Firebase
+ * @param {Boolean} debug - Disable saving the highlights to Firebase
  */
 exports.handler = function(event, context, debug = false) {
   console.log("Received event", event);
@@ -32,13 +32,14 @@ exports.handler = function(event, context, debug = false) {
 
 /**
  * Form the request object for getObject
- * @param {Object} event - Lambda Event
+ * @param {Object} event - SES Event
  * @returns {Object}
  */
 function s3Params(event) {
-  const bucket = event.Records[0].s3.bucket.name;
-  const key = decodeURIComponent(
-    event.Records[0].s3.object.key.replace(/\+/g, " ")
-  );
-  return { Bucket: bucket, Key: key };
+  const bucket = process.env.S3_BUCKET;
+  const prefix = process.env.KEY_PREFIX || "";
+  const sesNotification = event.Records[0].ses;
+  const key = sesNotification.mail.messageId;
+
+  return { Bucket: bucket, Key: `${prefix}${key}` };
 }
