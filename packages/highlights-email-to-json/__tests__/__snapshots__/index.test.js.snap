@@ -2,13 +2,6 @@
 
 exports[`highlights-email-to-json converts email 1`] = `
 Object {
-  "book": Object {
-    "authors": Array [
-      "Jo Freeman aka Joreen",
-      "Foo bar",
-    ],
-    "title": "The Tyranny of Stuctureless",
-  },
   "highlights": Array [
     Object {
       "content": "Diffusion of information to everyone as frequently as possible. Information
@@ -100,5 +93,12 @@ fact that we are individuals, with different talents, predispositions, and
 backgrounds makes this inevitable.",
     },
   ],
+  "volume": Object {
+    "authors": Array [
+      "Jo Freeman aka Joreen",
+      "Foo bar",
+    ],
+    "title": "The Tyranny of Stuctureless",
+  },
 }
 `;

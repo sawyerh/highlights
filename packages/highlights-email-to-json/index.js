@@ -39,12 +39,14 @@ function valid(text) {
 function getJSON(mail) {
   const data = frontmatter(mail.text.trim());
   const blocks = data.body.split("\n\n\n");
+  let authors = data.attributes.authors;
+
+  if (typeof authors === "string") {
+    authors = authors.split(";").map(s => s.trim());
+  }
 
   return {
-    book: {
-      title: data.attributes.title,
-      author: data.attributes.author
-    },
+    volume: { title: data.attributes.title, authors: authors },
     highlights: parseHighlights(blocks)
   };
 }

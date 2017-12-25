@@ -5,7 +5,7 @@ Convert an email export of notes into a JSON object. This is handy for saving no
 ```
 ---
 title: Book Title
-author: Author Name
+authors: Author Name; Another author name
 ---
 Note one text.
 
