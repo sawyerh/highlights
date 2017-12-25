@@ -1,4 +1,4 @@
-Convert an email export of notes into a JSON object.
+Convert an email export of notes into a JSON object. This is handy for saving notes from Instapaper or directly from the web.
 
 ## Expected email format
 
