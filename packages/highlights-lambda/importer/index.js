@@ -5,16 +5,10 @@ const createHighlight = require("./createHighlight");
 const filterExistingHighlights = require("./filterExistingHighlights");
 const merge = require("merge");
 const moment = require("moment");
-const Siteleaf = require("siteleaf-api");
 const uuid = require("uuid");
 
 const kindleToJSON = require("kindle-email-to-json");
 const textToJSON = require("highlights-email-to-json");
-
-const siteleaf = new Siteleaf({
-  apiKey: config.key,
-  apiSecret: config.secret
-});
 
 /**
  * Create the volume and highlights when they don't already exists

@@ -5,3 +5,4 @@ event.json
 *.zip
 node_modules
 *.log
+gcloud-service-account.json
