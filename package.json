@@ -3,6 +3,7 @@
   "scripts": {
     "lint": "eslint ./ --ext .js -f table",
     "postinstall": "lerna bootstrap",
+    "publish": "./scripts/publish.sh",
     "test": "jest"
   },
   "devDependencies": {
