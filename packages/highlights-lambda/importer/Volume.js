@@ -7,7 +7,7 @@ class Volume {
    * @param {String} props.title
    * @param {String} props.importTitle
    * @param {Array<String>} props.authors
-   * @returns {Promise<Object>} Snapshot
+   * @returns {Promise<Object>} Volume DocumentReference
    */
   static create(props) {
     return db.collection("volumes").add({
@@ -20,7 +20,7 @@ class Volume {
 
   /**
    * @param {String} title
-   * @returns {Promise<Object>} Snapshot
+   * @returns {Promise<Object>} DocumentSnapshot
    */
   static findByImportTitle(title) {
     return db
@@ -32,7 +32,7 @@ class Volume {
   /**
    * @param {Object} props
    * @param {String} props.title
-   * @returns {Promise<Object>} Resolves with volume object
+   * @returns {Promise<Object>} Volume DocumentReference
    */
   static findOrCreate(props) {
     return this.findByImportTitle(props.title).then(snapshot => {
