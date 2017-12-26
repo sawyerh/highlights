@@ -7,6 +7,9 @@ GREEN='\033[0;32m'
 BLUE="\033[0;34m ℹ "
 NC='\033[0m' # No color
 
+echo "${BLUE}Setting AWS_PROFILE...${NC}"
+export AWS_PROFILE=highlights
+
 echo "${BLUE}Clean up...${NC}"
 trash ./dist
 mkdir ./dist
@@ -18,5 +21,8 @@ cp -R ./importer ./dist
 echo "${BLUE}Install production dependencies...${NC}"
 cd ./dist
 yarn install --production
-zip -X -r -q ../handler.zip *
+zip -X -r -q ../index.zip *
 cd ..
+
+echo "${BLUE}Update Lambda function...${NC}"
+aws lambda update-function-code --function-name highlightsEmailToFirebase --zip-file fileb://index.zip
