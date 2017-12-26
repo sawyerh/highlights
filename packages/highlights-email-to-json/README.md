@@ -1,6 +1,14 @@
 Convert an email export of notes into a JSON object. This is handy for saving notes from Instapaper or directly from the web.
 
+## Installation
+
+```
+npm install highlights-email-to-json --save
+```
+
 ## Expected email format
+
+The email you send must match the following format in order to be converted by this package.
 
 ```
 ---

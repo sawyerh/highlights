@@ -1,5 +1,19 @@
 Convert an email export of Kindle notes into a JSON object.
 
+## Installation
+
+```
+npm install kindle-email-to-json --save
+```
+
+## How to email an export of your Kindle highlights
+
+**If you're reading on the Kindle iOS or Android app**:
+
+1. Open the "Notebook" section of your book where your annotations are kept
+2. Tap the "Share" icon, then tap "Export as HTML"
+3. Email the export as an attachment
+
 ## API
 
 ### toJSON(email) ⇒ <code>Promise.&lt;Object&gt;</code>
