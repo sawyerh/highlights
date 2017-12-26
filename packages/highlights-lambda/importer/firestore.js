@@ -1,16 +1,16 @@
 /**
  * Return a connection to the Firestore DB
  */
-const admin = require("firebase-admin");
+const Firestore = require("@google-cloud/firestore");
 let DB;
 
 module.exports = function() {
   if (DB) return DB;
 
-  admin.initializeApp({
-    credential: admin.credential.cert(JSON.parse(process.env.SERVICE_ACCOUNT))
+  DB = new Firestore({
+    projectId: "sawyer-highlights-dev",
+    credentials: JSON.parse(process.env.SERVICE_ACCOUNT)
   });
 
-  DB = admin.firestore();
   return DB;
 };

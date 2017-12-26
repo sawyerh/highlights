@@ -9,7 +9,6 @@
   },
   "dependencies": {
     "@google-cloud/firestore": "^0.10.1",
-    "firebase-admin": "^5.6.0",
     "highlights-email-to-json": "^1.0.0",
     "kindle-email-to-json": "^1.0.0",
     "lodash": "^3.10.1",
