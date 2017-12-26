@@ -10,12 +10,18 @@ class Volume {
    * @returns {Promise<Object>} Volume DocumentReference
    */
   static create(props) {
-    return db.collection("volumes").add({
-      authors: props.authors,
-      createdAt: Firestore.FieldValue.serverTimestamp(),
-      importTitle: props.title,
-      title: props.title
-    });
+    return db
+      .collection("volumes")
+      .add({
+        authors: props.authors,
+        createdAt: Firestore.FieldValue.serverTimestamp(),
+        importTitle: props.title,
+        title: props.title
+      })
+      .then(ref => {
+        console.log("Created Volume", ref.id);
+        return ref;
+      });
   }
 
   /**
@@ -39,7 +45,9 @@ class Volume {
       if (snapshot.empty) {
         return this.create(props);
       }
-      return snapshot.docs[0].ref;
+      const ref = snapshot.docs[0].ref;
+      console.log("Found existing Volume", ref.id);
+      return ref;
     });
   }
 }
