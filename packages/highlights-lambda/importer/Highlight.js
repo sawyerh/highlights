@@ -25,7 +25,11 @@ class Highlight {
   static batchCreateAll(highlights, volume) {
     const batch = db.batch();
     highlights.forEach(highlight => this.batchCreate(highlight, volume, batch));
-    return batch.commit();
+    return batch.commit().then(results => {
+      if (results.length) {
+        console.log(`Created ${results.length} highlights`);
+      }
+    });
   }
 
   /**
