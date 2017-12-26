@@ -43,6 +43,8 @@ npm test
 
 ### Setting up AWS SES (and S3)
 
+**Heads up: These screenshots are outdated, but hopefully still useful.**
+
 Setup AWS SES to store received email in an S3 bucket: http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-setting-up.html
 
 There are a couple ways you can set this up, but here's what I did:
