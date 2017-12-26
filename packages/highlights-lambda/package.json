@@ -5,7 +5,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "deploy": "./scripts/deploy.sh"
+    "deploy": "./scripts/deploy.sh",
+    "test": "./scripts/test.sh"
   },
   "dependencies": {
     "@google-cloud/firestore": "^0.10.1",
