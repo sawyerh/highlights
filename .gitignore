@@ -6,3 +6,4 @@ event.json
 node_modules
 *.log
 gcloud-service-account.json
+dist/

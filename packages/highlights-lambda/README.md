@@ -7,6 +7,14 @@
 1. Lambda pulls volume and highlights data from the email's body
 1. Lambda adds any new data to Firestore
 
+## Deploying
+
+Deploy the handler to Lambda. This script copies the files into a `dist` directory and installs production dependencies. Note: This doesn't use Lerna, so only published packages are used, rather than their symlinked local version.
+
+```
+npm run deploy
+```
+
 ## Configuration
 
 The Lambda function relies on the following environment variables. You'll need to set these to test locally:

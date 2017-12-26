@@ -4,6 +4,9 @@
   "description": "My personal solution for syncing highlights via AWS Lambda",
   "version": "1.0.0",
   "main": "index.js",
+  "scripts": {
+    "deploy": "./scripts/deploy.sh"
+  },
   "dependencies": {
     "@google-cloud/firestore": "^0.10.1",
     "firebase-admin": "^5.6.0",
