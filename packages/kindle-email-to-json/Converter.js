@@ -54,24 +54,27 @@ Converter.prototype.highlights = function() {
   let highlights = [];
 
   headings.each((index, el) => {
-    const heading = cheerio(el)
+    const heading = cheerio(el);
+    const color = heading
+      .find("span[class^='highlight_']")
       .text()
       .trim();
+    const text = heading.text().trim();
 
-    const location = heading.match(/location\s(\d*)/i);
+    const location = text.match(/location\s(\d*)/i);
 
     if (location) {
-      if (heading.match(/^Note -/i)) {
+      if (text.match(/^Note -/i)) {
         // We're making the assumption that notes are only added on top of
         // a highlight. When that's the case, the exported file will include
         // the note directly after the text it's added on.
         if (highlights.length) {
           const highlight = highlights[highlights.length - 1];
-          highlight.notes = this.parseTextAfterElement(location[1], el);
+          highlight.notes = this.highlightContent(location[1], color, el);
         }
       } else {
         highlights = highlights.concat(
-          this.parseTextAfterElement(location[1], el)
+          this.highlightContent(location[1], color, el)
         );
       }
     }
@@ -83,15 +86,17 @@ Converter.prototype.highlights = function() {
 /**
  * Find the next note text after the given element
  * @param  {String} location - The highlight location
+ * @param  {String} color
  * @param  {Node} el
  * @return {Array} The parsed highlight objects
  */
-Converter.prototype.parseTextAfterElement = function(location, el) {
+Converter.prototype.highlightContent = function(location, color, el) {
   let highlights = [];
   const nextEl = cheerio(el).next();
 
   if (nextEl.hasClass("noteText")) {
     const highlight = {
+      color: color,
       content: cheerio(nextEl)
         .text()
         .trim(),
@@ -102,7 +107,7 @@ Converter.prototype.parseTextAfterElement = function(location, el) {
 
     if (nextEl.next().hasClass("noteText"))
       highlights = highlights.concat(
-        this.parseTextAfterElement(location, nextEl)
+        this.highlightContent(location, color, nextEl)
       );
   }
 
