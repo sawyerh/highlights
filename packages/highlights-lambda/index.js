@@ -41,6 +41,7 @@ function s3Params(event) {
   const prefix = process.env.KEY_PREFIX || "";
   const sesNotification = event.Records[0].ses;
   const key = sesNotification.mail.messageId;
+  console.log("SES Message ID", key);
 
   return { Bucket: bucket, Key: `${prefix}${key}` };
 }
