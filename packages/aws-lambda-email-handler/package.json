@@ -1,7 +1,8 @@
 {
   "private": true,
-  "name": "highlights-lambda",
-  "description": "My personal solution for syncing highlights via AWS Lambda",
+  "name": "aws-lambda-email-handler",
+  "description":
+    "AWS Lambda function for handling the reception of an email export",
   "version": "1.0.1",
   "main": "index.js",
   "scripts": {
