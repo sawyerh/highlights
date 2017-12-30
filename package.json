@@ -14,5 +14,11 @@
     "lerna": "^2.5.1",
     "mz": "^2.7.0",
     "prettier": "^1.9.2"
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "<rootDir>/packages/highlights-lambda/dist/"
+    ]
   }
 }
