@@ -2,7 +2,7 @@
   "private": true,
   "name": "highlights-lambda",
   "description": "My personal solution for syncing highlights via AWS Lambda",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.js",
   "scripts": {
     "deploy": "./scripts/deploy.sh",
@@ -11,7 +11,7 @@
   "dependencies": {
     "@google-cloud/firestore": "^0.10.1",
     "firebase-admin": "^5.6.0",
-    "highlights-email-to-json": "^1.0.0",
+    "highlights-email-to-json": "^1.0.1",
     "kindle-email-to-json": "^1.1.0",
     "lodash": "^3.10.1",
     "string-hash": "^1.1.3"
