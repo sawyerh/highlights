@@ -10,9 +10,8 @@ const s3 = new AWS.S3();
  * @param {Object} event - SES event
  * @param {Array<Object>} event.Records
  * @param {Object} context
- * @param {Boolean} debug - Disable saving the highlights to Firebase
  */
-exports.handler = function(event, context, debug = false) {
+exports.handler = function(event, context) {
   console.log("Received event", event);
   const params = s3Params(event);
 
@@ -25,7 +24,7 @@ exports.handler = function(event, context, debug = false) {
       );
     }
 
-    importMail(data.Body, debug)
+    importMail(data.Body)
       .then(() => context.succeed(`Successfully imported ${params.Key}`))
       .catch(context.fail);
   });
