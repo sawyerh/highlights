@@ -20,7 +20,9 @@ function convert(mail) {
   }
 
   return Promise.reject(
-    new Error("Invalid mail content. Expected an HTML body with Kindle notes.")
+    new Error(
+      "Invalid mail content. Expected plain text body with YAML front-matter."
+    )
   );
 }
 
