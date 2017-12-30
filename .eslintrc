@@ -3,5 +3,8 @@
   "env": {
     "node": true,
     "jest": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 8
   }
 }

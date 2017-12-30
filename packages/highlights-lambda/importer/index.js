@@ -8,10 +8,9 @@ const textToJSON = require("highlights-email-to-json");
  * @param {Object} data
  * @param {Object} data.volume
  * @param {Array<Object>} data.highlights
- * @param {Boolean} debug
  * @returns {Promise}
  */
-function addVolumeAndHighlights(data, debug) {
+function addVolumeAndHighlights(data) {
   const { highlights, volume } = data;
 
   if (!highlights.length)
@@ -22,15 +21,17 @@ function addVolumeAndHighlights(data, debug) {
   );
 }
 
-function importer(mail, debug = false) {
-  return kindleToJSON(mail).then(
-    data => addVolumeAndHighlights(data, debug),
-    err => {
-      // kindleToJSON rejects if the mail format is invalid
-      console.log(err);
-      return textToJSON(mail).then(data => addVolumeAndHighlights(data, debug));
-    }
-  );
+function importer(mail) {
+  return kindleToJSON(mail)
+    .then(addVolumeAndHighlights)
+    .catch(kindleError =>
+      textToJSON(mail)
+        .then(addVolumeAndHighlights)
+        .catch(textError => {
+          console.log("kindleToJSON", kindleError);
+          console.log("textToJSON", textError);
+        })
+    );
 }
 
 module.exports = importer;
