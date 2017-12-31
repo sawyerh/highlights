@@ -1,9 +1,8 @@
 {
   "private": true,
   "name": "aws-lambda-email-handler",
-  "description":
-    "AWS Lambda function for handling the reception of an email export",
-  "version": "1.0.1",
+  "description": "AWS Lambda function for handling the reception of an email export",
+  "version": "1.1.0",
   "main": "index.js",
   "scripts": {
     "deploy": "./scripts/deploy.sh",
@@ -11,10 +10,10 @@
   },
   "dependencies": {
     "@google-cloud/firestore": "^0.10.1",
-    "@sawyerh/firestore-highlights": "^1.0.0",
+    "@sawyerh/firestore-highlights": "^1.0.1",
     "firebase-admin": "^5.6.0",
-    "highlights-email-to-json": "^1.0.1",
-    "kindle-email-to-json": "^1.1.0",
+    "highlights-email-to-json": "^1.0.2",
+    "kindle-email-to-json": "^1.1.1",
     "lodash": "^3.10.1",
     "string-hash": "^1.1.3"
   },
