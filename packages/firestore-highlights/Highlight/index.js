@@ -34,7 +34,7 @@ class Highlight {
 
   /**
    * Create index object for a Highlight's categories
-   * @param {String[]} categories
+   * @param {Object[]} categories
    * @returns {Object}
    */
   static indexCategories(categories) {
