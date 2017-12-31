@@ -18,7 +18,7 @@
   "jest": {
     "testPathIgnorePatterns": [
       "/node_modules/",
-      "<rootDir>/packages/aws-lambda-email-handler/dist/"
+      "<rootDir>/packages/aws-lambda-email-handler/dist/*"
     ]
   }
 }

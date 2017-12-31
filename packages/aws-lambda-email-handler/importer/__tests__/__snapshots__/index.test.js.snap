@@ -81,6 +81,7 @@ Object {
     "McAfee, Andrew",
     "Brynjolfsson, Erik",
   ],
+  "highlightsCount": 14,
   "title": "Machine, Platform, Crowd: Harnessing Our Digital Future",
 }
 `;
@@ -185,6 +186,7 @@ Object {
     "Jo Freeman aka Joreen",
     "Foo bar",
   ],
+  "highlightsCount": 9,
   "title": "The Tyranny of Stuctureless",
 }
 `;
