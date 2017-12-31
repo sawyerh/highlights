@@ -7,7 +7,7 @@
     "name": "Sawyer Hollenshead",
     "url": "https://github.com/sawyerh"
   },
-  "repository": "sawyerh/highlight-importers",
+  "repository": "sawyerh/highlight-utils",
   "license": "MIT",
   "dependencies": {
     "front-matter": "^2.3.0",

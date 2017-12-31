@@ -1,7 +1,8 @@
 const db = require("./firestore")();
 const Firestore = require("@google-cloud/firestore");
+const Volume = require("@sawyerh/firestore-highlights/Volume");
 
-class Volume {
+class LambdaVolume extends Volume {
   /**
    * @param {Object} props
    * @param {String} props.title
@@ -15,6 +16,7 @@ class Volume {
       .add({
         authors: props.authors,
         createdAt: Firestore.FieldValue.serverTimestamp(),
+        highlightsCount: props.highlightsCount,
         importTitle: props.title,
         title: props.title
       })
@@ -52,4 +54,4 @@ class Volume {
   }
 }
 
-module.exports = Volume;
+module.exports = LambdaVolume;

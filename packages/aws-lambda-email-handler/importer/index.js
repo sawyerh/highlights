@@ -12,6 +12,7 @@ const textToJSON = require("highlights-email-to-json");
  */
 function addVolumeAndHighlights(data) {
   const { highlights, volume } = data;
+  volume.highlightsCount = highlights.length;
 
   if (!highlights.length)
     return Promise.reject(new Error("No highlights to import"));
@@ -24,14 +25,19 @@ function addVolumeAndHighlights(data) {
 function importer(mail) {
   return kindleToJSON(mail)
     .then(addVolumeAndHighlights)
-    .catch(kindleError =>
-      textToJSON(mail)
+    .catch(kindleError => {
+      if (kindleError.message.match(/No new highlights/)) {
+        console.log(kindleError.message);
+        return Promise.resolve();
+      }
+
+      return textToJSON(mail)
         .then(addVolumeAndHighlights)
         .catch(textError => {
           console.log("kindleToJSON", kindleError);
           console.log("textToJSON", textError);
-        })
-    );
+        });
+    });
 }
 
 module.exports = importer;

@@ -3,20 +3,9 @@ const Firestore = require("@google-cloud/firestore");
 const db = require("./firestore")();
 const hash = require("string-hash");
 
-class Highlight {
-  /**
-   * Return the hash of all highlights in a volume. The hashes
-   * are then used for identifying which highlights are already imported.
-   * @param {Object} volume DocumentReference
-   * @returns {Promise<Object>} QuerySnapshot
-   */
-  static all(volume) {
-    return volume
-      .collection("highlights")
-      .select("hash")
-      .get();
-  }
+const Highlight = require("@sawyerh/firestore-highlights/Highlight");
 
+class LambdaHighlight extends Highlight {
   /**
    *
    * @param {Array<Object>} highlights
@@ -34,12 +23,12 @@ class Highlight {
 
   /**
    * @param {Object} highlight
-   * @param {Object} volume
+   * @param {Object} volume DocumentReference
    * @param {Object} batch
    * @returns {Promise<Object>}
    */
   static batchCreate(highlight, volume, batch) {
-    const ref = volume.collection("highlights").doc();
+    const ref = db.collection("highlights").doc();
 
     // Pull out the properties we know we'll be present,
     // then pass the rest of the object into Object.assign
@@ -53,7 +42,8 @@ class Highlight {
       {
         body: content,
         createdAt: Firestore.FieldValue.serverTimestamp(),
-        hash: hash
+        hash: hash,
+        volume: volume
       },
       highlight
     );
@@ -91,7 +81,7 @@ class Highlight {
       highlight.hash = hash(highlight.content);
     });
 
-    return Highlight.all(volume)
+    return Highlight.whereVolume(volume, query => query.select("hash"))
       .then(snapshot => {
         if (snapshot.empty) {
           return allHighlights;
@@ -107,4 +97,4 @@ class Highlight {
   }
 }
 
-module.exports = Highlight;
+module.exports = LambdaHighlight;

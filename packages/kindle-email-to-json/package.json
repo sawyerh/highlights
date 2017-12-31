@@ -7,7 +7,7 @@
     "name": "Sawyer Hollenshead",
     "url": "https://github.com/sawyerh"
   },
-  "repository": "sawyerh/highlight-importers",
+  "repository": "sawyerh/highlight-utils",
   "license": "MIT",
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
