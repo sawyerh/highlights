@@ -4,7 +4,8 @@
     "access": "public"
   },
   "version": "1.0.2",
-  "description": "Firestore models used for storing highlights and their corresponding data",
+  "description":
+    "Firestore models used for storing highlights and their corresponding data",
   "main": "index.js",
   "author": {
     "name": "Sawyer Hollenshead",
@@ -13,7 +14,9 @@
   "repository": "sawyerh/highlight-utils",
   "license": "MIT",
   "dependencies": {
-    "firebase-admin": "^5.6.0",
     "lodash": "^4.17.4"
+  },
+  "peerDependencies": {
+    "firebase-admin": "^5.6.0"
   }
 }
