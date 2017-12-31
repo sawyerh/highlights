@@ -1,7 +1,7 @@
 const _ = require("lodash");
 const admin = require("firebase-admin");
-const Category = require("../category");
-const Highlight = require("../highlight");
+const Category = require("../Category");
+const Highlight = require("../Highlight");
 const db = admin.firestore();
 
 /**
