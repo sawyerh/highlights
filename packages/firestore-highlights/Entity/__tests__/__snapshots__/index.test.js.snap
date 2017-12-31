@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Entity returns subset of Entity attributes 1`] = `
+Object {
+  "metadata": Object {
+    "mid": "/m/01w2v",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Cairo",
+  },
+  "name": "Cairo",
+  "type": "LOCATION",
+}
+`;

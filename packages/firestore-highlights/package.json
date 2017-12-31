@@ -1,0 +1,20 @@
+{
+  "name": "@sawyerh/firestore-highlights",
+  "publishConfig": {
+    "access": "public"
+  },
+  "version": "1.0.0",
+  "description":
+    "Firestore models used for storing highlights and their corresponding data",
+  "main": "index.js",
+  "author": {
+    "name": "Sawyer Hollenshead",
+    "url": "https://github.com/sawyerh"
+  },
+  "repository": "sawyerh/highlight-utils",
+  "license": "MIT",
+  "dependencies": {
+    "firebase-admin": "^5.6.0",
+    "lodash": "^4.17.4"
+  }
+}
