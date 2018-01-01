@@ -1,24 +1,9 @@
 const _ = require("lodash");
 
-let db;
-
 class Entity {
   static attrs(data) {
     delete data.mentions;
     return data;
-  }
-
-  /**
-   * Return all highlights with this entity
-   * @param {String} name - Entity name (or key)
-   * @returns {PublicHighlight[]}
-   */
-  static highlights(name) {
-    const key = this.key(name);
-
-    // db
-    //   .collection("highlights")
-    //   .where(`languageAnalysis.entityKeys.${key}`, "==", true);
   }
 
   /**
@@ -36,7 +21,5 @@ class Entity {
  * @returns {Class}
  */
 module.exports = firestore => {
-  db = firestore;
-
   return Entity;
 };

@@ -81,7 +81,13 @@ class LambdaHighlight extends Highlight {
       highlight.hash = hash(highlight.content);
     });
 
-    return Highlight.whereVolume(volume, query => query.select("hash"))
+    const query = db
+      .collection("highlights")
+      .where("volume", "==", volume)
+      .select("hash")
+      .get();
+
+    return query
       .then(snapshot => {
         if (snapshot.empty) {
           return allHighlights;

@@ -1,7 +1,6 @@
 const _ = require("lodash");
 
 let Category;
-let Highlight;
 let db;
 
 /**
@@ -42,6 +41,17 @@ class Volume {
   }
 
   /**
+   * @param {String|DocumentReference} id
+   */
+  static find(id) {
+    const ref = typeof id === "string" ? db.collection("volumes").doc(id) : id;
+
+    return ref.get().then(snap => {
+      return this.attrs(snap);
+    });
+  }
+
+  /**
    * Create index object for a Volume's categories
    * @param {String[]} categories
    * @returns {Object}
@@ -59,30 +69,6 @@ class Volume {
 
     return null;
   }
-
-  /**
-   * Return a volume along with its highlights
-   * @param {Number} id - Volume ID
-   * @param {Object}
-   */
-  static withHighlights(id) {
-    const volumeRef = db.collection("volumes").doc(id);
-    let res = {};
-
-    return volumeRef
-      .get()
-      .then(doc => {
-        res = this.attrs(doc);
-        return Highlight.whereVolume(doc.ref);
-      })
-      .then(snap => {
-        if (!snap.empty) {
-          res.highlights = snap.docs.map(doc => Highlight.attrs(doc));
-        }
-
-        return res;
-      });
-  }
 }
 
 /**
@@ -91,7 +77,6 @@ class Volume {
  */
 module.exports = firestore => {
   Category = require("../Category")(firestore);
-  Highlight = require("../Highlight")(firestore);
   db = firestore;
 
   return Volume;

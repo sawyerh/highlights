@@ -2,6 +2,7 @@ const _ = require("lodash");
 
 let Category;
 let Entity;
+let Volume;
 let db;
 
 /**
@@ -18,18 +19,37 @@ class Highlight {
    * Return a whitelist of attributes we want
    * publicly accessible via the API.
    * @param {DocumentSnapshot} doc
+   * @param {Boolean} includeVolume
    * @returns {PublicHighlight}
    */
-  static attrs(doc) {
+  static attrs(doc, includeVolume = true) {
     const data = doc.data();
 
-    return {
+    const res = {
       id: doc.ref.id,
       body: data.body,
       location: data.location,
       sentiment: data.documentSentiment,
       entities: this.properEntities(data)
     };
+
+    if (includeVolume) {
+      res.volume = { id: data.volume.id };
+    }
+
+    return res;
+  }
+
+  /**
+   * @param {String|DocumentReference} id
+   */
+  static find(id) {
+    const ref =
+      typeof id === "string" ? db.collection("highlights").doc(id) : id;
+
+    return ref.get().then(snap => {
+      return this.attrs(snap);
+    });
   }
 
   /**
@@ -95,16 +115,62 @@ class Highlight {
   }
 
   /**
-   * Find all highlights in a Volume
-   * @param {Object} ref - DocumentReference
+   * Find all highlights with an Entity
+   * @param {String} name - Entity name
    * @param {Function} beforeQuery - Method for modifying the query before its executed
    */
-  static whereVolume(ref, beforeQuery) {
-    const query = db.collection("highlights").where("volume", "==", ref);
+  static whereEntity(name, beforeQuery) {
+    const res = { name: name };
+    const key = _.camelCase(name);
+
+    const query = db
+      .collection("highlights")
+      .where(`indexEntities.${key}`, "==", true);
 
     if (beforeQuery) beforeQuery(query);
 
-    return query.get();
+    return query.get().then(snap => {
+      if (snap.empty) {
+        return res;
+      }
+      const highlights = snap.docs.map(doc => this.attrs(doc));
+
+      // Get additional entity info from a highlight
+      const entity = _.find(highlights[0].entities, { name: name });
+      const { type, metadata } = Entity.attrs(entity);
+
+      return Object.assign(res, { type, metadata, highlights });
+    });
+  }
+
+  /**
+   * Find all highlights in a Volume
+   * @param {String|DocumentReference} id
+   * @param {Function} beforeQuery - Method for modifying the query before its executed
+   */
+  static whereVolume(id, beforeQuery) {
+    const volumeRef =
+      typeof id === "string" ? db.collection("volumes").doc(id) : id;
+    const highlightsQuery = db
+      .collection("highlights")
+      .where("volume", "==", volumeRef);
+    let res = {};
+
+    if (beforeQuery) beforeQuery(highlightsQuery);
+
+    return Volume.find(volumeRef)
+      .then(volume => {
+        res = volume;
+      })
+      .then(() => {
+        return highlightsQuery.get().then(snap => {
+          if (!snap.empty) {
+            res.highlights = snap.docs.map(doc => this.attrs(doc));
+          }
+
+          return res;
+        });
+      });
   }
 }
 
@@ -115,6 +181,7 @@ class Highlight {
 module.exports = firestore => {
   Category = require("../Category")(firestore);
   Entity = require("../Entity")(firestore);
+  Volume = require("../Volume")(firestore);
   db = firestore;
 
   return Highlight;
