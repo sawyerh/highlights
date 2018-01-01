@@ -1,5 +1,7 @@
 const _ = require("lodash");
 
+let db;
+
 class Entity {
   static attrs(data) {
     delete data.mentions;
@@ -29,4 +31,12 @@ class Entity {
   }
 }
 
-module.exports = Entity;
+/**
+ * @param {Firestore} firestore - The Firestore Database client.
+ * @returns {Class}
+ */
+module.exports = firestore => {
+  db = firestore;
+
+  return Entity;
+};

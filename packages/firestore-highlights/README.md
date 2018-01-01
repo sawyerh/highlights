@@ -3,9 +3,12 @@
 ## Usage
 
 ```js
-// Require and initialize firebase-admin before requiring the models
 const admin = require("firebase-admin");
-admin.initializeApp({ credential: admin.credential.applicationDefault() });
+const firestore = admin.firestore();
 
-const Volume = require("@sawyerh/firestore-highlights/Volume");
+// Require a single model
+const Volume = require("@sawyerh/firestore-highlights/Volume")(firestore);
+
+// or require multiple at once
+const { Entity, Volume } = require("@sawyerh/firestore-highlights")(firestore);
 ```

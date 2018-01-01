@@ -3,7 +3,7 @@ const Firestore = require("@google-cloud/firestore");
 const db = require("./firestore")();
 const hash = require("string-hash");
 
-const Highlight = require("@sawyerh/firestore-highlights/Highlight");
+const Highlight = require("@sawyerh/firestore-highlights/Highlight")(db);
 
 class LambdaHighlight extends Highlight {
   /**

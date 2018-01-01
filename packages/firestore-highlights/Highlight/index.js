@@ -1,8 +1,8 @@
 const _ = require("lodash");
-const Category = require("../Category");
-const Entity = require("../Entity");
-const admin = require("firebase-admin");
-const db = admin.firestore();
+
+let Category;
+let Entity;
+let db;
 
 /**
  * @typedef PublicHighlight
@@ -108,4 +108,14 @@ class Highlight {
   }
 }
 
-module.exports = Highlight;
+/**
+ * @param {Firestore} firestore - The Firestore Database client.
+ * @returns {Class}
+ */
+module.exports = firestore => {
+  Category = require("../Category")(firestore);
+  Entity = require("../Entity")(firestore);
+  db = firestore;
+
+  return Highlight;
+};

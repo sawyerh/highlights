@@ -1,5 +1,7 @@
 const _ = require("lodash");
 
+let db;
+
 class Category {
   /**
    * Return all highlights with this Category
@@ -21,4 +23,12 @@ class Category {
   }
 }
 
-module.exports = Category;
+/**
+ * @param {Firestore} firestore - The Firestore Database client.
+ * @returns {Class}
+ */
+module.exports = firestore => {
+  db = firestore;
+
+  return Category;
+};

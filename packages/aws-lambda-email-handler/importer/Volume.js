@@ -1,6 +1,6 @@
 const db = require("./firestore")();
 const Firestore = require("@google-cloud/firestore");
-const Volume = require("@sawyerh/firestore-highlights/Volume");
+const Volume = require("@sawyerh/firestore-highlights/Volume")(db);
 
 class LambdaVolume extends Volume {
   /**
