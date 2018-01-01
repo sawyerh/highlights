@@ -87,7 +87,8 @@ class Highlight {
         .filter(
           entity =>
             entity.metadata.wikipedia_url ||
-            entity.mentions.some(mention => mention.type === "PROPER")
+            (entity.mentions && // some entities don't have any mentions
+              entity.mentions.some(mention => mention.type === "PROPER"))
         )
         .map(entity => Entity.attrs(entity));
     }
