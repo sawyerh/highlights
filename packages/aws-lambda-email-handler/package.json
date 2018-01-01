@@ -2,7 +2,7 @@
   "private": true,
   "name": "aws-lambda-email-handler",
   "description": "AWS Lambda function for handling the reception of an email export",
-  "version": "1.1.2",
+  "version": "2.0.0",
   "main": "index.js",
   "scripts": {
     "deploy": "./scripts/deploy.sh",
@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@google-cloud/firestore": "^0.10.1",
-    "@sawyerh/firestore-highlights": "^1.0.3",
+    "@sawyerh/firestore-highlights": "^2.0.0",
     "firebase-admin": "^5.6.0",
     "highlights-email-to-json": "^1.0.2",
     "kindle-email-to-json": "^1.1.1",
