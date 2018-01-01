@@ -20,7 +20,7 @@ cp -R ./importer ./dist
 
 echo "${BLUE}Install production dependencies...${NC}"
 cd ./dist
-yarn install --production --quiet
+yarn install --production --silent
 
 echo "${BLUE}Copy local dependencies...${NC}"
 # Copy local dependency (symlinks don't seem to work in Docker)

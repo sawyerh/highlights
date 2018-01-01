@@ -17,4 +17,5 @@ cd ..
 
 echo "${BLUE}Update Lambda function...${NC}"
 export AWS_PROFILE=highlights
-aws lambda update-function-code --function-name highlightsEmailToFirebase --zip-file fileb://index.zip
+aws s3 cp index.zip s3://highlights.sawyerh.com/lambda/index.zip
+aws lambda update-function-code --function-name highlightsEmailToFirebase --s3-bucket highlights.sawyerh.com --s3-key lambda/index.zip
