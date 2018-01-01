@@ -76,7 +76,10 @@ class Volume {
         return Highlight.whereVolume(doc.ref);
       })
       .then(snap => {
-        res.highlights = snap.docs.map(Highlight.attrs);
+        if (!snap.empty) {
+          res.highlights = snap.docs.map(doc => Highlight.attrs(doc));
+        }
+
         return res;
       });
   }
