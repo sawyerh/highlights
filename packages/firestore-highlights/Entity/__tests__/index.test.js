@@ -1,4 +1,5 @@
-const Entity = require("../");
+const db = require("firebase-admin").firestore();
+const Entity = require("../")(db);
 
 describe("Entity", () => {
   it("returns subset of Entity attributes", () => {

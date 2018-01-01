@@ -1,4 +1,4 @@
-const admin = jest.genMockFromModule("firebase-admin");
+const admin = {};
 let uniqueCount = 1;
 
 /**

@@ -1,4 +1,5 @@
-const Volume = require("../");
+const db = require("firebase-admin").firestore();
+const Volume = require("../")(db);
 
 describe("Volume", () => {
   it("returns subset of volume attributes", () => {

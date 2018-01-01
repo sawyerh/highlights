@@ -1,4 +1,5 @@
-const Highlight = require("../");
+const db = require("firebase-admin").firestore();
+const Highlight = require("../")(db);
 
 describe("Highlight", () => {
   let Doc;
