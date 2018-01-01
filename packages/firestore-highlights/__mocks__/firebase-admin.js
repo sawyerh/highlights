@@ -10,7 +10,10 @@ const mockHighlight = data => {
   const docData = Object.assign(
     {
       body: "Hello world",
-      location: "123"
+      location: "123",
+      volume: {
+        id: "vol123"
+      }
     },
     data
   );
@@ -55,10 +58,7 @@ const volumes = {
 };
 
 const highlights = {
-  docs: [
-    mockHighlight({ volume: volumes.docs[0].data().ref }),
-    mockHighlight({ volume: volumes.docs[0].data().ref })
-  ]
+  docs: [mockHighlight(), mockHighlight()]
 };
 
 const db = {

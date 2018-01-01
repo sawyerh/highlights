@@ -11,6 +11,9 @@ describe("Highlight", () => {
         body: "Hello world",
         location: "123",
         hash: 12345,
+        volume: {
+          id: "vol123"
+        },
         documentSentiment: {
           magnitude: 0.800000011920929,
           score: -0.4000000059604645
