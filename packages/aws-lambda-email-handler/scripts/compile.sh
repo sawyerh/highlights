@@ -20,7 +20,11 @@ cp -R ./importer ./dist
 
 echo "${BLUE}Install production dependencies...${NC}"
 cd ./dist
-npm install --production --quiet
+yarn install --production --quiet
+
+echo "${BLUE}Copy local dependencies...${NC}"
+# Copy local dependency (symlinks don't seem to work in Docker)
+cp -R ../../firestore-highlights ./node_modules/@sawyerh
 
 # Necessary because Firestore relies on gprc dependency
 # stackoverflow.com/questions/46775815/node-v57-linux-x64-grpc-node-node-missing
