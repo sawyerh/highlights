@@ -73,17 +73,23 @@ class Highlight {
   }
 
   /**
-   *
+   * Return only proper entities and those with a Wikipedia URL
    * @param {Object} data - Document data
    * @returns {Array} entities
    */
   static properEntities(data) {
-    if (data.languageAnalysis) {
-      return data.languageAnalysis.entities
-        .filter(entity => {
-          return entity.mentions.some(mention => mention.type === "PROPER");
-        })
-        .map(Entity.attrs);
+    const entities = data.languageAnalysis
+      ? data.languageAnalysis.entities
+      : null;
+
+    if (_.isArray(entities)) {
+      return entities
+        .filter(
+          entity =>
+            entity.metadata.wikipedia_url ||
+            entity.mentions.some(mention => mention.type === "PROPER")
+        )
+        .map(entity => Entity.attrs(entity));
     }
   }
 

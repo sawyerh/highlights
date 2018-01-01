@@ -16,15 +16,27 @@ describe("Highlight", () => {
         },
         languageAnalysis: {
           entities: [
-            { mentions: [{ type: "COMMON" }], name: "trip", type: "EVENT" },
             {
+              // Common entity
+              name: "trip",
+              mentions: [{ type: "COMMON" }],
+              type: "EVENT",
+              metadata: {}
+            },
+            {
+              // Proper entity with mentions
               name: "Cairo, Eqypt",
+              mentions: [{ type: "PROPER" }],
+              type: "LOCATION",
+              metadata: {}
+            },
+            {
+              // Entity with no mentions, but with a Wiki URL
+              name: "British",
               type: "LOCATION",
               metadata: {
-                wikipedia_url: "https://en.wikipedia.org/wiki/Cairo",
-                mid: "/m/01w2v"
-              },
-              mentions: [{ type: "PROPER" }]
+                wikipedia_url: "https://en.wikipedia.org/wiki/United_Kingdom"
+              }
             }
           ]
         }
@@ -39,6 +51,13 @@ describe("Highlight", () => {
   it("creates categories index", () => {
     const categories = [{ name: "Foo Bar" }, { name: "Alpha beta" }];
     expect(Highlight.indexCategories(categories)).toMatchSnapshot();
+  });
+
+  it("handles case where entities are not present", () => {
+    const data = Doc.data();
+    delete data.languageAnalysis.entities;
+
+    expect(Highlight.properEntities(data)).toBeUndefined();
   });
 
   it("creates entities index", () => {

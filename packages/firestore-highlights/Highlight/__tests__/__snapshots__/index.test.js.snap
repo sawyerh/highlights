@@ -9,6 +9,7 @@ Object {
 
 exports[`Highlight creates entities index 1`] = `
 Object {
+  "british": true,
   "cairoEqypt": true,
 }
 `;
@@ -18,11 +19,15 @@ Object {
   "body": "Hello world",
   "entities": Array [
     Object {
-      "metadata": Object {
-        "mid": "/m/01w2v",
-        "wikipedia_url": "https://en.wikipedia.org/wiki/Cairo",
-      },
+      "metadata": Object {},
       "name": "Cairo, Eqypt",
+      "type": "LOCATION",
+    },
+    Object {
+      "metadata": Object {
+        "wikipedia_url": "https://en.wikipedia.org/wiki/United_Kingdom",
+      },
+      "name": "British",
       "type": "LOCATION",
     },
   ],
