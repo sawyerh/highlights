@@ -4,8 +4,7 @@
     "access": "public"
   },
   "version": "2.1.0",
-  "description":
-    "Firestore models used for storing highlights and their corresponding data",
+  "description": "Firestore models used for storing highlights and their corresponding data",
   "main": "index.js",
   "author": {
     "name": "Sawyer Hollenshead",
