@@ -18,7 +18,8 @@ class LambdaVolume extends Volume {
         createdAt: Firestore.FieldValue.serverTimestamp(),
         highlightsCount: props.highlightsCount,
         importTitle: props.title,
-        title: props.title
+        title: props.title,
+        visible: true
       })
       .then(ref => {
         console.log("Created Volume", ref.id);

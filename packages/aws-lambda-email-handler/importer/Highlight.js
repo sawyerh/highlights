@@ -43,6 +43,7 @@ class LambdaHighlight extends Highlight {
         body: content,
         createdAt: Firestore.FieldValue.serverTimestamp(),
         hash: hash,
+        visible: true,
         volume: volume
       },
       highlight
