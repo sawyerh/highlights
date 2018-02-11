@@ -110,6 +110,10 @@ libbase64@0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/libbase64/-/libbase64-0.1.0.tgz#62351a839563ac5ff5bd26f12f60e9830bb751e6"
 
+libbase64@1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/libbase64/-/libbase64-1.0.2.tgz#2ff13ffe69b1e40159f49368e30d0dd8bb1635b5"
+
 libmime@3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/libmime/-/libmime-3.1.0.tgz#115012f1672051adc8809a8f93955ffc3648edf9"
@@ -128,9 +132,9 @@ linkify-it@2.0.3:
   dependencies:
     uc.micro "^1.0.1"
 
-mailparser@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/mailparser/-/mailparser-2.1.0.tgz#cda6261c91350c8778173311e4602a3cd347f0ae"
+mailparser@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/mailparser/-/mailparser-2.2.0.tgz#e3c4d9504d4a5fa5bdd82e8de2d426d74e45e367"
   dependencies:
     addressparser "1.0.1"
     he "^1.1.1"
@@ -138,14 +142,14 @@ mailparser@^2.1.0:
     iconv-lite "0.4.19"
     libmime "3.1.0"
     linkify-it "2.0.3"
-    mailsplit "4.0.2"
-    tlds "1.197.0"
+    mailsplit "4.1.2"
+    tlds "1.199.0"
 
-mailsplit@4.0.2:
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/mailsplit/-/mailsplit-4.0.2.tgz#29dcbdd5705b29eecb0ebf4f9056a6886a2c6dfe"
+mailsplit@4.1.2:
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/mailsplit/-/mailsplit-4.1.2.tgz#c618bc311a4cfc83b226a1edc1b503f5a924d083"
   dependencies:
-    libbase64 "0.1.0"
+    libbase64 "1.0.2"
     libmime "3.1.0"
     libqp "1.1.0"
 
@@ -194,9 +198,9 @@ string_decoder@~1.0.3:
   dependencies:
     safe-buffer "~5.1.0"
 
-tlds@1.197.0:
-  version "1.197.0"
-  resolved "https://registry.yarnpkg.com/tlds/-/tlds-1.197.0.tgz#5e5463a2a0d78480aeb1768b6611e4f3bc22778d"
+tlds@1.199.0:
+  version "1.199.0"
+  resolved "https://registry.yarnpkg.com/tlds/-/tlds-1.199.0.tgz#a4fc8c3058216488a80aaaebb427925007e55217"
 
 uc.micro@^1.0.1:
   version "1.0.3"
