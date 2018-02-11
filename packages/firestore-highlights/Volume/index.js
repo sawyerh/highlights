@@ -31,11 +31,20 @@ class Volume {
   }
 
   /**
+   * @param {Array[]} filters - https://cloud.google.com/nodejs/docs/reference/firestore/latest/Query?authuser=0#where
    * @returns {Promise<PublicVolume[]>}
    */
-  static all() {
-    return db
-      .collection("volumes")
+  static all(filters) {
+    let query = db.collection("volumes");
+
+    if (filters) {
+      filters.forEach(filter => {
+        query = query.where.apply(query, filter);
+      });
+    }
+
+    return query
+      .orderBy("createdAt", "desc")
       .get()
       .then(snapshot => snapshot.docs.map(this.attrs));
   }
