@@ -37,6 +37,7 @@ Object {
     "magnitude": 0.800000011920929,
     "score": -0.4000000059604645,
   },
+  "visible": true,
   "volume": Object {
     "id": "vol123",
   },

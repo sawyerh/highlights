@@ -11,6 +11,7 @@ describe("Highlight", () => {
         body: "Hello world",
         location: "123",
         hash: 12345,
+        visible: true,
         volume: {
           id: "vol123"
         },

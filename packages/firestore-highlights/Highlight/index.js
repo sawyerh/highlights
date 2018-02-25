@@ -30,7 +30,8 @@ class Highlight {
       body: data.body,
       location: data.location,
       sentiment: data.documentSentiment,
-      entities: this.properEntities(data)
+      entities: this.properEntities(data),
+      visible: data.visible
     };
 
     if (includeVolume) {
