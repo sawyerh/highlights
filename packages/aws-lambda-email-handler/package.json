@@ -2,7 +2,7 @@
   "private": true,
   "name": "aws-lambda-email-handler",
   "description": "AWS Lambda function for handling the reception of an email export",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "main": "index.js",
   "scripts": {
     "deploy": "./scripts/deploy.sh",
