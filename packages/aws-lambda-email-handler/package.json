@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@google-cloud/firestore": "^0.11.2",
-    "@sawyerh/firestore-highlights": "^2.1.0",
+    "@sawyerh/firestore-highlights": "^2.2.0",
     "firebase-admin": "^5.8.2",
     "highlights-email-to-json": "^1.0.3",
     "kindle-email-to-json": "^1.1.2",
