@@ -1,7 +1,8 @@
 {
   "private": true,
   "name": "aws-lambda-email-handler",
-  "description": "AWS Lambda function for handling the reception of an email export",
+  "description":
+    "AWS Lambda function for handling the reception of an email export",
   "version": "2.2.0",
   "main": "index.js",
   "scripts": {
@@ -18,6 +19,6 @@
     "string-hash": "^1.1.3"
   },
   "devDependencies": {
-    "aws-sdk": "^2.192.0"
+    "aws-sdk": "^2.205.0"
   }
 }

@@ -1,0 +1,17 @@
+{
+  "private": true,
+  "name": "aws-lambda-sms",
+  "description": "AWS Lambda handler for sending a random highlight via SMS",
+  "version": "2.0.0",
+  "main": "index.js",
+  "scripts": {
+    "deploy": "./scripts/deploy.sh"
+  },
+  "dependencies": {
+    "request": "^2.85.0",
+    "request-promise": "^4.2.2"
+  },
+  "devDependencies": {
+    "aws-sdk": "^2.205.0"
+  }
+}
