@@ -1,23 +1,31 @@
-const AWS = require("aws-sdk");
+const Twilio = require("twilio");
 const request = require("request-promise");
-const sns = new AWS.SNS();
 
-exports.handler = (event, context, callback) => {
-  request("https://highlights.sawyerh.com/api/highlights/random")
-    .then(res => {
-      const highlight = JSON.parse(res);
-      if (!highlight) return context.fail("No highlight received");
+exports.handler = async (event, context) => {
+  try {
+    const res = await request(
+      "https://highlights.sawyerh.com/api/highlights/random"
+    );
+    const highlight = JSON.parse(res);
+    if (!highlight) return context.fail("No highlight received");
 
-      const body = highlight.body.replace("\n", "");
-      const location = highlight.location ? `, ${highlight.location}` : "";
-      const params = {
-        Message: `${body} [${highlight.volume.title}${location}]`,
-        TopicArn: process.env.SNS_TOPIC_ARN
-      };
+    console.log(`Sending ${highlight.id} via SMS`);
 
-      console.log(`Sending ${highlight.id} via SMS`);
-      return sns.publish(params).promise();
-    })
-    .then(context.succeed)
-    .catch(context.fail);
+    await send(`${highlight.body} http://🔖.to/highlights/${highlight.id}`);
+    return context.succeed();
+  } catch (e) {
+    return context.fail(e);
+  }
 };
+
+function send(message) {
+  const client = new Twilio(process.env.SID, process.env.TOKEN); // twilio.com/console
+
+  return client.messages
+    .create({
+      body: message,
+      to: process.env.TO,
+      from: process.env.FROM
+    })
+    .then(sms => console.log(`Sent SMS`, sms.sid));
+}
