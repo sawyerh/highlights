@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "Firestore models used for storing highlights and their corresponding data",
   "main": "index.js",
   "author": {
@@ -13,9 +13,9 @@
   "repository": "sawyerh/highlight-utils",
   "license": "MIT",
   "dependencies": {
-    "lodash": "^4.17.5"
+    "lodash": "^4.17.10"
   },
   "peerDependencies": {
-    "firebase-admin": "^5.8.2"
+    "firebase-admin": "^5.12.0"
   }
 }
