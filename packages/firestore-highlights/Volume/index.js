@@ -26,7 +26,8 @@ class Volume {
       title: data.title,
       subtitle: data.subtitle,
       authors: data.authors,
-      image: data.image
+      image: data.image,
+      format: data.format,
     };
   }
 
