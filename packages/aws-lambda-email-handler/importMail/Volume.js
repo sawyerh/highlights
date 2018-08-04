@@ -1,5 +1,5 @@
+const admin = require("firebase-admin");
 const db = require("./firestore")();
-const Firestore = require("@google-cloud/firestore");
 const Volume = require("@sawyerh/firestore-highlights/Volume")(db);
 
 class LambdaVolume extends Volume {
@@ -15,7 +15,7 @@ class LambdaVolume extends Volume {
       .collection("volumes")
       .add({
         authors: props.authors,
-        createdAt: Firestore.FieldValue.serverTimestamp(),
+        createdAt: admin.firestore.Timestamp.now(),
         highlightsCount: props.highlightsCount,
         importTitle: props.title,
         title: props.title,

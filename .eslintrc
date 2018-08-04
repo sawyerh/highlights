@@ -6,5 +6,8 @@
   },
   "parserOptions": {
     "ecmaVersion": 8
+  },
+  "rules": {
+    "promise/no-native": 0
   }
 }

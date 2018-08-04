@@ -16,7 +16,7 @@ mkdir ./dist
 
 echo "${BLUE}Copy files...${NC}"
 cp ./*.{js,json,lock} ./dist
-cp -R ./importer ./dist
+cp -R ./importMail ./dist
 
 echo "${BLUE}Install production dependencies...${NC}"
 cd ./dist
@@ -29,4 +29,4 @@ cp -R ../../firestore-highlights ./node_modules/@sawyerh
 # Necessary because Firestore relies on gprc dependency
 # stackoverflow.com/questions/46775815/node-v57-linux-x64-grpc-node-node-missing
 echo "${BLUE}Compile native deps within Lambda environment...${NC}"
-docker run -v "$PWD":/var/task lambci/lambda:build-nodejs6.10
+docker run -v "$PWD":/var/task lambci/lambda:build-nodejs8.10

@@ -12,5 +12,6 @@ module.exports = function() {
   });
 
   DB = admin.firestore();
+  DB.settings({ timestampsInSnapshots: true });
   return DB;
 };

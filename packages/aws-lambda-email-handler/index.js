@@ -1,5 +1,5 @@
 const AWS = require("aws-sdk");
-const importMail = require("./importer");
+const importMail = require("./importMail");
 const s3 = new AWS.S3();
 
 /**

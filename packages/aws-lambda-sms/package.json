@@ -8,8 +8,8 @@
     "deploy": "./scripts/deploy.sh"
   },
   "dependencies": {
-    "request": "^2.85.0",
+    "request": "^2.87.0",
     "request-promise": "^4.2.2",
-    "twilio": "^3.17.0"
+    "twilio": "^3.19.0"
   }
 }

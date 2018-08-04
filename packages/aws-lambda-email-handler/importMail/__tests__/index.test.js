@@ -21,7 +21,7 @@ describe("Importer", () => {
   describe("with kindle export", () => {
     let mail;
 
-    beforeAll(async function() {
+    beforeAll(async () => {
       mail = await readFile(
         path.resolve(
           __dirname,
@@ -42,7 +42,7 @@ describe("Importer", () => {
   describe("with plain text export", () => {
     let mail;
 
-    beforeAll(async function() {
+    beforeAll(async () => {
       mail = await readFile(
         path.resolve(
           __dirname,

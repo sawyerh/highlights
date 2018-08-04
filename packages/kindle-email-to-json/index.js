@@ -21,11 +21,11 @@ function convert(contents) {
   const converter = new Converter(contents);
 
   if (converter.valid) {
-    return Promise.resolve(converter.getJSON());
+    return converter.getJSON();
   }
 
-  return Promise.reject(
-    new Error("Invalid mail content. Expected an HTML body with Kindle notes.")
+  return new Error(
+    "Invalid mail content. Expected an HTML attachment with Kindle notes."
   );
 }
 
@@ -37,9 +37,9 @@ function convert(contents) {
  */
 function attachment(mail) {
   if (mail.attachments) {
-    const attachments = mail.attachments.filter(function(attachment) {
-      return attachment.contentType === "text/html";
-    });
+    const attachments = mail.attachments.filter(
+      attachment => attachment.contentType === "text/html"
+    );
 
     if (attachments.length) return attachments[0].content.toString("utf8");
   }

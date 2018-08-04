@@ -1,5 +1,5 @@
 const _ = require("lodash");
-const Firestore = require("@google-cloud/firestore");
+const admin = require("firebase-admin");
 const db = require("./firestore")();
 const hash = require("string-hash");
 
@@ -35,13 +35,14 @@ class LambdaHighlight extends Highlight {
     // so we can capture all other props that might be present
     const content = highlight.content;
     const hash = highlight.hash;
+
     delete highlight.content;
     delete highlight.hash;
 
     const data = Object.assign(
       {
         body: content,
-        createdAt: Firestore.FieldValue.serverTimestamp(),
+        createdAt: admin.firestore.Timestamp.now(),
         hash: hash,
         visible: true,
         volume: volume
