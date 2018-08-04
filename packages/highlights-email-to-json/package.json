@@ -11,6 +11,6 @@
   "license": "MIT",
   "dependencies": {
     "front-matter": "^2.3.0",
-    "mailparser": "^2.2.0"
+    "mailparser": "^2.3.2"
   }
 }

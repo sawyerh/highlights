@@ -1,0 +1,663 @@
+Return-Path: <s.hollenshead@gmail.com>
+Received: from mail-io0-f173.google.com (mail-io0-f173.google.com [209.85.223.173])
+ by inbound-smtp.us-east-1.amazonaws.com with SMTP id ub3j0la4nvgvuu18cubm6cge7vf8e3iprpdsjto1
+ for add@aws-highlights.sawyerh.com;
+ Sat, 04 Aug 2018 20:24:10 +0000 (UTC)
+X-SES-Spam-Verdict: PASS
+X-SES-Virus-Verdict: PASS
+Received-SPF: pass (spfCheck: domain of _spf.google.com designates 209.85.223.173 as permitted sender) client-ip=209.85.223.173; envelope-from=s.hollenshead@gmail.com; helo=mail-io0-f173.google.com;
+Authentication-Results: amazonses.com;
+ spf=pass (spfCheck: domain of _spf.google.com designates 209.85.223.173 as permitted sender) client-ip=209.85.223.173; envelope-from=s.hollenshead@gmail.com; helo=mail-io0-f173.google.com;
+ dkim=pass header.i=@gmail.com;
+X-SES-RECEIPT: AEFBQUFBQUFBQUFIMW9mc2NOZlo5Ylc2RitqS3ZINXJPUEtwZGEySmhvWTZMT1JRY0NKY2RPSE1tOTc5ajM1YlJmN1N1eVhVZ0YrU1A0dXI1cmVhREE3WWJCSkN0WGx1ZnZoUytzcXVaSmZpU1lYbEhQeG1BQWcxSTYrb1JlWEVjVjI0ci93ZlhxV1R5WGE3clIrQXg0SlRDWFptRVV3S0hudWtwc1RPK29GRzJNNlNpVFRLWWpLK3BTTjE3cWJQeVgwRURXV0NYNE84T2RRT09xUTE0bjFTVklBczR5aGwrREpLb1BtV3NzUVBRQ0h0emY5cDFRVjcyU3AvRWUwL1haVjVMSVBrS0lOVXJXZC80ejEySzQwQlhIWXB6ajMyR2xuYTRTZFJhb0o0eGdyZEoxSFZiWGc9PQ==
+X-SES-DKIM-SIGNATURE: a=rsa-sha256; q=dns/txt; b=P1MWh768mXJAnc++jQQDaqO503gzVbWSoXe5QmERwpocFPFeZvp0ClKsNTmavvdVLoKhE0ASkGgLMvCD8Nv/j+wwFq0QnwGbB+0gFJv6SBmT1PA6Wn0lvyWYBYQjHu+oSgeNViKwAnkm+ILo5v1yzT40QafkuwlniEkTtXI0ahc=; c=relaxed/simple; s=ug7nbtf4gccmlpwj322ax3p6ow6yfsug; d=amazonses.com; t=1533414251; v=1; bh=2CpXkg8BHhrBDZ0JacL7Jk/bKnQtRsERR1Ap5Yma1ng=; h=From:To:Cc:Bcc:Subject:Date:Message-ID:MIME-Version:Content-Type:X-SES-RECEIPT;
+Received: by mail-io0-f173.google.com with SMTP id r15-v6so7875917ioa.3
+        for <add@aws-highlights.sawyerh.com>; Sat, 04 Aug 2018 13:24:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
+        bh=2CpXkg8BHhrBDZ0JacL7Jk/bKnQtRsERR1Ap5Yma1ng=;
+        b=oPk1ZU+457SOe0dNlr1qIXwAAG+yNTbVzD4Z2RmSf30ZgSK4BuclKlT5iB0kpi8IRN
+         Y6Siz0QlLUNsY+Z3E/DWt5O9dmEvVofEynK+6+E1jQKkR4eFHxkFZnIMJsbtJRqw9DOu
+         YY8VvSFsgJXhW2pTxn86KYcowFy7+c5yOkWmj0jYAY72LMnRwX67TCYpQ8TgBpbVH3Qa
+         zxLxeO0kUrQVunc7yBEA1sPVzr+oD2My2PYwyoSSc2vdxY9O7G0wITSSIeufypR6re8Y
+         I0FpKRWL9bLF8S3QCIjQhgT3RLUPNFHhbyyuUxMwIgKkFMKL8xmwoByVD4zEmapdI4+q
+         GoAg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to;
+        bh=2CpXkg8BHhrBDZ0JacL7Jk/bKnQtRsERR1Ap5Yma1ng=;
+        b=ARKE9CUqU8PTLNv9/SIqrsiZHMX54MUBtLzwi8brql36CkRDYgLvdBzo/jMmYqk6CF
+         3ml51SmIgL26lJVrJtkC11/CASSfP8YpHQYcp73fWe5M7kXBWHANU/sBG8iAu8LF3fQ9
+         U2d+APaaOwAcMLTA+o4BdLAglrTjTzNqUkRw6K4TdLRtxt1tbyDWLJQA2Nh10sfKkBzK
+         qBjBX440f5bUrcjrGLgF8xJM0VniNBkX8WJ/SDGpumB6WUu22CQLNsApzIIhpnIEEbsW
+         a2fc6YYDVieFg/sWgSXEIwW2Sd7naJguyvoKcesx2poCLGFb9jhLN+IKx0pSqHJPM/iC
+         w8ig==
+X-Gm-Message-State: AOUpUlEvDAO9LP6YsxZROl4jjkxHSspuhVHk4atWBmdRf3tE/pYAvNK4
+	Yzi69lJF9BwhQPfslqklzLTHOb3xTnMLNPpzwbCong==
+X-Google-Smtp-Source: AA+uWPzDY2+cO/8jBzfToaCwZTOCN1aJ6fF1VZ0eRkomv9VHkSSBNcJH/tR+ycLV0w9QJLc3BTIMeYZcZvWQacxGiak=
+X-Received: by 2002:a6b:9c82:: with SMTP id f124-v6mr9945067ioe.22.1533414249379;
+ Sat, 04 Aug 2018 13:24:09 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAHY-FtJkQQa6TMzS7XinBOn+NmFcTfgAYkm9r_CGkpJq=maDfA@mail.gmail.com>
+In-Reply-To: <CAHY-FtJkQQa6TMzS7XinBOn+NmFcTfgAYkm9r_CGkpJq=maDfA@mail.gmail.com>
+From: Sawyer Hollenshead <s.hollenshead@gmail.com>
+Date: Sat, 4 Aug 2018 16:23:57 -0400
+Message-ID: <CAHY-FtKrn6CXCaQ5_d7U_FBaLzZtLF57Xen0U-FcUzzo667t0Q@mail.gmail.com>
+Subject: Fwd: Highlights: The Five Dysfunctions of a Team
+To: "add@aws-highlights.sawyerh.com" <add@aws-highlights.sawyerh.com>
+Content-Type: multipart/alternative; boundary="000000000000a0bd250572a1d3a9"
+
+--000000000000a0bd250572a1d3a9
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+The Five Dysfunctions of a Team: A Leadership Fable (J-B Lencioni Series)
+(Lencioni, Patrick M.)
+- Your Highlight on Location 195-197 | Added on Wednesday, August 1, 2018
+6:59:03 PM
+
+After surviving a stint in the military, raising her boys, watching
+countless buzzer-beating basketball games, and standing up to union bosses,
+Kathryn decided she was not about to be intimidated by a bunch of harmless
+yuppies whose greatest hardships in life so far had been fighting off the
+first signs of a receding hairline or an expanding waistline.
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+The Five Dysfunctions of a Team: A Leadership Fable (J-B Lencioni Series)
+(Lencioni, Patrick M.)
+- Your Highlight on Location 243-246 | Added on Wednesday, August 1, 2018
+7:03:43 PM
+
+Only when someone made a factually incorrect statement could Martin be
+counted on to offer a comment, and usually a sarcastic one at that. At
+first, this was tolerable, maybe even amusing, to Martin=E2=80=99s peers, w=
+ho
+seemed in awe of his intellect. But it began to wear on the staff over
+time. And with the company=E2=80=99s recent struggles, it had become an
+increasingly grating source of frustration for many of them.
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+The Five Dysfunctions of a Team: A Leadership Fable (J-B Lencioni Series)
+(Lencioni, Patrick M.)
+- Your Highlight on Location 807-808 | Added on Wednesday, August 1, 2018
+8:05:37 PM
+
+As soon as the reality of business problems is reintroduced to a situation
+like this one, she thought, people revert back to the behaviors that put
+them in the difficult situation
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+The Five Dysfunctions of a Team: A Leadership Fable (J-B Lencioni Series)
+(Lencioni, Patrick M.)
+- Your Highlight on Location 807-809 | Added on Wednesday, August 1, 2018
+8:05:50 PM
+
+As soon as the reality of business problems is reintroduced to a situation
+like this one, she thought, people revert back to the behaviors that put
+them in the difficult situation in the first place.
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+The Five Dysfunctions of a Team: A Leadership Fable (J-B Lencioni Series)
+(Lencioni, Patrick M.)
+- Your Highlight on Location 903-904 | Added on Wednesday, August 1, 2018
+8:18:49 PM
+
+=E2=80=9CPolitics is when people choose their words and actions based on ho=
+w they
+want others to react rather than based on what they really think.=E2=80=9D
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+The Five Dysfunctions of a Team: A Leadership Fable (J-B Lencioni Series)
+(Lencioni, Patrick M.)
+- Your Highlight on Location 932-935 | Added on Wednesday, August 1, 2018
+8:21:36 PM
+
+Harmony itself is good, I suppose, if it comes as a result of working
+through issues constantly and cycling through conflict. But if it comes
+only as a result of people holding back their opinions and honest concerns,
+then it=E2=80=99s a bad thing. I=E2=80=99d trade that false kind of harmony=
+ any day for a
+team=E2=80=99s willingness to argue effectively about an issue and then wal=
+k away
+with no collateral damage.=E2=80=9D
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+The Five Dysfunctions of a Team: A Leadership Fable (J-B Lencioni Series)
+(Lencioni, Patrick M.)
+- Your Bookmark on Location 989 | Added on Wednesday, August 1, 2018
+10:11:04 PM
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+The Five Dysfunctions of a Team: A Leadership Fable (J-B Lencioni Series)
+(Lencioni, Patrick M.)
+- Your Highlight on Location 1949-1962 | Added on Thursday, August 2, 2018
+2:11:45 PM
+
+The first dysfunction is an absence of trust among team members.
+Essentially, this stems from their unwillingness to be vulnerable within
+the group. Team members who are not genuinely open with one another about
+their mistakes and weaknesses make it impossible to build a foundation for
+trust. 2. This failure to build trust is damaging because it sets the tone
+for the second dysfunction: fear of conflict. Teams that lack trust are
+incapable of engaging in unfiltered and passionate debate of ideas.
+Instead, they resort to veiled discussions and guarded comments. 3. A lack
+of healthy conflict is a problem because it ensures the third dysfunction
+of a team: lack of commitment. Without having aired their opinions in the
+course of passionate and open debate, team members rarely, if ever, buy in
+and commit to decisions, though they may feign agreement during meetings.
+4. Because of this lack of real commitment and buy-in, team members develop
+an avoidance of accountability, the fourth dysfunction. Without committing
+to a clear plan of action, even the most focused and driven people often
+hesitate to call their peers on actions and behaviors that seem
+counterproductive to the good of the team. 5. Failure to hold one another
+accountable creates an environment where the fifth dysfunction can thrive.
+Inattention to results occurs when team members put their individual needs
+(such as ego, career development, or recognition) or even the needs of
+their divisions above the collective goals of the team. And so, like a
+chain with just one link broken, teamwork deteriorates if even a single
+dysfunction is allowed to flourish.
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+The Five Dysfunctions of a Team: A Leadership Fable (J-B Lencioni Series)
+(Lencioni, Patrick M.)
+- Your Highlight on Location 1963-1970 | Added on Thursday, August 2, 2018
+2:12:12 PM
+
+Another way to understand this model is to take the opposite approach=E2=80=
+=94a
+positive one=E2=80=94and imagine how members of truly cohesive teams behave=
+: 1.
+They trust one another. 2. They engage in unfiltered conflict around ideas.
+3. They commit to decisions and plans of action. 4. They hold one another
+accountable for delivering against those plans. 5. They focus on the
+achievement of collective results. If this sounds simple, it=E2=80=99s beca=
+use it
+is simple, at least in theory. In practice, however, it is extremely
+difficult because it requires levels of discipline and persistence that few
+teams can muster.
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+The Five Dysfunctions of a Team: A Leadership Fable (J-B Lencioni Series)
+(Lencioni, Patrick M.)
+- Your Highlight on Location 2006-2008 | Added on Thursday, August 2, 2018
+2:16:35 PM
+
+In the context of building a team, trust is the confidence among team
+members that their peers=E2=80=99 intentions are good, and that there is no=
+ reason
+to be protective or careful around the group. In essence, teammates must
+get comfortable being vulnerable with one another.
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+The Five Dysfunctions of a Team: A Leadership Fable (J-B Lencioni Series)
+(Lencioni, Patrick M.)
+- Your Highlight on Location 2049-2053 | Added on Thursday, August 2, 2018
+2:19:37 PM
+
+Questions need not be overly sensitive in nature and might include the
+following: number of siblings, hometown, unique challenges of childhood,
+favorite hobbies, first job, and worst job. Simply by describing these
+relatively innocuous attributes or experiences, team members begin to
+relate to one another on a more personal basis, and see one another as
+human beings with life stories and interesting backgrounds. This encourages
+greater empathy and understanding, and discourages unfair and inaccurate
+behavioral attributions. It is amazing how little some team members know
+about one another, and how just a small amount of information begins to
+break down barriers.
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+The Five Dysfunctions of a Team: A Leadership Fable (J-B Lencioni Series)
+(Lencioni, Patrick M.)
+- Your Highlight on Location 2073-2076 | Added on Thursday, August 2, 2018
+2:22:01 PM
+
+The key to making a 360-degree program work, in my opinion, is divorcing it
+entirely from compensation and formal performance evaluation. Rather, it
+should be used as a developmental tool, one that allows employees to
+identify strengths and weaknesses without any repercussions. By being even
+slightly connected to formal performance evaluation or compensation,
+360-degree programs can take on dangerous political undertones.
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+The Five Dysfunctions of a Team: A Leadership Fable (J-B Lencioni Series)
+(Lencioni, Patrick M.)
+- Your Highlight on Location 2085-2090 | Added on Thursday, August 2, 2018
+2:23:40 PM
+
+The most important action that a leader must take to encourage the building
+of trust on a team is to demonstrate vulnerability first. This requires
+that a leader risk losing face in front of the team, so that subordinates
+will take the same risk themselves. What is more, team leaders must create
+an environment that does not punish vulnerability. Even well-intentioned
+teams can subtly discourage trust by chastising one another for admissions
+of weakness or failure. Finally, displays of vulnerability on the part of a
+team leader must be genuine; they cannot be staged. One of the best ways to
+lose the trust of a team is to feign vulnerability in order to manipulate
+the emotions of others.
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+The Five Dysfunctions of a Team: A Leadership Fable (J-B Lencioni Series)
+(Lencioni, Patrick M.)
+- Your Highlight on Location 2095-2099 | Added on Thursday, August 2, 2018
+2:31:32 PM
+
+All great relationships, the ones that last over time, require productive
+conflict in order to grow. This is true in marriage, parenthood,
+friendship, and certainly business. Unfortunately, conflict is considered
+taboo in many situations, especially at work. And the higher you go up the
+management chain, the more you find people spending inordinate amounts of
+time and energy trying to avoid the kind of passionate debates that are
+essential to any great team.
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+The Five Dysfunctions of a Team: A Leadership Fable (J-B Lencioni Series)
+(Lencioni, Patrick M.)
+- Your Highlight on Location 2108-2112 | Added on Thursday, August 2, 2018
+2:32:57 PM
+
+It is also ironic that so many people avoid conflict in the name of
+efficiency, because healthy conflict is actually a time saver. Contrary to
+the notion that teams waste time and energy arguing, those that avoid
+conflict actually doom themselves to revisiting issues again and again
+without resolution. They often ask team members to take their issues
+=E2=80=9Coff-line,=E2=80=9D which seems to be a euphemism for avoiding deal=
+ing with an
+important topic, only to have it raised again at the next meeting.
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+The Five Dysfunctions of a Team: A Leadership Fable (J-B Lencioni Series)
+(Lencioni, Patrick M.)
+- Your Highlight on Location 2141-2144 | Added on Thursday, August 2, 2018
+2:42:15 PM
+
+Another tool that specifically relates to conflict is the Thomas-Kilmann
+Conflict Mode Instrument, commonly referred to as the TKI. It allows team
+members to understand natural inclinations around conflict so they can make
+more strategic choices about which approaches are most appropriate in
+different situations.
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+The Five Dysfunctions of a Team: A Leadership Fable (J-B Lencioni Series)
+(Lencioni, Patrick M.)
+- Your Highlight on Location 2161-2170 | Added on Thursday, August 2, 2018
+2:45:25 PM
+
+The two greatest causes of the lack of commitment are the desire for
+consensus and the need for certainty: =E2=80=A2 Consensus. Great teams unde=
+rstand
+the danger of seeking consensus, and find ways to achieve buy-in even when
+complete agreement is impossible. They understand that reasonable human
+beings do not need to get their way in order to support a decision, but
+only need to know that their opinions have been heard and considered. Great
+teams ensure that everyone=E2=80=99s ideas are genuinely considered, which =
+then
+creates a willingness to rally around whatever decision is ultimately made
+by the group. And when that is not possible due to an impasse, the leader
+of the team is allowed to make the call. =E2=80=A2 Certainty. Great teams a=
+lso
+pride themselves on being able to unite behind decisions and commit to
+clear courses of action even when there is little assurance about whether
+the decision is correct. That=E2=80=99s because they understand the old mil=
+itary
+axiom that a decision is better than no decision. They also realize that it
+is better to make a decision boldly and be wrong=E2=80=94and then change di=
+rection
+with equal boldness=E2=80=94than it is to waffle.
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+The Five Dysfunctions of a Team: A Leadership Fable (J-B Lencioni Series)
+(Lencioni, Patrick M.)
+- Your Highlight on Location 2207-2210 | Added on Thursday, August 2, 2018
+2:47:39 PM
+
+As simple as it seems, one of the best tools for ensuring commitment is the
+use of clear deadlines for when decisions will be made, and honoring those
+dates with discipline and rigidity. The worst enemy of a team that is
+susceptible to this dysfunction is ambiguity, and timing is one of the most
+critical factors that must be made clear. What is more, committing to
+deadlines for intermediate decisions and milestones is just as important as
+final deadlines, because it ensures that misalignment among team members is
+identified and addressed before the costs are too great.
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+The Five Dysfunctions of a Team: A Leadership Fable (J-B Lencioni Series)
+(Lencioni, Patrick M.)
+- Your Highlight on Location 2225-2227 | Added on Thursday, August 2, 2018
+2:50:48 PM
+
+In order for teammates to call each other on their behaviors and actions,
+they must have a clear sense of what is expected. Even the most ardent
+believers in accountability usually balk at having to hold someone
+accountable for something that was never bought in to or made clear in the
+first place.
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+The Five Dysfunctions of a Team: A Leadership Fable (J-B Lencioni Series)
+(Lencioni, Patrick M.)
+- Your Highlight on Location 2267-2271 | Added on Thursday, August 2, 2018
+3:01:46 PM
+
+One of the most difficult challenges for a leader who wants to instill
+accountability on a team is to encourage and allow the team to serve as the
+first and primary accountability mechanism. Sometimes strong leaders
+naturally create an accountability vacuum within the team, leaving
+themselves as the only source of discipline. This creates an environment
+where team members assume that the leader is holding others accountable,
+and so they hold back even when they see something that isn=E2=80=99t right=
+.
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+The Five Dysfunctions of a Team: A Leadership Fable (J-B Lencioni Series)
+(Lencioni, Patrick M.)
+- Your Highlight on Location 2256-2259 | Added on Thursday, August 2, 2018
+3:02:07 PM
+
+A good way to make it easier for team members to hold one another
+accountable is to clarify publicly exactly what the team needs to achieve,
+who needs to deliver what, and how everyone must behave in order to
+succeed. The enemy of accountability is ambiguity, and even when a team has
+initially committed to a plan or a set of behavioral standards, it is
+important to keep those agreements in the open so that no one can easily
+ignore
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+The Five Dysfunctions of a Team: A Leadership Fable (J-B Lencioni Series)
+(Lencioni, Patrick M.)
+- Your Highlight on Location 2256-2259 | Added on Thursday, August 2, 2018
+3:02:16 PM
+
+A good way to make it easier for team members to hold one another
+accountable is to clarify publicly exactly what the team needs to achieve,
+who needs to deliver what, and how everyone must behave in order to
+succeed. The enemy of accountability is ambiguity, and even when a team has
+initially committed to a plan or a set of behavioral standards, it is
+important to keep those agreements in the open so that no one can easily
+ignore them.
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+The Five Dysfunctions of a Team: A Leadership Fable (J-B Lencioni Series)
+(Lencioni, Patrick M.)
+- Your Highlight on Location 2276-2278 | Added on Thursday, August 2, 2018
+3:03:40 PM
+
+If teammates are not being held accountable for their contributions, they
+will be more likely to turn their attention to their own needs, and to the
+advancement of themselves or their departments. An absence of
+accountability is an invitation to team members to shift their attention to
+areas other than collective results.
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+The Five Dysfunctions of a Team: A Leadership Fable (J-B Lencioni Series)
+(Lencioni, Patrick M.)
+- Your Highlight on Location 2280-2282 | Added on Thursday, August 2, 2018
+3:04:14 PM
+
+The ultimate dysfunction of a team is the tendency of members to care about
+something other than the collective goals of the group. An unrelenting
+focus on specific objectives and clearly defined outcomes is a requirement
+for any team that judges itself on performance.
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+The Five Dysfunctions of a Team: A Leadership Fable (J-B Lencioni Series)
+(Lencioni, Patrick M.)
+- Your Highlight on Location 2289-2294 | Added on Thursday, August 2, 2018
+3:20:54 PM
+
+But what would a team be focused on other than results ? Team status and
+individual status are the prime candidates : =E2=80=A2 Team status. For mem=
+bers of
+some teams, merely being part of the group is enough to keep them
+satisfied. For them, the achievement of specific results might be
+desirable, but not necessarily worthy of great sacrifice or inconvenience.
+As ridiculous and dangerous as this might seem, plenty of teams fall prey
+to the lure of status. These often include altruistic nonprofit
+organizations that come to believe that the nobility of their mission is
+enough to justify their satisfaction. Political groups, academic
+departments, and prestigious companies are also susceptible to this
+dysfunction, as they often see success in merely being associated with
+their special organizations.
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+--000000000000a0bd250572a1d3a9
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr"><div>=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D<br></div><div>The Five Dysfunctions of a Team: A Lead=
+ership Fable (J-B Lencioni Series) (Lencioni, Patrick M.)</div><div>- Your =
+Highlight on Location 195-197 | Added on Wednesday, August 1, 2018 6:59:03 =
+PM</div><div><br></div><div>After surviving a stint in the military, raisin=
+g her boys, watching countless buzzer-beating basketball games, and standin=
+g up to union bosses, Kathryn decided she was not about to be intimidated b=
+y a bunch of harmless yuppies whose greatest hardships in life so far had b=
+een fighting off the first signs of a receding hairline or an expanding wai=
+stline.</div><div>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</div><div>The Five Dysfunc=
+tions of a Team: A Leadership Fable (J-B Lencioni Series) (Lencioni, Patric=
+k M.)</div><div>- Your Highlight on Location 243-246 | Added on Wednesday, =
+August 1, 2018 7:03:43 PM</div><div><br></div><div>Only when someone made a=
+ factually incorrect statement could Martin be counted on to offer a commen=
+t, and usually a sarcastic one at that. At first, this was tolerable, maybe=
+ even amusing, to Martin=E2=80=99s peers, who seemed in awe of his intellec=
+t. But it began to wear on the staff over time. And with the company=E2=80=
+=99s recent struggles, it had become an increasingly grating source of frus=
+tration for many of them.</div><div>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</div><di=
+v>The Five Dysfunctions of a Team: A Leadership Fable (J-B Lencioni Series)=
+ (Lencioni, Patrick M.)</div><div>- Your Highlight on Location 807-808 | Ad=
+ded on Wednesday, August 1, 2018 8:05:37 PM</div><div><br></div><div>As soo=
+n as the reality of business problems is reintroduced to a situation like t=
+his one, she thought, people revert back to the behaviors that put them in =
+the difficult situation</div><div>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</div><div>=
+The Five Dysfunctions of a Team: A Leadership Fable (J-B Lencioni Series) (=
+Lencioni, Patrick M.)</div><div>- Your Highlight on Location 807-809 | Adde=
+d on Wednesday, August 1, 2018 8:05:50 PM</div><div><br></div><div>As soon =
+as the reality of business problems is reintroduced to a situation like thi=
+s one, she thought, people revert back to the behaviors that put them in th=
+e difficult situation in the first place.</div><div>=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D</div><div>The Five Dysfunctions of a Team: A Leadership Fable (J-=
+B Lencioni Series) (Lencioni, Patrick M.)</div><div>- Your Highlight on Loc=
+ation 903-904 | Added on Wednesday, August 1, 2018 8:18:49 PM</div><div><br=
+></div><div>=E2=80=9CPolitics is when people choose their words and actions=
+ based on how they want others to react rather than based on what they real=
+ly think.=E2=80=9D</div><div>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</div><div>The F=
+ive Dysfunctions of a Team: A Leadership Fable (J-B Lencioni Series) (Lenci=
+oni, Patrick M.)</div><div>- Your Highlight on Location 932-935 | Added on =
+Wednesday, August 1, 2018 8:21:36 PM</div><div><br></div><div>Harmony itsel=
+f is good, I suppose, if it comes as a result of working through issues con=
+stantly and cycling through conflict. But if it comes only as a result of p=
+eople holding back their opinions and honest concerns, then it=E2=80=99s a =
+bad thing. I=E2=80=99d trade that false kind of harmony any day for a team=
+=E2=80=99s willingness to argue effectively about an issue and then walk aw=
+ay with no collateral damage.=E2=80=9D</div><div>=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D</div><div>The Five Dysfunctions of a Team: A Leadership Fable (J-B L=
+encioni Series) (Lencioni, Patrick M.)</div><div>- Your Bookmark on Locatio=
+n 989 | Added on Wednesday, August 1, 2018 10:11:04 PM</div><div><br></div>=
+<div><br></div><div>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</div><div>The Five Dysfu=
+nctions of a Team: A Leadership Fable (J-B Lencioni Series) (Lencioni, Patr=
+ick M.)</div><div>- Your Highlight on Location 1949-1962 | Added on Thursda=
+y, August 2, 2018 2:11:45 PM</div><div><br></div><div>The first dysfunction=
+ is an absence of trust among team members. Essentially, this stems from th=
+eir unwillingness to be vulnerable within the group. Team members who are n=
+ot genuinely open with one another about their mistakes and weaknesses make=
+ it impossible to build a foundation for trust. 2. This failure to build tr=
+ust is damaging because it sets the tone for the second dysfunction: fear o=
+f conflict. Teams that lack trust are incapable of engaging in unfiltered a=
+nd passionate debate of ideas. Instead, they resort to veiled discussions a=
+nd guarded comments. 3. A lack of healthy conflict is a problem because it =
+ensures the third dysfunction of a team: lack of commitment. Without having=
+ aired their opinions in the course of passionate and open debate, team mem=
+bers rarely, if ever, buy in and commit to decisions, though they may feign=
+ agreement during meetings. 4. Because of this lack of real commitment and =
+buy-in, team members develop an avoidance of accountability, the fourth dys=
+function. Without committing to a clear plan of action, even the most focus=
+ed and driven people often hesitate to call their peers on actions and beha=
+viors that seem counterproductive to the good of the team. 5. Failure to ho=
+ld one another accountable creates an environment where the fifth dysfuncti=
+on can thrive. Inattention to results occurs when team members put their in=
+dividual needs (such as ego, career development, or recognition) or even th=
+e needs of their divisions above the collective goals of the team. And so, =
+like a chain with just one link broken, teamwork deteriorates if even a sin=
+gle dysfunction is allowed to flourish.</div><div>=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D</div><div>The Five Dysfunctions of a Team: A Leadership Fable (J-B L=
+encioni Series) (Lencioni, Patrick M.)</div><div>- Your Highlight on Locati=
+on 1963-1970 | Added on Thursday, August 2, 2018 2:12:12 PM</div><div><br><=
+/div><div>Another way to understand this model is to take the opposite appr=
+oach=E2=80=94a positive one=E2=80=94and imagine how members of truly cohesi=
+ve teams behave: 1. They trust one another. 2. They engage in unfiltered co=
+nflict around ideas. 3. They commit to decisions and plans of action. 4. Th=
+ey hold one another accountable for delivering against those plans. 5. They=
+ focus on the achievement of collective results. If this sounds simple, it=
+=E2=80=99s because it is simple, at least in theory. In practice, however, =
+it is extremely difficult because it requires levels of discipline and pers=
+istence that few teams can muster.</div><div>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+</div><div>The Five Dysfunctions of a Team: A Leadership Fable (J-B Lencion=
+i Series) (Lencioni, Patrick M.)</div><div>- Your Highlight on Location 200=
+6-2008 | Added on Thursday, August 2, 2018 2:16:35 PM</div><div><br></div><=
+div>In the context of building a team, trust is the confidence among team m=
+embers that their peers=E2=80=99 intentions are good, and that there is no =
+reason to be protective or careful around the group. In essence, teammates =
+must get comfortable being vulnerable with one another.</div><div>=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D</div><div>The Five Dysfunctions of a Team: A Leadersh=
+ip Fable (J-B Lencioni Series) (Lencioni, Patrick M.)</div><div>- Your High=
+light on Location 2049-2053 | Added on Thursday, August 2, 2018 2:19:37 PM<=
+/div><div><br></div><div>Questions need not be overly sensitive in nature a=
+nd might include the following: number of siblings, hometown, unique challe=
+nges of childhood, favorite hobbies, first job, and worst job. Simply by de=
+scribing these relatively innocuous attributes or experiences, team members=
+ begin to relate to one another on a more personal basis, and see one anoth=
+er as human beings with life stories and interesting backgrounds. This enco=
+urages greater empathy and understanding, and discourages unfair and inaccu=
+rate behavioral attributions. It is amazing how little some team members kn=
+ow about one another, and how just a small amount of information begins to =
+break down barriers.</div><div>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</div><div>The=
+ Five Dysfunctions of a Team: A Leadership Fable (J-B Lencioni Series) (Len=
+cioni, Patrick M.)</div><div>- Your Highlight on Location 2073-2076 | Added=
+ on Thursday, August 2, 2018 2:22:01 PM</div><div><br></div><div>The key to=
+ making a 360-degree program work, in my opinion, is divorcing it entirely =
+from compensation and formal performance evaluation. Rather, it should be u=
+sed as a developmental tool, one that allows employees to identify strength=
+s and weaknesses without any repercussions. By being even slightly connecte=
+d to formal performance evaluation or compensation, 360-degree programs can=
+ take on dangerous political undertones.</div><div>=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D</div><div>The Five Dysfunctions of a Team: A Leadership Fable (J-B L=
+encioni Series) (Lencioni, Patrick M.)</div><div>- Your Highlight on Locati=
+on 2085-2090 | Added on Thursday, August 2, 2018 2:23:40 PM</div><div><br><=
+/div><div>The most important action that a leader must take to encourage th=
+e building of trust on a team is to demonstrate vulnerability first. This r=
+equires that a leader risk losing face in front of the team, so that subord=
+inates will take the same risk themselves. What is more, team leaders must =
+create an environment that does not punish vulnerability. Even well-intenti=
+oned teams can subtly discourage trust by chastising one another for admiss=
+ions of weakness or failure. Finally, displays of vulnerability on the part=
+ of a team leader must be genuine; they cannot be staged. One of the best w=
+ays to lose the trust of a team is to feign vulnerability in order to manip=
+ulate the emotions of others.</div><div>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</div=
+><div>The Five Dysfunctions of a Team: A Leadership Fable (J-B Lencioni Ser=
+ies) (Lencioni, Patrick M.)</div><div>- Your Highlight on Location 2095-209=
+9 | Added on Thursday, August 2, 2018 2:31:32 PM</div><div><br></div><div>A=
+ll great relationships, the ones that last over time, require productive co=
+nflict in order to grow. This is true in marriage, parenthood, friendship, =
+and certainly business. Unfortunately, conflict is considered taboo in many=
+ situations, especially at work. And the higher you go up the management ch=
+ain, the more you find people spending inordinate amounts of time and energ=
+y trying to avoid the kind of passionate debates that are essential to any =
+great team.</div><div>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</div><div>The Five Dys=
+functions of a Team: A Leadership Fable (J-B Lencioni Series) (Lencioni, Pa=
+trick M.)</div><div>- Your Highlight on Location 2108-2112 | Added on Thurs=
+day, August 2, 2018 2:32:57 PM</div><div><br></div><div>It is also ironic t=
+hat so many people avoid conflict in the name of efficiency, because health=
+y conflict is actually a time saver. Contrary to the notion that teams wast=
+e time and energy arguing, those that avoid conflict actually doom themselv=
+es to revisiting issues again and again without resolution. They often ask =
+team members to take their issues =E2=80=9Coff-line,=E2=80=9D which seems t=
+o be a euphemism for avoiding dealing with an important topic, only to have=
+ it raised again at the next meeting.</div><div>=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D</div><div>The Five Dysfunctions of a Team: A Leadership Fable (J-B Lenc=
+ioni Series) (Lencioni, Patrick M.)</div><div>- Your Highlight on Location =
+2141-2144 | Added on Thursday, August 2, 2018 2:42:15 PM</div><div><br></di=
+v><div>Another tool that specifically relates to conflict is the Thomas-Kil=
+mann Conflict Mode Instrument, commonly referred to as the TKI. It allows t=
+eam members to understand natural inclinations around conflict so they can =
+make more strategic choices about which approaches are most appropriate in =
+different situations.</div><div>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</div><div>Th=
+e Five Dysfunctions of a Team: A Leadership Fable (J-B Lencioni Series) (Le=
+ncioni, Patrick M.)</div><div>- Your Highlight on Location 2161-2170 | Adde=
+d on Thursday, August 2, 2018 2:45:25 PM</div><div><br></div><div>The two g=
+reatest causes of the lack of commitment are the desire for consensus and t=
+he need for certainty: =E2=80=A2 Consensus. Great teams understand the dang=
+er of seeking consensus, and find ways to achieve buy-in even when complete=
+ agreement is impossible. They understand that reasonable human beings do n=
+ot need to get their way in order to support a decision, but only need to k=
+now that their opinions have been heard and considered. Great teams ensure =
+that everyone=E2=80=99s ideas are genuinely considered, which then creates =
+a willingness to rally around whatever decision is ultimately made by the g=
+roup. And when that is not possible due to an impasse, the leader of the te=
+am is allowed to make the call. =E2=80=A2 Certainty. Great teams also pride=
+ themselves on being able to unite behind decisions and commit to clear cou=
+rses of action even when there is little assurance about whether the decisi=
+on is correct. That=E2=80=99s because they understand the old military axio=
+m that a decision is better than no decision. They also realize that it is =
+better to make a decision boldly and be wrong=E2=80=94and then change direc=
+tion with equal boldness=E2=80=94than it is to waffle.</div><div>=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D</div><div>The Five Dysfunctions of a Team: A Leadersh=
+ip Fable (J-B Lencioni Series) (Lencioni, Patrick M.)</div><div>- Your High=
+light on Location 2207-2210 | Added on Thursday, August 2, 2018 2:47:39 PM<=
+/div><div><br></div><div>As simple as it seems, one of the best tools for e=
+nsuring commitment is the use of clear deadlines for when decisions will be=
+ made, and honoring those dates with discipline and rigidity. The worst ene=
+my of a team that is susceptible to this dysfunction is ambiguity, and timi=
+ng is one of the most critical factors that must be made clear. What is mor=
+e, committing to deadlines for intermediate decisions and milestones is jus=
+t as important as final deadlines, because it ensures that misalignment amo=
+ng team members is identified and addressed before the costs are too great.=
+</div><div>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</div><div>The Five Dysfunctions o=
+f a Team: A Leadership Fable (J-B Lencioni Series) (Lencioni, Patrick M.)</=
+div><div>- Your Highlight on Location 2225-2227 | Added on Thursday, August=
+ 2, 2018 2:50:48 PM</div><div><br></div><div>In order for teammates to call=
+ each other on their behaviors and actions, they must have a clear sense of=
+ what is expected. Even the most ardent believers in accountability usually=
+ balk at having to hold someone accountable for something that was never bo=
+ught in to or made clear in the first place.</div><div>=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D</div><div>The Five Dysfunctions of a Team: A Leadership Fable =
+(J-B Lencioni Series) (Lencioni, Patrick M.)</div><div>- Your Highlight on =
+Location 2267-2271 | Added on Thursday, August 2, 2018 3:01:46 PM</div><div=
+><br></div><div>One of the most difficult challenges for a leader who wants=
+ to instill accountability on a team is to encourage and allow the team to =
+serve as the first and primary accountability mechanism. Sometimes strong l=
+eaders naturally create an accountability vacuum within the team, leaving t=
+hemselves as the only source of discipline. This creates an environment whe=
+re team members assume that the leader is holding others accountable, and s=
+o they hold back even when they see something that isn=E2=80=99t right.</di=
+v><div>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</div><div>The Five Dysfunctions of a =
+Team: A Leadership Fable (J-B Lencioni Series) (Lencioni, Patrick M.)</div>=
+<div>- Your Highlight on Location 2256-2259 | Added on Thursday, August 2, =
+2018 3:02:07 PM</div><div><br></div><div>A good way to make it easier for t=
+eam members to hold one another accountable is to clarify publicly exactly =
+what the team needs to achieve, who needs to deliver what, and how everyone=
+ must behave in order to succeed. The enemy of accountability is ambiguity,=
+ and even when a team has initially committed to a plan or a set of behavio=
+ral standards, it is important to keep those agreements in the open so that=
+ no one can easily ignore</div><div>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</div><di=
+v>The Five Dysfunctions of a Team: A Leadership Fable (J-B Lencioni Series)=
+ (Lencioni, Patrick M.)</div><div>- Your Highlight on Location 2256-2259 | =
+Added on Thursday, August 2, 2018 3:02:16 PM</div><div><br></div><div>A goo=
+d way to make it easier for team members to hold one another accountable is=
+ to clarify publicly exactly what the team needs to achieve, who needs to d=
+eliver what, and how everyone must behave in order to succeed. The enemy of=
+ accountability is ambiguity, and even when a team has initially committed =
+to a plan or a set of behavioral standards, it is important to keep those a=
+greements in the open so that no one can easily ignore them.</div><div>=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D</div><div>The Five Dysfunctions of a Team: A Le=
+adership Fable (J-B Lencioni Series) (Lencioni, Patrick M.)</div><div>- You=
+r Highlight on Location 2276-2278 | Added on Thursday, August 2, 2018 3:03:=
+40 PM</div><div><br></div><div>If teammates are not being held accountable =
+for their contributions, they will be more likely to turn their attention t=
+o their own needs, and to the advancement of themselves or their department=
+s. An absence of accountability is an invitation to team members to shift t=
+heir attention to areas other than collective results.</div><div>=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D</div><div>The Five Dysfunctions of a Team: A Leadersh=
+ip Fable (J-B Lencioni Series) (Lencioni, Patrick M.)</div><div>- Your High=
+light on Location 2280-2282 | Added on Thursday, August 2, 2018 3:04:14 PM<=
+/div><div><br></div><div>The ultimate dysfunction of a team is the tendency=
+ of members to care about something other than the collective goals of the =
+group. An unrelenting focus on specific objectives and clearly defined outc=
+omes is a requirement for any team that judges itself on performance.</div>=
+<div>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</div><div>The Five Dysfunctions of a Te=
+am: A Leadership Fable (J-B Lencioni Series) (Lencioni, Patrick M.)</div><d=
+iv>- Your Highlight on Location 2289-2294 | Added on Thursday, August 2, 20=
+18 3:20:54 PM</div><div><br></div><div>But what would a team be focused on =
+other than results ? Team status and individual status are the prime candid=
+ates : =E2=80=A2 Team status. For members of some teams, merely being part =
+of the group is enough to keep them satisfied. For them, the achievement of=
+ specific results might be desirable, but not necessarily worthy of great s=
+acrifice or inconvenience. As ridiculous and dangerous as this might seem, =
+plenty of teams fall prey to the lure of status. These often include altrui=
+stic nonprofit organizations that come to believe that the nobility of thei=
+r mission is enough to justify their satisfaction. Political groups, academ=
+ic departments, and prestigious companies are also susceptible to this dysf=
+unction, as they often see success in merely being associated with their sp=
+ecial organizations.</div><div>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</div><div><br=
+></div></div>
+</div></div>
+
+--000000000000a0bd250572a1d3a9--

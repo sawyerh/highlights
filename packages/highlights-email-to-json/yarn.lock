@@ -2,10 +2,6 @@
 # yarn lockfile v1
 
 
-addressparser@1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/addressparser/-/addressparser-1.0.1.tgz#47afbe1a2a9262191db6838e4fd1d39b40821746"
-
 argparse@^1.0.7:
   version "1.0.9"
   resolved "https://registry.yarnpkg.com/argparse/-/argparse-1.0.9.tgz#73d83bc263f86e97f8cc4f6bae1b0e90a7d22c86"
@@ -58,19 +54,18 @@ front-matter@^2.3.0:
   dependencies:
     js-yaml "^3.10.0"
 
-he@^1.0.0, he@^1.1.1:
+he@1.1.1, he@^1.0.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/he/-/he-1.1.1.tgz#93410fd21b009735151f8868c2f271f3427e23fd"
 
-html-to-text@3.3.0:
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/html-to-text/-/html-to-text-3.3.0.tgz#6a9b63c699b885bb7ba84b1446bfe6876bbfcfb7"
+html-to-text@4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/html-to-text/-/html-to-text-4.0.0.tgz#c1f4e100d74e9feab5b152d7b6b3be3c1c6412b0"
   dependencies:
     he "^1.0.0"
     htmlparser2 "^3.9.2"
+    lodash "^4.17.4"
     optimist "^0.6.1"
-    underscore "^1.8.3"
-    underscore.string "^3.2.3"
 
 htmlparser2@^3.9.2:
   version "3.9.2"
@@ -83,13 +78,11 @@ htmlparser2@^3.9.2:
     inherits "^2.0.1"
     readable-stream "^2.0.2"
 
-iconv-lite@0.4.15:
-  version "0.4.15"
-  resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.15.tgz#fe265a218ac6a57cfe854927e9d04c19825eddeb"
-
-iconv-lite@0.4.19:
-  version "0.4.19"
-  resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.19.tgz#f7468f60135f5e5dad3399c0a81be9a1603a082b"
+iconv-lite@0.4.23:
+  version "0.4.23"
+  resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.23.tgz#297871f63be507adcfbfca715d0cd0eed84e9a63"
+  dependencies:
+    safer-buffer ">= 2.1.2 < 3"
 
 inherits@^2.0.1, inherits@~2.0.3:
   version "2.0.3"
@@ -106,20 +99,16 @@ js-yaml@^3.10.0:
     argparse "^1.0.7"
     esprima "^4.0.0"
 
-libbase64@0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/libbase64/-/libbase64-0.1.0.tgz#62351a839563ac5ff5bd26f12f60e9830bb751e6"
+libbase64@1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/libbase64/-/libbase64-1.0.3.tgz#de3023234abeefeb9d49378804c8a94404f5c98c"
 
-libbase64@1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/libbase64/-/libbase64-1.0.2.tgz#2ff13ffe69b1e40159f49368e30d0dd8bb1635b5"
-
-libmime@3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/libmime/-/libmime-3.1.0.tgz#115012f1672051adc8809a8f93955ffc3648edf9"
+libmime@4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/libmime/-/libmime-4.0.1.tgz#dc71a19bfa6a97f8249d7205251d862d6fc599fb"
   dependencies:
-    iconv-lite "0.4.15"
-    libbase64 "0.1.0"
+    iconv-lite "0.4.23"
+    libbase64 "1.0.3"
     libqp "1.1.0"
 
 libqp@1.1.0:
@@ -132,30 +121,38 @@ linkify-it@2.0.3:
   dependencies:
     uc.micro "^1.0.1"
 
-mailparser@^2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/mailparser/-/mailparser-2.2.0.tgz#e3c4d9504d4a5fa5bdd82e8de2d426d74e45e367"
-  dependencies:
-    addressparser "1.0.1"
-    he "^1.1.1"
-    html-to-text "3.3.0"
-    iconv-lite "0.4.19"
-    libmime "3.1.0"
-    linkify-it "2.0.3"
-    mailsplit "4.1.2"
-    tlds "1.199.0"
+lodash@^4.17.4:
+  version "4.17.10"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.10.tgz#1b7793cf7259ea38fb3661d4d38b3260af8ae4e7"
 
-mailsplit@4.1.2:
-  version "4.1.2"
-  resolved "https://registry.yarnpkg.com/mailsplit/-/mailsplit-4.1.2.tgz#c618bc311a4cfc83b226a1edc1b503f5a924d083"
+mailparser@^2.3.2:
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/mailparser/-/mailparser-2.3.2.tgz#4e79411f1bb885becbbb16ccdcf07dcfd0137d1b"
   dependencies:
-    libbase64 "1.0.2"
-    libmime "3.1.0"
+    he "1.1.1"
+    html-to-text "4.0.0"
+    iconv-lite "0.4.23"
+    libmime "4.0.1"
+    linkify-it "2.0.3"
+    mailsplit "4.2.3"
+    nodemailer "4.6.7"
+    tlds "1.203.1"
+
+mailsplit@4.2.3:
+  version "4.2.3"
+  resolved "https://registry.yarnpkg.com/mailsplit/-/mailsplit-4.2.3.tgz#4c8ba5c69322a39625ef424df7c715a51c6271a7"
+  dependencies:
+    libbase64 "1.0.3"
+    libmime "4.0.1"
     libqp "1.1.0"
 
 minimist@~0.0.1:
   version "0.0.10"
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-0.0.10.tgz#de3f98543dbf96082be48ad1a0c7cda836301dcf"
+
+nodemailer@4.6.7:
+  version "4.6.7"
+  resolved "https://registry.yarnpkg.com/nodemailer/-/nodemailer-4.6.7.tgz#b68de7f36d65618bdeeeb76234e3547d51266373"
 
 optimist@^0.6.1:
   version "0.6.1"
@@ -184,9 +181,9 @@ safe-buffer@~5.1.0, safe-buffer@~5.1.1:
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.1.1.tgz#893312af69b2123def71f57889001671eeb2c853"
 
-sprintf-js@^1.0.3:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.1.1.tgz#36be78320afe5801f6cea3ee78b6e5aab940ea0c"
+"safer-buffer@>= 2.1.2 < 3":
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/safer-buffer/-/safer-buffer-2.1.2.tgz#44fa161b0187b9549dd84bb91802f9bd8385cd6a"
 
 sprintf-js@~1.0.2:
   version "1.0.3"
@@ -198,26 +195,15 @@ string_decoder@~1.0.3:
   dependencies:
     safe-buffer "~5.1.0"
 
-tlds@1.199.0:
-  version "1.199.0"
-  resolved "https://registry.yarnpkg.com/tlds/-/tlds-1.199.0.tgz#a4fc8c3058216488a80aaaebb427925007e55217"
+tlds@1.203.1:
+  version "1.203.1"
+  resolved "https://registry.yarnpkg.com/tlds/-/tlds-1.203.1.tgz#4dc9b02f53de3315bc98b80665e13de3edfc1dfc"
 
 uc.micro@^1.0.1:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/uc.micro/-/uc.micro-1.0.3.tgz#7ed50d5e0f9a9fb0a573379259f2a77458d50192"
 
-underscore.string@^3.2.3:
-  version "3.3.4"
-  resolved "https://registry.yarnpkg.com/underscore.string/-/underscore.string-3.3.4.tgz#2c2a3f9f83e64762fdc45e6ceac65142864213db"
-  dependencies:
-    sprintf-js "^1.0.3"
-    util-deprecate "^1.0.2"
-
-underscore@^1.8.3:
-  version "1.8.3"
-  resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.8.3.tgz#4f3fb53b106e6097fcf9cb4109f2a5e9bdfa5022"
-
-util-deprecate@^1.0.2, util-deprecate@~1.0.1:
+util-deprecate@~1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
 
