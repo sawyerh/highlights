@@ -39,8 +39,9 @@ function importMail(mail) {
           const data = await runImporter(mail);
           await addVolumeAndHighlights(data);
           return true;
-        } catch (error) {
-          return !!error.message.match(/No new highlights/);
+        } catch (err) {
+          console.log(err.message);
+          return !!err.message.match(/No new highlights/);
         }
       },
       (e, importerSuccess) => {
