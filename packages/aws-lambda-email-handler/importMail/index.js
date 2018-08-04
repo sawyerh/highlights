@@ -1,6 +1,7 @@
 const Highlight = require("./Highlight");
 const Volume = require("./Volume");
 const someSeries = require("async/someSeries");
+const kindleClippingsToJSON = require("kindle-clippings-to-json");
 const kindleEmailToJSON = require("kindle-email-to-json");
 const textToJSON = require("highlights-email-to-json");
 
@@ -29,7 +30,7 @@ async function addVolumeAndHighlights(data) {
  */
 function importMail(mail) {
   return new Promise((resolve, reject) => {
-    const importers = [kindleEmailToJSON, textToJSON];
+    const importers = [kindleEmailToJSON, kindleClippingsToJSON, textToJSON];
 
     someSeries(
       importers,

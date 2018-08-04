@@ -17,6 +17,7 @@
     "async": "^2.6.1",
     "firebase-admin": "^5.13.1",
     "highlights-email-to-json": "^1.0.3",
+    "kindle-clippings-to-json": "^1.0.0",
     "kindle-email-to-json": "^1.1.2",
     "lodash": "^4.17.10",
     "string-hash": "^1.1.3"
