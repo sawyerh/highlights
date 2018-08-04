@@ -36,6 +36,7 @@ Object {
     "C",
     "D",
   ],
+  "format": undefined,
   "id": 1,
   "image": "/e.jpg",
   "subtitle": "B",
