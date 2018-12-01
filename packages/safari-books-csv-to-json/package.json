@@ -1,0 +1,16 @@
+{
+  "name": "safari-books-csv-to-json",
+  "description": "Converts an email attachment consisting of an O'Reilly Safari Books CSV highlights export into a JSON object",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": {
+    "name": "Sawyer Hollenshead",
+    "url": "https://github.com/sawyerh"
+  },
+  "repository": "sawyerh/highlight-utils",
+  "license": "MIT",
+  "dependencies": {
+    "csvtojson": "^2.0.8",
+    "mailparser": "^2.3.2"
+  }
+}

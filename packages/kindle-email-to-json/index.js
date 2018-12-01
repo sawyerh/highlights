@@ -16,6 +16,7 @@ function toJSON(source) {
 
 /**
  * @param {String} contents - HTML attachment content
+ * @returns {Object}
  */
 function convert(contents) {
   const converter = new Converter(contents);
