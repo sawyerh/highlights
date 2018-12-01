@@ -2,7 +2,7 @@
   "private": true,
   "name": "aws-lambda-email-handler",
   "description": "AWS Lambda function for handling the reception of an email export",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "engines": {
     "node": "8"
   },
@@ -18,9 +18,9 @@
     "firebase-admin": "^5.13.1",
     "highlights-email-to-json": "^1.1.0",
     "kindle-clippings-to-json": "^1.0.0",
-    "kindle-email-to-json": "^1.2.0",
+    "kindle-email-to-json": "^1.3.0",
     "lodash": "^4.17.10",
-    "safari-books-csv-to-json": "^1.0.0",
+    "safari-books-csv-to-json": "^1.1.0",
     "string-hash": "^1.1.3"
   },
   "devDependencies": {
