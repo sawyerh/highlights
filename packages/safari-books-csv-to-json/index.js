@@ -26,7 +26,7 @@ async function convert(contents) {
     return converter.getJSON();
   }
 
-  return new Error(
+  throw new Error(
     "Invalid mail content. Expected an CSV attachment with Safari Books highlights."
   );
 }
@@ -38,7 +38,7 @@ async function convert(contents) {
  * @returns {String} Attachment's content
  */
 function attachment(mail) {
-  if (mail.attachments) {
+  if (mail.attachments && mail.attachments.length) {
     const attachments = mail.attachments.filter(
       attachment => attachment.contentType === "text/csv"
     );
@@ -46,7 +46,7 @@ function attachment(mail) {
     if (attachments.length) return attachments[0].content.toString("utf8");
   }
 
-  return new Error("No valid CSV attachment");
+  throw new Error("No valid CSV attachment");
 }
 
 module.exports = toJSON;
