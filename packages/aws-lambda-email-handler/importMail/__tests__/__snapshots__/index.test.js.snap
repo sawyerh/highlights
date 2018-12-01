@@ -1,5 +1,234 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Importer with Safari Books export imports highlights 1`] = `
+Array [
+  Object {
+    "content": "Fit criteria are usually derived after the requirement description is written. You derive a fit criterion by examining the requirement’s description and rationale, and determining which quantification best expresses the user’s intention for the requirement. You may sometimes find that this close examination results in changes to the requirement, but these changes are for the better and should be considered quite normal; their occurrence simply means the requirement was not properly understood in the first instance.",
+    "location": "12. Fit Criteria and Rationale",
+  },
+  Object {
+    "content": "The fit criterion, not the description, is the real requirement. The description you write is the stakeholder’s way of stating the intention of the requirement. If your stakeholders are like most of us, they speak using everyday language, which is, unfortunately, often ambiguous and often not precise enough. You need to clarify the requirement with a fit criterion that is stated in unambiguous, precise terms and probably uses numbers or a measurement to convey its meaning.",
+    "location": "12. Fit Criteria and Rationale",
+  },
+  Object {
+    "content": "fit criterion is neither a test nor the design for a test, but rather a benchmark that the delivered product has to be tested against. It is used as input to building a test case through which the tester ensures that each of the product’s requirements complies with its fit criterion",
+    "location": "12. Fit Criteria and Rationale",
+  },
+  Object {
+    "content": "The general rule for functional requirements is that the fit criterion ensures that the function has been successfully carried out. That brings us to test cases.",
+    "location": "12. Fit Criteria and Rationale",
+  },
+  Object {
+    "content": "A functional requirement is something that the product must do—an action it must take. The fit criterion specifies how you will know that the product has successfully carried out that action. For functional requirements, there are no scales of measurement: The action is either completed or not completed. Completion depends on satisfying an authority that the product has correctly performed the action. The authority in this case is either the source of the data or the adjacent system that initiated the action.",
+    "location": "12. Fit Criteria and Rationale",
+  },
+  Object {
+    "content": "Maintainability requirements specify expectations about the maintenance of the product. Usually the fit criteria for these requirements quantify the amount of time allowed to make certain changes. This is not to say that all maintenance changes can be anticipated, but where changes are expected, then it is possible to quantify the time allowed to adopt those changes.",
+    "location": "12. Fit Criteria and Rationale",
+  },
+  Object {
+    "content": "Fit criteria for usability requirements might also quantify the time allowed for given tasks, the error rates allowed (quantifying ease of use), the satisfaction rating awarded by the users, ratings given by usability laboratories, and so on.",
+    "location": "12. Fit Criteria and Rationale",
+  },
+  Object {
+    "content": "Legal requirements have a built-in standard—the law. You could cite the appropriate law as your fit criterion, but as it is likely to be unfathomable to you and your development team, the simple approach is to allow your legal department to give their opinion that the solution matches the standard of the law",
+    "location": "12. Fit Criteria and Rationale",
+  },
+  Object {
+    "content": "the ISO 9241 standard covers the ergonomics of human interactions with computer systems",
+    "location": "12. Fit Criteria and Rationale",
+  },
+  Object {
+    "content": "The fit criterion might be determined by asking your stakeholder, “What would you consider a failure to meet this requirement?”",
+    "location": "12. Fit Criteria and Rationale",
+  },
+  Object {
+    "content": "The rationale is the reason, or justification, for a requirement. We have found that attaching a rationale to the requirement makes it far easier to understand the real need. Quite often, stakeholders may tell you their perceived solution to the problem, rather than their real need. Alternatively, they may state a requirement that is so vague as to be (for the moment) unusable. In the example given previously, the client asked for a “user-friendly” product, but you could make sense of it when you learned that the rationale was that the project needed the users to readily adopt the product.",
+    "location": "12. Fit Criteria and Rationale",
+  },
+  Object {
+    "content": "The measurement of the requirement is its fit criterion. It quantifies the behavior, the performance, or some other quality of the requirement.",
+    "location": "12. Fit Criteria and Rationale",
+  },
+  Object {
+    "content": "To follow the guideline of not writing solutions, examine your requirement. If it contains any item of technology or any method, rewrite it to avoid mentioning the technology or method. It may be necessary to make several attempts before you reach the desired level of technological independence, but the effect on the design of the end product is worthwhile.",
+    "location": "11. Non-functional Requirements",
+  },
+  Object {
+    "content": "Apart from potentially solving the wrong problem, one of the main concerns with writing a solution instead of a requirement is that technology is constantly changing. Solutions lock you into one technology or another, and whatever is chosen may be out of date by the time the product is built. By writing a requirement that does not include any technological component, you not only allow the designer to use the most appropriate, up-to-date technology, but also allow the product to change and adapt to new technologies as they emerge.",
+    "location": "11. Non-functional Requirements",
+  },
+  Object {
+    "content": "If your product is to be used by a unit of the U.S. government, the Federal Information Security Management Act of 2002 (FISMA) probably applies.",
+    "location": "11. Non-functional Requirements",
+  },
+  Object {
+    "content": "security can be thought of as having three aspects:
+
+• Access: The product’s data and functionality are accessible to authorized users and can be produced in a timely manner. Other access requirements focus on denying access to unauthorized people.
+
+• Privacy: Data stored by the product is protected from unauthorized or accidental disclosure.
+
+• Integrity: The product’s data is the same as the source, or authority, of the data, and is protected from corruption.
+
+We have added a fourth security aspect:
+
+• Audit: what the product has to do to allow complete verification of its operations and data.",
+    "location": "11. Non-functional Requirements",
+  },
+  Object {
+    "content": "Usability and humanity requirements can cover areas such as the following:
+
+• Rate of acceptance or adoption by the users
+
+• Productivity gained as a result of the product’s introduction
+
+• Error rates (or reduction thereof)
+
+• Use by people who do not speak the language of the country where the product is to be used
+
+• Personalization and internationalization to allow users to change to local spelling, currency, and other preferences
+
+• Accessibility to handicapped people (this is sometimes mandated by law)
+
+• Use by people with no previous experience with computers (an important, albeit often-forgotten consideration)
+
+• Usage during the hours of darkness (this caters to the vampire community)",
+    "location": "11. Non-functional Requirements",
+  },
+  Object {
+    "content": "When you are thinking about performance requirements, consider such aspects as these:
+
+• Speed to complete a task
+
+• Accuracy of the results
+
+• Safety to the operator
+
+• Volumes of data to be held by the product
+
+• Ranges of allowable values
+
+• Throughput, such as the rate of transactions
+
+• Efficiency of resource usage
+
+• Reliability, often expressed as the mean time between failures
+
+• Availability—the uptime or time periods when users can access the product
+
+• Fault tolerance and robustness
+
+• Scalability of most of the above",
+    "location": "11. Non-functional Requirements",
+  },
+  Object {
+    "content": "In our ongoing example, we have explored various aspects of the IceBreaker product in earlier chapters. Part of this product’s functionality is to record road temperatures and moisture levels each time this data is transmitted by the weather stations. Recording data is a functional requirement—it is part of the fundamental business process. Now suppose that this data has to be recorded within half a second; moreover, once it is recorded, no one except a supervising engineer is allowed to alter the data. These two requirements are non-functional, with the first being a performance requirement and the second a security requirement. Although these requirements are not part of the functional reason for the product’s existence, they are neede...",
+    "location": "11. Non-functional Requirements",
+  },
+  Object {
+    "content": "Rabbit projects should use the requirements specification template (see Appendix A) as a checklist of non-functional requirements types. Go through the list—ensuring that you check the subtypes—with your key stakeholders and determine their priorities regarding non-functional requirements. “All of them” is not an acceptable answer. Keep the project team aware of these high-priority requirements as you work through the user stories.",
+    "location": "11. Non-functional Requirements",
+  },
+  Object {
+    "content": "Some, though not all, of the non-functional requirements should be the earliest to be gathered and understood. They should never be assumed, as frequently happens, even when the customers and the developers believe they are obvious.",
+    "location": "11. Non-functional Requirements",
+  },
+  Object {
+    "content": "The non-functional requirements describe the qualities that your product must have or, to put that another way, how well it does the things it does. Such requirements make the product attractive, or usable, or fast, or reliable, or safe. You use non-functional requirements to specify response times, or accuracy limits on calculations. You write non-functional requirements when you need your product to have a particular appearance, or be used by people in particular circumstances, or adhere to laws applicable to your kind of business.
+
+These properties are not required because they are the functional activities of the product—activities such as computations, data manipulations, and so on—but rather are included because the client expects ...",
+    "location": "11. Non-functional Requirements",
+  },
+  Object {
+    "content": "By including a rationale with the description, the requirement itself becomes more useful. By knowing why something is there, the developers and the testers know much more about the effort they should expend on it. It also indicates to future maintainers why the requirement exists in the first place.",
+    "location": "10. Functional Requirements",
+  },
+  Object {
+    "content": "We suggest—strongly suggest—that you add a rationale to your requirements to show why the requirement exists",
+    "location": "10. Functional Requirements",
+  },
+  Object {
+    "content": "One last word on the form employed to write the requirements description: Sometimes people use a mixture of “shall,” “must,” “will,” “might,” “could” and so on, to indicate the priority of a requirement. This practice results in semantic confusion, and we advise against it. Instead, use one consistent form for writing your requirements’ descriptions (“The product shall . . .” is the most common) and use a separate attribute of the requirement to identify its priority.",
+    "location": "10. Functional Requirements",
+  },
+  Object {
+    "content": "Note the level of detail in the preceding examples—the requirements are written as a single sentence with a single verb. When you write this single sentence, you make the requirement much easier to test and far less susceptible to ambiguity. Note also the form “The product shall . . .”; it makes the sentence active and focuses on communicating what the product is intended to do. It also provides a consistent form for the developers and other stakeholders who need to have a clear understanding of what the product is intended to do",
+    "location": "10. Functional Requirements",
+  },
+  Object {
+    "content": "Functional requirements are the things your product does to support the work. They should be, as far as possible, expressed independently from any technology that will be used to implement them. This separation might seem strange, as these requirements apply to an automated product. Keep in mind, however that you, as the business analyst, are not attempting to craft a technological solution, but rather to specify what that technological solution must do. How it achieves that outcome is a matter for the designer.
+
+The functional requirements specify the product to be developed, so they must contain sufficient detail for the developer to build the correct product with only the minimum of clarification and explanation from the requirements ...",
+    "location": "10. Functional Requirements",
+  },
+  Object {
+    "content": "Appendix A of this book provides The Volere Requirements Specification Template, which is a complete blueprint for describing your product’s functionality and capabilities. This template, which is a distillation of literally hundreds of requirements specifications, is in use by thousands of organizations all over the world",
+    "location": "2. The Requirements Process",
+  },
+  Object {
+    "content": "The requirements for any product you build are never completely unique. We suggest that before starting on any new requirements project, you go through the specifications written for previous projects and look for potentially reusable material. Sometimes you may find dozens of requirements that you can reuse without alteration. More often you will find requirements that, although they are not exactly what you want, are suitable as the basis for some of the requirements you will write in the new project.",
+    "location": "2. The Requirements Process",
+  },
+  Object {
+    "content": "The primary reason for wanting written requirements is not to have written requirements (although that is often necessary), but rather to write them. Writing the requirement, together with its associated rationale and fit criterion, clarifies it in the writer’s mind, and sets it down in an unambiguous and verifiable manner. To put that another way, if the business analyst cannot correctly write the requirement, he has not yet understood it.",
+    "location": "2. The Requirements Process",
+  },
+  Object {
+    "content": "Refer to Chapters 10, 11, 12, and 16 for detailed discussions of writing the requirements.",
+    "location": "2. The Requirements Process",
+  },
+  Object {
+    "content": "The analysts use two devices to make it easier to write their specification. The first device, the requirements specification template, is an outline and guide to writing a requirements specification. The business analysts use it as a checklist of the requirements they should be asking for, and as a consistent way of organizing their requirements documents. The second device is a shell, also known as a snow card. Each atomic (that’s the lowest level) requirement is made up of a number of attributes, and the snow card is a convenient layout for ensuring that each requirement has the correct constituents.",
+    "location": "2. The Requirements Process",
+  },
+  Object {
+    "content": "analysts start by writing their requirements using business language so that the nontechnical stakeholders can understand them and verify their correctness. They add a rationale to the requirements—it shows the background reason for the requirement, which removes much of the ambiguity. Further, to ensure complete precision and to confirm that the product designers and developers can build exactly what the stakeholder needs, they write a fit criterion for each requirement. A fit criterion quantifies, or measures, the requirement, which makes it testable, which in turn allows the testers to determine whether an implementation meets—in other words, fits—the requirement.
+
+The rationale and the fit criterion make the requirement more understa...",
+    "location": "2. The Requirements Process",
+  },
+  Object {
+    "content": "Non-functional requirements are properties, or qualities, that the product must have if it is to be acceptable to its owner and operator. In some cases, non-functional requirements—these specify such properties as performance, look and feel, usability, security, and legal attributes—are critical to the product’s success, as in the following case:
+
+Non-functional requirements are qualities the product must have.
+
+The product shall be able to determine “friend or foe” in less than 0.25 second.
+
+Sometimes they are requirements because they enhance the product or make people want to buy it:
+
+The product shall provide a pleasing user experience.
+
+Sometimes they make the product usable:
+
+The product shall be able to be used by travelers in the...",
+    "location": "1. Some Fundamental Truths",
+  },
+  Object {
+    "content": "A functional requirement describes an action that the product must take if it is to be useful to its operator—they arise from the work that your stakeholders need to do. Almost any action (calculate, inspect, publish, or most other active verbs) can be a functional requirement.
+
+Functional requirements are things the product must do.
+
+The product shall produce a schedule of all roads upon which ice is predicted to form within the given time parameter.",
+    "location": "1. Some Fundamental Truths",
+  },
+  Object {
+    "content": "Simply put, a requirement is something the product must do to support its owner’s business, or a quality it must have to make it acceptable and attractive to the owner. A requirement exists either because the type of product demands certain functions and qualities, or because the client justifiably asks for that requirement to be part of the delivered product.",
+    "location": "1. Some Fundamental Truths",
+  },
+]
+`;
+
+exports[`Importer with Safari Books export imports highlights 2`] = `
+Object {
+  "authors": Array [
+    "James Robertson...",
+  ],
+  "highlightsCount": 36,
+  "title": "Mastering the Requirements Process: Getting Requirements Right, 3/e, Video Enhanced Edition",
+}
+`;
+
 exports[`Importer with kindle export imports highlights 1`] = `
 Array [
   Object {

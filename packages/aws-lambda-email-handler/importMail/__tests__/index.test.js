@@ -39,6 +39,27 @@ describe("Importer", () => {
     });
   });
 
+  describe("with Safari Books export", () => {
+    let mail;
+
+    beforeAll(async () => {
+      mail = await readFile(
+        path.resolve(
+          __dirname,
+          "../../../safari-books-csv-to-json/__mocks__/email.txt"
+        )
+      );
+    });
+
+    it("imports highlights", () => {
+      return importMail(mail).then(() => {
+        expect(mockImportAllHighlight.mock.calls.length).toBe(1);
+        expect(mockImportAllHighlight.mock.calls[0][0]).toMatchSnapshot();
+        expect(mockImportAllHighlight.mock.calls[0][1]).toMatchSnapshot();
+      });
+    });
+  });
+
   describe("with plain text export", () => {
     let mail;
 

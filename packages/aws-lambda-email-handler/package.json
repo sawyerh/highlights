@@ -20,6 +20,7 @@
     "kindle-clippings-to-json": "^1.0.0",
     "kindle-email-to-json": "^1.2.0",
     "lodash": "^4.17.10",
+    "safari-books-csv-to-json": "^1.0.0",
     "string-hash": "^1.1.3"
   },
   "devDependencies": {
