@@ -16,6 +16,6 @@ zip -X -r -q ../index.zip *
 cd ..
 
 echo "${BLUE}Update Lambda function...${NC}"
-export AWS_PROFILE=highlights
-aws s3 cp index.zip s3://highlights.sawyerh.com/lambda/index.zip
-aws lambda update-function-code --function-name highlightsEmailToFirebase --s3-bucket highlights.sawyerh.com --s3-key lambda/index.zip
+export AWS_PROFILE=sawyer-lambda
+aws s3 cp index.zip s3://sawyer-lambda/highlightsEmailToFirebase/index.zip
+aws lambda update-function-code --function-name highlightsEmailToFirebase --s3-bucket sawyer-lambda --s3-key highlightsEmailToFirebase/index.zip
