@@ -13,9 +13,9 @@
   "repository": "sawyerh/highlight-utils",
   "license": "MIT",
   "dependencies": {
-    "lodash": "^4.17.10"
+    "lodash": "^4.17.11"
   },
   "peerDependencies": {
-    "firebase-admin": "^5.13.1"
+    "firebase-admin": "^8.0.0"
   }
 }
