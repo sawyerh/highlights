@@ -42,12 +42,12 @@ class Highlight {
   }
 
   /**
-   * Find all visible highlights
+   * Find all highlights
    * @param {Function} beforeQuery - Method for modifying the query before its executed
    * @returns {Promise<Array>}
    */
-  static allVisible(beforeQuery) {
-    const query = db.collection("highlights").where(`visible`, "==", true);
+  static all(beforeQuery) {
+    const query = db.collection("highlights");
 
     if (beforeQuery) beforeQuery(query);
 
