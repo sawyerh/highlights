@@ -42,6 +42,21 @@ class Highlight {
   }
 
   /**
+   * Find all visible highlights
+   * @param {Function} beforeQuery - Method for modifying the query before its executed
+   * @returns {Promise<Array>}
+   */
+  static allVisible(beforeQuery) {
+    const query = db.collection("highlights").where(`visible`, "==", true);
+
+    if (beforeQuery) beforeQuery(query);
+
+    return query.get().then(snap => {
+      return snap.docs.map(doc => this.attrs(doc));
+    });
+  }
+
+  /**
    * @param {String|DocumentReference} id
    */
   static find(id) {
