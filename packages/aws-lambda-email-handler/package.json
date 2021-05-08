@@ -19,7 +19,7 @@
     "highlights-email-to-json": "^1.1.0",
     "kindle-clippings-to-json": "^1.0.0",
     "kindle-email-to-json": "^1.4.0",
-    "lodash": "^4.17.10",
+    "lodash": "^4.17.21",
     "safari-books-csv-to-json": "^1.1.1",
     "string-hash": "^1.1.3"
   },
