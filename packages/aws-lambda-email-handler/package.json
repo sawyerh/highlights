@@ -14,7 +14,7 @@
   "dependencies": {
     "@google-cloud/firestore": "^0.16.0",
     "@sawyerh/firestore-highlights": "^3.3.0",
-    "async": "^2.6.1",
+    "async": "^2.6.4",
     "firebase-admin": "^5.13.1",
     "highlights-email-to-json": "^1.1.0",
     "kindle-clippings-to-json": "^1.0.0",
