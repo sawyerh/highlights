@@ -27,6 +27,6 @@ echo "${BLUE}Copy local dependencies...${NC}"
 cp -R ../../firestore-highlights ./node_modules/@sawyerh
 
 # Necessary because Firestore relies on gprc dependency
-# stackoverflow.com/questions/46775815/node-v57-linux-x64-grpc-node-node-missing
+# https://stackoverflow.com/questions/46775815/node-v57-linux-x64-grpc-node-node-missing
 echo "${BLUE}Compile native deps within Lambda environment...${NC}"
-docker run -v "$PWD":/var/task lambci/lambda:build-nodejs8.10
+npm rebuild --target=16.0.0 --target_platform=linux --target_arch=x64 --target_libc=glibc --update-binary
