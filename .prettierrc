@@ -1,0 +1,13 @@
+{
+	"trailingComma": "all",
+	"useTabs": true,
+	"importOrder": [
+		"^firebase",
+		"^@google-cloud",
+		"^@?next",
+		"<THIRD_PARTY_MODULES>",
+		"^[./]"
+	],
+	"importOrderSeparation": true,
+	"importOrderSortSpecifiers": true
+}

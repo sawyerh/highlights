@@ -1,9 +1,16 @@
 .DS_Store
-*config.js
-*.env
-event.json
-*.zip
 node_modules
+tmp
+.next
+**/*.tsbuildinfo
+
+# Logs
+logs
 *.log
-gcloud-service-account.json
+npm-debug.log*
+firebase-debug.log*
+firebase-debug.*.log*
+
+# Builds
 dist/
+build/

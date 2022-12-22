@@ -20,6 +20,6 @@ class Entity {
  * @param {Firestore} firestore - The Firestore Database client.
  * @returns {Class}
  */
-module.exports = firestore => {
+module.exports = () => {
   return Entity;
 };

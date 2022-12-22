@@ -12,5 +12,8 @@
   "dependencies": {
     "csvtojson": "^2.0.8",
     "mailparser": "^2.4.3"
+  },
+  "devDependencies": {
+    "mz": "^2.7.0"
   }
 }

@@ -12,5 +12,8 @@
   "dependencies": {
     "front-matter": "^2.3.0",
     "mailparser": "^2.3.2"
+  },
+  "devDependencies": {
+    "mz": "^2.7.0"
   }
 }

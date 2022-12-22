@@ -1,22 +1,26 @@
 {
-  "name": "highlight-utils",
-  "private": true,
-  "scripts": {
-    "lint": "eslint ./ --ext .js -f table",
-    "test": "jest"
-  },
-  "devDependencies": {
-    "eslint": "^5.9.0",
-    "eslint-config-nava": "^4.0.0",
-    "eslint-config-prettier": "^3.3.0",
-    "jest": "^23.6.0",
-    "mz": "^2.7.0",
-    "prettier": "^1.15.3"
-  },
-  "jest": {
-    "testPathIgnorePatterns": [
-      "/node_modules/",
-      "<rootDir>/packages/aws-lambda-email-handler/dist/*"
-    ]
-  }
+	"name": "highlight-utils",
+	"private": true,
+	"scripts": {
+		"lint": "eslint ./ --ext .js,.mjs,.ts,.tsx --fix",
+		"format": "prettier --write './**/*.{js,json,mjs,ts,tsx,md}'",
+		"test": "jest"
+	},
+	"devDependencies": {
+		"@next/eslint-plugin-next": "^13.0.6",
+		"@trivago/prettier-plugin-sort-imports": "^4.0.0",
+		"@typescript-eslint/eslint-plugin": "^5.46.1",
+		"@typescript-eslint/parser": "^5.46.1",
+		"eslint": "^8.29.0",
+		"eslint-config-prettier": "^8.5.0",
+		"jest": "^23.6.0",
+		"prettier": "^2.8.1",
+		"prettier-plugin-tailwindcss": "^0.2.1"
+	},
+	"jest": {
+		"testPathIgnorePatterns": [
+			"/node_modules/",
+			"<rootDir>/packages/aws-lambda-email-handler/dist/*"
+		]
+	}
 }
