@@ -17,17 +17,17 @@ Hello 👋 You're at the root of a monorepo.
 C4Context
   Person(me, "Me")
 
-  System_Boundary(aws, "AWS") {
+  Boundary(aws, "AWS") {
     System(email, "Email importer", "SES, S3, Lambda")
   }
 
-  System_Boundary(google, "Firebase") {
+  Boundary(google, "Firebase") {
     SystemDb(db, "Database", "Firestore")
     System(functions, "Data enricher", "Cloud Functions")
     System(api, "API", "Cloud Functions")
   }
 
-  System_Boundary(vercel, "Vercel") {
+  Boundary(vercel, "Vercel") {
     System(web, "Web app", "Next.js")
   }
 
