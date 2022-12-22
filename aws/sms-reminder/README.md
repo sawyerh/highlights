@@ -1,3 +1,5 @@
+🏴‍☠️ **This system is no longer in use or maintained.** 🏴‍☠️
+
 ## How it works
 
 1. A scheduled CloudWatch event triggers the Lambda function
