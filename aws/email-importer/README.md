@@ -2,14 +2,14 @@
 
 1. SES receives the email
 1. SES adds the email to S3
-1. SES triggers the Lambda function
+1. S3 event triggers the Lambda function
 1. Lambda downloads the email from S3
 1. Lambda pulls volume and highlights data from the email's body
 1. Lambda adds any new data to Firestore
 
 ## Deploying
 
-Deploy the handler to Lambda. This script copies the files into a `dist` directory and installs production dependencies. Note: This doesn't use Lerna, so only published packages are used, rather than their symlinked local version.
+Deploy the handler to Lambda. This script copies the files into a `dist` directory and installs production dependencies.
 
 ### Prerequisites
 
