@@ -1,21 +1,21 @@
 {
-  "name": "@sawyerh/firestore-highlights",
-  "publishConfig": {
-    "access": "public"
-  },
-  "version": "3.3.2",
-  "description": "Firestore models used for storing highlights and their corresponding data",
-  "main": "index.js",
-  "author": {
-    "name": "Sawyer Hollenshead",
-    "url": "https://github.com/sawyerh"
-  },
-  "repository": "sawyerh/highlight-utils",
-  "license": "MIT",
-  "dependencies": {
-    "lodash": "^4.17.21"
-  },
-  "peerDependencies": {
-    "firebase-admin": ">=8.6.0"
-  }
+	"name": "@sawyerh/firestore-highlights",
+	"publishConfig": {
+		"access": "public"
+	},
+	"version": "3.3.2",
+	"description": "Firestore models used for storing highlights and their corresponding data",
+	"main": "index.js",
+	"author": {
+		"name": "Sawyer Hollenshead",
+		"url": "https://github.com/sawyerh"
+	},
+	"repository": "sawyerh/highlight-utils",
+	"license": "MIT",
+	"dependencies": {
+		"lodash": "^4.17.21"
+	},
+	"peerDependencies": {
+		"firebase-admin": ">=8.6.0"
+	}
 }

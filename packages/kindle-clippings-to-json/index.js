@@ -8,7 +8,7 @@ const parseMail = require("mailparser").simpleParser;
  * @returns {Promise<Object>}
  */
 function toJSON(source) {
-  return parseMail(source).then(convert);
+	return parseMail(source).then(convert);
 }
 
 /**
@@ -16,12 +16,12 @@ function toJSON(source) {
  * @param {String} mail.text - plaintext body of the message
  */
 function convert(mail) {
-  const converter = new Converter(mail.text);
-  if (converter.valid) return converter.getJSON();
+	const converter = new Converter(mail.text);
+	if (converter.valid) return converter.getJSON();
 
-  return new Error(
-    "Invalid mail content. Expected an plain text body with Kindle clippings."
-  );
+	return new Error(
+		"Invalid mail content. Expected an plain text body with Kindle clippings.",
+	);
 }
 
 module.exports = toJSON;

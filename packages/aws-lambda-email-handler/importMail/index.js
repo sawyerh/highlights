@@ -14,14 +14,14 @@ const textToJSON = require("highlights-email-to-json");
  * @returns {Promise}
  */
 async function addVolumeAndHighlights(data) {
-  const { highlights, volume } = data;
-  volume.highlightsCount = highlights.length;
+	const { highlights, volume } = data;
+	volume.highlightsCount = highlights.length;
 
-  if (!highlights.length)
-    return Promise.reject(new Error("No highlights to import"));
+	if (!highlights.length)
+		return Promise.reject(new Error("No highlights to import"));
 
-  const volumeDoc = await Volume.findOrCreate(volume);
-  return Highlight.importAll(highlights, volumeDoc);
+	const volumeDoc = await Volume.findOrCreate(volume);
+	return Highlight.importAll(highlights, volumeDoc);
 }
 
 /**
@@ -30,33 +30,33 @@ async function addVolumeAndHighlights(data) {
  * @returns {Promise}
  */
 function importMail(mail) {
-  return new Promise((resolve, reject) => {
-    const importers = [
-      kindleEmailToJSON,
-      safariEmailToJSON,
-      kindleClippingsToJSON,
-      textToJSON
-    ];
+	return new Promise((resolve, reject) => {
+		const importers = [
+			kindleEmailToJSON,
+			safariEmailToJSON,
+			kindleClippingsToJSON,
+			textToJSON,
+		];
 
-    someSeries(
-      importers,
-      async runImporter => {
-        // each importer is ran in serial and stops once one runs successfully
-        try {
-          const data = await runImporter(mail);
-          await addVolumeAndHighlights(data);
-          return true;
-        } catch (err) {
-          console.log(err.message);
-          return !!err.message.match(/No new highlights/);
-        }
-      },
-      (e, importerSuccess) => {
-        if (importerSuccess) return resolve();
-        return reject(Error("No importer was able to process the email."));
-      }
-    );
-  });
+		someSeries(
+			importers,
+			async (runImporter) => {
+				// each importer is ran in serial and stops once one runs successfully
+				try {
+					const data = await runImporter(mail);
+					await addVolumeAndHighlights(data);
+					return true;
+				} catch (err) {
+					console.log(err.message);
+					return !!err.message.match(/No new highlights/);
+				}
+			},
+			(e, importerSuccess) => {
+				if (importerSuccess) return resolve();
+				return reject(Error("No importer was able to process the email."));
+			},
+		);
+	});
 }
 
 module.exports = importMail;

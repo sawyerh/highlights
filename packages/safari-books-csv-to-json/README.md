@@ -15,12 +15,13 @@ npm install safari-books-csv-to-json --save
 ## API
 
 ## toJSON(source) ⇒ <code>Promise.&lt;Object&gt;</code>
+
 Convert a Safari Books CSV highlights export into a JSON object.
 Rejects if the source isn't a valid Safari Books CSV export. The email is
 expected to contain at least one CSV attachment.
 
-| Param | Type |
-| --- | --- |
+| Param  | Type                                                              |
+| ------ | ----------------------------------------------------------------- |
 | source | <code>Buffer</code> \| <code>Stream</code> \| <code>String</code> |
 
 ## Example
@@ -29,7 +30,7 @@ expected to contain at least one CSV attachment.
 const toJSON = require("safari-books-csv-to-json");
 const email = readFile(emailPath);
 
-toJSON(email).then(data => {
-  console.log(data);
+toJSON(email).then((data) => {
+	console.log(data);
 });
 ```

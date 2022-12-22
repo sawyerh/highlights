@@ -30,7 +30,7 @@ if the mail doesn't include valid Kindle clippings.
 const toJSON = require("kindle-clippings-to-json");
 const email = readFile(emailPath);
 
-toJSON(email).then(data => {
-  console.log(data);
+toJSON(email).then((data) => {
+	console.log(data);
 });
 ```

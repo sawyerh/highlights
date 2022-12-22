@@ -11,23 +11,23 @@ const s3 = new AWS.S3();
  * @param {Array<Object>} event.Records
  * @param {Object} context
  */
-exports.handler = function(event, context) {
-  console.log("Received event", event);
-  const params = s3Params(event);
+exports.handler = function (event, context) {
+	console.log("Received event", event);
+	const params = s3Params(event);
 
-  s3.getObject(params, (err, data) => {
-    if (err) {
-      console.error(err);
+	s3.getObject(params, (err, data) => {
+		if (err) {
+			console.error(err);
 
-      return context.fail(
-        `Error getting object ${params.Key} from bucket ${params.Bucket}`
-      );
-    }
+			return context.fail(
+				`Error getting object ${params.Key} from bucket ${params.Bucket}`,
+			);
+		}
 
-    importMail(data.Body)
-      .then(() => context.succeed(`Successfully imported ${params.Key}`))
-      .catch(context.fail);
-  });
+		importMail(data.Body)
+			.then(() => context.succeed(`Successfully imported ${params.Key}`))
+			.catch(context.fail);
+	});
 };
 
 /**
@@ -36,11 +36,11 @@ exports.handler = function(event, context) {
  * @returns {Object}
  */
 function s3Params(event) {
-  const bucket = process.env.S3_BUCKET;
-  const prefix = process.env.KEY_PREFIX || "";
-  const sesNotification = event.Records[0].ses;
-  const key = sesNotification.mail.messageId;
-  console.log("SES Message ID", key);
+	const bucket = process.env.S3_BUCKET;
+	const prefix = process.env.KEY_PREFIX || "";
+	const sesNotification = event.Records[0].ses;
+	const key = sesNotification.mail.messageId;
+	console.log("SES Message ID", key);
 
-  return { Bucket: bucket, Key: `${prefix}${key}` };
+	return { Bucket: bucket, Key: `${prefix}${key}` };
 }

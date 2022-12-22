@@ -13,9 +13,9 @@ Deploy the handler to Lambda. This script copies the files into a `dist` directo
 
 ### Prerequisites
 
-* Docker is installed
-* [`trash`](https://github.com/sindresorhus/trash-cli) is installed
-* An AWS profile is configured
+- Docker is installed
+- [`trash`](https://github.com/sindresorhus/trash-cli) is installed
+- An AWS profile is configured
 
 ```
 npm run deploy
@@ -25,11 +25,11 @@ npm run deploy
 
 The Lambda function relies on the following environment variables. You'll need to set these to test locally:
 
-* `AWS_ACCESS_KEY_ID`
-* `AWS_SECRET_ACCESS_KEY`
-* `KEY_PREFIX` - The directory within the bucket where the email objects can be found (SES only gives us the message ID, which is used for the object's name).
-* `S3_BUCKET` - The bucket where the emails are added to
-* `SERVICE_ACCOUNT` - Google Cloud Service Account JSON object
+- `AWS_ACCESS_KEY_ID`
+- `AWS_SECRET_ACCESS_KEY`
+- `KEY_PREFIX` - The directory within the bucket where the email objects can be found (SES only gives us the message ID, which is used for the object's name).
+- `S3_BUCKET` - The bucket where the emails are added to
+- `SERVICE_ACCOUNT` - Google Cloud Service Account JSON object
 
 ### Testing locally
 

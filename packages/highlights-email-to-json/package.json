@@ -1,19 +1,19 @@
 {
-  "name": "highlights-email-to-json",
-  "description": "Converts an email of plain text notes into a JSON object",
-  "version": "1.1.0",
-  "main": "index.js",
-  "author": {
-    "name": "Sawyer Hollenshead",
-    "url": "https://github.com/sawyerh"
-  },
-  "repository": "sawyerh/highlight-utils",
-  "license": "MIT",
-  "dependencies": {
-    "front-matter": "^2.3.0",
-    "mailparser": "^2.3.2"
-  },
-  "devDependencies": {
-    "mz": "^2.7.0"
-  }
+	"name": "highlights-email-to-json",
+	"description": "Converts an email of plain text notes into a JSON object",
+	"version": "1.1.0",
+	"main": "index.js",
+	"author": {
+		"name": "Sawyer Hollenshead",
+		"url": "https://github.com/sawyerh"
+	},
+	"repository": "sawyerh/highlight-utils",
+	"license": "MIT",
+	"dependencies": {
+		"front-matter": "^2.3.0",
+		"mailparser": "^2.3.2"
+	},
+	"devDependencies": {
+		"mz": "^2.7.0"
+	}
 }

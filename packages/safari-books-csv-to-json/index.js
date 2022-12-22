@@ -9,9 +9,9 @@ const parseMail = require("mailparser").simpleParser;
  * @returns {Promise<Object>}
  */
 async function toJSON(source) {
-  const mail = await parseMail(source);
-  const contents = await attachment(mail);
-  return convert(contents);
+	const mail = await parseMail(source);
+	const contents = await attachment(mail);
+	return convert(contents);
 }
 
 /**
@@ -19,16 +19,16 @@ async function toJSON(source) {
  * @returns {Promise<Object>}
  */
 async function convert(contents) {
-  const converter = new Converter(contents);
-  const valid = await converter.valid();
+	const converter = new Converter(contents);
+	const valid = await converter.valid();
 
-  if (valid) {
-    return converter.getJSON();
-  }
+	if (valid) {
+		return converter.getJSON();
+	}
 
-  throw new Error(
-    "Invalid mail content. Expected an CSV attachment with Safari Books highlights."
-  );
+	throw new Error(
+		"Invalid mail content. Expected an CSV attachment with Safari Books highlights.",
+	);
 }
 
 /**
@@ -38,15 +38,15 @@ async function convert(contents) {
  * @returns {String} Attachment's content
  */
 function attachment(mail) {
-  if (mail.attachments && mail.attachments.length) {
-    const attachments = mail.attachments.filter(
-      attachment => attachment.contentType === "text/csv"
-    );
+	if (mail.attachments && mail.attachments.length) {
+		const attachments = mail.attachments.filter(
+			(attachment) => attachment.contentType === "text/csv",
+		);
 
-    if (attachments.length) return attachments[0].content.toString("utf8");
-  }
+		if (attachments.length) return attachments[0].content.toString("utf8");
+	}
 
-  throw new Error("No valid CSV attachment");
+	throw new Error("No valid CSV attachment");
 }
 
 module.exports = toJSON;

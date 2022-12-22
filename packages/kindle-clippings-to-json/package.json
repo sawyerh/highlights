@@ -1,18 +1,18 @@
 {
-  "name": "kindle-clippings-to-json",
-  "description": "Converts an email consisting of Kindle clippings into a JSON object",
-  "version": "1.0.0",
-  "main": "index.js",
-  "author": {
-    "name": "Sawyer Hollenshead",
-    "url": "https://github.com/sawyerh"
-  },
-  "repository": "sawyerh/highlight-utils",
-  "license": "MIT",
-  "dependencies": {
-    "mailparser": "^2.3.2"
-  },
-  "devDependencies": {
-    "mz": "^2.7.0"
-  }
+	"name": "kindle-clippings-to-json",
+	"description": "Converts an email consisting of Kindle clippings into a JSON object",
+	"version": "1.0.0",
+	"main": "index.js",
+	"author": {
+		"name": "Sawyer Hollenshead",
+		"url": "https://github.com/sawyerh"
+	},
+	"repository": "sawyerh/highlight-utils",
+	"license": "MIT",
+	"dependencies": {
+		"mailparser": "^2.3.2"
+	},
+	"devDependencies": {
+		"mz": "^2.7.0"
+	}
 }

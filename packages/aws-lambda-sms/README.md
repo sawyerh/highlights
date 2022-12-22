@@ -11,8 +11,8 @@ Deploy the handler to Lambda. This script copies the files into a `dist` directo
 
 ### Prerequisites
 
-* [`trash`](https://github.com/sindresorhus/trash-cli) is installed
-* An AWS profile is configured
+- [`trash`](https://github.com/sindresorhus/trash-cli) is installed
+- An AWS profile is configured
 
 ```
 npm run deploy

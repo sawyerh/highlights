@@ -40,7 +40,7 @@ if the mail isn't a valid notes export.
 const toJSON = require("highlights-email-to-json");
 const email = readFile(emailPath);
 
-toJSON(email).then(data => {
-  console.log(data);
+toJSON(email).then((data) => {
+	console.log(data);
 });
 ```

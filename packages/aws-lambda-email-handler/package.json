@@ -1,29 +1,29 @@
 {
-  "private": true,
-  "name": "aws-lambda-email-handler",
-  "description": "AWS Lambda function for handling the reception of an email export",
-  "version": "4.0.0",
-  "engines": {
-    "node": ">= 16.0.0"
-  },
-  "main": "index.js",
-  "scripts": {
-    "deploy": "./scripts/deploy.sh",
-    "test": "./scripts/test.sh"
-  },
-  "dependencies": {
-    "@google-cloud/firestore": "^6.3.0",
-    "@sawyerh/firestore-highlights": "^3.3.0",
-    "async": "^3.2.4",
-    "firebase-admin": "^8.6.0",
-    "highlights-email-to-json": "^1.1.0",
-    "kindle-clippings-to-json": "^1.0.0",
-    "kindle-email-to-json": "^2.0.2",
-    "lodash": "^4.17.21",
-    "safari-books-csv-to-json": "^1.1.1",
-    "string-hash": "^1.1.3"
-  },
-  "devDependencies": {
-    "aws-sdk": "2.1231.0"
-  }
+	"private": true,
+	"name": "aws-lambda-email-handler",
+	"description": "AWS Lambda function for handling the reception of an email export",
+	"version": "4.0.0",
+	"engines": {
+		"node": ">= 16.0.0"
+	},
+	"main": "index.js",
+	"scripts": {
+		"deploy": "./scripts/deploy.sh",
+		"test": "./scripts/test.sh"
+	},
+	"dependencies": {
+		"@google-cloud/firestore": "^6.3.0",
+		"@sawyerh/firestore-highlights": "^3.3.0",
+		"async": "^3.2.4",
+		"firebase-admin": "^8.6.0",
+		"highlights-email-to-json": "^1.1.0",
+		"kindle-clippings-to-json": "^1.0.0",
+		"kindle-email-to-json": "^2.0.2",
+		"lodash": "^4.17.21",
+		"safari-books-csv-to-json": "^1.1.1",
+		"string-hash": "^1.1.3"
+	},
+	"devDependencies": {
+		"aws-sdk": "2.1231.0"
+	}
 }

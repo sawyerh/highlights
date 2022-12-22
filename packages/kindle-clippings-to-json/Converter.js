@@ -5,38 +5,38 @@ const Clipper = require("./kindle-my-clippings");
  * @param {String} text - plaintext body of the email
  * @returns {Object}
  */
-const Converter = function(text) {
-  this.text = text;
+const Converter = function (text) {
+	this.text = text;
 };
 
 /**
  * Determine whether the given email body includes valid Kindle clippings
  * @returns {Boolean}
  */
-Converter.prototype.valid = function() {
-  return this.text && this.text.match(/==========/);
+Converter.prototype.valid = function () {
+	return this.text && this.text.match(/==========/);
 };
 
 /**
  * Parse the text to pull out the volume's title, author, and highlights
  * @returns {Object}
  */
-Converter.prototype.getJSON = function() {
-  const clipper = new Clipper();
-  const clippings = clipper.getParsed(this.text);
+Converter.prototype.getJSON = function () {
+	const clipper = new Clipper();
+	const clippings = clipper.getParsed(this.text);
 
-  if (!clippings.length) return;
+	if (!clippings.length) return;
 
-  const title = clippings[0].title;
-  const authors = [clippings[0].author];
+	const title = clippings[0].title;
+	const authors = [clippings[0].author];
 
-  return {
-    volume: {
-      title: title,
-      authors: authors
-    },
-    highlights: this.highlights(clippings)
-  };
+	return {
+		volume: {
+			title: title,
+			authors: authors,
+		},
+		highlights: this.highlights(clippings),
+	};
 };
 
 /**
@@ -44,11 +44,11 @@ Converter.prototype.getJSON = function() {
  * @param {Array} clippings
  * @param {Array} higlights
  */
-Converter.prototype.highlights = function(clippings) {
-  return clippings.map(clipping => ({
-    content: clipping.text,
-    location: clipping.location
-  }));
+Converter.prototype.highlights = function (clippings) {
+	return clippings.map((clipping) => ({
+		content: clipping.text,
+		location: clipping.location,
+	}));
 };
 
 module.exports = Converter;

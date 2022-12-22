@@ -1,10 +1,10 @@
 const mockImportAllHighlight = jest.fn();
 
 jest.mock("../Highlight", () => {
-  return { importAll: mockImportAllHighlight };
+	return { importAll: mockImportAllHighlight };
 });
 jest.mock("../Volume", () => {
-  return { findOrCreate: volume => Promise.resolve(volume) };
+	return { findOrCreate: (volume) => Promise.resolve(volume) };
 });
 
 const importMail = require("../index");
@@ -14,70 +14,70 @@ const util = require("util");
 const readFile = util.promisify(fs.readFile);
 
 describe("Importer", () => {
-  beforeEach(() => {
-    mockImportAllHighlight.mockClear();
-  });
+	beforeEach(() => {
+		mockImportAllHighlight.mockClear();
+	});
 
-  describe("with kindle export", () => {
-    let mail;
+	describe("with kindle export", () => {
+		let mail;
 
-    beforeAll(async () => {
-      mail = await readFile(
-        path.resolve(
-          __dirname,
-          "../../../kindle-email-to-json/__mocks__/machine-platform-crowd.txt"
-        )
-      );
-    });
+		beforeAll(async () => {
+			mail = await readFile(
+				path.resolve(
+					__dirname,
+					"../../../kindle-email-to-json/__mocks__/machine-platform-crowd.txt",
+				),
+			);
+		});
 
-    it("imports highlights", () => {
-      return importMail(mail).then(() => {
-        expect(mockImportAllHighlight.mock.calls.length).toBe(1);
-        expect(mockImportAllHighlight.mock.calls[0][0]).toMatchSnapshot();
-        expect(mockImportAllHighlight.mock.calls[0][1]).toMatchSnapshot();
-      });
-    });
-  });
+		it("imports highlights", () => {
+			return importMail(mail).then(() => {
+				expect(mockImportAllHighlight.mock.calls.length).toBe(1);
+				expect(mockImportAllHighlight.mock.calls[0][0]).toMatchSnapshot();
+				expect(mockImportAllHighlight.mock.calls[0][1]).toMatchSnapshot();
+			});
+		});
+	});
 
-  describe("with Safari Books export", () => {
-    let mail;
+	describe("with Safari Books export", () => {
+		let mail;
 
-    beforeAll(async () => {
-      mail = await readFile(
-        path.resolve(
-          __dirname,
-          "../../../safari-books-csv-to-json/__mocks__/email.txt"
-        )
-      );
-    });
+		beforeAll(async () => {
+			mail = await readFile(
+				path.resolve(
+					__dirname,
+					"../../../safari-books-csv-to-json/__mocks__/email.txt",
+				),
+			);
+		});
 
-    it("imports highlights", () => {
-      return importMail(mail).then(() => {
-        expect(mockImportAllHighlight.mock.calls.length).toBe(1);
-        expect(mockImportAllHighlight.mock.calls[0][0]).toMatchSnapshot();
-        expect(mockImportAllHighlight.mock.calls[0][1]).toMatchSnapshot();
-      });
-    });
-  });
+		it("imports highlights", () => {
+			return importMail(mail).then(() => {
+				expect(mockImportAllHighlight.mock.calls.length).toBe(1);
+				expect(mockImportAllHighlight.mock.calls[0][0]).toMatchSnapshot();
+				expect(mockImportAllHighlight.mock.calls[0][1]).toMatchSnapshot();
+			});
+		});
+	});
 
-  describe("with plain text export", () => {
-    let mail;
+	describe("with plain text export", () => {
+		let mail;
 
-    beforeAll(async () => {
-      mail = await readFile(
-        path.resolve(
-          __dirname,
-          "../../../highlights-email-to-json/__mocks__/structureless.txt"
-        )
-      );
-    });
+		beforeAll(async () => {
+			mail = await readFile(
+				path.resolve(
+					__dirname,
+					"../../../highlights-email-to-json/__mocks__/structureless.txt",
+				),
+			);
+		});
 
-    it("imports highlights", () => {
-      return importMail(mail).then(() => {
-        expect(mockImportAllHighlight.mock.calls.length).toBe(1);
-        expect(mockImportAllHighlight.mock.calls[0][0]).toMatchSnapshot();
-        expect(mockImportAllHighlight.mock.calls[0][1]).toMatchSnapshot();
-      });
-    });
-  });
+		it("imports highlights", () => {
+			return importMail(mail).then(() => {
+				expect(mockImportAllHighlight.mock.calls.length).toBe(1);
+				expect(mockImportAllHighlight.mock.calls[0][0]).toMatchSnapshot();
+				expect(mockImportAllHighlight.mock.calls[0][1]).toMatchSnapshot();
+			});
+		});
+	});
 });
