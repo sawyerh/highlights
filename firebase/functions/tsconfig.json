@@ -1,0 +1,17 @@
+{
+	"compilerOptions": {
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"module": "commonjs",
+		"noImplicitReturns": false,
+		"noUnusedLocals": true,
+		"outDir": "lib",
+		"resolveJsonModule": true,
+		"sourceMap": true,
+		"strict": true,
+		"target": "es2017"
+	},
+	"compileOnSave": true,
+	"include": ["**/*.ts", "../../types/**/*.ts"],
+	"exclude": ["node_modules"]
+}

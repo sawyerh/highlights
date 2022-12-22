@@ -1,0 +1,29 @@
+{
+	"name": "highlights.sawyerh.com",
+	"version": "2.0.0",
+	"engines": {
+		"node": ">=16.8.0"
+	},
+	"scripts": {
+		"build": "next build",
+		"dev": "next dev",
+		"start": "next start",
+		"ts:check": "tsc --noEmit"
+	},
+	"dependencies": {
+		"@next/font": "^13.1.0",
+		"classnames": "^2.3.2",
+		"next": "^13.1.0",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
+		"server-only": "^0.0.1",
+		"tailwindcss": "^3.2.4"
+	},
+	"devDependencies": {
+		"@types/node": "18.11.17",
+		"@types/react": "^18.0.26",
+		"autoprefixer": "^10.4.13",
+		"postcss": "^8.4.20",
+		"typescript": "^4.9.4"
+	}
+}

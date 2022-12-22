@@ -1,0 +1,30 @@
+{
+	"firestore": {
+		"rules": "firestore.rules",
+		"indexes": "firestore.indexes.json"
+	},
+	"storage": {
+		"rules": "storage.rules"
+	},
+	"functions": {
+		"source": "functions",
+		"predeploy": "npm --prefix \"$RESOURCE_DIR\" run build"
+	},
+	"emulators": {
+		"functions": {
+			"host": "127.0.0.1",
+			"port": 5001
+		},
+		"firestore": {
+			"host": "127.0.0.1",
+			"port": 8080
+		},
+		"storage": {
+			"host": "127.0.0.1",
+			"port": 9199
+		},
+		"ui": {
+			"enabled": true
+		}
+	}
+}
