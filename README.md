@@ -52,7 +52,7 @@ C4Context
   Rel(api, db, "Reads")
   Rel(web, api, "Get volumes and highlights")
   BiRel(db, functions, "Triggers updates")
-  UpdateRelStyle(db, functions, $offsetX="-20")
+  UpdateRelStyle(db, functions, $offsetX="-45", $offsetY="-20")
 
   UpdateLayoutConfig($c4ShapeInRow="3", $c4BoundaryInRow="1")
 ```

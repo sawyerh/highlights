@@ -1,3 +1,27 @@
+## Overview
+
+Firebase is used for our database and serverless backend.
+
+```mermaid
+C4Container
+
+   Boundary(firebase, "Firebase") {
+      Boundary(functions, "Functions") {
+         Component(handler, "handle{Collection}{Event}.ts")
+         Component(api, "api.ts")
+      }
+      SystemDb(db, "Database", "Firestore")
+   }
+
+   Component_Ext(books, "Google Books")
+   Component_Ext(nl, "Google Cloud Natural Language")
+   System_Ext(web, "Website", "/web")
+
+   Rel(handler, books, "")
+   Rel(handler, nl, "")
+   Rel(web, api, "")
+```
+
 ## 🐣 Creating a new Firebase project
 
 1. Create a new Firebase project in the [Firebase console](https://console.firebase.google.com/).
