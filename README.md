@@ -10,3 +10,42 @@ Hello 👋 You're at the root of a monorepo. Within this repo are several differ
 | [SMS Handler](packages/aws-lambda-email-handler/)                | An AWS Lambda function for sending a daily SMS of a random highlight                                                                                                                                                                                                                                                      |
 
 **For more background about this project, [read this blog post](https://medium.com/@sawyerh/how-i-export-process-and-resurface-my-kindle-highlights-addc9de9af1a).**
+
+## System diagram
+
+```mermaid
+C4Context
+    Person(me, "Me")
+
+    Container_Boundary(aws, "AWS") {
+        System(ses, "SES")
+        SystemDb(s3, "S3")
+        System(lambda, "Lambda")
+    }
+
+    Container_Boundary(google, "Google Cloud") {
+        Container_Boundary(firebase, "Firebase") {
+            System(functions, "Cloud Functions")
+            SystemDb(firestore, "Firestore")
+        }
+
+        Component(nl, "Natural Language API")
+    }
+
+    Container_Boundary(vercel, "Vercel") {
+        System(web, "Website")
+    }
+
+    Component(books, "Google Books API")
+
+    Rel(me, ses, "Emails export")
+    Rel(ses, s3, "Saves email as file")
+    Rel(s3, lambda, "Triggers serverless function")
+    Rel(lambda, firestore, "Creates records")
+
+    Rel(firestore, functions, "Triggers onCreate / onUpdate")
+    Rel(functions, books, "Get book details and cover")
+    Rel(functions, nl, "Analyze highlight text")
+
+    Rel(web, functions, "HTTPS endpoints")
+```
