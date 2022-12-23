@@ -1,11 +1,19 @@
 ## How it works
 
-1. SES receives the email
-1. SES adds the email to S3
-1. S3 event triggers the Lambda function
-1. Lambda downloads the email from S3
-1. Lambda pulls volume and highlights data from the email's body
-1. Lambda adds any new data to Firestore
+```mermaid
+sequenceDiagram
+  autonumber
+  participant SES
+  participant S3
+  participant Lambda
+  participant Firestore
+
+  Note over SES: Receives email
+  SES ->> S3: Add email to S3
+  SES ->> Lambda: Trigger function
+  Lambda ->> S3: Download email
+  Lambda ->> Firestore: Add volume & highlights
+```
 
 ## Deploying
 
