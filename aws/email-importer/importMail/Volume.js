@@ -1,8 +1,7 @@
 const admin = require("firebase-admin");
 const db = require("./firestore")();
-const Volume = require("@sawyerh/firestore-highlights/Volume")(db);
 
-class LambdaVolume extends Volume {
+class LambdaVolume {
 	/**
 	 * @param {Object} props
 	 * @param {String} props.title

@@ -2,13 +2,11 @@ import {
 	DocumentData,
 	DocumentReference,
 	QueryDocumentSnapshot,
-	getFirestore,
 } from "firebase-admin/firestore";
 import { getStorage } from "firebase-admin/storage";
 
 import { File } from "@google-cloud/storage";
 
-import initVolume from "@sawyerh/firestore-highlights/Volume";
 import fetch from "node-fetch";
 
 import confidentInResult from "./volume/confidentInResult";
@@ -21,8 +19,6 @@ import confidentInResult from "./volume/confidentInResult";
 async function convertGoogleBookToVolumeAttrs(
 	gVolume: GoogleBooksApiVolume,
 ): Promise<Partial<Volume>> {
-	const db = getFirestore();
-	const Volume = initVolume(db);
 	const volumeInfo = gVolume.volumeInfo;
 	const imageLinks = volumeInfo.imageLinks;
 
@@ -53,10 +49,6 @@ async function convertGoogleBookToVolumeAttrs(
 		const val = volumeInfo[prop];
 		if (val) {
 			data[prop] = val;
-
-			if (prop === "categories") {
-				data.indexCategories = Volume.indexCategories(val);
-			}
 		}
 	});
 

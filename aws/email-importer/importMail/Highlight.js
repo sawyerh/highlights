@@ -3,9 +3,7 @@ const admin = require("firebase-admin");
 const db = require("./firestore")();
 const hash = require("string-hash");
 
-const Highlight = require("@sawyerh/firestore-highlights/Highlight")(db);
-
-class LambdaHighlight extends Highlight {
+class LambdaHighlight {
 	/**
 	 *
 	 * @param {Array<Object>} highlights

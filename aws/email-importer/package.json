@@ -13,7 +13,6 @@
 	},
 	"dependencies": {
 		"@google-cloud/firestore": "^6.3.0",
-		"@sawyerh/firestore-highlights": "^3.3.0",
 		"async": "^3.2.4",
 		"firebase-admin": "^8.6.0",
 		"highlights-email-to-json": "^1.1.0",

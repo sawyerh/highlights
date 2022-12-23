@@ -27,9 +27,12 @@ it("runs language analysis", async () => {
 
 	// New fields
 	expect(updatedData.languageAnalysis).toBeDefined();
-	expect(updatedData.indexEntities).toEqual({
-		philippines: true,
-		pinatubo: true,
+	const entity = updatedData.languageAnalysis.entities.find(
+		(entity: { [key: string]: string }) => entity.name === "Philippines",
+	);
+	expect(entity.metadata).toEqual({
+		mid: "/m/05v8c",
+		wikipedia_url: "https://en.wikipedia.org/wiki/Philippines",
 	});
 
 	// Existing fields should not be overwritten

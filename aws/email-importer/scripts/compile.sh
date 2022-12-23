@@ -22,10 +22,6 @@ echo "${BLUE}Install production dependencies...${NC}"
 cd ./dist
 yarn install --production --silent
 
-echo "${BLUE}Copy local dependencies...${NC}"
-# Copy local dependency (symlinks don't seem to work in Docker)
-cp -R ../../firestore-highlights ./node_modules/@sawyerh
-
 # Necessary because Firestore relies on gprc dependency
 # https://stackoverflow.com/questions/46775815/node-v57-linux-x64-grpc-node-node-missing
 echo "${BLUE}Compile native deps within Lambda environment...${NC}"

@@ -1,12 +1,9 @@
 import {
 	DocumentReference,
 	QueryDocumentSnapshot,
-	getFirestore,
 } from "firebase-admin/firestore";
 
 import language from "@google-cloud/language";
-
-import initHighlight from "@sawyerh/firestore-highlights/Highlight";
 
 function annotateText(text: string) {
 	const client = new language.LanguageServiceClient();
@@ -30,9 +27,6 @@ async function updateWithAnnotation(
 	ref: DocumentReference,
 	results: Awaited<ReturnType<typeof annotateText>>,
 ) {
-	const db = getFirestore();
-	const Highlight = initHighlight(db);
-
 	const response = results[0];
 	const categories = response.categories;
 	const documentSentiment = response.documentSentiment;
@@ -44,11 +38,7 @@ async function updateWithAnnotation(
 		categories: categories,
 		documentSentiment: documentSentiment,
 		languageAnalysis: response,
-		indexCategories: Highlight.indexCategories(categories),
-		indexEntities: null,
 	};
-
-	data.indexEntities = Highlight.indexEntities(Highlight.properEntities(data));
 
 	return ref.update(data);
 }

@@ -35,7 +35,6 @@ interface Volume {
 	 * Book cover image
 	 */
 	image?: string;
-	indexCategories?: string[];
 	industryIdentifiers?: IndustryIdentifier[];
 	pageCount?: number;
 	/**

@@ -1,6 +1,3 @@
-declare module "@sawyerh/firestore-highlights/Highlight";
-declare module "@sawyerh/firestore-highlights/Volume";
-
 /**
  * A Volume represents information that Google Books hosts about a book or a magazine.
  * It contains metadata, such as title and author, as well as personalized data, such
