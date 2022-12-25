@@ -1,6 +1,5 @@
 const _ = require("lodash");
-const admin = require("firebase-admin");
-const db = require("./firestore")();
+const { getFirestore, Timestamp } = require("firebase-admin/firestore");
 const hash = require("string-hash");
 
 class LambdaHighlight {
@@ -10,6 +9,7 @@ class LambdaHighlight {
 	 * @param {Object} volume DocumentReference
 	 */
 	static batchCreateAll(highlights, volume) {
+		const db = getFirestore();
 		const batch = db.batch();
 		highlights.forEach((highlight) =>
 			this.batchCreate(highlight, volume, batch),
@@ -28,6 +28,7 @@ class LambdaHighlight {
 	 * @returns {Promise<Object>}
 	 */
 	static batchCreate(highlight, volume, batch) {
+		const db = getFirestore();
 		const ref = db.collection("highlights").doc();
 
 		// Pull out the properties we know we'll be present,
@@ -42,7 +43,7 @@ class LambdaHighlight {
 		const data = Object.assign(
 			{
 				body: content,
-				createdAt: admin.firestore.Timestamp.now(),
+				createdAt: Timestamp.now(),
 				hash: hash,
 				visible: true,
 				volume: volume,
@@ -77,6 +78,8 @@ class LambdaHighlight {
 	 * @returns {Promise}
 	 */
 	static importAll(allHighlights, volume) {
+		const db = getFirestore();
+
 		// Add the hash so we can compare against existing hash, and
 		// save to the DB if this highlight doesn't exist
 		allHighlights.forEach((highlight) => {

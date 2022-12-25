@@ -1,5 +1,6 @@
 const AWS = require("aws-sdk");
 const importMail = require("./importMail");
+const { initializeApp, cert } = require("firebase-admin/app");
 const s3 = new AWS.S3();
 
 /**
@@ -15,18 +16,19 @@ exports.handler = function (event, context) {
 	console.log("Received event", event);
 	const params = s3Params(event);
 
-	s3.getObject(params, (err, data) => {
-		if (err) {
-			console.error(err);
+	initializeApp({
+		credential: cert(JSON.parse(process.env.SERVICE_ACCOUNT)),
+	});
 
-			return context.fail(
-				`Error getting object ${params.Key} from bucket ${params.Bucket}`,
-			);
-		}
+	s3.getObject(params, (err, data) => {
+		if (err) throw err;
 
 		importMail(data.Body)
 			.then(() => context.succeed(`Successfully imported ${params.Key}`))
-			.catch(context.fail);
+			.catch((err) => {
+				console.error(err);
+				context.fail(`Failed to import ${params.Key}`);
+			});
 	});
 };
 
@@ -38,9 +40,8 @@ exports.handler = function (event, context) {
 function s3Params(event) {
 	const bucket = process.env.S3_BUCKET;
 	const prefix = process.env.KEY_PREFIX || "";
-	const sesNotification = event.Records[0].ses;
-	const key = sesNotification.mail.messageId;
-	console.log("SES Message ID", key);
+	const s3ObjectKey = event.Records[0].ses.mail.messageId;
+	console.log("SES Message ID", s3ObjectKey);
 
-	return { Bucket: bucket, Key: `${prefix}${key}` };
+	return { Bucket: bucket, Key: `${prefix}${s3ObjectKey}` };
 }

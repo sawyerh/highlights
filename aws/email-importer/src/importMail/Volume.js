@@ -1,5 +1,4 @@
-const admin = require("firebase-admin");
-const db = require("./firestore")();
+const { getFirestore, Timestamp } = require("firebase-admin/firestore");
 
 class LambdaVolume {
 	/**
@@ -10,11 +9,12 @@ class LambdaVolume {
 	 * @returns {Promise<Object>} Volume DocumentReference
 	 */
 	static create(props) {
+		const db = getFirestore();
 		return db
 			.collection("volumes")
 			.add({
 				authors: props.authors,
-				createdAt: admin.firestore.Timestamp.now(),
+				createdAt: Timestamp.now(),
 				highlightsCount: props.highlightsCount,
 				importTitle: props.title,
 				title: props.title,
@@ -31,6 +31,7 @@ class LambdaVolume {
 	 * @returns {Promise<Object>} DocumentSnapshot
 	 */
 	static findByImportTitle(title) {
+		const db = getFirestore();
 		return db.collection("volumes").where("importTitle", "==", title).get();
 	}
 

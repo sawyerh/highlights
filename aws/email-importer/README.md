@@ -15,19 +15,16 @@ sequenceDiagram
   Lambda ->> Firestore: Add volume & highlights
 ```
 
+## Installation
+
+Deploying and local testing requires:
+
+- [AWS SAM CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/install-sam-cli.html)
+- [Docker](https://docs.docker.com/install/)
+
 ## Deploying
 
-Deploy the handler to Lambda. This script copies the files into a `dist` directory and installs production dependencies.
-
-### Prerequisites
-
-- Docker is installed
-- [`trash`](https://github.com/sindresorhus/trash-cli) is installed
-- An AWS profile is configured
-
-```
-npm run deploy
-```
+TODO: Add SAM CLI deployment instructions
 
 ## Configuration
 
@@ -39,12 +36,31 @@ The Lambda function relies on the following environment variables. You'll need t
 - `S3_BUCKET` - The bucket where the emails are added to
 - `SERVICE_ACCOUNT` - Google Cloud Service Account JSON object
 
-### Testing locally
+## Testing locally
 
-Set the environment variables in a `.env` file within the package directory. Then run:
+### Prerequisites
 
-```
-npm test
+Firebase calls will be ran against the emulator, however local testing still relies on connecting to a real S3 bucket with an email file existing.
+
+1. Create a bucket in S3
+1. Add an email to the bucket (you can use [`fixtures/email.txt`](fixtures/email.txt))
+1. Create an IAM user with access to the bucket and copy the credentials
+1. Set the environment variables in a `env.json` file within the package directory. (See `env.example.json`).
+1. Log into the `aws` cli with the IAM user credentials: `aws configure` or `EXPORT AWS_PROFILE=profile-name`
+
+### Triggering the function
+
+1. Run the Firebase emulator in a separate terminal (see [`firebase/README.md`](../../firebase/README.md)).
+1. Update the mock event in `scripts/test.sh` so that `messageId` is the name of the email file in S3 (e.g. `messageId: "email.txt"`).
+1. Run:
+   ```sh
+   sam build && sam local invoke -e events/event-ses.json --env-vars env.json
+   ```
+
+If you run into errors, you can set the `--log-file` flag to see the output of the Lambda function:
+
+```sh
+sam local invoke -e events/event-ses.json --env-vars env.json --log-file sam.log
 ```
 
 ---

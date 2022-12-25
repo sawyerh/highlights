@@ -1,0 +1,19 @@
+{
+	"configurations": [
+		{
+			"type": "aws-sam",
+			"request": "direct-invoke",
+			"name": "email-importer:src/index.handler (nodejs18.x)",
+			"invokeTarget": {
+				"target": "code",
+				"projectRoot": "${workspaceFolder}/aws/email-importer",
+				"lambdaHandler": "src/index.handler"
+			},
+			"lambda": {
+				"runtime": "nodejs18.x",
+				"payload": {},
+				"environmentVariables": {}
+			}
+		}
+	]
+}
