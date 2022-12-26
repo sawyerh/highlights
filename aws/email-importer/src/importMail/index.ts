@@ -5,8 +5,8 @@ import kindleClippingsToJSON from "kindle-clippings-to-json";
 import kindleEmailToJSON from "kindle-email-to-json";
 import safariEmailToJSON from "safari-books-csv-to-json";
 
-import Highlight from "./Highlight";
-import Volume from "./Volume";
+import { importHighlights } from "./importHighlights";
+import { importVolume } from "./importVolume";
 
 /**
  * Create the volume and highlights when they don't already exists
@@ -21,8 +21,8 @@ async function addVolumeAndHighlights(data: Awaited<ReturnType<Importer>>) {
 	if (!highlights.length)
 		return Promise.reject(new Error("No highlights to import"));
 
-	const volumeDoc = await Volume.findOrCreate(volumeWithHighlightsCount);
-	return Highlight.importAll(highlights, volumeDoc);
+	const volumeDoc = await importVolume(volumeWithHighlightsCount);
+	return importHighlights(highlights, volumeDoc);
 }
 
 /**
