@@ -27,4 +27,6 @@ jobs:
           cache: npm
           cache-dependency-path: aws/email-importer/package-lock.json
       - run: npm ci
+        name: Install dependencies
       - run: npm test
+        name: Run tests
