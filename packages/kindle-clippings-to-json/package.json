@@ -10,7 +10,7 @@
 	"repository": "sawyerh/highlight-utils",
 	"license": "MIT",
 	"dependencies": {
-		"mailparser": "^2.3.2"
+		"mailparser": "^3.6.2"
 	},
 	"devDependencies": {
 		"mz": "^2.7.0"

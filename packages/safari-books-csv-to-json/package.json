@@ -11,7 +11,7 @@
 	"license": "MIT",
 	"dependencies": {
 		"csvtojson": "^2.0.8",
-		"mailparser": "^2.4.3"
+		"mailparser": "^3.6.2"
 	},
 	"devDependencies": {
 		"mz": "^2.7.0"
