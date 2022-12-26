@@ -2,7 +2,8 @@
 	"name": "highlight-utils",
 	"private": true,
 	"scripts": {
-		"lint": "eslint ./ --ext .js,.mjs,.ts,.tsx --fix",
+		"lint": "eslint ./ --ext .js,.mjs,.ts,.tsx",
+		"lint:fix": "npm run lint -- --fix",
 		"format": "prettier --write './**/*.{js,json,mjs,ts,tsx,md}'",
 		"test": "jest"
 	},
