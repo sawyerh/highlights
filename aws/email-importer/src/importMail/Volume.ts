@@ -1,4 +1,4 @@
-const { getFirestore, Timestamp } = require("firebase-admin/firestore");
+import { Timestamp, getFirestore } from "firebase-admin/firestore";
 
 class LambdaVolume {
 	/**
@@ -52,4 +52,4 @@ class LambdaVolume {
 	}
 }
 
-module.exports = LambdaVolume;
+export default LambdaVolume;

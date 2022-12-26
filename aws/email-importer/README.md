@@ -36,7 +36,7 @@ The Lambda function relies on the following environment variables. You'll need t
 - `S3_BUCKET` - The bucket where the emails are added to
 - `SERVICE_ACCOUNT` - Google Cloud Service Account JSON object
 
-## Testing locally
+## Local development
 
 ### Prerequisites
 
@@ -62,6 +62,25 @@ If you run into errors, you can set the `--log-file` flag to see the output of t
 ```sh
 sam local invoke -e events/event-ses.json --env-vars env.json --log-file sam.log
 ```
+
+## 🧪 Testing
+
+- Tests run against the Firebase emulator, which depends on the Firebase CLI being installed globally
+- A fake Firebase project, including a fake service account, is used for testing in this directory.
+
+### Run tests
+
+```
+npm test
+```
+
+In watch mode, you can view the Firebase emulator UI at http://localhost:4001:
+
+```
+npm run test:watch
+```
+
+If you don't see data in the emulator, but expect to, make sure the Firebase CLI is using the same project as the tests: `firebase use <project id>`
 
 ---
 

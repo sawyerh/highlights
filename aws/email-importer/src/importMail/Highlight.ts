@@ -1,6 +1,7 @@
-const _ = require("lodash");
-const { getFirestore, Timestamp } = require("firebase-admin/firestore");
-const hash = require("string-hash");
+import { Timestamp, getFirestore } from "firebase-admin/firestore";
+
+import _ from "lodash";
+import hash from "string-hash";
 
 class LambdaHighlight {
 	/**
@@ -108,4 +109,4 @@ class LambdaHighlight {
 	}
 }
 
-module.exports = LambdaHighlight;
+export default LambdaHighlight;

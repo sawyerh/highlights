@@ -1,10 +1,11 @@
-const Highlight = require("./Highlight");
-const Volume = require("./Volume");
-const someSeries = require("async/someSeries");
-const kindleClippingsToJSON = require("kindle-clippings-to-json");
-const kindleEmailToJSON = require("kindle-email-to-json");
-const safariEmailToJSON = require("safari-books-csv-to-json");
-const textToJSON = require("highlights-email-to-json");
+import someSeries from "async/someSeries";
+import textToJSON from "highlights-email-to-json";
+import kindleClippingsToJSON from "kindle-clippings-to-json";
+import kindleEmailToJSON from "kindle-email-to-json";
+import safariEmailToJSON from "safari-books-csv-to-json";
+
+import Highlight from "./Highlight";
+import Volume from "./Volume";
 
 /**
  * Create the volume and highlights when they don't already exists
@@ -30,7 +31,7 @@ async function addVolumeAndHighlights(data) {
  * @returns {Promise}
  */
 function importMail(mail) {
-	return new Promise((resolve, reject) => {
+	return new Promise<void>((resolve, reject) => {
 		const importers = [
 			kindleEmailToJSON,
 			safariEmailToJSON,
@@ -59,4 +60,4 @@ function importMail(mail) {
 	});
 }
 
-module.exports = importMail;
+export default importMail;

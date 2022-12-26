@@ -2,4 +2,3 @@
 .env
 env.json
 .aws-sam
-sam-app
