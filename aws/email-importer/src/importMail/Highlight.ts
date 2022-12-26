@@ -1,51 +1,49 @@
-import { Timestamp, getFirestore } from "firebase-admin/firestore";
+import {
+	DocumentData,
+	DocumentReference,
+	QueryDocumentSnapshot,
+	Timestamp,
+	WriteBatch,
+	getFirestore,
+} from "firebase-admin/firestore";
 
 import _ from "lodash";
 import hash from "string-hash";
 
 class LambdaHighlight {
-	/**
-	 *
-	 * @param {Array<Object>} highlights
-	 * @param {Object} volume DocumentReference
-	 */
-	static batchCreateAll(highlights, volume) {
+	static async batchCreateAll(
+		highlights: ParsedHighlightWithHash[],
+		volume: DocumentReference,
+	) {
 		const db = getFirestore();
 		const batch = db.batch();
 		highlights.forEach((highlight) =>
 			this.batchCreate(highlight, volume, batch),
 		);
-		return batch.commit().then((results) => {
-			if (results.length) {
-				console.log(`Created ${results.length} highlights`);
-			}
-		});
+		const results = await batch.commit();
+		if (results.length) {
+			console.log(`Created ${results.length} highlights`);
+		}
 	}
 
-	/**
-	 * @param {Object} highlight
-	 * @param {Object} volume DocumentReference
-	 * @param {Object} batch
-	 * @returns {Promise<Object>}
-	 */
-	static batchCreate(highlight, volume, batch) {
+	static batchCreate(
+		highlight: ParsedHighlightWithHash,
+		volume: DocumentReference,
+		batch: WriteBatch,
+	) {
 		const db = getFirestore();
 		const ref = db.collection("highlights").doc();
 
-		// Pull out the properties we know we'll be present,
+		// Pull out the properties we know will be present,
 		// then pass the rest of the object into Object.assign
 		// so we can capture all other props that might be present
 		const content = highlight.content;
-		const hash = highlight.hash;
-
 		delete highlight.content;
-		delete highlight.hash;
 
 		const data = Object.assign(
 			{
 				body: content,
 				createdAt: Timestamp.now(),
-				hash: hash,
 				visible: true,
 				volume: volume,
 			},
@@ -55,14 +53,10 @@ class LambdaHighlight {
 		return batch.create(ref, data);
 	}
 
-	/**
-	 *
-	 * @param {Object} volume
-	 * @param {Array<Object>} newHighlights
-	 * @param {Array<Object>} existingHighlights
-	 * @returns {Array<Object>}
-	 */
-	static filterExisting(newHighlights, existingHighlights) {
+	static filterExisting(
+		newHighlights: ParsedHighlightWithHash[],
+		existingHighlights: QueryDocumentSnapshot<DocumentData>[],
+	) {
 		const hashes = existingHighlights.map((highlight) => highlight.get("hash"));
 
 		newHighlights = _.reject(newHighlights, (highlight) =>
@@ -74,38 +68,37 @@ class LambdaHighlight {
 
 	/**
 	 * Create highlights (after filtering any that already exists)
-	 * @param {Array<Object>} allHighlights - Identified in email
-	 * @param {Object} volume - DocumentReference
-	 * @returns {Promise}
+	 * @param allHighlights - Identified in email
 	 */
-	static importAll(allHighlights, volume) {
+	static async importAll(
+		allHighlights: ParsedHighlight[],
+		volume: DocumentReference,
+	) {
 		const db = getFirestore();
 
 		// Add the hash so we can compare against existing hash, and
 		// save to the DB if this highlight doesn't exist
-		allHighlights.forEach((highlight) => {
-			highlight.hash = hash(highlight.content);
-		});
+		const allHighlightsWithHashes: ParsedHighlightWithHash[] =
+			allHighlights.map((highlight) => {
+				return { ...highlight, hash: hash(highlight.content) };
+			});
 
-		const query = db
+		const snapshot = await db
 			.collection("highlights")
 			.where("volume", "==", volume)
 			.select("hash")
 			.get();
 
-		return query
-			.then((snapshot) => {
-				if (snapshot.empty) {
-					return allHighlights;
-				}
-				return this.filterExisting(allHighlights, snapshot.docs);
-			})
-			.then((highlights) => {
-				if (!highlights.length)
-					return Promise.reject(new Error("No new highlights."));
+		const highlightsToImport = snapshot.empty
+			? allHighlightsWithHashes
+			: this.filterExisting(allHighlightsWithHashes, snapshot.docs);
 
-				return this.batchCreateAll(highlights, volume);
-			});
+		if (!highlightsToImport.length) {
+			console.log("No new highlights.");
+			return Promise.reject(new Error("No new highlights."));
+		}
+
+		return this.batchCreateAll(highlightsToImport, volume);
 	}
 }
 

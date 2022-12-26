@@ -1,4 +1,5 @@
 import someSeries from "async/someSeries";
+import AWS from "aws-sdk";
 import textToJSON from "highlights-email-to-json";
 import kindleClippingsToJSON from "kindle-clippings-to-json";
 import kindleEmailToJSON from "kindle-email-to-json";
@@ -9,28 +10,25 @@ import Volume from "./Volume";
 
 /**
  * Create the volume and highlights when they don't already exists
- * @param {Object} data
- * @param {Object} data.volume
- * @param {Array<Object>} data.highlights
- * @returns {Promise}
  */
-async function addVolumeAndHighlights(data) {
+async function addVolumeAndHighlights(data: Awaited<ReturnType<Importer>>) {
 	const { highlights, volume } = data;
-	volume.highlightsCount = highlights.length;
+	const volumeWithHighlightsCount = {
+		...volume,
+		highlightsCount: highlights.length,
+	};
 
 	if (!highlights.length)
 		return Promise.reject(new Error("No highlights to import"));
 
-	const volumeDoc = await Volume.findOrCreate(volume);
+	const volumeDoc = await Volume.findOrCreate(volumeWithHighlightsCount);
 	return Highlight.importAll(highlights, volumeDoc);
 }
 
 /**
  * Run all possible importers (e.g. Kindle, plain text)
- * @param {Object} mail
- * @returns {Promise}
  */
-function importMail(mail) {
+function importMail(mail: AWS.S3.Body) {
 	return new Promise<void>((resolve, reject) => {
 		const importers = [
 			kindleEmailToJSON,
@@ -41,7 +39,7 @@ function importMail(mail) {
 
 		someSeries(
 			importers,
-			async (runImporter) => {
+			async (runImporter: Importer) => {
 				// each importer is ran in serial and stops once one runs successfully
 				try {
 					const data = await runImporter(mail);
