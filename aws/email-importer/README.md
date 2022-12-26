@@ -15,58 +15,14 @@ sequenceDiagram
   Lambda ->> Firestore: Add volume & highlights
 ```
 
-## Installation
+## 🧰 Local development
 
-Deploying and local testing requires:
-
-- [AWS SAM CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/install-sam-cli.html)
-- [Docker](https://docs.docker.com/install/)
-
-## Deploying
-
-TODO: Add SAM CLI deployment instructions
-
-## Configuration
-
-The Lambda function relies on the following environment variables. You'll need to set these to test locally:
-
-- `AWS_ACCESS_KEY_ID`
-- `AWS_SECRET_ACCESS_KEY`
-- `KEY_PREFIX` - The directory within the bucket where the email objects can be found (SES only gives us the message ID, which is used for the object's name).
-- `S3_BUCKET` - The bucket where the emails are added to
-- `SERVICE_ACCOUNT` - Google Cloud Service Account JSON object
-
-## Local development
-
-### Prerequisites
-
-Firebase calls will be ran against the emulator, however local testing still relies on connecting to a real S3 bucket with an email file existing.
-
-1. Create a bucket in S3
-1. Add an email to the bucket (you can use [`fixtures/email.txt`](fixtures/email.txt))
-1. Create an IAM user with access to the bucket and copy the credentials
-1. Set the environment variables in a `env.json` file within the package directory. (See `env.example.json`).
-1. Log into the `aws` cli with the IAM user credentials: `aws configure` or `EXPORT AWS_PROFILE=profile-name`
-
-### Triggering the function
-
-1. Run the Firebase emulator in a separate terminal (see [`firebase/README.md`](../../firebase/README.md)).
-1. Update the mock event in `scripts/test.sh` so that `messageId` is the name of the email file in S3 (e.g. `messageId: "email.txt"`).
-1. Run:
-   ```sh
-   sam build && sam local invoke -e events/event-ses.json --env-vars env.json
-   ```
-
-If you run into errors, you can set the `--log-file` flag to see the output of the Lambda function:
-
-```sh
-sam local invoke -e events/event-ses.json --env-vars env.json --log-file sam.log
-```
+The easiest way to run the Lambda function locally is likely through the test suite. I haven't had much luck using `sam local invoke`. See instructions below for running the tests.
 
 ## 🧪 Testing
 
 - Tests run against the Firebase emulator, which depends on the Firebase CLI being installed globally
-- A fake Firebase project, including a fake service account, is used for testing in this directory.
+- A fake Firebase project, including a fake service account, is used for tests.
 
 ### Run tests
 
@@ -80,11 +36,48 @@ In watch mode, you can view the Firebase emulator UI at http://localhost:4001:
 npm run test:watch
 ```
 
+By default, the database is cleared after each test. If you want to keep the data between tests, disable the call to `cleanup` in `tests/_setup.ts`.
+
 If you don't see data in the emulator, but expect to, make sure the Firebase CLI is using the same project as the tests: `firebase use <project id>`
 
 ---
 
-### Setting up AWS SES (and S3)
+## 🚀 Deployment
+
+### Prerequisites
+
+- [AWS SAM CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/install-sam-cli.html)
+
+The Lambda function relies on the following environment variables:
+
+- `KEY_PREFIX` - The directory within the bucket where the email objects can be found (SES only gives us the message ID, which is used for the object's name).
+- `S3_BUCKET` - The bucket where the emails are added to
+- `SERVICE_ACCOUNT` - Google Cloud Service Account JSON object, for authenticating with Firebase
+
+### Deploying
+
+1. `npm run build`
+1. Upload the `build.zip` file to Lambda
+   ```sh
+   aws lambda update-function-code --function-name highlightsEmailToFirebase --zip-file fileb://build.zip --publish
+   ```
+
+To verify the new version, you can use a test event with a `test: true` property. This will prevent the function from adding data to the database. Set `messageId` to the name of an email object in the S3 bucket.
+
+```json
+{
+	"test": true,
+	"Records": [
+		{
+			"ses": {
+				"mail": { "messageId": "email.txt" }
+			}
+		}
+	]
+}
+```
+
+## Setting up AWS SES (and S3)
 
 **Heads up: These screenshots are outdated, but hopefully still useful.**
 

@@ -5,6 +5,7 @@ import AWS from "aws-sdk";
 import importMail from "./importMail";
 
 interface SESEvent {
+	test?: boolean;
 	Records: Array<{
 		ses: {
 			mail: {
@@ -34,6 +35,12 @@ export async function handler(event: SESEvent) {
 	}
 
 	const data = await s3.getObject(params).promise();
+
+	if (event.test) {
+		console.log("Exiting early for test event. Skipping import.");
+		return;
+	}
+
 	await importMail(data.Body);
 }
 

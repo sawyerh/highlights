@@ -78,4 +78,15 @@ describe("handler", () => {
 		expect(volumes.size).toBe(1);
 		expect(highlights.size).toBe(14);
 	});
+
+	it("doesn't create records if the event has the test property set to true", async () => {
+		await handler({ ...MOCK_EVENT, test: true });
+
+		const db = getFirestore();
+		const volumes = await db.collection("volumes").get();
+		const highlights = await db.collection("highlights").get();
+
+		expect(volumes.empty).toBe(true);
+		expect(highlights.empty).toBe(true);
+	});
 });
