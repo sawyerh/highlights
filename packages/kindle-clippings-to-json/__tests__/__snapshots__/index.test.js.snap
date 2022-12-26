@@ -1,107 +1,107 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`kindle-clippings-to-json converts clippings email 1`] = `
-Object {
-  "highlights": Array [
-    Object {
+{
+  "highlights": [
+    {
       "content": "After surviving a stint in the military, raising her boys, watching countless buzzer-beating basketball games, and standing up to union bosses, Kathryn decided she was not about to be intimidated by a bunch of harmless yuppies whose greatest hardships in life so far had been fighting off the first signs of a receding hairline or an expanding waistline.",
       "location": "195-197",
     },
-    Object {
+    {
       "content": "Only when someone made a factually incorrect statement could Martin be counted on to offer a comment, and usually a sarcastic one at that. At first, this was tolerable, maybe even amusing, to Martin’s peers, who seemed in awe of his intellect. But it began to wear on the staff over time. And with the company’s recent struggles, it had become an increasingly grating source of frustration for many of them.",
       "location": "243-246",
     },
-    Object {
+    {
       "content": "As soon as the reality of business problems is reintroduced to a situation like this one, she thought, people revert back to the behaviors that put them in the difficult situation",
       "location": "807-808",
     },
-    Object {
+    {
       "content": "As soon as the reality of business problems is reintroduced to a situation like this one, she thought, people revert back to the behaviors that put them in the difficult situation in the first place.",
       "location": "807-809",
     },
-    Object {
+    {
       "content": "“Politics is when people choose their words and actions based on how they want others to react rather than based on what they really think.”",
       "location": "903-904",
     },
-    Object {
+    {
       "content": "Harmony itself is good, I suppose, if it comes as a result of working through issues constantly and cycling through conflict. But if it comes only as a result of people holding back their opinions and honest concerns, then it’s a bad thing. I’d trade that false kind of harmony any day for a team’s willingness to argue effectively about an issue and then walk away with no collateral damage.”",
       "location": "932-935",
     },
-    Object {
+    {
       "content": "The first dysfunction is an absence of trust among team members. Essentially, this stems from their unwillingness to be vulnerable within the group. Team members who are not genuinely open with one another about their mistakes and weaknesses make it impossible to build a foundation for trust. 2. This failure to build trust is damaging because it sets the tone for the second dysfunction: fear of conflict. Teams that lack trust are incapable of engaging in unfiltered and passionate debate of ideas. Instead, they resort to veiled discussions and guarded comments. 3. A lack of healthy conflict is a problem because it ensures the third dysfunction of a team: lack of commitment. Without having aired their opinions in the course of passionate and open debate, team members rarely, if ever, buy in and commit to decisions, though they may feign agreement during meetings. 4. Because of this lack of real commitment and buy-in, team members develop an avoidance of accountability, the fourth dysfunction. Without committing to a clear plan of action, even the most focused and driven people often hesitate to call their peers on actions and behaviors that seem counterproductive to the good of the team. 5. Failure to hold one another accountable creates an environment where the fifth dysfunction can thrive. Inattention to results occurs when team members put their individual needs (such as ego, career development, or recognition) or even the needs of their divisions above the collective goals of the team. And so, like a chain with just one link broken, teamwork deteriorates if even a single dysfunction is allowed to flourish.",
       "location": "1949-1962",
     },
-    Object {
+    {
       "content": "Another way to understand this model is to take the opposite approach—a positive one—and imagine how members of truly cohesive teams behave: 1. They trust one another. 2. They engage in unfiltered conflict around ideas. 3. They commit to decisions and plans of action. 4. They hold one another accountable for delivering against those plans. 5. They focus on the achievement of collective results. If this sounds simple, it’s because it is simple, at least in theory. In practice, however, it is extremely difficult because it requires levels of discipline and persistence that few teams can muster.",
       "location": "1963-1970",
     },
-    Object {
+    {
       "content": "In the context of building a team, trust is the confidence among team members that their peers’ intentions are good, and that there is no reason to be protective or careful around the group. In essence, teammates must get comfortable being vulnerable with one another.",
       "location": "2006-2008",
     },
-    Object {
+    {
       "content": "Questions need not be overly sensitive in nature and might include the following: number of siblings, hometown, unique challenges of childhood, favorite hobbies, first job, and worst job. Simply by describing these relatively innocuous attributes or experiences, team members begin to relate to one another on a more personal basis, and see one another as human beings with life stories and interesting backgrounds. This encourages greater empathy and understanding, and discourages unfair and inaccurate behavioral attributions. It is amazing how little some team members know about one another, and how just a small amount of information begins to break down barriers.",
       "location": "2049-2053",
     },
-    Object {
+    {
       "content": "The key to making a 360-degree program work, in my opinion, is divorcing it entirely from compensation and formal performance evaluation. Rather, it should be used as a developmental tool, one that allows employees to identify strengths and weaknesses without any repercussions. By being even slightly connected to formal performance evaluation or compensation, 360-degree programs can take on dangerous political undertones.",
       "location": "2073-2076",
     },
-    Object {
+    {
       "content": "The most important action that a leader must take to encourage the building of trust on a team is to demonstrate vulnerability first. This requires that a leader risk losing face in front of the team, so that subordinates will take the same risk themselves. What is more, team leaders must create an environment that does not punish vulnerability. Even well-intentioned teams can subtly discourage trust by chastising one another for admissions of weakness or failure. Finally, displays of vulnerability on the part of a team leader must be genuine; they cannot be staged. One of the best ways to lose the trust of a team is to feign vulnerability in order to manipulate the emotions of others.",
       "location": "2085-2090",
     },
-    Object {
+    {
       "content": "All great relationships, the ones that last over time, require productive conflict in order to grow. This is true in marriage, parenthood, friendship, and certainly business. Unfortunately, conflict is considered taboo in many situations, especially at work. And the higher you go up the management chain, the more you find people spending inordinate amounts of time and energy trying to avoid the kind of passionate debates that are essential to any great team.",
       "location": "2095-2099",
     },
-    Object {
+    {
       "content": "It is also ironic that so many people avoid conflict in the name of efficiency, because healthy conflict is actually a time saver. Contrary to the notion that teams waste time and energy arguing, those that avoid conflict actually doom themselves to revisiting issues again and again without resolution. They often ask team members to take their issues “off-line,” which seems to be a euphemism for avoiding dealing with an important topic, only to have it raised again at the next meeting.",
       "location": "2108-2112",
     },
-    Object {
+    {
       "content": "Another tool that specifically relates to conflict is the Thomas-Kilmann Conflict Mode Instrument, commonly referred to as the TKI. It allows team members to understand natural inclinations around conflict so they can make more strategic choices about which approaches are most appropriate in different situations.",
       "location": "2141-2144",
     },
-    Object {
+    {
       "content": "The two greatest causes of the lack of commitment are the desire for consensus and the need for certainty: • Consensus. Great teams understand the danger of seeking consensus, and find ways to achieve buy-in even when complete agreement is impossible. They understand that reasonable human beings do not need to get their way in order to support a decision, but only need to know that their opinions have been heard and considered. Great teams ensure that everyone’s ideas are genuinely considered, which then creates a willingness to rally around whatever decision is ultimately made by the group. And when that is not possible due to an impasse, the leader of the team is allowed to make the call. • Certainty. Great teams also pride themselves on being able to unite behind decisions and commit to clear courses of action even when there is little assurance about whether the decision is correct. That’s because they understand the old military axiom that a decision is better than no decision. They also realize that it is better to make a decision boldly and be wrong—and then change direction with equal boldness—than it is to waffle.",
       "location": "2161-2170",
     },
-    Object {
+    {
       "content": "As simple as it seems, one of the best tools for ensuring commitment is the use of clear deadlines for when decisions will be made, and honoring those dates with discipline and rigidity. The worst enemy of a team that is susceptible to this dysfunction is ambiguity, and timing is one of the most critical factors that must be made clear. What is more, committing to deadlines for intermediate decisions and milestones is just as important as final deadlines, because it ensures that misalignment among team members is identified and addressed before the costs are too great.",
       "location": "2207-2210",
     },
-    Object {
+    {
       "content": "In order for teammates to call each other on their behaviors and actions, they must have a clear sense of what is expected. Even the most ardent believers in accountability usually balk at having to hold someone accountable for something that was never bought in to or made clear in the first place.",
       "location": "2225-2227",
     },
-    Object {
+    {
       "content": "One of the most difficult challenges for a leader who wants to instill accountability on a team is to encourage and allow the team to serve as the first and primary accountability mechanism. Sometimes strong leaders naturally create an accountability vacuum within the team, leaving themselves as the only source of discipline. This creates an environment where team members assume that the leader is holding others accountable, and so they hold back even when they see something that isn’t right.",
       "location": "2267-2271",
     },
-    Object {
+    {
       "content": "A good way to make it easier for team members to hold one another accountable is to clarify publicly exactly what the team needs to achieve, who needs to deliver what, and how everyone must behave in order to succeed. The enemy of accountability is ambiguity, and even when a team has initially committed to a plan or a set of behavioral standards, it is important to keep those agreements in the open so that no one can easily ignore",
       "location": "2256-2259",
     },
-    Object {
+    {
       "content": "A good way to make it easier for team members to hold one another accountable is to clarify publicly exactly what the team needs to achieve, who needs to deliver what, and how everyone must behave in order to succeed. The enemy of accountability is ambiguity, and even when a team has initially committed to a plan or a set of behavioral standards, it is important to keep those agreements in the open so that no one can easily ignore them.",
       "location": "2256-2259",
     },
-    Object {
+    {
       "content": "If teammates are not being held accountable for their contributions, they will be more likely to turn their attention to their own needs, and to the advancement of themselves or their departments. An absence of accountability is an invitation to team members to shift their attention to areas other than collective results.",
       "location": "2276-2278",
     },
-    Object {
+    {
       "content": "The ultimate dysfunction of a team is the tendency of members to care about something other than the collective goals of the group. An unrelenting focus on specific objectives and clearly defined outcomes is a requirement for any team that judges itself on performance.",
       "location": "2280-2282",
     },
-    Object {
+    {
       "content": "But what would a team be focused on other than results ? Team status and individual status are the prime candidates : • Team status. For members of some teams, merely being part of the group is enough to keep them satisfied. For them, the achievement of specific results might be desirable, but not necessarily worthy of great sacrifice or inconvenience. As ridiculous and dangerous as this might seem, plenty of teams fall prey to the lure of status. These often include altruistic nonprofit organizations that come to believe that the nobility of their mission is enough to justify their satisfaction. Political groups, academic departments, and prestigious companies are also susceptible to this dysfunction, as they often see success in merely being associated with their special organizations.",
       "location": "2289-2294",
     },
   ],
-  "volume": Object {
-    "authors": Array [
+  "volume": {
+    "authors": [
       "J-B Lencioni Series",
     ],
     "title": "The Five Dysfunctions of a Team: A Leadership Fable",
