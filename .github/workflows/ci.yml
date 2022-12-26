@@ -22,6 +22,16 @@ jobs:
           node-version: 18
           cache: npm
           cache-dependency-path: package-lock.json
+
+      - name: Install package dependencies
+        run: |
+          for dir in packages/*; do
+            echo "Installing dependencies for $dir"
+            cd $dir
+            npm ci
+            cd ../..
+          done
+
       - run: npm ci
       - run: npm run lint
       - run: npm test
