@@ -1,13 +1,13 @@
 {
 	"name": "kindle-clippings-to-json",
 	"description": "Converts an email consisting of Kindle clippings into a JSON object",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"main": "index.js",
 	"author": {
 		"name": "Sawyer Hollenshead",
 		"url": "https://github.com/sawyerh"
 	},
-	"repository": "sawyerh/highlight-utils",
+	"repository": "sawyerh/highlights",
 	"license": "MIT",
 	"dependencies": {
 		"mailparser": "^3.6.2"
