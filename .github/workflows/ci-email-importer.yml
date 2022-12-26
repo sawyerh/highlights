@@ -26,6 +26,8 @@ jobs:
           node-version: 18
           cache: npm
           cache-dependency-path: aws/email-importer/package-lock.json
+      - name: Setup Firebase CLI
+        run: npm install -g firebase-tools
       - run: npm ci
         name: Install dependencies
       - run: npm test
