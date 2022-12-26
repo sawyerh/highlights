@@ -3,8 +3,12 @@ name: CI (email-importer)
 on:
   push:
     branches: [main]
+    paths:
+      - aws/email-importer/**
   pull_request:
     branches: [main]
+    paths:
+      - aws/email-importer/**
   workflow_dispatch:
 
 defaults:

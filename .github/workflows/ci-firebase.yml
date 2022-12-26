@@ -3,8 +3,12 @@ name: CI (firebase)
 on:
   push:
     branches: [main]
+    paths:
+      - firebase/functions/**
   pull_request:
     branches: [main]
+    paths:
+      - firebase/functions/**
   workflow_dispatch:
 
 defaults:
