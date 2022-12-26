@@ -59,7 +59,8 @@ The Lambda function relies on the following environment variables:
 1. `npm run build`
 1. Upload the `build.zip` file to Lambda
    ```sh
-   aws lambda update-function-code --function-name highlightsEmailToFirebase --zip-file fileb://build.zip --publish
+   $ export AWS_PROFILE=your-profile
+   $ aws lambda update-function-code --function-name highlightsEmailToFirebase --zip-file fileb://build.zip --publish
    ```
 
 To verify the new version, you can use a test event with a `test: true` property. This will prevent the function from adding data to the database. Set `messageId` to the name of an email object in the S3 bucket.
