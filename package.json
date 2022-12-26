@@ -20,6 +20,7 @@
 	"jest": {
 		"testPathIgnorePatterns": [
 			"/node_modules/",
+			"<rootDir>/aws/email-importer/*",
 			"<rootDir>/firebase/*",
 			"<rootDir>/packages/aws-lambda-email-handler/dist/*"
 		]

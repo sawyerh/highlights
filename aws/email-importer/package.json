@@ -6,15 +6,17 @@
 	"engines": {
 		"node": ">= 16.0.0"
 	},
-	"main": "index.js",
+	"main": "src/index.js",
 	"scripts": {
-		"deploy": "./scripts/deploy.sh",
-		"test": "./scripts/test.sh"
+		"build": "./scripts/build.sh",
+		"test": "firebase emulators:exec \"jest --runInBand\" --only firestore",
+		"test:update": "firebase emulators:exec \"jest -u --runInBand\" --only firestore",
+		"test:watch": "firebase emulators:exec \"jest --watch  --forceExit --detectOpenHandles --runInBand\" --ui --only firestore"
 	},
 	"dependencies": {
-		"@google-cloud/firestore": "^6.3.0",
 		"async": "^3.2.4",
-		"firebase-admin": "^8.6.0",
+		"esbuild": "^0.16.10",
+		"firebase-admin": "^11.4.1",
 		"highlights-email-to-json": "^1.1.0",
 		"kindle-clippings-to-json": "^1.0.0",
 		"kindle-email-to-json": "^2.0.2",
@@ -23,6 +25,13 @@
 		"string-hash": "^1.1.3"
 	},
 	"devDependencies": {
-		"aws-sdk": "2.1231.0"
+		"@types/jest": "^29.2.4",
+		"@types/node": "^18.11.17",
+		"@types/node-fetch": "^2.6.2",
+		"aws-sdk": "^2.1282.0",
+		"jest": "^29.3.1",
+		"node-fetch": "^2.6.7",
+		"ts-jest": "^29.0.3",
+		"typescript": "^4.9.4"
 	}
 }

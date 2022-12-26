@@ -15,41 +15,69 @@ sequenceDiagram
   Lambda ->> Firestore: Add volume & highlights
 ```
 
-## Deploying
+## 🧰 Local development
 
-Deploy the handler to Lambda. This script copies the files into a `dist` directory and installs production dependencies.
+The easiest way to run the Lambda function locally is likely through the test suite. I haven't had much luck using `sam local invoke`. See instructions below for running the tests.
 
-### Prerequisites
+## 🧪 Testing
 
-- Docker is installed
-- [`trash`](https://github.com/sindresorhus/trash-cli) is installed
-- An AWS profile is configured
+- Tests run against the Firebase emulator, which depends on the Firebase CLI being installed globally
+- A fake Firebase project, including a fake service account, is used for tests.
 
-```
-npm run deploy
-```
-
-## Configuration
-
-The Lambda function relies on the following environment variables. You'll need to set these to test locally:
-
-- `AWS_ACCESS_KEY_ID`
-- `AWS_SECRET_ACCESS_KEY`
-- `KEY_PREFIX` - The directory within the bucket where the email objects can be found (SES only gives us the message ID, which is used for the object's name).
-- `S3_BUCKET` - The bucket where the emails are added to
-- `SERVICE_ACCOUNT` - Google Cloud Service Account JSON object
-
-### Testing locally
-
-Set the environment variables in a `.env` file within the package directory. Then run:
+### Run tests
 
 ```
 npm test
 ```
 
+In watch mode, you can view the Firebase emulator UI at http://localhost:4001:
+
+```
+npm run test:watch
+```
+
+By default, the database is cleared after each test. If you want to keep the data between tests, disable the call to `cleanup` in `tests/_setup.ts`.
+
+If you don't see data in the emulator, but expect to, make sure the Firebase CLI is using the same project as the tests: `firebase use <project id>`
+
 ---
 
-### Setting up AWS SES (and S3)
+## 🚀 Deployment
+
+### Prerequisites
+
+- [AWS SAM CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/install-sam-cli.html)
+
+The Lambda function relies on the following environment variables:
+
+- `KEY_PREFIX` - The directory within the bucket where the email objects can be found (SES only gives us the message ID, which is used for the object's name).
+- `S3_BUCKET` - The bucket where the emails are added to
+- `SERVICE_ACCOUNT` - Google Cloud Service Account JSON object, for authenticating with Firebase
+
+### Deploying
+
+1. `npm run build`
+1. Upload the `build.zip` file to Lambda
+   ```sh
+   aws lambda update-function-code --function-name highlightsEmailToFirebase --zip-file fileb://build.zip --publish
+   ```
+
+To verify the new version, you can use a test event with a `test: true` property. This will prevent the function from adding data to the database. Set `messageId` to the name of an email object in the S3 bucket.
+
+```json
+{
+	"test": true,
+	"Records": [
+		{
+			"ses": {
+				"mail": { "messageId": "email.txt" }
+			}
+		}
+	]
+}
+```
+
+## Setting up AWS SES (and S3)
 
 **Heads up: These screenshots are outdated, but hopefully still useful.**
 

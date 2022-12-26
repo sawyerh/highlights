@@ -1,0 +1,12 @@
+{
+	"type": "service_account",
+	"project_id": "fake-firebase-project",
+	"private_key_id": "fake",
+	"private_key": "-----BEGIN RSA PRIVATE KEY-----\nMIIEowIBAAKCAQEA5WxR5iQlTMIBiRR7Z3bvG8AzqNM/a2OczfIP5WgKWw2wDJwI\nhOaGV2OPCiCTFopXKxVb9G6Meai7laCuGOrVAOAks5OPQ6Se+fRUbjiV0LYyP+9k\njCn5SS8jmVWrrpTjNvi4rwYtxeQEBKVFdqqRqNYnGmFb8QIG1UWLMd/P5GZkNy2O\nBD3Pm1vApOX4kRg0utme9XUwCeuOnbbMrsd6SzNtTPjohfax/U9kEPh5DeQQzBQ0\nHdtrGz3LRhjJZGNhGWQe8gKFPjp5IlnlhwzOwt5+2yvtWQE87YI5T3yWYYron6WI\n1H7kh5H0zSTrRM7JHS+gux7iwVsoqpOCXQp4lwIDAQABAoIBAElV37QWN8oadc0w\nu+Wt0e7n+Ftt82bLd7MpPkWRhUXn0S+mrN52pdjHXVDaasoYvJZsBHHU6Jh3BEdn\nDl+uqRnXjEPO1kvEEoFJxbdZ5SHLK7LePiDDxgjLxbBc/z0WIK9QwBBKhFUuds5Z\nWiP9kAQNOICpQG+Au1hvG3h814JlUXYIqo8wg5iDluVIpnGfIYgOZpjpOt8Oe5tO\nLqqvrEWVTv3vaBMkGR3SWmcM+h7TBtWFJLoaBBqU8DXrU/PZQsVFQQb8TlqbAAEr\nOR/2Em2VJ4kkjv3S052pxqgK2mpuyI9/BtQ9Kjuq28xKd1Jol/71lj3HPv3RBEGC\n8b/IdhECgYEA+5xyTR4uO6ACtghXTT6TsRYZxCKW6ii9jByeK3YTUuFpVmMICPY0\na8vbVE7TyN287rrqWLg2UuZmkICguh4JIvu+fve+gt13LB7c8LWUrU4AQj6AlYjD\nZEDBT5zwHQUXEdji988qNh2vgZdeQLxdrrOTq6oAznX7z0pOsQtiwm8CgYEA6WzL\nWjh5AQJ7bIh/UvSAP14FH3LCRFxd5HhAW5raEtf1j9EqcTs3vk5ZKYm33Zzi0HqG\npEG4haevaznb/2YPqu4GVOG/ekI+riZJz7cxitXKj5VMpbyYA3a8VrD0MXEpyPCV\nGoGrwaAwl5yw4eEsYmHqZWC50NOBPzfteh6JIFkCgYEApLLkswxFcSwteiB9nQeQ\nP8Pau+N0a/SdFqEI/CP/RCpe/Hg4oz0eVU2M1WQAB6T17kMV8Vsr3BoLGx3Hl+zf\nSDIHoS7kWt9DCfNt5nbFyqebTcGCA+ARHoewwj9VgXl6f2k8MMA/vkqyPp7pyHBE\n1n2f9SeD/aGHYkoeto9gZysCgYAJIPMW9SxuSK2RAgmQsfUuBTxIDZHhYIdffwBt\nVLIAmKeG11REl19HtwKvqC4joZYRNyl61QMlXvhyRhH/e/tS4Pooaae2XU7cOq0a\nTXzHhDLmyJz1wlljkUouTb9PC7Dppdb+8WFJMj2UQFF+k/LLai7jhhPeQddFJKfJ\n5dXRCQKBgAHYcwt+Jg2B8EBhoqxQC2FrLLuWL6cYLIHRbaHCQTwJawxdKOPfk1SC\nEnzooBi8sm01YI+umjHWNRRegJuR8W36P3cowrJ3dA7ZOJv7qfy1IL7It1jEvo4p\njg1VIrA3VWXwmGeGGFL9ObYz/OeNgigLJLZ/jyxlw9uxJmTy3jKN\n-----END RSA PRIVATE KEY-----\n",
+	"client_email": "fake-firebase-project@appspot.gserviceaccount.com",
+	"client_id": "fake",
+	"auth_uri": "https://accounts.google.com/o/oauth2/auth",
+	"token_uri": "https://oauth2.googleapis.com/token",
+	"auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+	"client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/fake-firebase-project%40appspot.gserviceaccount.com"
+}
