@@ -1,0 +1,49 @@
+name: CI (firebase)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - firebase/functions/**
+  pull_request:
+    branches: [main]
+    paths:
+      - firebase/functions/**
+  workflow_dispatch:
+
+defaults:
+  run:
+    working-directory: firebase/functions
+
+concurrency:
+  group: ci-firebase
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: npm
+          cache-dependency-path: firebase/functions/package-lock.json
+      - name: Setup Firebase CLI
+        run: npm install -g firebase-tools
+      - run: npm ci
+        name: Install dependencies
+
+      - name: Setup Firebase service account
+        run: echo "$SERVICE_ACCOUNT" > secrets/test-service-account.json
+        env:
+          SERVICE_ACCOUNT: "${{ secrets.TEST_FIREBASE_SERVICE_ACCOUNT }}"
+
+      - name: Setup Firebase app
+        run: echo "$FIREBASE_APP" > secrets/test-app.json
+        env:
+          FIREBASE_APP: "${{ secrets.TEST_FIREBASE_APP }}"
+
+      - run: npm test
+        name: Run tests
