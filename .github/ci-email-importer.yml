@@ -10,6 +10,10 @@ defaults:
   run:
     working-directory: aws/email-importer
 
+concurrency:
+  group: ci-email-importer-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -19,5 +23,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
+          cache: npm
+          cache-dependency-path: aws/email-importer/package-lock.json
       - run: npm ci
       - run: npm test
