@@ -1,0 +1,174 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Converter parses HTML file into JSON 1`] = `
+{
+  "highlights": [
+    {
+      "color": "yellow",
+      "content": "In addition to responding to sweet and salty tastes, our taste buds also reward us for the feel and texture of fat because it’s the most energy dense of the three macronutrients, with more than twice as many calories per gram as protein and carbs. If you were living in a world with scarce food and working hard to chase after your calories, fat would be a huge win. So, yes—it makes sense to love grease, to love salt, to love sweet; they’re the trifecta of survival in a world where finding food meant hunting and foraging.",
+      "location": "114",
+    },
+    {
+      "color": "yellow",
+      "content": "these things were not unhealthy when they were scarce and hard to find; rather, our ancestors needed them. Salt is not unhealthy unless you get too much, and you need some to live; same with fat. Sugar is not unhealthy when the only places to find it are breast milk, whole fruits, and honey you have to wrestle from a swarm of angry bees. The cravings were good in their native context; we’ve changed that context.",
+      "location": "122",
+    },
+    {
+      "color": "yellow",
+      "content": "why do so many diets—like the Whole30 diet or ketogenic diet—literally ask us to eat in an imbalanced, highly limited way? Those are not diets for life; they’re ostensibly short-term weight loss diets, though even that’s arguable. Beyond that, they’re simply not good choices: Balance is good, imbalance is bad. Really. Period.",
+      "location": "165",
+    },
+    {
+      "color": "yellow",
+      "content": "We can’t say what “diet” is best. We can say what eating patterns are best. And that’s it: real foods, close to natural form, mostly plants, augmented a little bit by almost whatever else you like. It’s that simple, as hard as that might be to hear.",
+      "location": "188",
+    },
+    {
+      "color": "yellow",
+      "content": "Diets of the world’s longest-lived people are rich in veggies, fruits, beans, lentils, whole grains, nuts, seeds, and good fats like olive oil or fat from fish. They de-emphasize meat and dairy and exclude ultraprocessed foods and soda.",
+      "location": "211",
+    },
+    {
+      "color": "yellow",
+      "content": "What matters is that the diet is plant-based? Yes. That’s the part that’s nonnegotiable. That doesn’t mean necessarily vegan; it means necessarily “near vegan.” You want plenty of vegetables, fruits, whole grains, legumes, nuts, and seeds. That is where the Mediterranean and Okinawan diets, for example, overlap.",
+      "location": "245",
+    },
+    {
+      "color": "yellow",
+      "content": "The food industry engineers foods that maximize the eating required to feel full, and they do so for the most obvious of motivations—profit.)",
+      "location": "260",
+    },
+    {
+      "color": "yellow",
+      "content": "Why do women need to store body fat? That need is the obvious one: They need the capacity to feed two rather than one. If we think in terms of adaptation, evolutionary biology, and survival with limited food sources, women who had stored fat were more likely to have bodies capable of reproduction. When women’s body fat falls below a particular threshold, it’s common for them to become amenorrheic (i.e., stop having their period). That’s adaptive. Essentially, women can’t become pregnant when they don’t have a sufficient amount of energy reserve available. Related to that, the range of body fat that is healthy for women is about twice the level that’s healthy for men.",
+      "location": "309",
+    },
+    {
+      "color": "yellow",
+      "content": "The apple/ android weight pattern is the way men tend to gain weight: around the middle. That’s the bad metabolic actor. Women tend to gain weight in the pear/ gynoid pattern—in the hips, thighs, buttocks, and legs—which is less associated with health problems because it has lower negative metabolic effects. As a rule, fat stored in the lower extremities doesn’t tend to drive up blood pressure or lipids, cause insulin resistance, or infiltrate vital organs like the liver.",
+      "location": "322",
+      "notes": [
+        {
+          "color": "",
+          "content": "This is a test note on a highlight. 
+
+This is another note paragraph.",
+          "location": "325",
+        },
+      ],
+    },
+    {
+      "color": "yellow",
+      "content": "fat accumulation around the middle tends to mean fat infiltrates the liver, which impairs liver function and causes insulin resistance. That drives up insulin levels, which further favors fat deposition around the middle—so the whole problem is self-propagating.",
+      "location": "328",
+    },
+    {
+      "color": "yellow",
+      "content": "If you just go on a short-term diet as so many people do, you’ll lose both fat and muscle. If you then go off the diet and gain weight back, unless you work out like a fiend, you’ll gain back mostly fat. With each of those cycles you shift your body composition more and more toward a higher fat percentage, which is a less metabolically efficient machine. Fat requires fewer calories to maintain its size than muscle does. So essentially, you create a pathway by which you need fewer calories each time to maintain fat and require ever more severe calorie restriction to lose it.",
+      "location": "381",
+      "notes": [
+        {
+          "color": "",
+          "content": "This is a note.",
+          "location": "635",
+        },
+      ],
+    },
+  ],
+  "volume": {
+    "authors": [
+      "Bittman, Mark",
+      "Katz, David",
+    ],
+    "title": "How to Eat: All Your Food and Diet Questions Answered",
+  },
+}
+`;
+
+exports[`Converter supports parsing of location from non-English exports 1`] = `
+{
+  "highlights": [
+    {
+      "color": "gelb",
+      "content": "größte Überraschung im Leben eines Mannes ist das Alter.‹ Wer",
+      "location": "1968",
+    },
+    {
+      "color": "gelb",
+      "content": "die sich selbst als normal bezeichnen, solle man nicht trauen.«",
+      "location": "3193",
+    },
+    {
+      "color": "gelb",
+      "content": "empfinden bisweilen eine moralische Verpflichtung und stehen zwischen Verstand und Gefühl.«",
+      "location": "3517",
+    },
+    {
+      "color": "gelb",
+      "content": "Bedeutung hätte eine Welt, in der sich nichts verändern würde, auch wenn eine Idee erlischt? Und",
+      "location": "3569",
+    },
+    {
+      "color": "gelb",
+      "content": "geöffneter Kreis muss irgendwo geschlossen werden. Eine",
+      "location": "3572",
+    },
+    {
+      "color": "gelb",
+      "content": "Metapher?« »Ja, genau. Ein bescheidenes Sinnbild. Ein Wesen, das Dinge mit Bildern verknüpft. Ihr",
+      "location": "3873",
+    },
+    {
+      "color": "gelb",
+      "content": "der Metaphern‹. Er ist für jeden anders und für niemanden derselbe. Durch",
+      "location": "3891",
+    },
+    {
+      "color": "gelb",
+      "content": "ganzer Körper nimmt jeden Tropfen gierig auf. Jede Zelle begrüßt die Feuchtigkeit, und sämtliche Muskeln gewinnen ihre Geschmeidigkeit zurück. Doch",
+      "location": "4038",
+    },
+    {
+      "color": "gelb",
+      "content": "Ewigkeit ist eine lange Zeit. Das",
+      "location": "4118",
+    },
+    {
+      "color": "gelb",
+      "content": "Zusammenhänge ergeben sich deinem Handeln entsprechend. So funktioniert das hier, hatte der gesichtslose Fährmann gesagt. Dieser Weg war bestimmt auch einer dieser Zusammenhänge. Ich",
+      "location": "4193",
+    },
+    {
+      "color": "gelb",
+      "content": "schnappt sich die für Euch vorteilhaften Gedanken, frisst sie in sich hinein und wird immer fetter und fetter davon. Die Doppelmetapher haust schon lange in der tiefen Finsternis, die in Eurem Inneren wohnt.«",
+      "location": "4351",
+    },
+    {
+      "color": "gelb",
+      "content": "erinnere dich an etwas«, spornte Komi mich an. »Etwas, dass du berühren kannst. Etwas,",
+      "location": "4397",
+    },
+    {
+      "color": "gelb",
+      "content": "der Schmerz war eine Metapher. Ebenso",
+      "location": "4432",
+    },
+    {
+      "color": "gelb",
+      "content": "die Zeit wirklich so regelhaft und in eine Richtung? Oder",
+      "location": "4488",
+    },
+    {
+      "color": "gelb",
+      "content": "Leben gibt es einige Dinge, die man nicht erklären kann, und auch einige, die man nicht erklären sollte. Denn in den meisten Fällen geht dabei das Wichtigste verloren.«",
+      "location": "4696",
+    },
+  ],
+  "volume": {
+    "authors": [
+      "Haruki Murakami",
+    ],
+    "title": "Die Ermordung des Commendatore Band 2: Eine Metapher wandelt sich. Roman (German Edition)",
+  },
+}
+`;

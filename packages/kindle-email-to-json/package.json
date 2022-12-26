@@ -1,0 +1,20 @@
+{
+	"name": "kindle-email-to-json",
+	"description": "Convert an email export of Kindle notes into a JSON object",
+	"version": "2.0.3",
+	"main": "index.js",
+	"types": "index.d.ts",
+	"author": {
+		"name": "Sawyer Hollenshead",
+		"url": "https://github.com/sawyerh"
+	},
+	"repository": "sawyerh/highlights",
+	"license": "MIT",
+	"dependencies": {
+		"cheerio": "1.0.0-rc.12",
+		"mailparser": "^3.6.2"
+	},
+	"devDependencies": {
+		"@types/node": "^18.8.4"
+	}
+}

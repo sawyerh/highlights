@@ -1,0 +1,30 @@
+Return-Path: <sender@example.com>
+Content-Type: multipart/mixed; boundary=Apple-Mail-2BFC1715-F9F1-4527-868E-938F20134B77
+Content-Transfer-Encoding: 7bit
+From: Anton Weiss <sender@example.com>
+Mime-Version: 1.0 (1.0)
+Date: Sun, 8 Jan 2017 23:12:48 -0500
+Subject: iPad Notebook export for Atomic Design by Brad Frost
+Message-Id: <BE6DB076-5ADC-4CD5-9229-21D883AE30B5@example.com>
+To: to@example.com
+X-Mailer: iPad Mail (14C92)
+
+
+--Apple-Mail-2BFC1715-F9F1-4527-868E-938F20134B77
+Content-Type: text/plain;
+	charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
+
+Your Notebook exported from Atomic Design by Brad Frost is attached to this e=
+mail.
+
+
+
+--Apple-Mail-2BFC1715-F9F1-4527-868E-938F20134B77
+Content-Type: text/plain;
+	charset=us-ascii
+Content-Transfer-Encoding: 7bit
+
+
+
+--Apple-Mail-2BFC1715-F9F1-4527-868E-938F20134B77--
