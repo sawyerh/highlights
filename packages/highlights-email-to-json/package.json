@@ -1,7 +1,7 @@
 {
 	"name": "highlights-email-to-json",
 	"description": "Converts an email of plain text notes into a JSON object",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"main": "index.js",
 	"author": {
 		"name": "Sawyer Hollenshead",
