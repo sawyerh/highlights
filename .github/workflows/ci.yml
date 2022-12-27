@@ -27,6 +27,8 @@ jobs:
         run: |
           for dir in packages/*; do
             echo "Installing dependencies for $dir"
+            # Skip if not a directory
+            [ -d "$dir" ] || continue
             cd $dir
             npm ci
             cd ../..
