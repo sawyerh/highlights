@@ -1,12 +1,10 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
 	content: ["./src/**/*.tsx"],
 	theme: {
 		extend: {
 			aspectRatio: {
 				cover: "5 / 8",
-			},
-			colors: {
-				highlight: "#fdf1c8",
 			},
 			fontFamily: {
 				// var's are set via @next/font

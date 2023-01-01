@@ -3,5 +3,58 @@
 @tailwind utilities;
 
 body {
-  background-color: #f6f6f1;
+	background-color: #f6f6f1;
+}
+
+/** CoverLink */
+.cover-link:is(:hover, :focus) {
+	outline: none;
+}
+
+.cover-link:focus .cover-link__text {
+	background: #000;
+	color: #fff;
+}
+
+.cover-link__cover {
+	transition: all 200ms ease;
+}
+
+.cover-link:is(:hover, :focus) .cover-link__cover {
+	@apply -translate-y-4 rotate-2 scale-105 shadow-xl shadow-black/20;
+}
+
+.cover-link:active .cover-link__cover {
+	@apply rotate-6;
+}
+
+/*
+  Skewed highlight
+  Credit: https://pepelsbey.dev/articles/skewed-highlight/
+*/
+mark,
+.cover-link:is(:hover, :active) .cover-link__text {
+	--mark-color: rgba(255, 226, 130, 0.5);
+	--mark-height: 1.4em;
+	--mark-skew: 0.25em;
+	--mark-overlap: 0.3em;
+
+	margin-inline: calc(var(--mark-overlap) * -1);
+	padding-inline: var(--mark-overlap);
+
+	background-color: transparent;
+	background-image: linear-gradient(
+			to bottom right,
+			transparent 50%,
+			var(--mark-color) 50%
+		),
+		linear-gradient(var(--mark-color), var(--mark-color)),
+		linear-gradient(to top left, transparent 50%, var(--mark-color) 50%);
+	background-size: var(--mark-skew) var(--mark-height),
+		calc(100% - var(--mark-skew) * 2 + 1px) var(--mark-height),
+		var(--mark-skew) var(--mark-height);
+	background-position: left center, center, right center;
+	background-repeat: no-repeat;
+	box-decoration-break: clone;
+	color: theme("colors.black");
 }
