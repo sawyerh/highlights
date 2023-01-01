@@ -4,7 +4,7 @@ const Highlight = (props: { highlight: Highlight }) => {
 	return (
 		<article className="mb-12">
 			<blockquote className="text-md mb-2 font-serif leading-relaxed sm:text-lg sm:leading-relaxed">
-				<span className="bg-highlight">{highlight.body}</span>
+				<mark className="bg-highlight">{highlight.body}</mark>
 			</blockquote>
 			<a
 				href={`/highlights/${highlight.id}`}
