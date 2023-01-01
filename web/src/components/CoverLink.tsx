@@ -10,7 +10,7 @@ interface Props {
 export default function CoverLink(props: Props) {
 	const { priority, volume } = props;
 
-	/* prefetch="false" prevents loading right away, but still preloads when hovered. */
+	/* prefetch="false" prevents loading right away, but still preloads when hovered */
 	return (
 		<Link
 			href={`/volumes/${volume.id}`}
