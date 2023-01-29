@@ -1,9 +1,6 @@
 {
 	"name": "highlights.sawyerh.com",
 	"version": "2.0.0",
-	"engines": {
-		"node": ">=16.8.0"
-	},
 	"scripts": {
 		"build": "next build",
 		"dev": "next dev",
