@@ -3,6 +3,7 @@ import { IBM_Plex_Mono, Noto_Serif } from "@next/font/google";
 import "globals.css";
 
 const fontSerif = Noto_Serif({
+	display: "swap",
 	weight: ["400", "700"],
 	style: ["italic", "normal"],
 	subsets: ["latin"],
@@ -11,6 +12,7 @@ const fontSerif = Noto_Serif({
 });
 
 const fontSans = IBM_Plex_Mono({
+	display: "swap",
 	weight: ["400"],
 	style: ["normal"],
 	subsets: ["latin"],
