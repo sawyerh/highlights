@@ -1,10 +1,29 @@
+import { getHighlights, getVolume } from "api";
 import Highlight from "components/Highlight";
 import Nav from "components/Nav";
 import VolumeHeader from "components/VolumeHeader";
+import seoTitleForVolume from "helpers/seoTitleForVolume";
 
-import loader from "./loader";
+async function loader(params: PageParams) {
+	const volume = await getVolume(params.id);
+	const { highlights } = await getHighlights(params.id);
 
-const Page = async ({ params }: { params: { [key: string]: string } }) => {
+	return {
+		volume,
+		highlights,
+	};
+}
+
+export async function generateMetadata({ params }: { params: PageParams }) {
+	const { volume } = await loader(params);
+
+	return {
+		title: seoTitleForVolume(volume),
+		description: `Sawyer's highlights from ${volume.title}`,
+	};
+}
+
+const Page = async ({ params }: { params: PageParams }) => {
 	const { highlights, volume } = await loader(params);
 
 	return (
