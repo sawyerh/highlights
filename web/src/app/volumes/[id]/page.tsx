@@ -1,3 +1,5 @@
+import { useRouter } from "next/navigation";
+
 import { getHighlights, getVolume } from "api";
 import Highlight from "components/Highlight";
 import Nav from "components/Nav";
@@ -23,8 +25,32 @@ export async function generateMetadata({ params }: { params: PageParams }) {
 	};
 }
 
-const Page = async ({ params }: { params: PageParams }) => {
+const Page = async ({
+	params,
+	searchParams,
+}: {
+	params: PageParams;
+	searchParams: PageParams;
+}) => {
 	const { highlights, volume } = await loader(params);
+
+	if (searchParams.mode === "ai") {
+		const combinedHighlights = highlights
+			.map((highlight) => highlight.body)
+			.join("\n---\n");
+
+		const text = `###
+Volume:
+${volume.title} ${
+			volume.subtitle ? `- ${volume.subtitle}` : ""
+		}, by ${volume.authors?.join(", ")}
+
+Highlights:
+---
+${combinedHighlights}`;
+
+		return <textarea className="w-full min-h-[95vh] p-4">{text}</textarea>;
+	}
 
 	return (
 		<>
