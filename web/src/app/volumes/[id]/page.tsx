@@ -36,7 +36,7 @@ const Page = async ({
 
 	if (searchParams.mode === "ai") {
 		const combinedHighlights = highlights
-			.map((highlight) => highlight.body)
+			.map((highlight) => `[Location: ${highlight.location}] ${highlight.body}`)
 			.join("\n---\n");
 
 		const text = `###
