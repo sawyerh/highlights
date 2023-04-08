@@ -49,7 +49,7 @@ Highlights:
 ---
 ${combinedHighlights}`;
 
-		return <textarea className="w-full min-h-[95vh] p-4">{text}</textarea>;
+		return <textarea className="w-full min-h-[95vh] p-4" value={text} />;
 	}
 
 	return (
