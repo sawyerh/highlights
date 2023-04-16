@@ -54,7 +54,7 @@ ${combinedHighlights}`;
 function CohereCSVMode({ highlights }: { highlights: Highlight[] }) {
 	const text = highlights
 		.map((highlight) => {
-			return highlight.body;
+			return highlight.body.replace(/,/g, "\\,");
 		})
 		.join("\n");
 
