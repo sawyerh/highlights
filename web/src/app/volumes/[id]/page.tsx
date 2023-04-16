@@ -1,5 +1,3 @@
-import { useRouter } from "next/navigation";
-
 import { getHighlights, getVolume } from "api";
 import Highlight from "components/Highlight";
 import Nav from "components/Nav";
@@ -25,6 +23,46 @@ export async function generateMetadata({ params }: { params: PageParams }) {
 	};
 }
 
+function AIMode({
+	highlights,
+	volume,
+}: {
+	highlights: Highlight[];
+	volume: Volume;
+}) {
+	const combinedHighlights = highlights
+		.map((highlight) => `[Location: ${highlight.location}] ${highlight.body}`)
+		.join("\n---\n");
+
+	const text = `###
+Volume:
+${volume.title} ${
+		volume.subtitle ? `- ${volume.subtitle}` : ""
+	}, by ${volume.authors?.join(", ")}
+
+Highlights:
+---
+${combinedHighlights}`;
+
+	return <textarea className="w-full min-h-[95vh] p-4" value={text} />;
+}
+
+/**
+ * CSV file format for use in the Cohere playground
+ * https://dashboard.cohere.ai/playground/embed
+ */
+function CohereCSVMode({ highlights }: { highlights: Highlight[] }) {
+	const text = highlights
+		.map((highlight) => {
+			return highlight.body;
+		})
+		.join("\n");
+
+	return (
+		<textarea className="w-full min-h-[95vh] p-4" value={`examples\n${text}`} />
+	);
+}
+
 const Page = async ({
 	params,
 	searchParams,
@@ -35,21 +73,11 @@ const Page = async ({
 	const { highlights, volume } = await loader(params);
 
 	if (searchParams.mode === "ai") {
-		const combinedHighlights = highlights
-			.map((highlight) => `[Location: ${highlight.location}] ${highlight.body}`)
-			.join("\n---\n");
+		return <AIMode highlights={highlights} volume={volume} />;
+	}
 
-		const text = `###
-Volume:
-${volume.title} ${
-			volume.subtitle ? `- ${volume.subtitle}` : ""
-		}, by ${volume.authors?.join(", ")}
-
-Highlights:
----
-${combinedHighlights}`;
-
-		return <textarea className="w-full min-h-[95vh] p-4" value={text} />;
+	if (searchParams.mode === "cohere-csv") {
+		return <CohereCSVMode highlights={highlights} />;
 	}
 
 	return (
