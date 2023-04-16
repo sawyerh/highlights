@@ -54,7 +54,8 @@ ${combinedHighlights}`;
 function CohereCSVMode({ highlights }: { highlights: Highlight[] }) {
 	const text = highlights
 		.map((highlight) => {
-			return highlight.body.replace(/,/g, "\\,");
+			const escapedQuotesBody = highlight.body.replace(/"/g, '""');
+			return `"${escapedQuotesBody}"`;
 		})
 		.join("\n");
 
