@@ -121,6 +121,10 @@ Deploys can specify a project or even a specific function, use the `--only` flag
 $ firebase deploy --project foo-bar --only functions:api
 ```
 
+## 🕰️ Backups
+
+Backups are not automated, however the entire database or a specific collection can be manually backed up using the [Firestore export tool](https://firebase.google.com/docs/firestore/manage-data/export-import).
+
 ## Other tips
 
 ### Storage
