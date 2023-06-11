@@ -125,6 +125,8 @@ $ firebase deploy --project foo-bar --only functions:api
 
 Backups are not automated, however the entire database or a specific collection can be manually backed up using the [Firestore export tool](https://firebase.google.com/docs/firestore/manage-data/export-import).
 
+[View all backups in Google Cloud Console](https://console.cloud.google.com/firestore/databases/-default-/import-export).
+
 ## Other tips
 
 ### Storage
