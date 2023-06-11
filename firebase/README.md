@@ -142,13 +142,14 @@ Once imported, you can write queries like:
 
 ```sql
 SELECT body,
-  visible,
-  __key__.path,
-  __key__.name
   volume.path AS `volume_path`,
   volume.name as `volume_name`,
-  FROM `sawyer-highlights.Exports.Highlights`
-  LIMIT 10
+  visible,
+  createdAt,
+  __key__.path,
+  __key__.name
+FROM `APP_NAME_HERE.Exports.Highlights`
+ORDER BY createdAt DESC
 ```
 
 **Within BigQuery, you can export query results to CSV or JSON**.
