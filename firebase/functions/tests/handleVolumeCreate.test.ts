@@ -7,8 +7,8 @@ import tester from "./_tester";
 
 describe("when Volume is created", () => {
 	const volume = {
-		title: "The Overstory",
-		authors: ["Richard Powers"],
+		title: "Kill It with Fire",
+		authors: ["Marianne Bellotti"],
 	};
 	const snap = tester.firestore.makeDocumentSnapshot(
 		volume,
@@ -24,11 +24,13 @@ describe("when Volume is created", () => {
 
 		// New fields
 		expect(updatedData.googleBook).toBeDefined();
-		expect(updatedData.subtitle).toBe("A Novel");
+		expect(updatedData.subtitle).toBe(
+			"Manage Aging Computer Systems (and Future Proof Modern Ones)",
+		);
 
 		// Existing fields should not be overwritten
-		expect(updatedData.title).toBe("The Overstory");
-		expect(updatedData.authors).toEqual(["Richard Powers"]);
+		expect(updatedData.title).toBe("Kill It with Fire");
+		expect(updatedData.authors).toEqual(["Marianne Bellotti"]);
 	});
 
 	it("stores the cover image in the storage bucket", async () => {
