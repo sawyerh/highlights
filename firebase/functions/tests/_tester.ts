@@ -1,6 +1,6 @@
-import test from "firebase-functions-test";
-
 import path from "path";
+
+import test from "firebase-functions-test";
 
 import projectConfig from "../secrets/test-app.json";
 

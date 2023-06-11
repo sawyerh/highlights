@@ -6,23 +6,23 @@ const { promisify } = require("util");
 const asyncReadFile = promisify(readFile);
 
 function readExport(filename) {
-  return asyncReadFile(path.resolve(__dirname, `../__mocks__/${filename}`), {
-    encoding: "utf8",
-  });
+	return asyncReadFile(path.resolve(__dirname, `../__mocks__/${filename}`), {
+		encoding: "utf8",
+	});
 }
 
 describe("Converter", () => {
-  it("parses HTML file into JSON", async () => {
-    const html = await readExport("english-export.html");
-    const converter = new Converter(html);
+	it("parses HTML file into JSON", async () => {
+		const html = await readExport("english-export.html");
+		const converter = new Converter(html);
 
-    expect(converter.getJSON()).toMatchSnapshot();
-  });
+		expect(converter.getJSON()).toMatchSnapshot();
+	});
 
-  it("supports parsing of location from non-English exports", async () => {
-    const html = await readExport("german-export.html");
-    const converter = new Converter(html);
+	it("supports parsing of location from non-English exports", async () => {
+		const html = await readExport("german-export.html");
+		const converter = new Converter(html);
 
-    expect(converter.getJSON()).toMatchSnapshot();
-  });
+		expect(converter.getJSON()).toMatchSnapshot();
+	});
 });

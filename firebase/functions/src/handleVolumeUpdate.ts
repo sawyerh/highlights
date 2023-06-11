@@ -1,7 +1,7 @@
 import {
 	DocumentReference,
-	QueryDocumentSnapshot,
 	getFirestore,
+	QueryDocumentSnapshot,
 } from "firebase-admin/firestore";
 import { Change } from "firebase-functions/v2";
 

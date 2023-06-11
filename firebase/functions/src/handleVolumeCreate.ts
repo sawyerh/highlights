@@ -4,7 +4,6 @@ import {
 	QueryDocumentSnapshot,
 } from "firebase-admin/firestore";
 import { getStorage } from "firebase-admin/storage";
-
 import { File } from "@google-cloud/storage";
 
 import fetch from "node-fetch";

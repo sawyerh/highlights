@@ -1,8 +1,8 @@
 import { initializeApp } from "firebase-admin/app";
 import {
 	DocumentReference,
-	Timestamp,
 	getFirestore,
+	Timestamp,
 } from "firebase-admin/firestore";
 
 import request from "supertest";

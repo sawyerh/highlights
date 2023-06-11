@@ -1,8 +1,8 @@
-import { getFirestore } from "firebase-admin/firestore";
-
-import AWS from "aws-sdk";
 import fs from "fs/promises";
 import path from "path";
+
+import { getFirestore } from "firebase-admin/firestore";
+import AWS from "aws-sdk";
 
 import { handler } from "../src/index";
 

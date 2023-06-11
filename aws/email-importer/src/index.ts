@@ -1,5 +1,4 @@
 import { cert, getApps, initializeApp } from "firebase-admin/app";
-
 import AWS from "aws-sdk";
 
 import importMail from "./importMail";

@@ -1,6 +1,6 @@
-import { getStorage } from "firebase-admin/storage";
-
 import crypto from "crypto";
+
+import { getStorage } from "firebase-admin/storage";
 
 import * as functions from "../src/index";
 import tester from "./_tester";

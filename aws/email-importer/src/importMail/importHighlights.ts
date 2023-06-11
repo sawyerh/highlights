@@ -1,10 +1,10 @@
 import {
 	DocumentData,
 	DocumentReference,
+	getFirestore,
 	QueryDocumentSnapshot,
 	Timestamp,
 	WriteBatch,
-	getFirestore,
 } from "firebase-admin/firestore";
 
 import _ from "lodash";

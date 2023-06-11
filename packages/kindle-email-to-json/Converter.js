@@ -6,8 +6,8 @@ const cheerio = require("cheerio").default;
  * @returns {Object}
  */
 const Converter = function (html) {
-  this.html = html;
-  this.$ = cheerio.load(this.html);
+	this.html = html;
+	this.$ = cheerio.load(this.html);
 };
 
 /**
@@ -15,12 +15,12 @@ const Converter = function (html) {
  * @returns {Boolean}
  */
 Converter.prototype.valid = function () {
-  if (this.html) {
-    const notes = this.$(".noteText");
-    return notes.length > 0;
-  }
+	if (this.html) {
+		const notes = this.$(".noteText");
+		return notes.length > 0;
+	}
 
-  return false;
+	return false;
 };
 
 /**
@@ -28,21 +28,21 @@ Converter.prototype.valid = function () {
  * @returns {Object}
  */
 Converter.prototype.getJSON = function () {
-  const titleEl = this.$(".bookTitle");
-  const authorEl = this.$(".authors");
-  const title = titleEl.text().trim();
-  const authors = authorEl
-    .text()
-    .split(";")
-    .map((s) => s.trim());
+	const titleEl = this.$(".bookTitle");
+	const authorEl = this.$(".authors");
+	const title = titleEl.text().trim();
+	const authors = authorEl
+		.text()
+		.split(";")
+		.map((s) => s.trim());
 
-  return {
-    volume: {
-      title: title,
-      authors: authors,
-    },
-    highlights: this.highlights(),
-  };
+	return {
+		volume: {
+			title: title,
+			authors: authors,
+		},
+		highlights: this.highlights(),
+	};
 };
 
 /**
@@ -50,32 +50,32 @@ Converter.prototype.getJSON = function () {
  * @returns {Array} highlights
  */
 Converter.prototype.highlights = function () {
-  const headings = this.$(".noteHeading");
-  let highlights = [];
+	const headings = this.$(".noteHeading");
+	let highlights = [];
 
-  headings.each((_index, el) => {
-    const heading = cheerio(el);
-    const color = heading.find("span[class^='highlight_']").text().trim();
-    const text = heading.text().trim();
+	headings.each((_index, el) => {
+		const heading = cheerio(el);
+		const color = heading.find("span[class^='highlight_']").text().trim();
+		const text = heading.text().trim();
 
-    const location = text.match(/\s(\d*)$/i) || "";
+		const location = text.match(/\s(\d*)$/i) || "";
 
-    // We need to differentiate between a "highlight" and a "note." The heading
-    // for the latter case doesn't have a color element as a child
-    if (!color && highlights.length) {
-      // We're making the assumption that notes are only added on top of
-      // a highlight. When that's the case, the exported file will include
-      // the note directly after the text it's added on.
-      const highlight = highlights[highlights.length - 1];
-      highlight.notes = this.highlightContent(location[1], color, el);
-    } else {
-      highlights = highlights.concat(
-        this.highlightContent(location[1], color, el)
-      );
-    }
-  });
+		// We need to differentiate between a "highlight" and a "note." The heading
+		// for the latter case doesn't have a color element as a child
+		if (!color && highlights.length) {
+			// We're making the assumption that notes are only added on top of
+			// a highlight. When that's the case, the exported file will include
+			// the note directly after the text it's added on.
+			const highlight = highlights[highlights.length - 1];
+			highlight.notes = this.highlightContent(location[1], color, el);
+		} else {
+			highlights = highlights.concat(
+				this.highlightContent(location[1], color, el),
+			);
+		}
+	});
 
-  return highlights;
+	return highlights;
 };
 
 /**
@@ -86,25 +86,25 @@ Converter.prototype.highlights = function () {
  * @return {Array} The parsed highlight objects
  */
 Converter.prototype.highlightContent = function (location, color, el) {
-  let highlights = [];
-  const nextEl = cheerio(el).next();
+	let highlights = [];
+	const nextEl = cheerio(el).next();
 
-  if (nextEl.hasClass("noteText")) {
-    const highlight = {
-      color: color,
-      content: cheerio(nextEl).text().trim(),
-      location: location,
-    };
+	if (nextEl.hasClass("noteText")) {
+		const highlight = {
+			color: color,
+			content: cheerio(nextEl).text().trim(),
+			location: location,
+		};
 
-    highlights.push(highlight);
+		highlights.push(highlight);
 
-    if (nextEl.next().hasClass("noteText"))
-      highlights = highlights.concat(
-        this.highlightContent(location, color, nextEl)
-      );
-  }
+		if (nextEl.next().hasClass("noteText"))
+			highlights = highlights.concat(
+				this.highlightContent(location, color, nextEl),
+			);
+	}
 
-  return highlights;
+	return highlights;
 };
 
 module.exports = Converter;

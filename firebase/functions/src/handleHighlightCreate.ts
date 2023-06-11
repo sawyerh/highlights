@@ -2,7 +2,6 @@ import {
 	DocumentReference,
 	QueryDocumentSnapshot,
 } from "firebase-admin/firestore";
-
 import language from "@google-cloud/language";
 
 function annotateText(text: string) {

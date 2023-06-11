@@ -1,6 +1,6 @@
-import { getFirestore } from "firebase-admin/firestore";
-
 import crypto from "crypto";
+
+import { getFirestore } from "firebase-admin/firestore";
 
 import * as functions from "../src/index";
 import tester from "./_tester";

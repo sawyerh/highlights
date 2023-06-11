@@ -32,7 +32,7 @@ expected to contain at least one HTML attachment.
 const toJSON = require("kindle-email-to-json");
 const email = readFile(emailPath);
 
-toJSON(email).then(data => {
-  console.log(data);
+toJSON(email).then((data) => {
+	console.log(data);
 });
 ```

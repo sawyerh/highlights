@@ -1,5 +1,6 @@
-import someSeries from "async/someSeries";
 import AWS from "aws-sdk";
+
+import someSeries from "async/someSeries";
 import textToJSON from "highlights-email-to-json";
 import kindleClippingsToJSON from "kindle-clippings-to-json";
 import kindleEmailToJSON from "kindle-email-to-json";
