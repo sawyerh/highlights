@@ -134,6 +134,18 @@ $ gcloud auth login
 $ gsutil -m cp -r "gs://BUCKET_NAME_HERE/EXPORT_DIRECTORY_HERE" .
 ```
 
+### Querying a backup
+
+The export is in a LevelDB format, which is unfortunately not human-readable and there aren't many tools for converting it to a more readable format. The easiest way to query a backup is to [import it into BigQuery](https://cloud.google.com/bigquery/docs/loading-data-cloud-firestore).
+
+Once imported, you can write queries like:
+
+```sql
+SELECT body FROM `APP_NAME_GOES_HERE.Exports.Highlights` LIMIT 10
+```
+
+**Within BigQuery, you can export query results to CSV or JSON**.
+
 ## Other tips
 
 ### Storage
