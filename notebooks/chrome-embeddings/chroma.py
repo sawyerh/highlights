@@ -51,14 +51,11 @@ def import_highlights():
 
 
 def search_highlights(query: str):
-    r = collection.count()
-    print(r)
+    if collection.count() == 0:
+        raise Exception("Chroma collection is empty. Run import_highlights() first.")
 
     print(f"Searching for '{query}' in Chroma collection")
     results = collection.query(query_texts=[query], n_results=10)
-
-    print(results)
-
     ids = results.get("ids")
     documents = results.get("documents", [])
 
