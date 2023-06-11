@@ -141,7 +141,14 @@ The export is in a LevelDB format, which is unfortunately not human-readable and
 Once imported, you can write queries like:
 
 ```sql
-SELECT body FROM `APP_NAME_GOES_HERE.Exports.Highlights` LIMIT 10
+SELECT body,
+  visible,
+  __key__.path,
+  __key__.name
+  volume.path AS `volume_path`,
+  volume.name as `volume_name`,
+  FROM `sawyer-highlights.Exports.Highlights`
+  LIMIT 10
 ```
 
 **Within BigQuery, you can export query results to CSV or JSON**.
