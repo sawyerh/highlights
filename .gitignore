@@ -3,6 +3,7 @@ node_modules
 tmp
 .next
 **/*.tsbuildinfo
+__pycache__
 
 # Logs
 logs
