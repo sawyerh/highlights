@@ -127,6 +127,13 @@ Backups are not automated, however the entire database or a specific collection 
 
 [View all backups in Google Cloud Console](https://console.cloud.google.com/firestore/databases/-default-/import-export).
 
+### Downloading a backup
+
+```sh
+$ gcloud auth login
+$ gsutil -m cp -r "gs://BUCKET_NAME_HERE/EXPORT_DIRECTORY_HERE" .
+```
+
 ## Other tips
 
 ### Storage
