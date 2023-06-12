@@ -17,11 +17,12 @@ client = chromadb.Client(
     )
 )
 client.heartbeat()
-client.persist()
-collection = client.create_collection(name="highlights", get_or_create=True)
+collection = client.create_collection(
+    name="highlights", get_or_create=True, metadata={"hnsw:space": "cosine"}
+)
 
 
-def import_highlights():
+def import_highlights(limit: int):
     with open(highlights_export_path) as f:
         highlights = json.load(f)
 
@@ -29,6 +30,10 @@ def import_highlights():
     print(
         f"{collection.count()} highlights are in Chroma collection prior to this import."
     )
+
+    if limit is not None:
+        print(f"Limiting import to {limit} highlights")
+        highlights = highlights[:limit]
 
     documents = []
     ids = []
@@ -47,6 +52,7 @@ def import_highlights():
         print("Chroma collection already contains all highlights from Firestore")
     else:
         collection.add(documents=documents, ids=ids)
+        client.persist()
         print(f"Added {len(documents)} new highlights to Chroma collection")
 
 
@@ -56,9 +62,18 @@ def search_highlights(query: str):
 
     print(f"Searching for '{query}' in Chroma collection")
     results = collection.query(query_texts=[query], n_results=10)
-    ids = results.get("ids")
+    ids = results.get("ids", [])
     documents = results.get("documents", [])
+    distances = results.get("distances", [])
 
     for index, document in enumerate(documents[0]):
         link = f"https://highlights.sawyerh.com/highlights/{ids[0][index]}"
-        display(Markdown(document), link)
+        distance = round(distances[0][index], 2)
+        output = f"""
+> {document}
+
+— {link}
+
+**Distance**: {distance}
+"""
+        display(Markdown(output))
