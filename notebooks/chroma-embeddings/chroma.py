@@ -87,13 +87,12 @@ def search_highlights(query: str):
     if collection.count() == 0:
         raise Exception("Chroma collection is empty. Run import_highlights() first.")
 
-    print(f"Searching for '{query}' in Chroma collection")
     results = collection.query(query_texts=[query], n_results=10)
     ids = results.get("ids", [])
     documents = results.get("documents", [])
     distances = results.get("distances", [])
 
-    display(Markdown("### Results:"))
+    display(Markdown(f"### Results for '{query}':"))
 
     for index, document in enumerate(documents[0]):
         link = f"https://highlights.sawyerh.com/highlights/{ids[0][index]}"
