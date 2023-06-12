@@ -16,7 +16,6 @@ client = chromadb.Client(
         persist_directory=os.path.join(current_dir, ".chroma"),
     )
 )
-client.heartbeat()
 collection = client.create_collection(
     name="highlights", get_or_create=True, metadata={"hnsw:space": "cosine"}
 )
@@ -66,6 +65,8 @@ def search_highlights(query: str):
     documents = results.get("documents", [])
     distances = results.get("distances", [])
 
+    display(Markdown("### Results:"))
+
     for index, document in enumerate(documents[0]):
         link = f"https://highlights.sawyerh.com/highlights/{ids[0][index]}"
         distance = round(distances[0][index], 2)
@@ -74,6 +75,6 @@ def search_highlights(query: str):
 
 — {link}
 
-**Distance**: {distance}
+_Distance_: {distance}
 """
         display(Markdown(output))
