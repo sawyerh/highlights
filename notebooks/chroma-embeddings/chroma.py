@@ -21,10 +21,15 @@ collection = client.create_collection(
 )
 
 
-def import_highlights(limit: int):
+def read_highlights_export():
     with open(highlights_export_path) as f:
         highlights = json.load(f)
 
+    return highlights
+
+
+def import_highlights(limit: int):
+    highlights = read_highlights_export()
     print(f"Found {len(highlights)} highlights in {highlights_export_path}")
     print(
         f"{collection.count()} highlights are in Chroma collection prior to this import."
