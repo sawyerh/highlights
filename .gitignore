@@ -4,6 +4,7 @@ tmp
 .next
 **/*.tsbuildinfo
 __pycache__
+.env
 
 # Logs
 logs
