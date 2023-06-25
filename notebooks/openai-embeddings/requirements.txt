@@ -1,0 +1,4 @@
+openai
+openai[embeddings]
+tiktoken
+python-dotenv
