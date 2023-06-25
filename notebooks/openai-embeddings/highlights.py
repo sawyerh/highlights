@@ -18,6 +18,9 @@ from sklearn.manifold import TSNE
 load_dotenv()
 EMBEDDINGS_MODEL = "text-embedding-ada-002"
 GPT_MODEL = "gpt-3.5-turbo"
+OPENAI_KEY = os.getenv("OPENAI_API_KEY")
+
+openai.api_key = OPENAI_KEY
 
 
 def estimate_tokens():
