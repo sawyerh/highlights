@@ -116,24 +116,26 @@ def search_highlights(query: str):
 <hr />
 """
 
-    display(Markdown(f"**Key takeaways:**"))
-    summarize_highlights(md_output)
+    summarize_highlights(query, md_output)
 
     display(Markdown(f"**Top 10 results for '{query}':**"))
     display(Markdown(md_output))
 
 
-def summarize_highlights(raw_highlights_output: str):
+def summarize_highlights(query: str, raw_highlights_output: str):
     response = openai.ChatCompletion.create(
         messages=[
             {
                 "role": "system",
-                "content": "You are a helpful assistant that summarizes reading highlights. Given a group highlights by the user, create a list of up to 10 key takeaways. Respond using Markdown syntax. Format each takeaway as a bullet point. At the end of each takeaway, include a link to the original highlight using the following format: [🔗](link url).",
+                "content": "You are a helpful assistant that summarizes the user's reading highlights from book they've read. Given a user's query and raw output related to the user's query, write a 1-3 sentence introductory response, followed by a list of up to 10 key takeaways. Respond using Markdown syntax. Format the intro as bold text, and format each takeaway as a bullet point. At the end of each takeaway, include link(s) to the original highlight(s) using the following format: [🔗](link url).",
             },
-            {"role": "user", "content": raw_highlights_output},
+            {
+                "role": "user",
+                "content": f"Query: {query}. Raw output:\n{raw_highlights_output}",
+            },
         ],
         model=GPT_MODEL,
-        temperature=0,
+        temperature=0.1,
     )
 
     completion = response["choices"][0]["message"]["content"]
