@@ -1,0 +1,11 @@
+{
+	"version": "2.0",
+	"app_name": "highlights-search",
+	"automatic_layer": true,
+	"stages": {
+		"dev": {
+			"api_gateway_stage": "api",
+			"autogen_policy": false
+		}
+	}
+}
