@@ -5,6 +5,7 @@ tmp
 **/*.tsbuildinfo
 __pycache__
 .env
+.envrc
 
 # Logs
 logs
@@ -16,3 +17,7 @@ firebase-debug.*.log*
 # Builds
 dist/
 build/
+
+# Python
+venv*
+.venv

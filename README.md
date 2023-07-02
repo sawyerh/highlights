@@ -19,13 +19,21 @@ This repo contains all of the code for my personal reading highlight system. You
 
 ## Installation
 
-Each individual directory has its own README with setup instructions.
+### Pre-requisites
+
+- Node.js 18+
+- Python 3.10+
+- [poetry](https://python-poetry.org/docs/#installation)
+
+### Setup top-level dependencies
 
 To setup developer tooling, like linting and formatting:
 
 ```
-npm install
+make init
 ```
+
+Then, each individual directory has its own README with setup instructions.
 
 ## System context
 
