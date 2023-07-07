@@ -8,7 +8,6 @@ from aws_lambda_powertools.metrics import MetricUnit
 from boto3 import client
 
 OPENAI_KEY = os.environ.get("OPENAI_API_KEY")
-EMBEDDINGS_MODEL = "text-embedding-ada-002"
 openai.api_key = OPENAI_KEY
 
 logger = Logger()
@@ -26,7 +25,7 @@ def get_embedding(text: str):
 
     # replace newlines, which can negatively affect performance.
     text = text.replace("\n", " ")
-    response = openai.Embedding.create(input=[text], engine=EMBEDDINGS_MODEL)
+    response = openai.Embedding.create(input=[text], engine="text-embedding-ada-002")
     total_tokens = response["usage"]["total_tokens"]
     metrics.add_metric(
         name="QueryTotalTokens", unit=MetricUnit.Count, value=total_tokens
