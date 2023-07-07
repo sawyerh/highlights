@@ -42,6 +42,13 @@ def cosine_similarity(a, b):
 def get_embeddings_from_s3(Bucket: str, Key: str):
     obj = client("s3").get_object(Bucket=Bucket, Key=Key)
     contents = obj["Body"].read().decode("utf-8")
+    df = json_to_df(contents)
+
+    return df
+
+
+@tracer.capture_method(capture_response=False)
+def json_to_df(contents: str):
     df = pd.read_json(contents)
 
     # Remove any highlights that don't have a body
