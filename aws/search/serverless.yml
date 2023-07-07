@@ -16,6 +16,9 @@ provider:
           Action:
             - s3:GetObject
           Resource: arn:aws:s3:::sawyer-sandbox/*
+  # Enable AWS X-Ray tracing:
+  tracing:
+    lambda: true
 
 package:
   patterns:
@@ -36,6 +39,8 @@ functions:
       - arn:aws:lambda:${aws:region}:017000801446:layer:AWSLambdaPowertoolsPythonV2-Arm64:37
     environment:
       OPENAI_API_KEY: ${ssm:/aws/reference/secretsmanager/Highlights/OpenAI-API-Key}
+      POWERTOOLS_SERVICE_NAME: ${self:service}-${sls:stage}
+      POWERTOOLS_METRICS_NAMESPACE: ${self:service}
 
 plugins:
   - serverless-python-requirements
