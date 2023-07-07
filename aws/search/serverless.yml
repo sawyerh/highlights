@@ -24,13 +24,18 @@ package:
 
 functions:
   search:
-    handler: handler.search
+    handler: handler.lambda_handler
     name: highlights-search-${sls:stage}
     url: true
     timeout: 60
     layers:
+      - !Ref PythonRequirementsLambdaLayer
       # https://aws-sdk-pandas.readthedocs.io/en/stable/layers.html
-      - arn:aws:lambda:us-east-1:336392948345:layer:AWSSDKPandas-Python310-Arm64:3
+      - arn:aws:lambda:${aws:region}:336392948345:layer:AWSSDKPandas-Python310-Arm64:3
+      # https://docs.powertools.aws.dev/lambda/python/latest/
+      - arn:aws:lambda:${aws:region}:017000801446:layer:AWSLambdaPowertoolsPythonV2-Arm64:37
+    environment:
+      OPENAI_API_KEY: ${ssm:/aws/reference/secretsmanager/Highlights/OpenAI-API-Key}
 
 plugins:
   - serverless-python-requirements

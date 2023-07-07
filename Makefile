@@ -2,7 +2,8 @@
 
 init:
 	npm install
-	poetry install
+	poetry lock --no-update
+	poetry install --sync
 
 py-format: # Format the code
 	poetry run black .

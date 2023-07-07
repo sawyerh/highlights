@@ -1,5 +1,6 @@
 init:
-	poetry install
+	poetry lock --no-update
+	poetry install --sync
 
 deploy:
 	npx serverless deploy
