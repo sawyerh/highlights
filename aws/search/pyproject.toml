@@ -3,12 +3,6 @@ name = "highlights-search"
 version = "0.1.0"
 description = "Semantic search for my reading highlights"
 
-[project.dependencies]
-boto3 = "1.26.90"
-
-[project.dev-dependencies]
-chalice = "^1.29.0"
-
 [tool.poetry]
 name = "highlights-search"
 version = "0.1.0"
@@ -18,11 +12,11 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.10"
-boto3 = "1.26.90"
 pandas = "^2.0.3"
+numpy = "^1.25.0"
 
 [tool.poetry.group.dev.dependencies]
-chalice = "^1.29.0"
+boto3 = "1.26.90"
 
 [build-system]
 requires = ["poetry-core"]

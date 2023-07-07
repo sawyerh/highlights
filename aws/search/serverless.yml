@@ -1,0 +1,40 @@
+service: highlights-search
+
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: python3.10
+  # Fixes numpy not working when deployed to Lambda,
+  # probably due to the fact I'm using an M1 to deploy?
+  architecture: arm64
+  iam:
+    role:
+      # Allow the Lambda to read from the S3 bucket
+      statements:
+        - Effect: Allow
+          Action:
+            - s3:GetObject
+          Resource: arn:aws:s3:::sawyer-sandbox/*
+
+package:
+  patterns:
+    - "!.venv/**"
+    - "!__pycache__/**"
+
+functions:
+  search:
+    handler: handler.search
+    name: highlights-search-${sls:stage}
+    url: true
+    timeout: 60
+    layers:
+      - !Ref PythonRequirementsLambdaLayer
+
+plugins:
+  - serverless-python-requirements
+
+custom:
+  pythonRequirements:
+    layer: true
+    slim: true
