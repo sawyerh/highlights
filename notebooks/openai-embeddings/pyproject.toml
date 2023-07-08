@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "openai-embeddings"
+version = "0.1.0"
+description = ""
+authors = ["Sawyer <git@sawyerh.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+openai = {version = "^0.27.8", extras = ["embeddings"]}
+pandas = "^2.0.3"
+python = "^3.10"
+python-dotenv = "^1.0.0"
+numpy = "^1.25.0"
+tiktoken = "^0.4.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
