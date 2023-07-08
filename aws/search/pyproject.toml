@@ -15,10 +15,11 @@ python = "^3.10"
 openai = "^0.27.8"
 
 [tool.poetry.group.dev.dependencies]
-boto3 = "1.26.90"
-pandas = "^2.0.3"
-numpy = "^1.25.0"
 aws-lambda-powertools = {extras = ["aws-sdk"], version = "^2.19.0"}
+boto3 = "1.26.90"
+numpy = "^1.25.0"
+pandas = "^2.0.3"
+openai = { version = "^0.27.8", extras = ["embeddings"] }
 
 [build-system]
 requires = ["poetry-core"]
