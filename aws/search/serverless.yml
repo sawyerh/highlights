@@ -5,8 +5,8 @@ frameworkVersion: "3"
 provider:
   name: aws
   runtime: python3.10
-  # Fixes numpy not working when deployed to Lambda,
-  # probably due to the fact I'm using an M1 to deploy?
+  # "...significantly better price and performance"
+  # https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html#foundation-arch-adv
   architecture: arm64
   iam:
     role:
