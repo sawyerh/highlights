@@ -29,7 +29,7 @@ def export_embeddings_for_highlights(limit: Optional[int] = None):
         embeddings += get_embeddings(text_bodies[i : i + 2000], EMBEDDINGS_MODEL)
 
     data_frame["embedding"] = embeddings
-    data_frame.to_json("tmp/embeddings.json", orient="records")
+    data_frame.to_parquet("tmp/embeddings.parquet")
 
     print(f"Exported {len(embeddings)} highlights")
 

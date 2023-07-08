@@ -1,11 +1,11 @@
 import os
 
+import awswrangler as wr
 import numpy as np
 import openai
 import pandas as pd
 from aws_lambda_powertools import Logger, Metrics, Tracer
 from aws_lambda_powertools.metrics import MetricUnit
-from boto3 import client
 
 OPENAI_KEY = os.environ.get("OPENAI_API_KEY")
 openai.api_key = OPENAI_KEY
@@ -39,23 +39,12 @@ def cosine_similarity(a, b):
     return np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b))
 
 
-def get_embeddings_from_s3(Bucket: str, Key: str):
-    obj = client("s3").get_object(Bucket=Bucket, Key=Key)
-    contents = obj["Body"].read().decode("utf-8")
-    df = json_to_df(contents)
-
-    return df
-
-
 @tracer.capture_method(capture_response=False)
-def json_to_df(contents: str):
-    df = pd.read_json(contents)
+def get_embeddings_from_s3(Bucket: str, Key: str):
+    s3_path = f"s3://{Bucket}/{Key}"
+    data_frame = wr.s3.read_parquet(path=[s3_path])
 
-    # Remove any highlights that don't have a body
-    df["body"] = df["body"].str.strip()
-    df = df[df["body"] != ""]
-
-    return df
+    return data_frame
 
 
 @tracer.capture_method(capture_response=False)
@@ -63,17 +52,12 @@ def sort_embeddings_by_similarity(query_embedding, embeddings: pd.DataFrame):
     embeddings["similarity"] = embeddings.embedding.apply(
         lambda x: cosine_similarity(x, query_embedding)
     )
-    return embeddings.sort_values("similarity", ascending=False).head(10)
+    return embeddings.sort_values(by="similarity", ascending=False)
 
 
 def search_highlights(query: str, embeddings: pd.DataFrame):
     query_embedding = get_embedding(query)
     raw_results = sort_embeddings_by_similarity(query_embedding, embeddings)
-    results = []
+    results = raw_results.head(10).drop(columns=["embedding", "similarity"])
 
-    for _, row in raw_results.iterrows():
-        link = f"https://highlights.sawyerh.com/highlights/{row['name']}"
-        highlight = row.body
-        results.append({"link": link, "highlight": highlight, "key": row["name"]})
-
-    return results
+    return results.to_dict(orient="records")

@@ -25,7 +25,9 @@ def get_search():
     if not query:
         raise BadRequestError("Missing query parameter")
 
-    embeddings = get_embeddings_from_s3(Bucket="sawyer-sandbox", Key="embeddings.json")
+    embeddings = get_embeddings_from_s3(
+        Bucket="sawyer-sandbox", Key="embeddings.parquet"
+    )
     results = search_highlights(query, embeddings)
 
     return {"message": "Search executed successfully", "results": results}

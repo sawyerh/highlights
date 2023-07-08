@@ -8,6 +8,7 @@
    1. Place the Firestore export in the `tmp` directory
    1. Run `export OPENAI_API_KEY=[your key here]`
    1. Run `make create-embeddings`
+   1. Upload the outputted `tmp/embeddings.parquet` to S3
 
 ## Resources
 

@@ -24,6 +24,7 @@ package:
   patterns:
     - "!.venv/**"
     - "!__pycache__/**"
+    - "!tmp/**"
 
 functions:
   search:

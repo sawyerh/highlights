@@ -8,11 +8,12 @@ authors = ["Sawyer <git@sawyerh.com>"]
 python = "^3.10"
 
 [tool.poetry.group.dev.dependencies]
-flake8 = "^6.0.0"
-flake8-bugbear = "^23.6.5"
 black = {extras = ["jupyter"], version = "^23.3.0"}
-isort = "^5.12.0"
+flake8 = "^6.0.0"
 flake8-alfred = "^1.1.1"
+flake8-bugbear = "^23.6.5"
+isort = "^5.12.0"
+pandas-vet = "^0.2.3"
 
 [build-system]
 requires = ["poetry-core"]

@@ -15,11 +15,12 @@ python = "^3.10"
 openai = "^0.27.8"
 
 [tool.poetry.group.dev.dependencies]
-aws-lambda-powertools = {extras = ["aws-sdk"], version = "^2.19.0"}
-boto3 = "1.26.90"
-numpy = "^1.25.0"
-pandas = "^2.0.3"
-openai = { version = "^0.27.8", extras = ["embeddings"] }
+aws-lambda-powertools = {extras = ["aws-sdk"], version = "^2.19.0"} # included in Lambda layer
+awswrangler = "^3.2.1" # included in Lambda layer
+boto3 = "1.26.90" # included in Lambda runtime
+numpy = "^1.25.0" # included in Lambda layer
+pandas = "^2.0.3" # included in Lambda layer
+openai = { version = "^0.27.8", extras = ["embeddings"] } # not using embeddings utils in Lambda code
 
 [build-system]
 requires = ["poetry-core"]
