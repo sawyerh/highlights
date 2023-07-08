@@ -1,3 +1,4 @@
+# https://www.serverless.com/framework/docs/providers/aws/guide/serverless.yml/
 service: highlights-search
 
 frameworkVersion: "3"
@@ -8,6 +9,10 @@ provider:
   # "...significantly better price and performance"
   # https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html#foundation-arch-adv
   architecture: arm64
+  # "faster and have no downsides (unless you specifically use the generated change sets).
+  #    They will become the default in Serverless Framework 4."
+  deploymentMethod: direct
+  logRetentionInDays: 60
   iam:
     role:
       # Allow the Lambda to read from the S3 bucket
@@ -19,6 +24,7 @@ provider:
   # Enable AWS X-Ray tracing:
   tracing:
     lambda: true
+  versionFunctions: false
 
 package:
   patterns:
@@ -31,7 +37,7 @@ functions:
     handler: handler.lambda_handler
     name: highlights-search-${sls:stage}
     url: true
-    timeout: 60
+    timeout: 30
     layers:
       - !Ref PythonRequirementsLambdaLayer
       # https://aws-sdk-pandas.readthedocs.io/en/stable/layers.html

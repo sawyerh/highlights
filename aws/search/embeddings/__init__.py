@@ -55,8 +55,11 @@ def sort_embeddings_by_similarity(query_embedding, embeddings: pd.DataFrame):
     return embeddings.sort_values(by="similarity", ascending=False)
 
 
-def search_highlights(query: str, embeddings: pd.DataFrame):
+def search_highlights(query: str):
     query_embedding = get_embedding(query)
+    embeddings = embeddings = get_embeddings_from_s3(
+        Bucket="sawyer-sandbox", Key="embeddings.parquet"
+    )
     raw_results = sort_embeddings_by_similarity(query_embedding, embeddings)
     results = raw_results.head(10).drop(columns=["embedding", "similarity"])
 
