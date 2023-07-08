@@ -1,4 +1,6 @@
-# Serverless semantic search
+# Serverless AI
+
+This directory contains the code supporting features like Semantic Search and Summarization.
 
 ## Initial environment setup
 
@@ -18,24 +20,4 @@
 
 ## Usage
 
-### Deployment
-
-```
-make deploy
-```
-
-### Invocation
-
-After successful deployment, you can invoke the deployed function by using the following command:
-
-```bash
-npx serverless invoke --function hello
-```
-
-### Local development
-
-You can invoke your function locally by using the following command:
-
-```bash
-npx serverless invoke local --function hello
-```
+Reference the `Makefile` for the full list of commands. More commands are available via the Serverless CLI.

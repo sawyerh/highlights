@@ -1,14 +1,8 @@
-[project]
-name = "highlights-search"
-version = "0.1.0"
-description = "Semantic search for my reading highlights"
-
 [tool.poetry]
-name = "highlights-search"
-version = "0.1.0"
-description = "Semantic search for my highlights"
+name = "highlights-ai"
+version = "1.0.0"
+description = "AI features for my reading highlights"
 authors = ["Sawyer <git@sawyerh.com>"]
-readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.10"

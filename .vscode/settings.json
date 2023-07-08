@@ -1,8 +1,6 @@
 {
 	"typescript.tsdk": "node_modules/typescript/lib",
-	"python.analysis.extraPaths": [
-		"aws/search/.venv/lib/python3.10/site-packages"
-	],
+	"python.analysis.extraPaths": ["aws/ai/.venv/lib/python3.10/site-packages"],
 	"python.linting.mypyEnabled": false,
 	"python.linting.enabled": true,
 	"python.linting.flake8Enabled": true,

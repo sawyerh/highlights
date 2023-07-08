@@ -2,7 +2,7 @@ from aws_lambda_powertools import Logger, Metrics, Tracer
 from aws_lambda_powertools.event_handler import LambdaFunctionUrlResolver
 from aws_lambda_powertools.event_handler.exceptions import BadRequestError
 from aws_lambda_powertools.utilities.typing import LambdaContext
-from embeddings import search_highlights
+from services.search import search_highlights
 
 app = LambdaFunctionUrlResolver(
     debug=False,

@@ -1,5 +1,5 @@
 # https://www.serverless.com/framework/docs/providers/aws/guide/serverless.yml/
-service: highlights-search
+service: highlights-ai
 
 frameworkVersion: "3"
 
@@ -33,9 +33,9 @@ package:
     - "!tmp/**"
 
 functions:
-  search:
+  ai:
     handler: handler.lambda_handler
-    name: highlights-search-${sls:stage}
+    name: highlights-ai-${sls:stage}
     url: true
     timeout: 30
     layers:
@@ -45,6 +45,7 @@ functions:
       # https://docs.powertools.aws.dev/lambda/python/latest/
       - arn:aws:lambda:${aws:region}:017000801446:layer:AWSLambdaPowertoolsPythonV2-Arm64:37
     environment:
+      EMBEDDINGS_BUCKET: sawyer-sandbox
       OPENAI_API_KEY: ${ssm:/aws/reference/secretsmanager/Highlights/OpenAI-API-Key}
       POWERTOOLS_SERVICE_NAME: ${self:service}-${sls:stage}
       POWERTOOLS_METRICS_NAMESPACE: ${self:service}
