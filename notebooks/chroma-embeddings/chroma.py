@@ -52,7 +52,8 @@ def read_highlights_export(limit: Optional[int] = None):
 def import_highlights(limit: Optional[int] = None):
     highlights = read_highlights_export(limit)
     print(
-        f"{collection.count()} highlights are in Chroma collection prior to this import."
+        f"{collection.count()} highlights are in \
+            Chroma collection prior to this import."
     )
 
     # Break highlights into batches of 500 at most to address OpenAI limits?

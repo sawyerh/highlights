@@ -6,6 +6,8 @@
 	"python.linting.mypyEnabled": false,
 	"python.linting.enabled": true,
 	"python.linting.flake8Enabled": true,
+	"python.linting.flake8Path": ".venv/bin/flake8",
+	"python.linting.flake8Args": ["--config", "setup.cfg"],
 	"python.formatting.provider": "black",
 	"[python]": {
 		"editor.defaultFormatter": "ms-python.black-formatter",

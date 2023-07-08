@@ -19,7 +19,8 @@ tracer = Tracer()
 def get_embedding(text: str):
     """
     Create a new embedding using the OpenAI API.
-    This function mostly copied from https://github.com/openai/openai-python/blob/main/openai/embeddings_utils.py
+    This function mostly copied from
+    https://github.com/openai/openai-python/blob/main/openai/embeddings_utils.py
     """
     logger.info("Creating embedding", extra={"text": text})
 

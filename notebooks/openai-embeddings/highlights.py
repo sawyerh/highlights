@@ -77,7 +77,8 @@ def export_embeddings_for_highlights(limit: Optional[int] = None):
 
 def chart_embeddings():
     """
-    Largely based on https://github.com/openai/openai-cookbook/blob/main/examples/Visualizing_embeddings_in_2D.ipynb
+    Largely based on
+    https://github.com/openai/openai-cookbook/blob/main/examples/Visualizing_embeddings_in_2D.ipynb
     """
     df = read_embeddings_export()
 
@@ -107,7 +108,7 @@ def search_highlights(query: str):
     results = df.sort_values("similarity", ascending=False).head(10)
     md_output = ""
 
-    for index, row in results.iterrows():
+    for _index, row in results.iterrows():
         link = f"https://highlights.sawyerh.com/highlights/{row['name']}"
         md_output += f"""
 > {row.body}
@@ -127,7 +128,7 @@ def summarize_highlights(query: str, raw_highlights_output: str):
         messages=[
             {
                 "role": "system",
-                "content": "You are a helpful assistant that summarizes the user's reading highlights from book they've read. Given a user's query and raw output related to the user's query, write a 1-3 sentence introductory response, followed by a list of up to 10 key takeaways. Respond using Markdown syntax. Format the intro as bold text, and format each takeaway as a bullet point. At the end of each takeaway, include link(s) to the original highlight(s) using the following format: [🔗](link url).",
+                "content": "You are a helpful assistant that summarizes the user's reading highlights from book they've read. Given a user's query and raw output related to the user's query, write a 1-3 sentence introductory response, followed by a list of up to 10 key takeaways. Respond using Markdown syntax. Format the intro as bold text, and format each takeaway as a bullet point. At the end of each takeaway, include link(s) to the original highlight(s) using the following format: [🔗](link url).",  # noqa: E501
             },
             {
                 "role": "user",

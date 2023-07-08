@@ -1,7 +1,13 @@
 .DEFAULT_GOAL := init
 
 init:
+	make py-init
+	make js-init
+
+js-init:
 	npm install
+
+py-init:
 	poetry lock --no-update
 	poetry install --sync
 

@@ -2,8 +2,7 @@
 name = "highlights"
 version = "1.0.0"
 description = "Development dependencies for Python projects"
-authors = ["Your Name <you@example.com>"]
-readme = "README.md"
+authors = ["Sawyer <git@sawyerh.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.10"
