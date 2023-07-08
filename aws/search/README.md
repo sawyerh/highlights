@@ -2,7 +2,9 @@
 
 ## Initial environment setup
 
-- Add a **plaintext** secret to AWS Secrets Manager with the name `Highlights/OpenAI-API-Key`. Set the OpenAI API key as the plaintext value.
+1. Add a **plaintext** secret to AWS Secrets Manager with the name `Highlights/OpenAI-API-Key`. Set the OpenAI API key as the plaintext value.
+1. Create the initial set of embeddings.
+   1. [Export the Firestore data](../../firebase/exporter/instructions.md)
 
 ## Resources
 
