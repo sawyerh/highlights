@@ -11,6 +11,13 @@ logger = Logger()
 metrics = Metrics()
 
 
+def track_total_tokens(response):
+    total_tokens = response["usage"]["total_tokens"]
+    metrics.add_metric(
+        name="QueryTotalTokens", unit=MetricUnit.Count, value=total_tokens
+    )
+
+
 def get_embedding(text: str):
     """
     Create a new embedding using the OpenAI API.
@@ -22,9 +29,31 @@ def get_embedding(text: str):
     # replace newlines, which can negatively affect performance.
     text = text.replace("\n", " ")
     response = openai.Embedding.create(input=[text], engine="text-embedding-ada-002")
-    total_tokens = response["usage"]["total_tokens"]
-    metrics.add_metric(
-        name="QueryTotalTokens", unit=MetricUnit.Count, value=total_tokens
-    )
+    track_total_tokens(response)
 
     return response["data"][0]["embedding"]
+
+
+def get_chat_completion(system_message: str, user_message: str):
+    logger.debug(
+        "Chat completion prompts",
+        extra={"system_message": system_message, "user_message": user_message},
+    )
+
+    response = openai.ChatCompletion.create(
+        messages=[
+            {
+                "role": "system",
+                "content": system_message,
+            },
+            {
+                "role": "user",
+                "content": user_message,
+            },
+        ],
+        model="gpt-3.5-turbo-16k",
+        temperature=0.1,
+    )
+    track_total_tokens(response)
+
+    return response["choices"][0]["message"]["content"]
