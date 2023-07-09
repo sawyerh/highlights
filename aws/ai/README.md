@@ -17,6 +17,7 @@ This directory contains the code supporting features like Semantic Search and Su
 - Lambda management is via [Serverless Framework](https://www.serverless.com/framework/docs)
 - [Powertools for AWS Lambda](https://docs.powertools.aws.dev/lambda/python/latest/) provides a toolkit to implement Serverless best practices and increase developer velocity
 - [AWS SDK for pandas](https://aws-sdk-pandas.readthedocs.io/en/stable/index.html) provides a toolkit to read and write Pandas DataFrames to and from AWS data stores like S3.
+- Test mocking and spying is via [`pytest-mock`](https://pytest-mock.readthedocs.io/en/latest/usage.html)
 
 ## Usage
 

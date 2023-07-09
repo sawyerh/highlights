@@ -16,4 +16,4 @@ test:
 	poetry run pytest -vv --capture=no
 
 test-watch:
-	poetry run pytest-watch
+	poetry run pytest-watch -v
