@@ -20,10 +20,10 @@ def sort_embeddings_by_similarity(query_embedding, embeddings: pd.DataFrame):
     return embeddings.sort_values(by="similarity", ascending=False)
 
 
-def search_highlights(query: str):
+def search_highlights(query: str, limit: int = 20):
     query_embedding = get_embedding(query)
     embeddings = get_embeddings_from_s3()
     raw_results = sort_embeddings_by_similarity(query_embedding, embeddings)
-    results = raw_results.head(10).drop(columns=["embedding", "similarity"])
+    results = raw_results.head(limit).drop(columns=["embedding"])
 
     return results.to_dict(orient="records")
