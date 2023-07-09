@@ -11,3 +11,9 @@ create-embeddings: # Bulk-create the embeddings for a Firestore export
 
 logs:
 	npx serverless logs --function ai --tail --stage production
+
+test:
+	poetry run pytest -vv --capture=no
+
+test-watch:
+	poetry run pytest-watch
