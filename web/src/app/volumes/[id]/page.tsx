@@ -5,8 +5,10 @@ import VolumeHeader from "components/VolumeHeader";
 import seoTitleForVolume from "helpers/seoTitleForVolume";
 
 async function loader(params: PageParams) {
-	const volume = await getVolume(params.id);
-	const { highlights } = await getHighlights(params.id);
+	const [volume, highlights] = await Promise.all([
+		getVolume(params.id),
+		getHighlights(params.id),
+	]);
 
 	return {
 		volume,

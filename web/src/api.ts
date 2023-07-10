@@ -36,7 +36,7 @@ export async function getVolume(volumeId: string) {
 export async function getHighlights(volumeId: string) {
 	const { data } = await request(`highlights?volume=${volumeId}`);
 
-	return { highlights: data as Highlight[] };
+	return data as Highlight[];
 }
 
 export async function getHighlight(highlightId: string) {
