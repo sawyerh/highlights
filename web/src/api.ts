@@ -9,11 +9,6 @@ const API_URL = process.env.API_URL;
 async function request(apiRoute: string, options?: RequestInit) {
 	const response = await fetch(`${API_URL}/${apiRoute}`, options);
 	const json = await response.json();
-
-	if (process.env.NODE_ENV === "development") {
-		console.log(`[API] ${apiRoute}`, json);
-	}
-
 	return json;
 }
 

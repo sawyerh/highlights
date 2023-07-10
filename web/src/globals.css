@@ -11,11 +11,6 @@ body {
 	outline: none;
 }
 
-.cover-link:focus .cover-link__text {
-	background: #000;
-	color: #fff;
-}
-
 .cover-link__cover {
 	transition: all 200ms ease;
 }
@@ -24,16 +19,12 @@ body {
 	@apply -translate-y-4 rotate-2 scale-105 shadow-xl shadow-black/20;
 }
 
-.cover-link:active .cover-link__cover {
-	@apply rotate-6;
-}
-
 /*
   Skewed highlight
   Credit: https://pepelsbey.dev/articles/skewed-highlight/
 */
 mark,
-.cover-link:is(:hover, :active) .cover-link__text {
+.cover-link:is(:hover) .cover-link__text {
 	--mark-color: rgba(255, 226, 130, 0.5);
 	--mark-height: 1.4em;
 	--mark-skew: 0.25em;
@@ -57,4 +48,9 @@ mark,
 	background-repeat: no-repeat;
 	box-decoration-break: clone;
 	color: theme("colors.black");
+}
+
+.cover-link:is(:active, :focus) .cover-link__text {
+	background: #000;
+	color: #fff;
 }
