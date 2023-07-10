@@ -7,7 +7,7 @@ This repo contains all of the code for my personal reading highlight system. You
 ## Directory Structure
 
 ```
-├── aws       # Email importer
+├── aws       # Email importer and AI/LLM features
 ├── firebase  # Database and backend
 ├── packages  # Reading export converters
 │   ├── highlights-email-to-json
