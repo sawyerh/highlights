@@ -20,7 +20,7 @@ provider:
         - Effect: Allow
           Action:
             - s3:GetObject
-          Resource: arn:aws:s3:::sawyer-sandbox/*
+          Resource: arn:aws:s3:::highlights.sawyerh.com/*
   # Enable AWS X-Ray tracing:
   tracing:
     lambda: true
@@ -30,6 +30,7 @@ package:
   patterns:
     - "!.venv/**"
     - "!__pycache__/**"
+    - "!tests/**"
     - "!tmp/**"
 
 functions:
@@ -45,7 +46,8 @@ functions:
       # https://docs.powertools.aws.dev/lambda/python/latest/
       - arn:aws:lambda:${aws:region}:017000801446:layer:AWSLambdaPowertoolsPythonV2-Arm64:37
     environment:
-      EMBEDDINGS_BUCKET: sawyer-sandbox
+      EMBEDDINGS_S3_BUCKET: highlights.sawyerh.com
+      EMBEDDINGS_S3_KEY: ai/embeddings.parquet
       OPENAI_API_KEY: ${ssm:/aws/reference/secretsmanager/Highlights/OpenAI-API-Key}
       POWERTOOLS_SERVICE_NAME: ${self:service}-${sls:stage}
       POWERTOOLS_METRICS_NAMESPACE: ${self:service}
