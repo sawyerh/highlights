@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import classNames from "classnames";
 import React from "react";
 
@@ -7,7 +9,7 @@ export const NavLink = (props: {
 	className?: string;
 }) => {
 	return (
-		<a
+		<Link
 			href={props.href}
 			className={classNames(
 				"inline-block py-2 px-2 text-blue-500 underline hover:text-blue-900",
@@ -15,7 +17,7 @@ export const NavLink = (props: {
 			)}
 		>
 			{props.children}
-		</a>
+		</Link>
 	);
 };
 
