@@ -10,13 +10,8 @@ interface Props {
 export default function CoverLink(props: Props) {
 	const { priority, volume } = props;
 
-	/* prefetch="false" prevents loading right away, but still preloads when hovered */
 	return (
-		<Link
-			href={`/volumes/${volume.id}`}
-			className="cover-link"
-			prefetch={false}
-		>
+		<Link href={`/volumes/${volume.id}`} className="cover-link">
 			<Cover
 				className="mb-2 cover-link__cover"
 				authors={volume.authors}
