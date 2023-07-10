@@ -19,7 +19,9 @@ async function request(apiRoute: string, options?: RequestInit) {
 
 export async function getVolumes() {
 	const { data } = await request("volumes", {
-		cache: "no-store",
+		next: {
+			revalidate: 60 * 10, // 10 minutes
+		},
 	});
 
 	return { volumes: data as Volume[] };
