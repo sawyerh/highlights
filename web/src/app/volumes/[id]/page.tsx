@@ -3,21 +3,10 @@ import Highlight from "components/Highlight";
 import Nav from "components/Nav";
 import VolumeHeader from "components/VolumeHeader";
 import seoTitleForVolume from "helpers/seoTitleForVolume";
-
-async function loader(params: PageParams) {
-	const [volume, highlights] = await Promise.all([
-		getVolume(params.id),
-		getHighlights(params.id),
-	]);
-
-	return {
-		volume,
-		highlights,
-	};
-}
+import { Suspense } from "react";
 
 export async function generateMetadata({ params }: { params: PageParams }) {
-	const { volume } = await loader(params);
+	const volume = await getVolume(params.id);
 
 	return {
 		title: seoTitleForVolume(volume),
@@ -25,79 +14,41 @@ export async function generateMetadata({ params }: { params: PageParams }) {
 	};
 }
 
-function AIMode({
-	highlights,
-	volume,
-}: {
-	highlights: Highlight[];
-	volume: Volume;
-}) {
-	const combinedHighlights = highlights
-		.map((highlight) => `[Location: ${highlight.location}] ${highlight.body}`)
-		.join("\n---\n");
-
-	const text = `###
-Volume:
-${volume.title} ${
-		volume.subtitle ? `- ${volume.subtitle}` : ""
-	}, by ${volume.authors?.join(", ")}
-
-Highlights:
----
-${combinedHighlights}`;
-
-	return <textarea className="w-full min-h-[95vh] p-4" value={text} />;
-}
-
-/**
- * CSV file format for use in the Cohere playground
- * https://dashboard.cohere.ai/playground/embed
- */
-function CohereCSVMode({ highlights }: { highlights: Highlight[] }) {
-	const text = highlights
-		.map((highlight) => {
-			const escapedQuotesBody = highlight.body.replace(/"/g, '""');
-			return `"${escapedQuotesBody}"`;
-		})
-		.join("\n");
+const HighlightsFeed = async (props: {
+	volumeId: string;
+	format: Volume["format"];
+}) => {
+	const highlights = await getHighlights(props.volumeId);
 
 	return (
-		<textarea className="w-full min-h-[95vh] p-4" value={`examples\n${text}`} />
+		<>
+			{highlights.length === 0 && (
+				<p className="text-center">
+					{props.format === "audiobook"
+						? "I listened to this as an audiobook."
+						: "No notes yet for this."}
+				</p>
+			)}
+			{highlights.map((highlight) => (
+				<Highlight key={highlight.id} highlight={highlight} />
+			))}
+		</>
 	);
-}
+};
 
-const Page = async ({
-	params,
-	searchParams,
-}: {
-	params: PageParams;
-	searchParams: PageParams;
-}) => {
-	const { highlights, volume } = await loader(params);
-
-	if (searchParams.mode === "ai") {
-		return <AIMode highlights={highlights} volume={volume} />;
-	}
-
-	if (searchParams.mode === "cohere-csv") {
-		return <CohereCSVMode highlights={highlights} />;
-	}
+const Page = async ({ params }: { params: PageParams }) => {
+	const volume = await getVolume(params.id);
 
 	return (
 		<>
 			<Nav />
 			<main className="mx-auto max-w-2xl px-4">
 				<VolumeHeader volume={volume} />
-				{highlights.length === 0 && (
-					<p className="text-center">
-						{volume.format === "audiobook"
-							? "I listened to this as an audiobook."
-							: "No notes yet for this."}
-					</p>
-				)}
-				{highlights.map((highlight) => (
-					<Highlight key={highlight.id} highlight={highlight} />
-				))}
+				<Suspense
+					fallback={<p className="text-center">Loading highlights&hellip;</p>}
+				>
+					<HighlightsFeed volumeId={volume.id} format={volume.format} />
+				</Suspense>
 			</main>
 		</>
 	);

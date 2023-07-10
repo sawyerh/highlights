@@ -1,5 +1,6 @@
 {
-	"typescript.tsdk": "node_modules/typescript/lib",
+	"typescript.tsdk": "web/node_modules/typescript/lib",
+	"typescript.enablePromptUseWorkspaceTsdk": true,
 	"python.analysis.extraPaths": ["aws/ai/.venv/lib/python3.10/site-packages"],
 	"python.linting.mypyEnabled": false,
 	"python.linting.enabled": true,
