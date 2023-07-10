@@ -1,0 +1,61 @@
+# https://www.serverless.com/framework/docs/providers/aws/guide/serverless.yml/
+service: highlights-ai
+
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: python3.10
+  # "...significantly better price and performance"
+  # https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html#foundation-arch-adv
+  architecture: arm64
+  # "faster and have no downsides (unless you specifically use the generated change sets).
+  #    They will become the default in Serverless Framework 4."
+  deploymentMethod: direct
+  logRetentionInDays: 60
+  iam:
+    role:
+      # Allow the Lambda to read from the S3 bucket
+      statements:
+        - Effect: Allow
+          Action:
+            - s3:GetObject
+          Resource: arn:aws:s3:::highlights.sawyerh.com/*
+  # Enable AWS X-Ray tracing:
+  tracing:
+    lambda: true
+  versionFunctions: false
+
+package:
+  patterns:
+    - "!.venv/**"
+    - "!__pycache__/**"
+    - "!tests/**"
+    - "!tmp/**"
+
+functions:
+  ai:
+    handler: handler.lambda_handler
+    name: highlights-ai-${sls:stage}
+    url: true
+    timeout: 30
+    layers:
+      - !Ref PythonRequirementsLambdaLayer
+      # https://aws-sdk-pandas.readthedocs.io/en/stable/layers.html
+      - arn:aws:lambda:${aws:region}:336392948345:layer:AWSSDKPandas-Python310-Arm64:3
+      # https://docs.powertools.aws.dev/lambda/python/latest/
+      - arn:aws:lambda:${aws:region}:017000801446:layer:AWSLambdaPowertoolsPythonV2-Arm64:37
+    environment:
+      EMBEDDINGS_S3_BUCKET: highlights.sawyerh.com
+      EMBEDDINGS_S3_KEY: ai/embeddings.parquet
+      OPENAI_API_KEY: ${ssm:/aws/reference/secretsmanager/Highlights/OpenAI-API-Key}
+      POWERTOOLS_SERVICE_NAME: ${self:service}-${sls:stage}
+      POWERTOOLS_METRICS_NAMESPACE: ${self:service}
+
+plugins:
+  - serverless-python-requirements
+
+custom:
+  pythonRequirements:
+    layer: true
+    slim: true

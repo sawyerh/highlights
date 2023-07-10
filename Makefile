@@ -1,8 +1,15 @@
 .DEFAULT_GOAL := init
 
 init:
+	make py-init
+	make js-init
+
+js-init:
 	npm install
-	poetry install
+
+py-init:
+	poetry lock --no-update
+	poetry install --sync
 
 py-format: # Format the code
 	poetry run black .

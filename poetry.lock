@@ -327,6 +327,21 @@ files = [
 ]
 
 [[package]]
+name = "pandas-vet"
+version = "0.2.3"
+description = "A flake8 plugin to lint pandas in an opinionated way"
+optional = false
+python-versions = "*"
+files = [
+    {file = "pandas-vet-0.2.3.tar.gz", hash = "sha256:58b64027a4c192b4b62272c1d8fdecc1733352452401282b697c1a32abe4656a"},
+    {file = "pandas_vet-0.2.3-py3-none-any.whl", hash = "sha256:349e4240399ead316f64f9afc8e94a5bd5cfff45d7f448c5c22989e86c4ac782"},
+]
+
+[package.dependencies]
+attrs = "*"
+flake8 = ">3.0.0"
+
+[[package]]
 name = "parso"
 version = "0.8.3"
 description = "A Python Parser"
@@ -548,4 +563,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "7a8e125537dd2c60f661f8020c4ded2a25188053ad3d6f78ab3927ec2d80eecd"
+content-hash = "c018d1ee19f440f32e081415153d96889556f4a3ab86b0a48b7f40da96b67688"

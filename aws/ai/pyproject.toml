@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "highlights-ai"
+version = "1.0.0"
+description = "AI features for my reading highlights"
+authors = ["Sawyer <git@sawyerh.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+openai = "^0.27.8"
+
+[tool.poetry.group.dev.dependencies]
+aws-lambda-powertools = {extras = ["all"], version = "^2.19.0"} # included in Lambda layer
+awswrangler = "^3.2.1" # included in Lambda layer
+numpy = "^1.25.0" # included in Lambda layer
+pandas = "^2.0.3" # included in Lambda layer
+openai = { version = "^0.27.8", extras = ["embeddings"] } # not using embeddings utils in Lambda code
+pytest = "^7.4.0"
+pytest-watch = "^4.2.0"
+pytest-mock = "^3.11.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

@@ -121,7 +121,7 @@ Deploys can specify a project or even a specific function, use the `--only` flag
 $ firebase deploy --project foo-bar --only functions:api
 ```
 
-## 🕰️ Backups
+## 🕰️ Backups and Exports
 
 Backups are not automated, however the entire database or a specific collection can be manually backed up using the [Firestore export tool](https://firebase.google.com/docs/firestore/manage-data/export-import). Backups are stored in Google Cloud Storage.
 
@@ -134,25 +134,11 @@ $ gcloud auth login
 $ gsutil -m cp -r "gs://BUCKET_NAME_HERE/EXPORT_DIRECTORY_HERE" .
 ```
 
-### Querying a backup
+_The backup is in a LevelDB format, which is unfortunately not human-readable and there aren't many tools for converting it to a more readable format._
 
-The export is in a LevelDB format, which is unfortunately not human-readable and there aren't many tools for converting it to a more readable format. The easiest way to query a backup is to [import it into BigQuery](https://cloud.google.com/bigquery/docs/loading-data-cloud-firestore).
+### Exporting
 
-Once imported, you can write queries like:
-
-```sql
-SELECT body,
-  volume.path AS `volume_path`,
-  volume.name as `volume_name`,
-  visible,
-  createdAt,
-  __key__.path,
-  __key__.name
-FROM `APP_NAME_HERE.Exports.Highlights`
-ORDER BY createdAt DESC
-```
-
-**Within BigQuery, you can export query results to CSV or JSON**.
+The easiest way to query and export from a backup is to first [import it into BigQuery](https://cloud.google.com/bigquery/docs/loading-data-cloud-firestore). **[Step-by-step instructions for exporting are here](./exporting.md)**.
 
 ## Other tips
 
