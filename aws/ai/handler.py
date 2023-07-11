@@ -16,6 +16,10 @@ tracer = Tracer()
 @app.get("/search", compress=True)
 @tracer.capture_method
 def get_search():
+    """
+    Search all highlights
+    """
+
     query = app.current_event.get_query_string_value("query")
     logger.info("Received search request", extra={"query": query})
 
@@ -27,10 +31,13 @@ def get_search():
     return {"message": "Search executed successfully", "data": results}
 
 
-@app.get("/summarize", compress=True)
+@app.get("/summarize/<volume_key>", compress=True)
 @tracer.capture_method
-def get_summarize():
-    volume_key = app.current_event.get_query_string_value("volume_key")
+def get_summarize(volume_key: str):
+    """
+    Summarize a volume
+    """
+
     logger.info("Received summarization request", extra={"volume_key": volume_key})
 
     if not volume_key:
