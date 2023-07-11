@@ -1,7 +1,9 @@
+import schemas
 from aws_lambda_powertools import Logger, Metrics, Tracer
 from aws_lambda_powertools.event_handler import LambdaFunctionUrlResolver
 from aws_lambda_powertools.event_handler.exceptions import BadRequestError
 from aws_lambda_powertools.utilities.typing import LambdaContext
+from aws_lambda_powertools.utilities.validation import SchemaValidationError, validate
 from services.search import search_highlights
 from services.summarize import summarize_volume
 
@@ -46,6 +48,28 @@ def get_summarize(volume_key: str):
     results = summarize_volume(volume_key)
 
     return {"message": "Summarization executed successfully", "data": results}
+
+
+@app.post("/embeddings")
+@tracer.capture_method
+def post_embeddings():
+    """
+    Create embeddings for new highlights and append to existing embeddings dataset.
+    This endpoint is idempotent, so it should be safe to retry if something fails.
+    """
+
+    request_data: dict = app.current_event.json_body
+
+    try:
+        validate(event=request_data, schema=schemas.POST_EMBEDDINGS_BODY)
+        highlights = request_data.get("highlights")
+
+        logger.info(
+            "Received embeddings creation request",
+            extra={"total_highlights": len(highlights)},
+        )
+    except SchemaValidationError as exception:
+        raise BadRequestError(str(exception))
 
 
 @logger.inject_lambda_context
