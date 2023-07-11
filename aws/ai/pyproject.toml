@@ -7,6 +7,7 @@ authors = ["Sawyer <git@sawyerh.com>"]
 [tool.poetry.dependencies]
 python = "^3.10"
 openai = "^0.27.8"
+tenacity = "^8.2.2"
 
 [tool.poetry.group.dev.dependencies]
 aws-lambda-powertools = {extras = ["all"], version = "^2.19.0"} # included in Lambda layer

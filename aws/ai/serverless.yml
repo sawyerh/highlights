@@ -20,7 +20,8 @@ provider:
         - Effect: Allow
           Action:
             - s3:GetObject
-          Resource: arn:aws:s3:::highlights.sawyerh.com/*
+            - s3:PutObject
+          Resource: arn:aws:s3:::highlights.sawyerh.com/ai/*
   # Enable AWS X-Ray tracing:
   tracing:
     lambda: true

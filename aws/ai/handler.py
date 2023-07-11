@@ -4,6 +4,7 @@ from aws_lambda_powertools.event_handler import LambdaFunctionUrlResolver
 from aws_lambda_powertools.event_handler.exceptions import BadRequestError
 from aws_lambda_powertools.utilities.typing import LambdaContext
 from aws_lambda_powertools.utilities.validation import SchemaValidationError, validate
+from services.embeddings import add_new_embeddings_for_highlights
 from services.search import search_highlights
 from services.summarize import summarize_volume
 
@@ -63,11 +64,11 @@ def post_embeddings():
     try:
         validate(event=request_data, schema=schemas.POST_EMBEDDINGS_BODY)
         highlights = request_data.get("highlights")
-
         logger.info(
             "Received embeddings creation request",
             extra={"total_highlights": len(highlights)},
         )
+        add_new_embeddings_for_highlights(highlights)
     except SchemaValidationError as exception:
         raise BadRequestError(str(exception))
 

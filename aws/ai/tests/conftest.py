@@ -14,6 +14,7 @@ def embeddings():
                 "body": "Mock body",
                 "highlight_key": f"mock-highlight-{i}",
                 "volume_key": f"mock-volume-{i}",
+                "volume_title": f"Mock volume {i}",
             }
         )
 

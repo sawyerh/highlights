@@ -13,8 +13,10 @@ POST_EMBEDDINGS_BODY = {
                     "body": {"type": "string"},
                     "highlight_key": {"type": "string"},
                     "volume_key": {"type": "string"},
+                    "volume_title": {"type": "string"},
+                    "volume_subtitle": {"type": "string"},
                 },
-                "required": ["body", "highlight_key", "volume_key"],
+                "required": ["body", "highlight_key", "volume_key", "volume_title"],
             },
         }
     },
