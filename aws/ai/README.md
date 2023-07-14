@@ -1,3 +1,43 @@
+## How it works
+
+### Search
+
+```mermaid
+sequenceDiagram
+   autonumber
+   participant Consumer
+   participant Lambda
+   participant S3
+   participant OpenAI
+
+   Consumer ->> Lambda: GET /search
+   Lambda ->> S3: Download embeddings.parquet
+   S3 ->> Lambda: embeddings.parquet
+   Lambda ->> OpenAI: Create embedding for query
+   OpenAI ->> Lambda: Embedding
+   Note over Lambda: Calculate similarity for each embedding
+   Lambda ->> Consumer: Highlights with highest similarity
+```
+
+### Summarize
+
+```mermaid
+sequenceDiagram
+   autonumber
+   participant Consumer
+   participant Lambda
+   participant S3
+   participant OpenAI
+
+   Consumer ->> Lambda: POST /summarize
+   Lambda ->> S3: Download embeddings.parquet
+   S3 ->> Lambda: embeddings.parquet
+   Note over Lambda: Find all highlights for the volume
+   Lambda ->> OpenAI: Prompt with highlights
+   OpenAI ->> Lambda: Chat completion
+   Lambda ->> Consumer: Completion as JSON response
+```
+
 # Serverless AI
 
 This directory contains the code supporting features like Semantic Search and Summarization.
