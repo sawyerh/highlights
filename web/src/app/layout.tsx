@@ -1,7 +1,10 @@
 import { Metadata } from "next";
+import dynamic from "next/dynamic";
 import { IBM_Plex_Mono, Noto_Serif } from "next/font/google";
 
-import "globals.css";
+import "styles/globals.css";
+
+const AI = dynamic(() => import("components/AI"));
 
 const fontSerif = Noto_Serif({
 	weight: ["400", "700"],
@@ -36,6 +39,7 @@ export default function RootLayout({
 				<link rel="SHORTCUT ICON" href="/favicon.png" />
 			</head>
 			<body className={`${fontSerif.variable} ${fontSans.variable} font-sans`}>
+				<AI />
 				{children}
 			</body>
 		</html>
