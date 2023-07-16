@@ -5,3 +5,6 @@ __snapshots__
 public
 firebase/functions/lib
 firebase/functions/seed
+.venv
+tmp
+.serverless

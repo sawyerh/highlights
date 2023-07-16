@@ -12,7 +12,7 @@ export const NavLink = (props: {
 		<Link
 			href={props.href}
 			className={classNames(
-				"inline-block py-2 px-2 text-blue-500 underline hover:text-blue-900",
+				"inline-block px-2 py-2 text-blue-500 underline hover:text-blue-900",
 				props.className,
 			)}
 		>

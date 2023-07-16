@@ -13,13 +13,13 @@ export default function CoverLink(props: Props) {
 	return (
 		<Link href={`/volumes/${volume.id}`} className="cover-link">
 			<Cover
-				className="mb-2 cover-link__cover"
+				className="cover-link__cover mb-2"
 				authors={volume.authors}
 				image={volume.image}
 				title={volume.title}
 				priority={priority}
 			/>
-			<h2 className="font-sans text-sm cover-link__text inline">
+			<h2 className="cover-link__text inline font-sans text-sm">
 				{volume.title}
 				{volume.format === "audiobook" && (
 					<span title="Listened to this as an audiobook">&nbsp;🎧</span>

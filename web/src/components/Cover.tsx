@@ -16,7 +16,7 @@ const Cover = (props: {
 			sizes="(min-width: 600px) 200px, 150px"
 		/>
 	) : (
-		<figcaption className="block aspect-cover bg-stone-800 p-4 text-white">
+		<figcaption className="aspect-cover block bg-stone-800 p-4 text-white">
 			<strong className="mb-1 block font-serif text-xl">{props.title}</strong>
 			<span className="text-sm">
 				{props.authors && props.authors.join(", ")}
@@ -25,7 +25,7 @@ const Cover = (props: {
 	);
 
 	return (
-		<figure className={`${props.className} relative aspect-cover`}>
+		<figure className={`${props.className} aspect-cover relative`}>
 			{contents}
 		</figure>
 	);
