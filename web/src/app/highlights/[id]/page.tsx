@@ -35,7 +35,7 @@ const Page = async ({ params }: { params: PageParams }) => {
 			</Nav>
 			<main className="mx-auto max-w-2xl px-4">
 				<VolumeHeader volume={volume} small />
-				<Highlight highlight={highlight} />
+				<Highlight {...highlight} />
 			</main>
 		</>
 	);

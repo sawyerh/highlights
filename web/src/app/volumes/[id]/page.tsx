@@ -30,7 +30,7 @@ const HighlightsFeed = async (props: {
 				</p>
 			)}
 			{highlights.map((highlight) => (
-				<Highlight key={highlight.id} highlight={highlight} />
+				<Highlight key={highlight.id} {...highlight} />
 			))}
 		</>
 	);
