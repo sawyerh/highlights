@@ -4,6 +4,7 @@
  */
 import "server-only";
 
+const AI_URL = process.env.AI_URL;
 const FIREBASE_API_URL = process.env.FIREBASE_API_URL;
 
 // Volume covers or titles are often modified after initial import,
@@ -58,4 +59,10 @@ export async function getHighlight(highlightId: string) {
 	const highlight = await firebaseRequest(`highlights/${highlightId}`);
 
 	return highlight as Highlight;
+}
+
+export async function search(query: string) {
+	const { data } = await request(`${AI_URL}/search?query=${query}`);
+
+	return data as SearchResult[];
 }

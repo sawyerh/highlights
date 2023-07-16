@@ -31,4 +31,5 @@ Auto-deploys on commits to `main` via a Vercel GitHub integration
 
 ### Requirements
 
+- `AI_URL` environment variable must be set in the Vercel console
 - `FIREBASE_API_URL` environment variable must be set in the Vercel console
