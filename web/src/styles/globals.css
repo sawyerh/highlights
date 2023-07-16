@@ -6,6 +6,10 @@ body {
 	background-color: #f6f6f1;
 }
 
+.is-locked {
+	overflow: hidden;
+}
+
 /** CoverLink */
 .cover-link:is(:hover, :focus) {
 	outline: none;

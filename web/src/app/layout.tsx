@@ -41,6 +41,7 @@ export default function RootLayout({
 			<body className={`${fontSerif.variable} ${fontSans.variable} font-sans`}>
 				<AI />
 				{children}
+				<AI />
 			</body>
 		</html>
 	);
