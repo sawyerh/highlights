@@ -39,7 +39,6 @@ export default function RootLayout({
 				<link rel="SHORTCUT ICON" href="/favicon.png" />
 			</head>
 			<body className={`${fontSerif.variable} ${fontSans.variable} font-sans`}>
-				<AI />
 				{children}
 				<AI />
 			</body>
