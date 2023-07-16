@@ -12,7 +12,7 @@ npm install
 
 ### Local development
 
-Local development runs against a local API endpoint by default. To disable the emulator integration when running locally, change the `API_URL` environment variable in `.env.development`.
+Local development runs against a local API endpoint by default. To disable the emulator integration when running locally, change the `FIREBASE_API_URL` environment variable in `.env.development`.
 
 1. In the `firebase/functions` directory, start the local API and seed the DB:
    ```
@@ -31,4 +31,4 @@ Auto-deploys on commits to `main` via a Vercel GitHub integration
 
 ### Requirements
 
-- `API_URL` environment variable must be set in the Vercel console
+- `FIREBASE_API_URL` environment variable must be set in the Vercel console

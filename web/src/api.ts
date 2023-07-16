@@ -4,7 +4,7 @@
  */
 import "server-only";
 
-const API_URL = process.env.API_URL;
+const FIREBASE_API_URL = process.env.FIREBASE_API_URL;
 
 // Volume covers or titles are often modified after initial import,
 // so allow a revalidation period.
@@ -25,7 +25,7 @@ async function request(path: string, options?: RequestInit) {
  * @example firebaseRequest('volumes')
  */
 async function firebaseRequest(route: string, options?: RequestInit) {
-	return request(`${API_URL}/${route}`, options);
+	return request(`${FIREBASE_API_URL}/${route}`, options);
 }
 
 export async function getVolumes() {
