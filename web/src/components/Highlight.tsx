@@ -4,9 +4,10 @@ const Highlight = (props: {
 	body: Highlight["body"];
 	id: Highlight["id"];
 	location?: Highlight["location"];
+	className?: string;
 }) => {
 	return (
-		<article className="mb-12">
+		<article className={props.className}>
 			<blockquote className="text-md mb-2 font-serif leading-relaxed sm:text-lg sm:leading-relaxed">
 				<mark>{props.body}</mark>
 			</blockquote>

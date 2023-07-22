@@ -8,6 +8,7 @@
 		"ts:check": "tsc --noEmit"
 	},
 	"dependencies": {
+		"@phosphor-icons/react": "^2.0.10",
 		"classnames": "^2.3.2",
 		"next": "^13.4.9",
 		"react": "^18.2.0",

@@ -15,5 +15,10 @@
 			"source.organizeImports": true
 		}
 	},
+	"[typescriptreact]": {
+		"editor.codeActionsOnSave": {
+			"source.addMissingImports": true
+		}
+	},
 	"isort.args": ["--profile", "black"]
 }

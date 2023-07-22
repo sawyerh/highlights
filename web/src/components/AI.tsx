@@ -1,7 +1,9 @@
 "use client";
 
+import { KeyReturn, MagnifyingGlass } from "@phosphor-icons/react";
+import classNames from "classnames";
 import useLockBodyScroll from "hooks/useLockBodyScroll";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import styles from "./AI.module.css";
 import Highlight from "./Highlight";
@@ -46,6 +48,8 @@ function useDialog(ref: React.RefObject<HTMLDialogElement | null>) {
 		ref.current?.addEventListener("close", unlockBodyScroll);
 		return () => ref.current?.removeEventListener("close", unlockBodyScroll);
 	}, [ref, unlockBodyScroll]);
+
+	return { hide, show };
 }
 
 /**
@@ -53,35 +57,85 @@ function useDialog(ref: React.RefObject<HTMLDialogElement | null>) {
  */
 export default function AI() {
 	const ref = useRef<HTMLDialogElement>(null);
-	useDialog(ref);
+	const [query, setQuery] = useState<string>("");
+	const { hide: hideDialog, show: showDialog } = useDialog(ref);
+
+	const handleDialogClick = (e: React.MouseEvent<HTMLDialogElement>) => {
+		if (e.target === e.currentTarget) {
+			hideDialog();
+		}
+	};
+
+	const handleQueryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setQuery(e.target.value);
+	};
 
 	const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-		e.preventDefault();
+		const form = e.currentTarget;
+		const isValid = form.reportValidity();
+		if (isValid) {
+			e.preventDefault();
+		}
 	};
 
 	return (
-		<dialog
-			className={`${styles.dialog} m-0 max-h-full w-full max-w-none bg-transparent p-0`}
-			ref={ref}
-		>
-			<div className="mx-auto w-5/6 max-w-2xl px-8 pt-8">
-				<form onSubmit={handleSearchSubmit}>
-					<label
-						htmlFor="search-query"
-						className="mb-2 block font-bold text-white"
-					>
-						Search
-					</label>
-					<input
-						name="query"
-						id="search-query"
-						className="mb-5 w-full appearance-none rounded-md p-5 outline-offset-4 outline-yellow-400 focus-visible:outline focus-visible:outline-2"
-					/>
-				</form>
-				<Result>
-					<Highlight body="This is a test highlight." id="test" />
-				</Result>
-			</div>
-		</dialog>
+		<>
+			<button
+				type="button"
+				title="Open search"
+				className="fixed right-1 top-1 rounded-sm p-2 text-neutral-500 hover:text-black"
+				onClick={showDialog}
+			>
+				<MagnifyingGlass size={16} weight="bold" />
+			</button>
+
+			<dialog
+				className={`${styles.dialog} m-0 min-h-screen w-full max-w-none bg-transparent p-0`}
+				ref={ref}
+				onClick={handleDialogClick}
+			>
+				{/* Include some padding so the click-to-exit area isn't so close to other tap targets */}
+				<div className="mx-auto my-8 max-w-2xl p-3">
+					<form onSubmit={handleSearchSubmit}>
+						<label
+							htmlFor="search-query"
+							className="text-shadow-sm mb-2 block font-bold text-white"
+						>
+							Search
+						</label>
+						<div className="relative">
+							<input
+								name="query"
+								id="search-query"
+								className="mb-5 w-full appearance-none rounded-md p-5 outline-offset-4 outline-yellow-400 focus-visible:outline focus-visible:outline-2"
+								value={query}
+								onChange={handleQueryChange}
+								required
+								pattern=".*\S+.*" // At least one non-whitespace character
+							/>
+							<button
+								aria-label="Search"
+								type="submit"
+								className={classNames(
+									"absolute right-4 top-4 appearance-none p-0 outline-yellow-500 transition-colors hover:text-neutral-800 focus:text-neutral-800",
+									{
+										"text-neutral-200": query.trim().length === 0,
+										"text-neutral-500": query.trim().length > 0,
+									},
+								)}
+							>
+								<KeyReturn size={32} weight="fill" />
+							</button>
+						</div>
+					</form>
+					<Result>
+						<Highlight body="This is a test highlight." id="test" />
+					</Result>
+					<Result>
+						<Highlight body="This is a test highlight." id="test" />
+					</Result>
+				</div>
+			</dialog>
+		</>
 	);
 }
