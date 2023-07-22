@@ -7,6 +7,7 @@ import {
 	useQuery,
 } from "@tanstack/react-query";
 import classNames from "classnames";
+import { AnimatePresence, motion } from "framer-motion";
 import { request } from "helpers/request";
 import useLockBodyScroll from "hooks/useLockBodyScroll";
 import { ForwardedRef, forwardRef, useEffect, useRef, useState } from "react";
@@ -20,7 +21,15 @@ const queryClient = new QueryClient();
  * Search result item
  */
 function Result(props: { children: React.ReactNode }) {
-	return <div className="mb-5 rounded-md bg-white p-5">{props.children}</div>;
+	return (
+		<motion.div
+			animate={{ y: 0, opacity: 1 }}
+			exit={{ y: 20, opacity: 0 }}
+			initial={{ y: 20, opacity: 0 }}
+		>
+			<div className="mb-5 rounded-md bg-white p-5">{props.children}</div>
+		</motion.div>
+	);
 }
 
 /**
@@ -134,19 +143,35 @@ const SearchDialog = forwardRef(function SearchDialog(
 						</button>
 					</div>
 				</form>
-				{isFetching ? (
-					<p className="text-shadow-sm text-white">Searching&hellip;</p>
-				) : (
-					queryResults?.map((result) => (
-						<Result key={result.highlight_key}>
-							<Highlight
-								body={result.body}
-								id={result.highlight_key}
-								onLinkClick={props.hide}
-							/>
-						</Result>
-					))
-				)}
+				<AnimatePresence mode="wait">
+					{isFetching ? (
+						<motion.div
+							key="results-loader"
+							animate={{
+								opacity: 1,
+								y: 0,
+							}}
+							className="text-shadow-sm text-white"
+							exit={{ opacity: 0, y: -20 }}
+							initial={{
+								opacity: 0,
+								y: -20,
+							}}
+						>
+							Searching&hellip;
+						</motion.div>
+					) : (
+						queryResults?.map((result) => (
+							<Result key={result.highlight_key}>
+								<Highlight
+									body={result.body}
+									id={result.highlight_key}
+									onLinkClick={props.hide}
+								/>
+							</Result>
+						))
+					)}
+				</AnimatePresence>
 			</div>
 		</dialog>
 	);
