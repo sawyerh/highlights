@@ -2,6 +2,8 @@
  * @file Data fetching methods for use only on the server.
  * Methods return the data with the appropriate type.
  */
+import { request } from "helpers/request";
+
 import "server-only";
 
 const AI_URL = process.env.AI_URL;
@@ -10,16 +12,6 @@ const FIREBASE_API_URL = process.env.FIREBASE_API_URL;
 // Volume covers or titles are often modified after initial import,
 // so allow a revalidation period.
 const VOLUME_REVALIDATION_TIME = 60 * 10; // 10 minutes
-
-/**
- * Wrapper around `fetch` that returns the JSON body.
- * @example request('https://example.com/api/v1/users')
- */
-async function request(path: string, options?: RequestInit) {
-	const response = await fetch(path, options);
-	const json = await response.json();
-	return json;
-}
 
 /**
  * Send a request to a serverless HTTP endpoint in Firebase.

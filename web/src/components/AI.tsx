@@ -1,12 +1,20 @@
 "use client";
 
 import { KeyReturn, MagnifyingGlass } from "@phosphor-icons/react";
+import {
+	QueryClient,
+	QueryClientProvider,
+	useQuery,
+} from "@tanstack/react-query";
 import classNames from "classnames";
+import { request } from "helpers/request";
 import useLockBodyScroll from "hooks/useLockBodyScroll";
-import { useEffect, useRef, useState } from "react";
+import { ForwardedRef, forwardRef, useEffect, useRef, useState } from "react";
 
 import styles from "./AI.module.css";
 import Highlight from "./Highlight";
+
+const queryClient = new QueryClient();
 
 /**
  * Search result item
@@ -18,7 +26,7 @@ function Result(props: { children: React.ReactNode }) {
 /**
  * Show/Hide behavior of the dialog
  */
-function useDialog(ref: React.RefObject<HTMLDialogElement | null>) {
+function useDialog(ref: React.MutableRefObject<HTMLDialogElement | null>) {
 	const { lockBodyScroll, unlockBodyScroll } = useLockBodyScroll();
 
 	const show = () => {
@@ -52,17 +60,24 @@ function useDialog(ref: React.RefObject<HTMLDialogElement | null>) {
 	return { hide, show };
 }
 
-/**
- * Dialog for interacting with the AI features, like search and summarization.
- */
-export default function AI() {
-	const ref = useRef<HTMLDialogElement>(null);
+const SearchDialog = forwardRef(function SearchDialog(
+	props: {
+		hide: () => void;
+	},
+	ref: ForwardedRef<HTMLDialogElement>,
+) {
 	const [query, setQuery] = useState<string>("");
-	const { hide: hideDialog, show: showDialog } = useDialog(ref);
+	const [submittedQuery, setSubmittedQuery] = useState<string>("");
+	const { isFetching, data: queryResults } = useQuery({
+		queryKey: [submittedQuery],
+		enabled: !!submittedQuery,
+		queryFn: async () =>
+			request<SearchResult[]>(`/api/search?query=${submittedQuery}`),
+	});
 
 	const handleDialogClick = (e: React.MouseEvent<HTMLDialogElement>) => {
 		if (e.target === e.currentTarget) {
-			hideDialog();
+			props.hide();
 		}
 	};
 
@@ -75,11 +90,73 @@ export default function AI() {
 		const isValid = form.reportValidity();
 		if (isValid) {
 			e.preventDefault();
+			setSubmittedQuery(query.trim());
 		}
 	};
 
 	return (
-		<>
+		<dialog
+			ref={ref}
+			className={`${styles.dialog} m-0 min-h-screen w-full max-w-none bg-transparent p-0`}
+			onClick={handleDialogClick}
+		>
+			{/* Include some padding so the click-to-exit area isn't so close to other tap targets */}
+			<div className="mx-auto my-8 max-w-2xl p-3">
+				<form onSubmit={handleSearchSubmit}>
+					<label
+						className="text-shadow-sm mb-2 block font-bold text-white"
+						htmlFor="search-query"
+					>
+						Search
+					</label>
+					<div className="relative">
+						<input
+							className="mb-5 w-full appearance-none rounded-md p-5 outline-offset-4 outline-yellow-400 focus-visible:outline focus-visible:outline-2"
+							id="search-query"
+							name="query"
+							onChange={handleQueryChange}
+							pattern=".*\S+.*" // At least one non-whitespace character
+							required
+							value={query}
+						/>
+						<button
+							aria-label="Search"
+							className={classNames(
+								"absolute right-4 top-4 appearance-none p-0 outline-yellow-500 transition-colors hover:text-neutral-800 focus:text-neutral-800",
+								{
+									"text-neutral-200": query.trim().length === 0,
+									"text-neutral-500": query.trim().length > 0,
+								},
+							)}
+							type="submit"
+						>
+							<KeyReturn size={32} weight="fill" />
+						</button>
+					</div>
+				</form>
+				{isFetching ? (
+					<p className="text-shadow-sm text-white">Searching&hellip;</p>
+				) : (
+					queryResults?.map((result) => (
+						<Result key={result.highlight_key}>
+							<Highlight body={result.body} id={result.highlight_key} />
+						</Result>
+					))
+				)}
+			</div>
+		</dialog>
+	);
+});
+
+/**
+ * Dialog for interacting with the AI features, like search and summarization.
+ */
+export default function AI() {
+	const ref = useRef<HTMLDialogElement>(null);
+	const { hide: hideDialog, show: showDialog } = useDialog(ref);
+
+	return (
+		<QueryClientProvider client={queryClient}>
 			<button
 				className="fixed right-1 top-1 rounded-sm p-2 text-neutral-500 hover:text-black"
 				onClick={showDialog}
@@ -88,54 +165,7 @@ export default function AI() {
 			>
 				<MagnifyingGlass size={16} weight="bold" />
 			</button>
-
-			<dialog
-				ref={ref}
-				className={`${styles.dialog} m-0 min-h-screen w-full max-w-none bg-transparent p-0`}
-				onClick={handleDialogClick}
-			>
-				{/* Include some padding so the click-to-exit area isn't so close to other tap targets */}
-				<div className="mx-auto my-8 max-w-2xl p-3">
-					<form onSubmit={handleSearchSubmit}>
-						<label
-							className="text-shadow-sm mb-2 block font-bold text-white"
-							htmlFor="search-query"
-						>
-							Search
-						</label>
-						<div className="relative">
-							<input
-								className="mb-5 w-full appearance-none rounded-md p-5 outline-offset-4 outline-yellow-400 focus-visible:outline focus-visible:outline-2"
-								id="search-query"
-								name="query"
-								onChange={handleQueryChange}
-								pattern=".*\S+.*" // At least one non-whitespace character
-								required
-								value={query}
-							/>
-							<button
-								aria-label="Search"
-								className={classNames(
-									"absolute right-4 top-4 appearance-none p-0 outline-yellow-500 transition-colors hover:text-neutral-800 focus:text-neutral-800",
-									{
-										"text-neutral-200": query.trim().length === 0,
-										"text-neutral-500": query.trim().length > 0,
-									},
-								)}
-								type="submit"
-							>
-								<KeyReturn size={32} weight="fill" />
-							</button>
-						</div>
-					</form>
-					<Result>
-						<Highlight body="This is a test highlight." id="test" />
-					</Result>
-					<Result>
-						<Highlight body="This is a test highlight." id="test" />
-					</Result>
-				</div>
-			</dialog>
-		</>
+			<SearchDialog ref={ref} hide={hideDialog} />
+		</QueryClientProvider>
 	);
 }
