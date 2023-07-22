@@ -81,41 +81,40 @@ export default function AI() {
 	return (
 		<>
 			<button
-				type="button"
-				title="Open search"
 				className="fixed right-1 top-1 rounded-sm p-2 text-neutral-500 hover:text-black"
 				onClick={showDialog}
+				title="Open search"
+				type="button"
 			>
 				<MagnifyingGlass size={16} weight="bold" />
 			</button>
 
 			<dialog
-				className={`${styles.dialog} m-0 min-h-screen w-full max-w-none bg-transparent p-0`}
 				ref={ref}
+				className={`${styles.dialog} m-0 min-h-screen w-full max-w-none bg-transparent p-0`}
 				onClick={handleDialogClick}
 			>
 				{/* Include some padding so the click-to-exit area isn't so close to other tap targets */}
 				<div className="mx-auto my-8 max-w-2xl p-3">
 					<form onSubmit={handleSearchSubmit}>
 						<label
-							htmlFor="search-query"
 							className="text-shadow-sm mb-2 block font-bold text-white"
+							htmlFor="search-query"
 						>
 							Search
 						</label>
 						<div className="relative">
 							<input
-								name="query"
-								id="search-query"
 								className="mb-5 w-full appearance-none rounded-md p-5 outline-offset-4 outline-yellow-400 focus-visible:outline focus-visible:outline-2"
-								value={query}
+								id="search-query"
+								name="query"
 								onChange={handleQueryChange}
-								required
 								pattern=".*\S+.*" // At least one non-whitespace character
+								required
+								value={query}
 							/>
 							<button
 								aria-label="Search"
-								type="submit"
 								className={classNames(
 									"absolute right-4 top-4 appearance-none p-0 outline-yellow-500 transition-colors hover:text-neutral-800 focus:text-neutral-800",
 									{
@@ -123,6 +122,7 @@ export default function AI() {
 										"text-neutral-500": query.trim().length > 0,
 									},
 								)}
+								type="submit"
 							>
 								<KeyReturn size={32} weight="fill" />
 							</button>

@@ -12,13 +12,13 @@ function CoverLink(props: CoverLinkProps) {
 	const { priority, volume } = props;
 
 	return (
-		<Link href={`/volumes/${volume.id}`} className="cover-link">
+		<Link className="cover-link" href={`/volumes/${volume.id}`}>
 			<Cover
-				className="cover-link__cover mb-2"
 				authors={volume.authors}
+				className="cover-link__cover mb-2"
 				image={volume.image}
-				title={volume.title}
 				priority={priority}
+				title={volume.title}
 			/>
 			<h2 className="cover-link__text inline font-sans text-sm">
 				{volume.title}
