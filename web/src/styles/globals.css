@@ -6,6 +6,12 @@ body {
 	background-color: #f6f6f1;
 }
 
+h1,
+h2,
+h3 {
+	text-wrap: balance;
+}
+
 .is-locked {
 	overflow: hidden;
 }
