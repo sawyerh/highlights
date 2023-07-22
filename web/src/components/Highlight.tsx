@@ -5,6 +5,7 @@ const Highlight = (props: {
 	id: Highlight["id"];
 	location?: Highlight["location"];
 	className?: string;
+	onLinkClick?: () => void;
 }) => {
 	return (
 		<article className={props.className}>
@@ -14,6 +15,7 @@ const Highlight = (props: {
 			<Link
 				className="text-sm text-slate-600 hover:underline"
 				href={`/highlights/${props.id}`}
+				onClick={props.onLinkClick}
 				prefetch={false}
 				title="Open highlight permalink"
 			>

@@ -139,7 +139,11 @@ const SearchDialog = forwardRef(function SearchDialog(
 				) : (
 					queryResults?.map((result) => (
 						<Result key={result.highlight_key}>
-							<Highlight body={result.body} id={result.highlight_key} />
+							<Highlight
+								body={result.body}
+								id={result.highlight_key}
+								onLinkClick={props.hide}
+							/>
 						</Result>
 					))
 				)}
