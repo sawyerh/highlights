@@ -9,7 +9,7 @@ const Page = async () => {
 			<h1 className="my-16 font-serif text-4xl font-bold">
 				What I&rsquo;ve been reading
 			</h1>
-			<ul className="grid grid-cols-volumes gap-8">
+			<ul className="grid-cols-volumes grid gap-8">
 				{volumes.map((volume: Volume, index) => (
 					<li key={volume.id} className="pb-4">
 						<CoverLink priority={index < 10} volume={volume} />
