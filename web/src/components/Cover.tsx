@@ -9,11 +9,11 @@ const Cover = (props: {
 }) => {
 	const contents = props.image ? (
 		<Image
-			src={props.image}
 			alt={props.title}
-			priority={props.priority}
 			fill
+			priority={props.priority}
 			sizes="(min-width: 600px) 200px, 150px"
+			src={props.image}
 		/>
 	) : (
 		<figcaption className="aspect-cover block bg-stone-800 p-4 text-white">

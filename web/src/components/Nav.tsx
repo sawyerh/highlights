@@ -10,11 +10,11 @@ export const NavLink = (props: {
 }) => {
 	return (
 		<Link
-			href={props.href}
 			className={classNames(
 				"inline-block px-2 py-2 text-blue-500 underline hover:text-blue-900",
 				props.className,
 			)}
+			href={props.href}
 		>
 			{props.children}
 		</Link>

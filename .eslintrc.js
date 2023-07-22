@@ -15,6 +15,7 @@ module.exports = {
 		{
 			files: "web/**/*.+(ts|tsx)",
 			extends: ["plugin:@next/next/recommended"],
+			plugins: ["react"],
 			settings: {
 				next: {
 					rootDir: "web/",
@@ -23,6 +24,14 @@ module.exports = {
 			parserOptions: {
 				project: path.resolve(__dirname, "web/tsconfig.json"),
 				tsconfigRootDir: path.resolve(__dirname, "web"),
+			},
+			rules: {
+				"react/jsx-sort-props": [
+					"warn",
+					{
+						reservedFirst: true,
+					},
+				],
 			},
 		},
 		{

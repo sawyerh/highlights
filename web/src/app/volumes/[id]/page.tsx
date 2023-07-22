@@ -47,7 +47,7 @@ const Page = async ({ params }: { params: PageParams }) => {
 				<Suspense
 					fallback={<p className="text-center">Loading highlights&hellip;</p>}
 				>
-					<HighlightsFeed volumeId={volume.id} format={volume.format} />
+					<HighlightsFeed format={volume.format} volumeId={volume.id} />
 				</Suspense>
 			</main>
 		</>
