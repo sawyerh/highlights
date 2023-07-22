@@ -34,7 +34,7 @@ const Page = async ({ params }: { params: PageParams }) => {
 				<NavLink href={`/volumes/${volume.id}`}>{volume.title}</NavLink>
 			</Nav>
 			<main className="mx-auto max-w-2xl px-4">
-				<VolumeHeader volume={volume} small />
+				<VolumeHeader small volume={volume} />
 				<Highlight highlight={highlight} />
 			</main>
 		</>

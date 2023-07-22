@@ -33,7 +33,7 @@ export default function RootLayout({
 		<html lang="en">
 			<head>
 				<meta content="width=device-width, initial-scale=1" name="viewport" />
-				<link rel="SHORTCUT ICON" href="/favicon.png" />
+				<link href="/favicon.png" rel="SHORTCUT ICON" />
 			</head>
 			<body className={`${fontSerif.variable} ${fontSans.variable} font-sans`}>
 				{children}

@@ -9,10 +9,10 @@ const Highlight = (props: { highlight: Highlight }) => {
 				<mark>{highlight.body}</mark>
 			</blockquote>
 			<Link
-				href={`/highlights/${highlight.id}`}
 				className="text-sm text-slate-600 hover:underline"
-				title="Open highlight permalink"
+				href={`/highlights/${highlight.id}`}
 				prefetch={false}
+				title="Open highlight permalink"
 			>
 				{highlight.location} ↱
 			</Link>

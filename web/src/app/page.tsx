@@ -11,8 +11,8 @@ const Page = async () => {
 			</h1>
 			<ul className="grid grid-cols-volumes gap-8">
 				{volumes.map((volume: Volume, index) => (
-					<li className="pb-4" key={volume.id}>
-						<CoverLink volume={volume} priority={index < 10} />
+					<li key={volume.id} className="pb-4">
+						<CoverLink priority={index < 10} volume={volume} />
 					</li>
 				))}
 			</ul>

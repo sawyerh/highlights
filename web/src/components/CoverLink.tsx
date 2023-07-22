@@ -11,13 +11,13 @@ export default function CoverLink(props: Props) {
 	const { priority, volume } = props;
 
 	return (
-		<Link href={`/volumes/${volume.id}`} className="cover-link">
+		<Link className="cover-link" href={`/volumes/${volume.id}`}>
 			<Cover
-				className="mb-2 cover-link__cover"
 				authors={volume.authors}
+				className="mb-2 cover-link__cover"
 				image={volume.image}
-				title={volume.title}
 				priority={priority}
+				title={volume.title}
 			/>
 			<h2 className="font-sans text-sm cover-link__text inline">
 				{volume.title}
