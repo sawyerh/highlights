@@ -68,6 +68,33 @@ function useDialog(ref: React.MutableRefObject<HTMLDialogElement | null>) {
 	return { hide, show };
 }
 
+/**
+ * Text shown when a search is in progress
+ */
+function SearchingIndicator() {
+	const [loadingInterval, setLoadingInterval] = useState(1);
+
+	/**
+	 * Since the Search API has a ~2-3 second cold start, we update
+	 * the search text so that the UI doesn't appear broken.
+	 */
+	useEffect(() => {
+		const timer = setInterval(() => {
+			setLoadingInterval(loadingInterval + 1);
+		}, 2000);
+		return () => clearInterval(timer);
+	}, []);
+
+	return (
+		<p className="text-shadow-sm text-white">
+			{loadingInterval === 1 && "Warming up"}
+			{loadingInterval === 2 && "Searching"}
+			{loadingInterval >= 3 && "Almost there. Searching"}
+			&hellip;
+		</p>
+	);
+}
+
 const SearchDialog = forwardRef(function SearchDialog(
 	props: {
 		hide: () => void;
@@ -157,7 +184,7 @@ const SearchDialog = forwardRef(function SearchDialog(
 							y: -20,
 						}}
 					>
-						<p className="text-shadow-sm text-white">Searching&hellip;</p>
+						<SearchingIndicator />
 					</motion.div>
 				) : (
 					<motion.div
