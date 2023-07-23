@@ -30,15 +30,13 @@ function Result(props: ResultProps) {
 	return (
 		<div className="mb-5 rounded-md bg-white p-5">
 			{props.volume_title && (
-				<p className="mb-2 text-xs">
-					<Link
-						className="text-neutral-500 underline hover:text-black"
-						href={`/volumes/${props.volume_key}`}
-						onClick={props.onLinkClick}
-					>
-						{props.volume_title}
-					</Link>
-				</p>
+				<Link
+					className="mb-2 inline-block text-xs text-neutral-500 underline hover:text-black"
+					href={`/volumes/${props.volume_key}`}
+					onClick={props.onLinkClick}
+				>
+					{props.volume_title}
+				</Link>
 			)}
 			<Highlight
 				body={props.body}
