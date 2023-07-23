@@ -10,7 +10,7 @@ const VolumeHeader = (props: { small?: boolean; volume: Volume }) => {
 			{volume.image && (
 				<Cover
 					authors={volume.authors}
-					className={classnames("mx-auto mb-6 max-w-cover-sm", {
+					className={classnames("max-w-cover-sm mx-auto mb-6", {
 						"sm:max-w-cover": !props.small,
 					})}
 					image={volume.image}

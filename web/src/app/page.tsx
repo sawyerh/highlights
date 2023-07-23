@@ -1,5 +1,34 @@
+import Link from "next/link";
+
 import { getVolumes } from "api";
-import CoverLink from "components/CoverLink";
+import Cover from "components/Cover";
+
+interface CoverLinkProps {
+	priority: boolean;
+	volume: Volume;
+}
+
+function CoverLink(props: CoverLinkProps) {
+	const { priority, volume } = props;
+
+	return (
+		<Link className="cover-link" href={`/volumes/${volume.id}`}>
+			<Cover
+				authors={volume.authors}
+				className="cover-link__cover mb-2"
+				image={volume.image}
+				priority={priority}
+				title={volume.title}
+			/>
+			<h2 className="cover-link__text inline font-sans text-sm">
+				{volume.title}
+				{volume.format === "audiobook" && (
+					<span title="Listened to this as an audiobook">&nbsp;🎧</span>
+				)}
+			</h2>
+		</Link>
+	);
+}
 
 const Page = async () => {
 	const { volumes } = await getVolumes();

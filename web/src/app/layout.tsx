@@ -1,7 +1,10 @@
 import { Metadata } from "next";
+import dynamic from "next/dynamic";
 import { IBM_Plex_Mono, Noto_Serif } from "next/font/google";
 
-import "globals.css";
+import "styles/globals.css";
+
+const AI = dynamic(() => import("components/AI"));
 
 import Script from "next/script";
 
@@ -49,6 +52,7 @@ export default function RootLayout({
 			</head>
 			<body className={`${fontSerif.variable} ${fontSans.variable} font-sans`}>
 				{children}
+				<AI />
 			</body>
 		</html>
 	);

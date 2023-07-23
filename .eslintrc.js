@@ -14,7 +14,10 @@ module.exports = {
 	overrides: [
 		{
 			files: "web/**/*.+(ts|tsx)",
-			extends: ["plugin:@next/next/recommended"],
+			extends: [
+				"plugin:@next/next/recommended",
+				"plugin:@tanstack/eslint-plugin-query/recommended",
+			],
 			plugins: ["react"],
 			settings: {
 				next: {

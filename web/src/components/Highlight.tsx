@@ -1,20 +1,25 @@
 import Link from "next/link";
 
-const Highlight = (props: { highlight: Highlight }) => {
-	const { highlight } = props;
-
+const Highlight = (props: {
+	body: Highlight["body"];
+	id: Highlight["id"];
+	location?: Highlight["location"];
+	className?: string;
+	onLinkClick?: () => void;
+}) => {
 	return (
-		<article className="mb-12">
+		<article className={props.className}>
 			<blockquote className="text-md mb-2 font-serif leading-relaxed sm:text-lg sm:leading-relaxed">
-				<mark>{highlight.body}</mark>
+				<mark>{props.body}</mark>
 			</blockquote>
 			<Link
 				className="text-sm text-slate-600 hover:underline"
-				href={`/highlights/${highlight.id}`}
+				href={`/highlights/${props.id}`}
+				onClick={props.onLinkClick}
 				prefetch={false}
 				title="Open highlight permalink"
 			>
-				{highlight.location} ↱
+				{props.location} ↱
 			</Link>
 		</article>
 	);

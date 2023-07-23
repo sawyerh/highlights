@@ -20,6 +20,15 @@ interface IndustryIdentifier {
 	identifier: string;
 }
 
+interface SearchResult {
+	body: string;
+	highlight_key: string;
+	similarity: number; // float
+	volume_key: string;
+	volume_title: string;
+	volume_subtitle?: string;
+}
+
 interface Volume {
 	authors?: string[];
 	categories?: string[];

@@ -40,7 +40,8 @@ const Nav = (props: {
 	});
 
 	return (
-		<nav className="mb-12 border-b bg-white text-sm leading-relaxed">
+		// Right padding to account for the fixed search icon
+		<nav className="mb-12 border-b bg-white pr-10 text-sm leading-relaxed">
 			<NavLink href="/">All</NavLink>
 			{children}
 		</nav>

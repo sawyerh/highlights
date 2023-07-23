@@ -42,7 +42,12 @@ C4Context
   Person(me, "Me")
 
   Boundary(aws, "AWS") {
+    System(ai, "Search & Summarization", "S3, Lambda")
     System(email, "Email importer", "SES, S3, Lambda")
+  }
+
+  Boundary(vercel, "Vercel") {
+    System(web, "Web app", "Next.js")
   }
 
   Boundary(google, "Firebase") {
@@ -51,16 +56,16 @@ C4Context
     System(api, "API", "Cloud Functions")
   }
 
-  Boundary(vercel, "Vercel") {
-    System(web, "Web app", "Next.js")
-  }
+  System(ga, "Google Analytics")
 
   Rel(me, email, "Emails export")
   Rel(email, db, "Creates records")
   Rel(api, db, "Reads")
   Rel(web, api, "Get volumes and highlights")
+  Rel(web, ai, "Search")
+  Rel(web, ga, "Track")
   BiRel(db, functions, "Triggers updates")
   UpdateRelStyle(db, functions, $offsetX="-45", $offsetY="-20")
 
-  UpdateLayoutConfig($c4ShapeInRow="3", $c4BoundaryInRow="1")
+  UpdateLayoutConfig($c4ShapeInRow="4", $c4BoundaryInRow="4")
 ```
