@@ -1,8 +1,11 @@
-# Web
+# [highlights.sawyerh.com](https://highlights.sawyerh.com)
 
-- Next.js, Tailwind, TypeScript
-- API: Firebase Functions
+This is the public website for my reading highlights.
+
+- Frameworks: Next.js, Tailwind
+- API: Mix of Firebase and AWS Lambda Function URLs
 - Hosting: Vercel
+- Analytics: Google Analytics
 
 ## 📦 Getting started
 

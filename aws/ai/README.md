@@ -1,3 +1,7 @@
+# Serverless AI
+
+This directory contains the code supporting features like Semantic Search and Summarization.
+
 ## How it works
 
 ### Search
@@ -37,10 +41,6 @@ sequenceDiagram
    OpenAI ->> Lambda: Chat completion
    Lambda ->> Consumer: Completion as JSON response
 ```
-
-# Serverless AI
-
-This directory contains the code supporting features like Semantic Search and Summarization.
 
 ## Initial environment setup
 
