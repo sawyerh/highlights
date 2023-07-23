@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 import { KeyReturn, MagnifyingGlass } from "@phosphor-icons/react";
 import {
 	QueryClient,
@@ -18,11 +20,33 @@ import Highlight from "./Highlight";
 
 const queryClient = new QueryClient();
 
+interface ResultProps extends SearchResult {
+	onLinkClick: () => void;
+}
 /**
  * Search result item
  */
-function Result(props: { children: React.ReactNode }) {
-	return <div className="mb-5 rounded-md bg-white p-5">{props.children}</div>;
+function Result(props: ResultProps) {
+	return (
+		<div className="mb-5 rounded-md bg-white p-5">
+			{props.volume_title && (
+				<p className="mb-2 text-xs">
+					<Link
+						className="text-neutral-500 underline hover:text-black"
+						href={`/volumes/${props.volume_key}`}
+						onClick={props.onLinkClick}
+					>
+						{props.volume_title}
+					</Link>
+				</p>
+			)}
+			<Highlight
+				body={props.body}
+				id={props.highlight_key}
+				onLinkClick={props.onLinkClick}
+			/>
+		</div>
+	);
 }
 
 /**
@@ -194,13 +218,11 @@ const SearchDialog = forwardRef(function SearchDialog(
 						initial={{ y: 20, opacity: 0 }}
 					>
 						{queryResults?.map((result) => (
-							<Result key={result.highlight_key}>
-								<Highlight
-									body={result.body}
-									id={result.highlight_key}
-									onLinkClick={props.hide}
-								/>
-							</Result>
+							<Result
+								{...result}
+								key={result.highlight_key}
+								onLinkClick={props.hide}
+							/>
 						))}
 					</motion.div>
 				)}
