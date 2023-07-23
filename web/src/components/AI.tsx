@@ -61,7 +61,6 @@ function useDialog(ref: React.MutableRefObject<HTMLDialogElement | null>) {
 
 	const hide = () => {
 		ref.current?.close();
-		document.body.classList.remove("is-frozen");
 		trackEvent("closed-ai-dialog");
 	};
 
