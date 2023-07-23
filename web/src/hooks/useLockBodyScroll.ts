@@ -9,12 +9,12 @@ export default function useLockBodyScroll() {
 		const _scrollY = window.scrollY;
 		setScrollY(_scrollY);
 
-		document.body.classList.add("is-locked");
+		document.body.classList.add("overflow-hidden");
 		document.body.style.top = `-${_scrollY}px`;
 	};
 
 	const unlockBodyScroll = () => {
-		document.body.classList.remove("is-locked");
+		document.body.classList.remove("overflow-hidden");
 		window.scrollTo(0, scrollY);
 	};
 
