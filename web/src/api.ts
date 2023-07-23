@@ -54,7 +54,11 @@ export async function getHighlight(highlightId: string) {
 }
 
 export async function search(query: string) {
-	const { data } = await request(`${AI_URL}/search?query=${query}`);
+	const { data } = await request(`${AI_URL}/search?query=${query}`, {
+		next: {
+			revalidate: 60 * 60 * 24, // 24 hours
+		},
+	});
 
 	return data as SearchResult[];
 }
