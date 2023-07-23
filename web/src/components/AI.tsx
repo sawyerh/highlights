@@ -28,7 +28,7 @@ interface ResultProps extends SearchResult {
  */
 function Result(props: ResultProps) {
 	return (
-		<div className="mb-5 rounded-md bg-white p-5">
+		<div className="relative mb-5 rounded-md bg-white p-5">
 			{props.volume_title && (
 				<Link
 					className="mb-2 inline-block text-xs text-neutral-500 underline hover:text-black"
@@ -43,6 +43,9 @@ function Result(props: ResultProps) {
 				id={props.highlight_key}
 				onLinkClick={props.onLinkClick}
 			/>
+			<span className="absolute bottom-5 right-5 text-xs text-neutral-500">
+				{props.similarity.toFixed(2)}
+			</span>
 		</div>
 	);
 }

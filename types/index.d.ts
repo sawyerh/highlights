@@ -23,6 +23,7 @@ interface IndustryIdentifier {
 interface SearchResult {
 	body: string;
 	highlight_key: string;
+	similarity: number; // float
 	volume_key: string;
 	volume_title: string;
 	volume_subtitle?: string;
