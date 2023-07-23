@@ -12,7 +12,7 @@
 		"@tanstack/react-query": "^4.32.0",
 		"classnames": "^2.3.2",
 		"framer-motion": "^10.13.0",
-		"next": "^13.4.9",
+		"next": "^13.4.12",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"server-only": "^0.0.1",
