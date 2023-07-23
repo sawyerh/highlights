@@ -7,7 +7,7 @@ import {
 	useQuery,
 } from "@tanstack/react-query";
 import classNames from "classnames";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { request } from "helpers/request";
 import useLockBodyScroll from "hooks/useLockBodyScroll";
 import { ForwardedRef, forwardRef, useEffect, useRef, useState } from "react";
@@ -22,15 +22,7 @@ const queryClient = new QueryClient();
  * Search result item
  */
 function Result(props: { children: React.ReactNode }) {
-	return (
-		<motion.div
-			animate={{ y: 0, opacity: 1 }}
-			exit={{ y: 20, opacity: 0 }}
-			initial={{ y: 20, opacity: 0 }}
-		>
-			<div className="mb-5 rounded-md bg-white p-5">{props.children}</div>
-		</motion.div>
-	);
+	return <div className="mb-5 rounded-md bg-white p-5">{props.children}</div>;
 }
 
 /**
@@ -152,25 +144,29 @@ const SearchDialog = forwardRef(function SearchDialog(
 						</button>
 					</div>
 				</form>
-				<AnimatePresence mode="wait">
-					{isFetching ? (
-						<motion.div
-							key="results-loader"
-							animate={{
-								opacity: 1,
-								y: 0,
-							}}
-							className="text-shadow-sm text-white"
-							exit={{ opacity: 0, y: -20 }}
-							initial={{
-								opacity: 0,
-								y: -20,
-							}}
-						>
-							Searching&hellip;
-						</motion.div>
-					) : (
-						queryResults?.map((result) => (
+				{isFetching ? (
+					<motion.div
+						key="results-loader"
+						animate={{
+							opacity: 1,
+							y: 0,
+						}}
+						exit={{ opacity: 0, y: -20 }}
+						initial={{
+							opacity: 0,
+							y: -20,
+						}}
+					>
+						<p className="text-shadow-sm text-white">Searching&hellip;</p>
+					</motion.div>
+				) : (
+					<motion.div
+						key="results"
+						animate={{ y: 0, opacity: 1 }}
+						exit={{ y: 20, opacity: 0 }}
+						initial={{ y: 20, opacity: 0 }}
+					>
+						{queryResults?.map((result) => (
 							<Result key={result.highlight_key}>
 								<Highlight
 									body={result.body}
@@ -178,9 +174,9 @@ const SearchDialog = forwardRef(function SearchDialog(
 									onLinkClick={props.hide}
 								/>
 							</Result>
-						))
-					)}
-				</AnimatePresence>
+						))}
+					</motion.div>
+				)}
 			</div>
 		</dialog>
 	);
