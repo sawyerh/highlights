@@ -11,6 +11,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { request } from "helpers/request";
 import useLockBodyScroll from "hooks/useLockBodyScroll";
 import { ForwardedRef, forwardRef, useEffect, useRef, useState } from "react";
+import { trackEvent } from "services/monitoring";
 
 import styles from "./AI.module.css";
 import Highlight from "./Highlight";
@@ -41,18 +42,24 @@ function useDialog(ref: React.MutableRefObject<HTMLDialogElement | null>) {
 	const show = () => {
 		ref.current?.showModal();
 		lockBodyScroll();
+		trackEvent("opened-ai-dialog");
 	};
 
 	const hide = () => {
 		ref.current?.close();
 		document.body.classList.remove("is-frozen");
+		trackEvent("closed-ai-dialog");
 	};
 
 	const handleKeydown = (e: KeyboardEvent) => {
 		if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
 			e.preventDefault();
-			if (ref.current?.open) return hide();
-			show();
+			if (ref.current?.open) {
+				hide();
+			} else {
+				show();
+			}
+			trackEvent("used-cmd-k-shortcut");
 		}
 	};
 
@@ -101,6 +108,7 @@ const SearchDialog = forwardRef(function SearchDialog(
 		if (isValid) {
 			e.preventDefault();
 			setSubmittedQuery(query.trim());
+			trackEvent("submitted-search", { query_length: query.trim().length });
 		}
 	};
 
