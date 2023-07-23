@@ -3,6 +3,8 @@ import { IBM_Plex_Mono, Noto_Serif } from "next/font/google";
 
 import "globals.css";
 
+import Script from "next/script";
+
 const fontSerif = Noto_Serif({
 	weight: ["400", "700"],
 	style: ["italic", "normal"],
@@ -34,6 +36,16 @@ export default function RootLayout({
 			<head>
 				<meta content="width=device-width, initial-scale=1" name="viewport" />
 				<link href="/favicon.png" rel="SHORTCUT ICON" />
+				<Script
+					async
+					src="https://www.googletagmanager.com/gtag/js?id=G-ZP11FFWXRN"
+				></Script>
+				<Script id="ga">
+					{`window.dataLayer = window.dataLayer || [];
+					function gtag(){dataLayer.push(arguments);}
+					gtag('js', new Date());
+					gtag('config', 'G-ZP11FFWXRN');`}
+				</Script>
 			</head>
 			<body className={`${fontSerif.variable} ${fontSans.variable} font-sans`}>
 				{children}
