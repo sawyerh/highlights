@@ -10,6 +10,9 @@ export async function GET(request: NextRequest) {
 			{ error: "Missing query parameter" },
 			{ status: 400 },
 		);
+	} else if (query.length > 1000) {
+		// Prevent excessively long queries
+		return NextResponse.json({ error: "Sawyer says No" }, { status: 400 });
 	}
 
 	const results = await search(query);
