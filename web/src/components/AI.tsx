@@ -82,6 +82,7 @@ const SearchDialog = forwardRef(function SearchDialog(
 		enabled: !!submittedQuery,
 		queryFn: async () =>
 			request<SearchResult[]>(`/api/search?query=${submittedQuery}`),
+		refetchOnWindowFocus: false,
 	});
 
 	const handleDialogClick = (e: React.MouseEvent<HTMLDialogElement>) => {
