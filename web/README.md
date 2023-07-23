@@ -13,6 +13,12 @@ This is the public website for my reading highlights.
 npm install
 ```
 
+### Environment variables
+
+In `.env.local`, set the following environment secrets:
+
+- `AI_URL`: URL of the AI API
+
 ### Local development
 
 Local development runs against a local API endpoint by default. To disable the emulator integration when running locally, change the `FIREBASE_API_URL` environment variable in `.env.development`.
