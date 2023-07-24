@@ -1,4 +1,4 @@
-name: CI
+name: CI (all)
 
 on:
   push:
@@ -12,7 +12,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  js-test-and-lint:
+  js-checks:
     name: Lint & Test JS
     runs-on: ubuntu-latest
 
@@ -39,7 +39,7 @@ jobs:
       - run: npm run lint
       - run: npm test
 
-  python-lint:
+  python-checks:
     name: Lint Python
     runs-on: ubuntu-latest
 
