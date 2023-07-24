@@ -14,11 +14,9 @@ C4Container
    }
 
    Component_Ext(books, "Google Books")
-   Component_Ext(nl, "Google Cloud Natural Language")
    System_Ext(web, "Website", "/web")
 
    Rel(handler, books, "")
-   Rel(handler, nl, "")
    Rel(web, api, "")
 ```
 
@@ -27,23 +25,11 @@ C4Container
 1. Create a new Firebase project in the [Firebase console](https://console.firebase.google.com/).
 1. Enable billing for your project.
 1. Create a new Firestore database in the project, in production mode.
-1. [Enable the Natural Language API](https://console.cloud.google.com/flows/enableapi?apiid=language.googleapis.com)
 1. Add an app to the Firebase project: `firebase apps:create web <app name> --project <project id>`
 1. Configure the app to use the Firebase project: `firebase use <project id>`
 
-## 🔑 Service accounts
-
-A service account is used to authenticate the app to Google Cloud services, such as the Natural Language API. To run the app or tests locally, you must create a service account key:
-
-1. Create/obtain a JSON [Service Account](https://console.cloud.google.com/iam-admin/serviceaccounts) key. The default App Engine service account can be used to create the key.
-1. Place the service account key in `/secrets/test-service-account.json`.
-
 ## 🧰 Local development
 
-1. (Optional) In order for the Natural Language API integration to work, you must run:
-   ```
-   export GOOGLE_APPLICATION_CREDENTIALS=secrets/test-service-account.json
-   ```
 1. To run TypeScript compilation in watch-mode and the Firebase emulator with seeded data:
    ```
    npm run dev
@@ -53,13 +39,9 @@ A service account is used to authenticate the app to Google Cloud services, such
 
 ### Setup test environment
 
-Tests run against the Firebase emulator, however **other non-Firebase services (Google Books, Natural Language API) are live**, so you it's best to run tests against a test environment:
+Tests run against the Firebase emulator, however **other non-Firebase services (Google Books) are live**, so you it's best to run tests against a test environment:
 
 1. Setup a new Firebase project for testing following the steps above.
-1. Login to the Google Cloud SDK:
-   ```
-    gcloud auth activate-service-account --key-file="secrets/test-service-account.json"
-   ```
 1. Copy the Firebase app config: `firebase apps:sdkconfig --project <project-id>`
 1. Paste the config JSON into `/secrets/test-app.json`.
 
@@ -102,7 +84,7 @@ You can [pass test data directly into the function](https://firebase.google.com/
 For a Firestore function:
 
 ```js
-handleHighlightCreate({ body: "Hello world" });
+handleVolumeCreate({ title: "Hello world" });
 ```
 
 For an HTTP function, it's easiest to run `npm run dev` and then use the HTTP URL that's logged to the console.
