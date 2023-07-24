@@ -7,8 +7,8 @@ on:
       - aws/ai/**
   pull_request:
     branches: [main]
-    # paths:
-    #   - aws/ai/**
+    paths:
+      - aws/ai/**
   workflow_dispatch:
 
 defaults:
