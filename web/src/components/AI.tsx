@@ -105,7 +105,7 @@ function SearchingIndicator() {
 	useEffect(() => {
 		const timer = setInterval(() => {
 			setLoadingInterval((prev) => prev + 1);
-		}, 2000);
+		}, 3000);
 		return () => clearInterval(timer);
 	}, []);
 
