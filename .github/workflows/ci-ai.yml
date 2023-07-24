@@ -1,0 +1,35 @@
+name: CI (ai)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - aws/ai/**
+  pull_request:
+    branches: [main]
+    paths:
+      - aws/ai/**
+  workflow_dispatch:
+
+defaults:
+  run:
+    working-directory: aws/ai
+
+concurrency:
+  group: ci-${{ github.ref }}-ai
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install poetry
+        run: pipx install poetry
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+          cache: "poetry"
+      - run: make init
+      - run: make test
