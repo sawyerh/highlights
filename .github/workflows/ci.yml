@@ -12,7 +12,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  node:
+  js-test-and-lint:
+    name: JS Test & Lint
     runs-on: ubuntu-latest
 
     steps:
