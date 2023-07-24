@@ -16,7 +16,7 @@ defaults:
     working-directory: aws/email-importer
 
 concurrency:
-  group: ci-email-importer-${{ github.ref }}
+  group: ci-${{ github.ref }}-email-importer
   cancel-in-progress: true
 
 jobs:

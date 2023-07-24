@@ -1,0 +1,36 @@
+name: CI (web)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - web/**
+  pull_request:
+    branches: [main]
+    paths:
+      - web/**
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}-web
+  cancel-in-progress: true
+
+defaults:
+  run:
+    working-directory: web
+
+jobs:
+  build-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - run: npm ci
+      - name: Build and types check
+        run: npm run build

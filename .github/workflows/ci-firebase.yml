@@ -16,7 +16,7 @@ defaults:
     working-directory: firebase/functions
 
 concurrency:
-  group: ci-firebase
+  group: ci-${{ github.ref }}-firebase
   cancel-in-progress: true
 
 jobs:
