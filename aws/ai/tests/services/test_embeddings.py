@@ -21,8 +21,8 @@ def test_add_new_embeddings_for_highlights(
     mocker: MockerFixture, embeddings: pd.DataFrame
 ):
     mock_embedding = [0.1, 0.2, 0.3]
-    mock_append_embeddings_to_s3 = mocker.patch(
-        "services.embeddings.append_embeddings_to_s3"
+    mock_save_embeddings_to_s3 = mocker.patch(
+        "services.embeddings.save_embeddings_to_s3"
     )
     mocker.patch(
         "services.embeddings.get_embeddings_from_s3",
@@ -42,7 +42,10 @@ def test_add_new_embeddings_for_highlights(
     ]
 
     add_new_embeddings_for_highlights(highlights)
-    appending_highlights: pd.DataFrame = mock_append_embeddings_to_s3.call_args[0][0]
+    appending_highlights: pd.DataFrame = mock_save_embeddings_to_s3.call_args[0][0]
 
-    assert len(appending_highlights) == 1
-    assert appending_highlights.iloc[0].loc["highlight_key"] == "new-mock-highlight"
+    assert len(appending_highlights) == len(embeddings) + 1
+    assert (
+        appending_highlights.iloc[len(appending_highlights) - 1].loc["highlight_key"]
+        == "new-mock-highlight"
+    )

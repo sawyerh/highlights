@@ -1,4 +1,4 @@
-name: CI
+name: CI (all)
 
 on:
   push:
@@ -12,7 +12,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  test:
+  js-checks:
+    name: Lint & Test JS
     runs-on: ubuntu-latest
 
     steps:
@@ -37,3 +38,18 @@ jobs:
       - run: npm ci
       - run: npm run lint
       - run: npm test
+
+  python-checks:
+    name: Lint Python
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install poetry
+        run: pipx install poetry
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+          cache: "poetry"
+      - run: make py-init
+      - run: make py-lint
