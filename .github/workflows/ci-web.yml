@@ -32,5 +32,5 @@ jobs:
           cache-dependency-path: web/package-lock.json
 
       - run: npm ci
-      - name: Build and types check
-        run: npm run build
+      - run: npm run ts:check
+        name: Type check
