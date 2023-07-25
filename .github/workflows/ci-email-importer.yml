@@ -36,3 +36,5 @@ jobs:
         name: Install dependencies
       - run: npm test
         name: Run tests
+      - run: npm run ts:check
+        name: Type check
