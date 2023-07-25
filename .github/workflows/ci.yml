@@ -38,6 +38,9 @@ jobs:
       - run: npm ci
       - run: npm run lint
       - run: npm test
+      # Just run this to confirm the formatter didn't break
+      # during an automated dependency update
+      - run: npm run format
 
   python-checks:
     name: Lint Python
@@ -53,3 +56,6 @@ jobs:
           cache: "poetry"
       - run: make py-init
       - run: make py-lint
+      # Just run this to confirm the formatter didn't break
+      # during an automated dependency update
+      - run: make py-format
