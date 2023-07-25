@@ -32,7 +32,8 @@
 		},
 		{
 			"groupName": "packages",
-			"matchFileNames": ["packages/**/package.json"]
+			"matchFileNames": ["packages/**/package.json"],
+			"schedule": ["every 12 months on the first day of the month"]
 		},
 		{
 			"groupName": "web",
