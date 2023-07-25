@@ -4,9 +4,9 @@ import { IBM_Plex_Mono, Noto_Serif } from "next/font/google";
 
 import "styles/globals.css";
 
-const AI = dynamic(() => import("components/AI"));
-
 import Script from "next/script";
+
+const AI = dynamic(() => import("components/AI"));
 
 const fontSerif = Noto_Serif({
 	weight: ["400", "700"],
