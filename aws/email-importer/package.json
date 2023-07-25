@@ -11,7 +11,8 @@
 		"build": "./scripts/build.sh",
 		"test": "firebase emulators:exec \"jest --runInBand\" --only firestore",
 		"test:update": "firebase emulators:exec \"jest -u --runInBand\" --only firestore",
-		"test:watch": "firebase emulators:exec \"jest --watch  --forceExit --detectOpenHandles --runInBand\" --ui --only firestore"
+		"test:watch": "firebase emulators:exec \"jest --watch  --forceExit --detectOpenHandles --runInBand\" --ui --only firestore",
+		"ts:check": "tsc --noEmit"
 	},
 	"dependencies": {
 		"async": "^3.2.4",
