@@ -1,6 +1,41 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:base"
-  ]
+	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
+	"extends": [
+		"config:base",
+		"helpers:disableTypesNodeMajor",
+		"npm:unpublishSafe",
+		"schedule:monthly"
+	],
+	"packageRules": [
+		{
+			"automerge": true,
+			"groupName": "root",
+			"matchFileNames": ["package.json"]
+		},
+		{
+			"automerge": true,
+			"groupName": "root",
+			"matchFileNames": ["pyproject.toml"]
+		},
+		{
+			"groupName": "aws-js",
+			"matchFileNames": ["aws/**/package.json"]
+		},
+		{
+			"groupName": "aws-python",
+			"matchFileNames": ["aws/**/pyproject.toml"]
+		},
+		{
+			"groupName": "firebase",
+			"matchFileNames": ["firebase/functions/package.json"]
+		},
+		{
+			"groupName": "packages",
+			"matchFileNames": ["packages/**/package.json"]
+		},
+		{
+			"groupName": "web",
+			"matchFileNames": ["web/package.json"]
+		}
+	]
 }
