@@ -10,7 +10,7 @@
 	"repository": "sawyerh/highlights",
 	"license": "MIT",
 	"dependencies": {
-		"front-matter": "^2.3.0",
+		"front-matter": "^4.0.0",
 		"mailparser": "^3.6.2"
 	},
 	"devDependencies": {
