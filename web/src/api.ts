@@ -6,7 +6,6 @@ import { request } from "helpers/request";
 
 import "server-only";
 
-const AI_URL = process.env.AI_URL;
 const FIREBASE_API_URL = process.env.FIREBASE_API_URL;
 
 // Volume covers or titles are often modified after initial import,
@@ -17,48 +16,38 @@ const VOLUME_REVALIDATION_TIME = 60 * 10; // 10 minutes
  * Send a request to a serverless HTTP endpoint in Firebase.
  * @example firebaseRequest('volumes')
  */
-async function firebaseRequest(route: string, options?: RequestInit) {
-	return request(`${FIREBASE_API_URL}/${route}`, options);
+async function firebaseRequest<TResponse>(route: string, options?: RequestInit) {
+	return request<TResponse>(`${FIREBASE_API_URL}/${route}`, options);
 }
 
 export async function getVolumes() {
-	const { data } = await firebaseRequest("volumes", {
+	const { data } = await firebaseRequest<{ data: Volume[] }>("volumes", {
 		next: {
 			revalidate: VOLUME_REVALIDATION_TIME,
 		},
 	});
 
-	return { volumes: data as Volume[] };
+	return { volumes: data };
 }
 
 export async function getVolume(volumeId: string) {
-	const volume = await firebaseRequest(`volumes/${volumeId}`, {
+	const volume = await firebaseRequest<Volume>(`volumes/${volumeId}`, {
 		next: {
 			revalidate: VOLUME_REVALIDATION_TIME,
 		},
 	});
 
-	return volume as Volume;
+	return volume;
 }
 
 export async function getHighlights(volumeId: string) {
-	const { data } = await firebaseRequest(`highlights?volume=${volumeId}`);
+	const { data } = await firebaseRequest<{ data: Highlight[] }>(`highlights?volume=${volumeId}`);
 
-	return data as Highlight[];
+	return data;
 }
 
 export async function getHighlight(highlightId: string) {
-	const highlight = await firebaseRequest(`highlights/${highlightId}`);
+	const highlight = await firebaseRequest<Highlight>(`highlights/${highlightId}`);
 
-	return highlight as Highlight;
-}
-
-export async function search(query: string) {
-	const { data } = await request(`${AI_URL}/search?query=${query}`, {
-		next: {
-			revalidate: 60 * 60 * 24, // 24 hours
-		},
-	});
-
-	return data as SearchResult[];
+	return highlight;
 }

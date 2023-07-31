@@ -60,6 +60,9 @@ function useDialog(ref: React.MutableRefObject<HTMLDialogElement | null>) {
 		ref.current?.showModal();
 		lockBodyScroll();
 		trackEvent("opened-ai-dialog");
+
+		// Wake the function up to reduce the cold start time
+		request(`/api/search`, { method: "PUT" }).catch(console.error);
 	};
 
 	const hide = () => {
@@ -89,7 +92,7 @@ function useDialog(ref: React.MutableRefObject<HTMLDialogElement | null>) {
 		return () => ref.current?.removeEventListener("close", unlockBodyScroll);
 	}, [ref, unlockBodyScroll]);
 
-	return { hide, show };
+	return { hide, show, isOpen: ref.current?.open };
 }
 
 /**
@@ -111,9 +114,8 @@ function SearchingIndicator() {
 
 	return (
 		<p className="text-shadow-sm text-white">
-			{loadingInterval === 1 && "Warming up"}
-			{loadingInterval === 2 && "Searching"}
-			{loadingInterval >= 3 && "Almost there. Searching"}
+			{loadingInterval === 1 && "Searching"}
+			{loadingInterval >= 2 && "Almost there. Searching"}
 			&hellip;
 		</p>
 	);
@@ -135,6 +137,9 @@ const SearchDialog = forwardRef(function SearchDialog(
 		refetchOnWindowFocus: false,
 	});
 
+	/**
+	 * Dialog backdrop click handler
+	 */
 	const handleDialogClick = (e: React.MouseEvent<HTMLDialogElement>) => {
 		if (e.target === e.currentTarget) {
 			props.hide();

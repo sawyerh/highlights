@@ -16,6 +16,15 @@ metrics = Metrics()
 tracer = Tracer()
 
 
+@app.get("/wake")
+def get_wake():
+    """
+    Wake up the function from any cold start
+    """
+
+    return {"message": "I'm ready!"}
+
+
 @app.get("/search", compress=True)
 @tracer.capture_method
 def get_search():
