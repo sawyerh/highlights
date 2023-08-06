@@ -6,3 +6,6 @@ logs: # AWS Lambda logs for the function
 
 invoke-with-test-event: # Invoke the function with a test event
 	npx serverless invoke --function importer --stage production --path fixtures/test-event.json --log
+
+invoke-local: # Invoke the function with a test event
+	npx serverless invoke local --function importer --stage production --path fixtures/test-event.json

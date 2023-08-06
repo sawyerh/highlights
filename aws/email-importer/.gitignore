@@ -3,3 +3,4 @@
 env.json
 .aws-sam
 .serverless
+.esbuild

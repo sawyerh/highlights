@@ -17,7 +17,10 @@ sequenceDiagram
 
 ## 🧰 Local development
 
-The easiest way to run the Lambda function locally is likely through the test suite. The Serverless CLI can also be used to [invoke the function directly](https://www.serverless.com/framework/docs/providers/aws/cli-reference/invoke-local).
+There's a few ways to test this locally:
+
+1. Through the test suite. See below. This runs against a local Firebase emulator.
+2. Run `make invoke-local` to use the Serverless CLI to [invoke the function directly](https://www.serverless.com/framework/docs/providers/aws/cli-reference/invoke-local). By default, this uses a test event with a `test: true` property, in order to not make requests to the database.
 
 ## 🧪 Testing
 
