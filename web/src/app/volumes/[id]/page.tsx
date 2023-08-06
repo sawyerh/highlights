@@ -31,7 +31,7 @@ const HighlightsFeed = async (props: {
 						: "No notes yet for this."}
 				</p>
 			)}
-			{highlights.length > 1 && <Summarize volumeId={props.volumeId} />}
+			{highlights.length > 10 && <Summarize volumeId={props.volumeId} />}
 			{highlights.map((highlight) => (
 				<Highlight key={highlight.id} className="mb-12" {...highlight} />
 			))}
