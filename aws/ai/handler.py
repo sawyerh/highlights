@@ -1,3 +1,5 @@
+import os
+
 import schemas
 from aws_lambda_powertools import Logger, Metrics, Tracer
 from aws_lambda_powertools.event_handler import LambdaFunctionUrlResolver
@@ -10,6 +12,8 @@ from services.embeddings import (
 )
 from services.search import search_highlights
 from services.summarize import summarize_volume
+
+CLIENTS_SECRET = os.environ.get("CLIENTS_SECRET")
 
 app = LambdaFunctionUrlResolver(
     debug=False,
@@ -92,6 +96,7 @@ def delete_embeddings():
     """
     Remove embeddings for a given highlight_key
     """
+    enforce_clients_secret()
 
     request_data: dict = app.current_event.json_body
 
@@ -103,7 +108,7 @@ def delete_embeddings():
             extra={"highlight_key": highlight_key},
         )
         remove_highlight_embedding(highlight_key)
-        return {"message": "Embedding deleted successfully"}
+        return {"message": "Embedding deleted successfully", "data": highlight_key}
     except SchemaValidationError as exception:
         raise BadRequestError(str(exception))
 
@@ -113,3 +118,17 @@ def delete_embeddings():
 @tracer.capture_lambda_handler
 def lambda_handler(event, context: LambdaContext):
     return app.resolve(event, context)
+
+
+def enforce_clients_secret():
+    """
+    Enforce the CLIENTS_SECRET environment variable to be set and match the
+    one sent in the request
+    """
+
+    if not CLIENTS_SECRET:
+        raise BadRequestError("Missing CLIENTS_SECRET environment variable")
+
+    api_key: str = app.current_event.get_header_value(name="X-Api-Key")
+    if not api_key or api_key != CLIENTS_SECRET:
+        raise BadRequestError("Missing or invalid client secret")

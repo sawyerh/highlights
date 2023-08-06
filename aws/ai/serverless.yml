@@ -50,6 +50,7 @@ functions:
       EMBEDDINGS_S3_BUCKET: highlights.sawyerh.com
       EMBEDDINGS_S3_KEY: ai/embeddings.parquet
       OPENAI_API_KEY: ${ssm:/Highlights/OpenAI-API-Key}
+      CLIENTS_SECRET: ${ssm:/Highlights/Clients-Secret}
       POWERTOOLS_SERVICE_NAME: ${self:service}-${sls:stage}
       POWERTOOLS_METRICS_NAMESPACE: ${self:service}
 

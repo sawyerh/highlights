@@ -1,6 +1,10 @@
+import os
+
 import numpy as np
 import pandas as pd
 import pytest
+
+os.environ.setdefault("CLIENTS_SECRET", "test-secret")
 
 
 @pytest.fixture

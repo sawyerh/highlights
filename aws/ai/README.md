@@ -45,6 +45,7 @@ sequenceDiagram
 ## Initial environment setup
 
 1. Add a `SecureString` to AWS SSM with the name `/Highlights/OpenAI-API-Key`. Set the OpenAI API key as the plaintext value.
+1. Add a `SecureString` to AWS SSM with the name `/Highlights/Clients-Secret`. Set the value to a [generated secret](https://generate-secret.now.sh/32). This will be used to authenticate requests from other apps,like the Firebase functions.
 1. Create the initial set of embeddings.
    1. [Export the Firestore data](../../firebase/exporter/instructions.md)
    1. Place the Firestore export in the `tmp` directory
