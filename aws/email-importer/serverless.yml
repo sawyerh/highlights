@@ -1,0 +1,62 @@
+# https://www.serverless.com/framework/docs/providers/aws/guide/serverless.yml/
+service: highlights-email-importer
+frameworkVersion: '3'
+
+params:
+  default:
+    KEY_PREFIX: inbox/
+  production:
+    S3_BUCKET: highlights.sawyerh.com
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  # "...significantly better price and performance"
+  # https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html#foundation-arch-adv
+  architecture: arm64
+  # "faster and have no downsides (unless you specifically use the generated change sets).
+  #    They will become the default in Serverless Framework 4."
+  deploymentMethod: direct
+  logRetentionInDays: 60
+  # Enable AWS X-Ray tracing:
+  tracing:
+    lambda: true
+  versionFunctions: false
+  iam:
+    role:
+      # Allow the Lambda to read from the S3 bucket
+      statements:
+        - Effect: Allow
+          Action:
+            - s3:GetObject
+          Resource: arn:aws:s3:::${param:S3_BUCKET}/${param:KEY_PREFIX}*
+
+plugins:
+  - serverless-esbuild
+
+custom:
+  esbuild:
+    minify: true
+    # https://esbuild.github.io/api/#sourcemap
+    sourcemap: true
+
+package:
+  excludeDevDependencies: true
+  patterns:
+    - "!.github/**"
+    - "!tests/**"
+
+functions:
+  importer:
+    handler: src/index.handler
+    name: highlights-email-importer-${sls:stage}
+    environment:
+      NODE_OPTIONS: --enable-source-maps
+      SERVICE_ACCOUNT: ${ssm(raw):/aws/reference/secretsmanager/Highlights/Google-Service-Account}
+    events:
+      - s3:
+          bucket: ${param:S3_BUCKET}
+          event: s3:ObjectCreated:*
+          rules:
+            - prefix: ${param:KEY_PREFIX}
+          existing: true

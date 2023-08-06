@@ -1,3 +1,5 @@
+import type { GetObjectCommandOutput } from "@aws-sdk/client-s3";
+
 interface ParsedHighlight {
 	content: string;
 	[key: string]: unknown;
@@ -12,7 +14,7 @@ interface ParsedVolume {
 	title: string;
 }
 
-type Importer = (mail: AWS.S3.Body) => Promise<{
+type Importer = (mail: GetObjectCommandOutput["Body"]) => Promise<{
 	highlights: ParsedHighlight[];
 	volume: ParsedVolume;
 }>;
