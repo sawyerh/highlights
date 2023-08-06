@@ -3,8 +3,9 @@ import { S3Event } from "aws-lambda";
 
 import { S3 } from "@aws-sdk/client-s3";
 
-import { syncDb } from "./services/DbSyncer";
-import { getHighlightsAndVolumeFromEmail } from "./services/Parser";
+import { addEmbeddings } from "./services/embeddings";
+import { getHighlightsAndVolumeFromEmail } from "./services/parsing";
+import { syncDb } from "./services/syncing";
 
 interface ImporterEvent extends S3Event {
 	test?: boolean;
@@ -37,7 +38,20 @@ export async function handler(event: ImporterEvent) {
 	});
 
 	const { highlights, volume } = await getHighlightsAndVolumeFromEmail(Body);
-	await syncDb(volume, highlights, {
-		mockWrite: event.test,
+
+	if (!highlights.length || !volume) {
+		console.warn("Highlights or a volume are missing in the email");
+		return;
+	}
+
+	const syncResults = await syncDb(volume, highlights, {
+		mockWrite: !!event.test,
 	});
+
+	if (!syncResults || syncResults.createdHighlights.length === 0) {
+		console.warn("No highlights were created");
+		return;
+	}
+
+	await addEmbeddings(syncResults.createdHighlights, volume);
 }

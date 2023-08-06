@@ -1,6 +1,6 @@
 # https://www.serverless.com/framework/docs/providers/aws/guide/serverless.yml/
 service: highlights-email-importer
-frameworkVersion: '3'
+frameworkVersion: "3"
 
 params:
   default:
@@ -53,7 +53,8 @@ functions:
     timeout: 120
     environment:
       NODE_OPTIONS: --enable-source-maps
-      SERVICE_ACCOUNT: ${ssm(raw):/aws/reference/secretsmanager/Highlights/Google-Service-Account}
+      SERVICE_ACCOUNT: ${ssm(raw):/Highlights/Google-Service-Account}
+      AI_FUNCTION_URL: ${ssm:/Highlights/AI-Function-URL}
     events:
       - s3:
           bucket: ${param:S3_BUCKET}

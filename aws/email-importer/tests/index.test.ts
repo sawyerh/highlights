@@ -5,8 +5,12 @@ import { getFirestore } from "firebase-admin/firestore";
 import { S3Event } from "aws-lambda";
 
 import { S3 } from "@aws-sdk/client-s3";
+import fetch from "node-fetch";
 
 import { handler } from "../src/index";
+
+jest.mock("node-fetch");
+const mockFetch = fetch as jest.MockedFunction<typeof fetch>;
 
 const EMAIL_FIXTURE = fs.readFileSync(
 	path.resolve(__dirname, "./fixtures/email.txt"),
@@ -64,6 +68,22 @@ describe("handler", () => {
 		expect(volume.importTitle).toBe(
 			"Machine, Platform, Crowd: Harnessing Our Digital Future",
 		);
+	});
+
+	it("adds embeddings for the highlights", async () => {
+		process.env.AI_FUNCTION_URL = "http://localhost";
+		mockGetObject();
+		// @ts-expect-error - mock
+		mockFetch.mockResolvedValue({
+			ok: true,
+		});
+
+		await handler(MOCK_EVENT);
+
+		expect(mockFetch).toHaveBeenCalledTimes(1);
+		const fetchBody = JSON.parse(mockFetch.mock.calls[0][1]?.body as string);
+		expect("highlights" in fetchBody).toBe(true);
+		expect(fetchBody.highlights).toHaveLength(14);
 	});
 
 	it("does not import a duplicate Volume or Highlights", async () => {

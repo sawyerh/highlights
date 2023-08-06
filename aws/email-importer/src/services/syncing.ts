@@ -6,7 +6,7 @@ import {
 	Timestamp,
 } from "firebase-admin/firestore";
 
-import type { ParsedHighlight, ParsedVolume } from "./Parser";
+import type { ParsedHighlight, ParsedVolume } from "./parsing";
 
 /**
  * Create database records for any missing volume and highlights
@@ -27,7 +27,9 @@ export async function syncDb(
 	}
 
 	const volumeRef = await syncVolume(volume);
-	await syncHighlights(highlights, volumeRef);
+	const createdHighlights = await syncHighlights(highlights, volumeRef);
+
+	return { createdHighlights, volumeRef };
 }
 
 async function syncVolume(volume: ParsedVolume) {
@@ -41,7 +43,7 @@ async function syncVolume(volume: ParsedVolume) {
 	if (existingVolumeSnap.empty) {
 		console.log("Creating new volume", volume);
 
-		return await db.collection("volumes").add({
+		const volumeRef = await db.collection("volumes").add({
 			authors: volume.authors,
 			createdAt: Timestamp.now(),
 			// Preserve the original title for future syncs,
@@ -51,10 +53,13 @@ async function syncVolume(volume: ParsedVolume) {
 			title: volume.title,
 			visible: true,
 		});
+
+		console.log("Created new volume", volumeRef.id);
+		return volumeRef;
 	}
 
 	const existingVolumeRef = existingVolumeSnap.docs[0].ref;
-	console.log("Found existing volume", existingVolumeRef);
+	console.log("Found existing volume", existingVolumeRef.id);
 	return existingVolumeRef;
 }
 
@@ -87,6 +92,7 @@ async function syncHighlights(
 	const newHighlights = hashedHighlights.filter(
 		(highlight) => !existingHashes.includes(highlight.hash),
 	);
+	const createdHighlights: Highlight[] = [];
 
 	newHighlights.forEach((highlight) => {
 		const ref = db.collection("highlights").doc();
@@ -94,18 +100,25 @@ async function syncHighlights(
 		// then pass the rest of the object into Object.assign
 		// so we can capture all other props that might be present
 		const { content, ...rest } = highlight;
-
-		return batch.create(ref, {
+		const data = {
 			...rest,
 			body: content,
 			createdAt: Timestamp.now(),
 			visible: true,
 			volume,
-		});
+		};
+
+		createdHighlights.push({ ...data, id: ref.id, volume: volume.id });
+		return batch.create(ref, data);
 	});
 
-	const saveResults = await batch.commit();
-	if (saveResults.length) {
-		console.log(`Created ${saveResults.length} highlights`);
+	await batch.commit();
+
+	if (createdHighlights.length) {
+		console.log(`Created ${createdHighlights.length} highlights`, {
+			ids: createdHighlights.map((h) => h.id),
+		});
 	}
+
+	return createdHighlights;
 }

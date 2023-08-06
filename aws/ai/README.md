@@ -44,7 +44,7 @@ sequenceDiagram
 
 ## Initial environment setup
 
-1. Add a **plaintext** secret to AWS Secrets Manager with the name `Highlights/OpenAI-API-Key`. Set the OpenAI API key as the plaintext value.
+1. Add a `SecureString` to AWS SSM with the name `/Highlights/OpenAI-API-Key`. Set the OpenAI API key as the plaintext value.
 1. Create the initial set of embeddings.
    1. [Export the Firestore data](../../firebase/exporter/instructions.md)
    1. Place the Firestore export in the `tmp` directory
@@ -62,3 +62,15 @@ sequenceDiagram
 ## Usage
 
 Reference the `Makefile` for the full list of commands. More commands are available via the Serverless CLI.
+
+## Checking the embeddings
+
+To read the embeddings file, to check if an embedding was added for instance, run the following:
+
+```sh
+$ poetry run python
+
+import pandas as pd
+df = pd.read_parquet('tmp/embeddings.parquet')
+df.tail()
+```

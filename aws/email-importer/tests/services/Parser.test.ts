@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 
-import { getHighlightsAndVolumeFromEmail } from "../../src/services/Parser";
+import { getHighlightsAndVolumeFromEmail } from "../../src/services/parsing";
 
 const EMAIL_FIXTURE = fs.readFileSync(
 	path.resolve(__dirname, "../fixtures/email.txt"),
@@ -15,10 +15,10 @@ describe("getHighlightsAndVolumeFromEmail", () => {
 			Buffer.from(EMAIL_FIXTURE),
 		);
 
-		expect(volume.title).toBe(
+		expect(volume?.title).toBe(
 			"Machine, Platform, Crowd: Harnessing Our Digital Future",
 		);
-		expect(volume.authors).toHaveLength(2);
+		expect(volume?.authors).toHaveLength(2);
 		expect(highlights).toHaveLength(14);
 	});
 });

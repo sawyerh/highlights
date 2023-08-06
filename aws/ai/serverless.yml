@@ -49,7 +49,7 @@ functions:
     environment:
       EMBEDDINGS_S3_BUCKET: highlights.sawyerh.com
       EMBEDDINGS_S3_KEY: ai/embeddings.parquet
-      OPENAI_API_KEY: ${ssm:/aws/reference/secretsmanager/Highlights/OpenAI-API-Key}
+      OPENAI_API_KEY: ${ssm:/Highlights/OpenAI-API-Key}
       POWERTOOLS_SERVICE_NAME: ${self:service}-${sls:stage}
       POWERTOOLS_METRICS_NAMESPACE: ${self:service}
 

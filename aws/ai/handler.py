@@ -78,6 +78,7 @@ def post_embeddings():
             extra={"total_highlights": len(highlights)},
         )
         add_new_embeddings_for_highlights(highlights)
+        return {"message": "Embeddings created successfully"}
     except SchemaValidationError as exception:
         raise BadRequestError(str(exception))
 
