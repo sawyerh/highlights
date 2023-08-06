@@ -94,7 +94,12 @@ def post_embeddings():
 @tracer.capture_method
 def delete_embeddings():
     """
-    Remove embeddings for a given highlight_key
+    Remove embeddings for a given highlight_key.
+
+    TODO: This isn't a great approach because there will be race conditions
+    updating the embeddings dataset. One option is to set the reserved concurrency
+    for the deletion to 1, but that will require moving this endpoint to its own
+    function. For now, this works for one-off manual deletions.
     """
     enforce_clients_secret()
 
@@ -127,8 +132,14 @@ def enforce_clients_secret():
     """
 
     if not CLIENTS_SECRET:
+        logger.error("Missing CLIENTS_SECRET environment variable")
         raise BadRequestError("Missing CLIENTS_SECRET environment variable")
 
     api_key: str = app.current_event.get_header_value(name="X-Api-Key")
-    if not api_key or api_key != CLIENTS_SECRET:
-        raise BadRequestError("Missing or invalid client secret")
+
+    if not api_key:
+        logger.info("Missing client secret")
+        raise BadRequestError("Missing client secret")
+    if api_key != CLIENTS_SECRET:
+        logger.info("Invalid client secret")
+        raise BadRequestError("Invalid client secret")

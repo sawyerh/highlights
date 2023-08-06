@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase-admin/app";
 import * as functions from "firebase-functions";
-import { defineSecret, defineString } from "firebase-functions/params";
+import { defineString } from "firebase-functions/params";
 
 import expressApp from "./api";
 import handleHighlightDelete from "./handleHighlightDelete";
@@ -13,7 +13,7 @@ import handleVolumeUpdate from "./handleVolumeUpdate";
  * Environment variables
  */
 const AI_FUNCTION_URL = defineString("AI_FUNCTION_URL");
-const AI_API_SECRET = defineSecret("AI_API_SECRET");
+const AI_API_SECRET = defineString("AI_API_SECRET");
 
 /**
  * Firebase configuration
