@@ -8,7 +8,7 @@ async function handleHighlightDelete(
 	},
 ) {
 	console.log("Deleting embedding", { highlightId });
-	const res = await fetch(ai_api.url, {
+	const res = await fetch(`${ai_api.url}/embeddings`, {
 		method: "DELETE",
 		headers: {
 			"X-Api-Key": ai_api.secret,

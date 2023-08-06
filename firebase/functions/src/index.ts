@@ -40,8 +40,8 @@ export const HighlightDelete = functions.firestore
 	.document("highlights/{highlightId}")
 	.onDelete(async (_change, context) => {
 		await handleHighlightDelete(context.params.highlightId, {
-			url: AI_FUNCTION_URL.toString(),
-			secret: AI_API_SECRET.toString(),
+			url: AI_FUNCTION_URL.value(),
+			secret: AI_API_SECRET.value(),
 		});
 	});
 
