@@ -58,25 +58,10 @@ The Serverless Framework is used to deploy the Lambda function. The `Makefile` p
 
 More commands are available via the Serverless CLI.
 
-To verify the new version, you can use a test event with a `test: true` property. This will prevent the function from adding data to the database. Set `bucket.name` to the name of your S3 bucket.
+To verify the new version, you can use a test event with a `test: true` property. One is pre-configured and can be ran using:
 
-```json
-{
-	"test": true,
-	"Records": [
-		{
-			"awsRegion": "us-east-1",
-			"s3": {
-				"bucket": {
-					"name": "highlights.sawyerh.com"
-				},
-				"object": {
-					"key": "inbox/rl9cu2j5ekkh5086o72hahr86b9mi43kp7n7ogg1"
-				}
-			}
-		}
-	]
-}
+```
+make invoke-with-test-event
 ```
 
 ## Setting up AWS SES (and S3)

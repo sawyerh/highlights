@@ -1,0 +1,16 @@
+{
+	"test": true,
+	"Records": [
+		{
+			"awsRegion": "us-east-1",
+			"s3": {
+				"bucket": {
+					"name": "highlights.sawyerh.com"
+				},
+				"object": {
+					"key": "inbox/rl9cu2j5ekkh5086o72hahr86b9mi43kp7n7ogg1"
+				}
+			}
+		}
+	]
+}
