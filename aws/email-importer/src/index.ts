@@ -3,7 +3,8 @@ import { S3Event } from "aws-lambda";
 
 import { S3 } from "@aws-sdk/client-s3";
 
-import importMail from "./importMail";
+import { syncDb } from "./services/DbSyncer";
+import { getHighlightsAndVolumeFromEmail } from "./services/Parser";
 
 interface ImporterEvent extends S3Event {
 	test?: boolean;
@@ -35,5 +36,8 @@ export async function handler(event: ImporterEvent) {
 		Key: s3Record.s3.object.key,
 	});
 
-	await importMail(Body, event.test);
+	const { highlights, volume } = await getHighlightsAndVolumeFromEmail(Body);
+	await syncDb(volume, highlights, {
+		mockWrite: event.test,
+	});
 }

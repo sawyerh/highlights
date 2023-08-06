@@ -1,0 +1,57 @@
+import { GetObjectCommandOutput } from "@aws-sdk/client-s3";
+import textToJSON from "highlights-email-to-json";
+import kindleClippingsToJSON from "kindle-clippings-to-json";
+import kindleEmailToJSON from "kindle-email-to-json";
+import safariEmailToJSON from "safari-books-csv-to-json";
+
+export interface ParsedHighlight {
+	content: string;
+	[key: string]: unknown;
+}
+
+export interface ParsedHighlightWithHash extends ParsedHighlight {
+	hash: number;
+}
+
+export interface ParsedVolume {
+	authors: string[];
+	title: string;
+}
+
+export type ParserFn = (mail: GetObjectCommandOutput["Body"]) => Promise<{
+	highlights: ParsedHighlight[];
+	volume?: ParsedVolume;
+}>;
+
+const parsers: ParserFn[] = [
+	kindleEmailToJSON,
+	safariEmailToJSON,
+	kindleClippingsToJSON,
+	textToJSON,
+];
+
+/**
+ * Run all parsers on the email body until one finds highlights
+ */
+export async function getHighlightsAndVolumeFromEmail(
+	email: GetObjectCommandOutput["Body"],
+) {
+	let highlights: ParsedHighlight[] = [];
+	let volume: ParsedVolume | undefined;
+
+	for await (const parser of parsers) {
+		try {
+			const results = await parser(email);
+			if (!results.highlights.length) continue;
+			highlights = results.highlights;
+			volume = results.volume;
+			break;
+		} catch (error) {
+			// Parsers reject when nothing was found
+			if (error instanceof Error) console.log(error.message);
+			continue;
+		}
+	}
+
+	return { highlights, volume };
+}

@@ -50,6 +50,7 @@ functions:
   importer:
     handler: src/index.handler
     name: highlights-email-importer-${sls:stage}
+    timeout: 120
     environment:
       NODE_OPTIONS: --enable-source-maps
       SERVICE_ACCOUNT: ${ssm(raw):/aws/reference/secretsmanager/Highlights/Google-Service-Account}
