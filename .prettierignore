@@ -8,3 +8,6 @@ firebase/functions/seed
 .venv
 tmp
 .serverless
+node_modules
+.serverless
+.esbuild
