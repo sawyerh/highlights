@@ -29,17 +29,12 @@ function Summarize(props: Props) {
 	const { volumeId } = props;
 	const [showSummarize, setShowSummarize] = useState(false);
 	const summaryRef = useRef<HTMLDivElement>(null);
-	const summarizationUrl = `/api/ai/summarize?volume_id=${volumeId}`;
-
-	useEffect(() => {
-		// Workaround Vercel timeout limits and a slow Lambda
-		request(`${summarizationUrl}&quick_exit=true`);
-	}, []);
 
 	const { isFetching, data: summarizationResults } = useQuery({
-		queryKey: [summarizationUrl],
+		queryKey: [volumeId],
 		enabled: !!showSummarize,
-		queryFn: async () => request<SummarizationResult[]>(summarizationUrl),
+		queryFn: async () =>
+			request<SummarizationResult[]>(`/api/ai/summarize?volume_id=${volumeId}`),
 		refetchOnWindowFocus: false,
 	});
 
