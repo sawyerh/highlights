@@ -1,0 +1,7 @@
+{
+	"functions": {
+		"api/ai/**/*.ts": {
+			"maxDuration": 30
+		}
+	}
+}
