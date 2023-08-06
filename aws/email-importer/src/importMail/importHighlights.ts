@@ -10,6 +10,8 @@ import {
 import _ from "lodash";
 import hash from "string-hash";
 
+import { ParsedHighlight, ParsedHighlightWithHash } from "../types";
+
 async function batchCreateAll(
 	highlights: ParsedHighlightWithHash[],
 	volume: DocumentReference,

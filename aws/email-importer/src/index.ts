@@ -1,17 +1,12 @@
 import { cert, getApps, initializeApp } from "firebase-admin/app";
-import AWS from "aws-sdk";
+import { S3Event } from "aws-lambda";
+
+import { S3 } from "@aws-sdk/client-s3";
 
 import importMail from "./importMail";
 
-interface SESEvent {
+interface ImporterEvent extends S3Event {
 	test?: boolean;
-	Records: Array<{
-		ses: {
-			mail: {
-				messageId: string;
-			};
-		};
-	}>;
 }
 
 /**
@@ -20,9 +15,11 @@ interface SESEvent {
  * to one of the supported highlight exports (Kindle or
  * or plain text).
  */
-export async function handler(event: SESEvent) {
-	const s3 = new AWS.S3();
-	const params = s3Params(event);
+export async function handler(event: ImporterEvent) {
+	const s3Record = event.Records[0];
+	const s3 = new S3({
+		region: s3Record.awsRegion,
+	});
 
 	// Check for existing app instance (for testing)
 	if (!getApps().length) {
@@ -33,24 +30,10 @@ export async function handler(event: SESEvent) {
 		});
 	}
 
-	const data = await s3.getObject(params).promise();
+	const { Body } = await s3.getObject({
+		Bucket: s3Record.s3.bucket.name,
+		Key: s3Record.s3.object.key,
+	});
 
-	if (event.test) {
-		console.log("Exiting early for test event. Skipping import.");
-		return;
-	}
-
-	await importMail(data.Body);
-}
-
-/**
- * Form the request object for getObject
- */
-function s3Params(event: SESEvent): AWS.S3.GetObjectRequest {
-	const bucket = process.env.S3_BUCKET ?? "";
-	const prefix = process.env.KEY_PREFIX ?? "";
-	const s3ObjectKey = event.Records[0].ses.mail.messageId;
-	console.log("SES Message ID", s3ObjectKey);
-
-	return { Bucket: bucket, Key: `${prefix}${s3ObjectKey}` };
+	await importMail(Body, event.test);
 }

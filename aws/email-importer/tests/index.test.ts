@@ -1,57 +1,56 @@
-import fs from "fs/promises";
+import fs from "fs";
 import path from "path";
 
 import { getFirestore } from "firebase-admin/firestore";
-import AWS from "aws-sdk";
+import { S3Event } from "aws-lambda";
+
+import { S3 } from "@aws-sdk/client-s3";
 
 import { handler } from "../src/index";
 
-jest.mock("aws-sdk");
+const EMAIL_FIXTURE = fs.readFileSync(
+	path.resolve(__dirname, "./fixtures/email.txt"),
+	"utf8",
+);
 
 const MOCK_EVENT = {
 	Records: [
 		{
-			ses: {
-				mail: {
-					messageId: "email.txt",
+			awsRegion: "us-east-1",
+			s3: {
+				bucket: {
+					name: "highlights.sawyerh.com",
+				},
+				object: {
+					key: "inbox/rl9cu2j5ekkh5086o72hahr86b9mi43kp7n7ogg1",
 				},
 			},
 		},
 	],
-};
+} as S3Event;
+
+function mockGetObject() {
+	// @ts-expect-error - mock
+	return jest.spyOn(S3.prototype, "getObject").mockResolvedValue({
+		Body: Buffer.from(EMAIL_FIXTURE),
+	});
+}
 
 describe("handler", () => {
-	beforeEach(async () => {
-		const email = await fs.readFile(
-			path.resolve(__dirname, "./fixtures/email.txt"),
-			"utf8",
-		);
-
-		const mockS3 = {
-			getObject: jest.fn().mockReturnValue({
-				promise: jest.fn().mockResolvedValue({
-					Body: email,
-				}),
-			}),
-		};
-
-		// @ts-expect-error: mocked
-		AWS.S3.mockReturnValue(mockS3);
-	});
-
 	it("fetches the object from the correct bucket and directory", async () => {
-		process.env.KEY_PREFIX = "inbox/";
+		const spy = mockGetObject();
 
 		await handler(MOCK_EVENT);
 
-		expect(new AWS.S3().getObject).toHaveBeenCalledWith({
-			Bucket: "test",
-			// process.env.KEY_PREFIX + MOCK_EVENT.Records[0].ses.mail.messageId
-			Key: "inbox/email.txt",
+		expect(spy).toHaveBeenCalledWith({
+			Bucket: MOCK_EVENT.Records[0].s3.bucket.name,
+			Key: MOCK_EVENT.Records[0].s3.object.key,
 		});
 	});
 
 	it("creates a Volume and Highlights", async () => {
+		mockGetObject();
+
 		await handler(MOCK_EVENT);
 
 		const db = getFirestore();
@@ -68,6 +67,8 @@ describe("handler", () => {
 	});
 
 	it("does not import a duplicate Volume or Highlights", async () => {
+		mockGetObject();
+
 		await handler(MOCK_EVENT);
 		await handler(MOCK_EVENT);
 
@@ -80,6 +81,7 @@ describe("handler", () => {
 	});
 
 	it("doesn't create records if the event has the test property set to true", async () => {
+		mockGetObject();
 		await handler({ ...MOCK_EVENT, test: true });
 
 		const db = getFirestore();

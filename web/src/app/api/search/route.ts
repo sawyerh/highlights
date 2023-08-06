@@ -1,5 +1,6 @@
-import { request } from "helpers/request";
 import { NextRequest, NextResponse } from "next/server";
+
+import { request } from "helpers/request";
 
 const AI_URL = process.env.AI_URL;
 
@@ -19,11 +20,14 @@ export async function GET(req: NextRequest) {
 		return NextResponse.json({ error: "Sawyer says No" }, { status: 400 });
 	}
 
-	const { data } = await request<{ data: SearchResult[]}>(`${AI_URL}/search?query=${query}`, {
-		next: {
-			revalidate: 60 * 60 * 24, // 24 hours
+	const { data } = await request<{ data: SearchResult[] }>(
+		`${AI_URL}/search?query=${query}`,
+		{
+			next: {
+				revalidate: 60 * 60 * 24, // 24 hours
+			},
 		},
-	});
+	);
 	return NextResponse.json(data);
 }
 
@@ -34,7 +38,7 @@ export async function GET(req: NextRequest) {
 export async function PUT() {
 	await request(`${AI_URL}/wake}`, {
 		next: {
-			revalidate: 60 * 30 // 30 minutes
+			revalidate: 60 * 30, // 30 minutes
 		},
 	});
 	return NextResponse.json({});

@@ -1,11 +1,11 @@
-import AWS from "aws-sdk";
-
+import type { GetObjectCommandOutput } from "@aws-sdk/client-s3";
 import someSeries from "async/someSeries";
 import textToJSON from "highlights-email-to-json";
 import kindleClippingsToJSON from "kindle-clippings-to-json";
 import kindleEmailToJSON from "kindle-email-to-json";
 import safariEmailToJSON from "safari-books-csv-to-json";
 
+import { Importer } from "../types";
 import { importHighlights } from "./importHighlights";
 import { importVolume } from "./importVolume";
 
@@ -29,7 +29,7 @@ async function addVolumeAndHighlights(data: Awaited<ReturnType<Importer>>) {
 /**
  * Run all possible importers (e.g. Kindle, plain text)
  */
-function importMail(mail: AWS.S3.Body) {
+function importMail(mail: GetObjectCommandOutput["Body"], runAsTest = false) {
 	return new Promise<void>((resolve, reject) => {
 		const importers = [
 			kindleEmailToJSON,
@@ -44,6 +44,12 @@ function importMail(mail: AWS.S3.Body) {
 				// each importer is ran in serial and stops once one runs successfully
 				try {
 					const data = await runImporter(mail);
+					if (runAsTest) {
+						console.log("Test run, not persisting data", {
+							importedData: JSON.stringify(data, null, 2),
+						});
+						return true;
+					}
 					await addVolumeAndHighlights(data);
 					return true;
 				} catch (err) {

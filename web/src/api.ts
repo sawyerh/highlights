@@ -16,7 +16,10 @@ const VOLUME_REVALIDATION_TIME = 60 * 10; // 10 minutes
  * Send a request to a serverless HTTP endpoint in Firebase.
  * @example firebaseRequest('volumes')
  */
-async function firebaseRequest<TResponse>(route: string, options?: RequestInit) {
+async function firebaseRequest<TResponse>(
+	route: string,
+	options?: RequestInit,
+) {
 	return request<TResponse>(`${FIREBASE_API_URL}/${route}`, options);
 }
 
@@ -41,13 +44,17 @@ export async function getVolume(volumeId: string) {
 }
 
 export async function getHighlights(volumeId: string) {
-	const { data } = await firebaseRequest<{ data: Highlight[] }>(`highlights?volume=${volumeId}`);
+	const { data } = await firebaseRequest<{ data: Highlight[] }>(
+		`highlights?volume=${volumeId}`,
+	);
 
 	return data;
 }
 
 export async function getHighlight(highlightId: string) {
-	const highlight = await firebaseRequest<Highlight>(`highlights/${highlightId}`);
+	const highlight = await firebaseRequest<Highlight>(
+		`highlights/${highlightId}`,
+	);
 
 	return highlight;
 }
