@@ -1,5 +1,12 @@
 # See https://docs.powertools.aws.dev/lambda/python/latest/utilities/validation
 
+DELETE_EMBEDDING_BODY = {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "type": "object",
+    "properties": {"highlight_key": {"type": "string"}},
+    "required": ["highlight_key"],
+}
+
 POST_EMBEDDINGS_BODY = {
     "$schema": "http://json-schema.org/draft-07/schema",
     "type": "object",

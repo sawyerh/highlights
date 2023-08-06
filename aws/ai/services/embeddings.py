@@ -70,3 +70,15 @@ def filter_existing_highlights(
 
     existing_highlights = existing_highlights["highlight_key"].tolist()
     return new_highlights[~new_highlights["highlight_key"].isin(existing_highlights)]
+
+
+def remove_highlight_embedding(highlight_key: str):
+    """
+    Remove a highlight embedding from the persisted dataset
+
+    :param highlight_key: Key of the highlight to remove
+    """
+
+    highlights = get_embeddings_from_s3()
+    highlights = highlights[~highlights["highlight_key"].isin([highlight_key])]
+    save_embeddings_to_s3(highlights)

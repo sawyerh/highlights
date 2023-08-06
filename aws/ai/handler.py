@@ -4,7 +4,10 @@ from aws_lambda_powertools.event_handler import LambdaFunctionUrlResolver
 from aws_lambda_powertools.event_handler.exceptions import BadRequestError
 from aws_lambda_powertools.utilities.typing import LambdaContext
 from aws_lambda_powertools.utilities.validation import SchemaValidationError, validate
-from services.embeddings import add_new_embeddings_for_highlights
+from services.embeddings import (
+    add_new_embeddings_for_highlights,
+    remove_highlight_embedding,
+)
 from services.search import search_highlights
 from services.summarize import summarize_volume
 
@@ -79,6 +82,28 @@ def post_embeddings():
         )
         add_new_embeddings_for_highlights(highlights)
         return {"message": "Embeddings created successfully"}
+    except SchemaValidationError as exception:
+        raise BadRequestError(str(exception))
+
+
+@app.delete("/embeddings")
+@tracer.capture_method
+def delete_embeddings():
+    """
+    Remove embeddings for a given highlight_key
+    """
+
+    request_data: dict = app.current_event.json_body
+
+    try:
+        validate(event=request_data, schema=schemas.DELETE_EMBEDDING_BODY)
+        highlight_key = request_data.get("highlight_key")
+        logger.info(
+            "Received embeddings deletion request",
+            extra={"highlight_key": highlight_key},
+        )
+        remove_highlight_embedding(highlight_key)
+        return {"message": "Embedding deleted successfully"}
     except SchemaValidationError as exception:
         raise BadRequestError(str(exception))
 

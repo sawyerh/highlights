@@ -3,6 +3,7 @@ from pytest_mock import MockerFixture
 from services.embeddings import (
     add_new_embeddings_for_highlights,
     filter_existing_highlights,
+    remove_highlight_embedding,
 )
 
 
@@ -49,3 +50,20 @@ def test_add_new_embeddings_for_highlights(
         appending_highlights.iloc[len(appending_highlights) - 1].loc["highlight_key"]
         == "new-mock-highlight"
     )
+
+
+def test_remove_embedding_for_highlight(
+    mocker: MockerFixture, embeddings: pd.DataFrame
+):
+    mock_save_embeddings_to_s3 = mocker.patch(
+        "services.embeddings.save_embeddings_to_s3"
+    )
+    mocker.patch(
+        "services.embeddings.get_embeddings_from_s3",
+        return_value=embeddings,
+    )
+    existing_highlight = embeddings.iloc[0]
+
+    remove_highlight_embedding(existing_highlight["highlight_key"])
+
+    assert len(mock_save_embeddings_to_s3.call_args[0][0]) == len(embeddings) - 1
