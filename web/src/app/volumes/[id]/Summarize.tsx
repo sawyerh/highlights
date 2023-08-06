@@ -34,9 +34,7 @@ function Summarize(props: Props) {
 		queryKey: [volumeId],
 		enabled: !!showSummarize,
 		queryFn: async () =>
-			request<SummarizationResult[]>(
-				`/api/ai/summarize?volume_id=${volumeId}}`,
-			),
+			request<SummarizationResult[]>(`/api/ai/summarize?volume_id=${volumeId}`),
 		refetchOnWindowFocus: false,
 	});
 
