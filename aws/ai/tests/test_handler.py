@@ -38,14 +38,17 @@ def test_delete_rejected_missing_secret(lambda_context):
     assert body_dict["message"] == "Missing client secret"
 
 
-def test_delete_rejected_incorrect_secret(lambda_context):
+@pytest.mark.parametrize(
+    "http_method,path", [("POST", "/embeddings"), ("DELETE", "/embeddings")]
+)
+def test_rejects_incorrect_secret(http_method, path, lambda_context):
     minimal_event = {
-        "rawPath": "/embeddings",
+        "rawPath": path,
         "requestContext": {
             "requestContext": {
                 "requestId": "227b78aa-779d-47d4-a48e-ce62120393b8"
             },  # correlation ID
-            "http": {"method": "DELETE"},
+            "http": {"method": http_method},
             "stage": "$default",
         },
         "headers": {"X-Api-Key": "wrong-secret"},

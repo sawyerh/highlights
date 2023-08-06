@@ -40,6 +40,9 @@ export async function addEmbeddings(
 	const response = await fetch(`${embeddingsUrl}/embeddings`, {
 		method: "POST",
 		body: JSON.stringify({ highlights: embeddableHighlights }),
+		headers: {
+			"X-Api-Key": process.env.AI_API_SECRET ?? "",
+		},
 	});
 
 	if (response.ok) {

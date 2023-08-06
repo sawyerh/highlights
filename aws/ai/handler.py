@@ -75,6 +75,7 @@ def post_embeddings():
     This endpoint is idempotent, so it should be safe to retry if something fails.
     """
 
+    enforce_clients_secret()
     request_data: dict = app.current_event.json_body
 
     try:
