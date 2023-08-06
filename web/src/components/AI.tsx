@@ -62,7 +62,7 @@ function useDialog(ref: React.MutableRefObject<HTMLDialogElement | null>) {
 		trackEvent("opened-ai-dialog");
 
 		// Wake the function up to reduce the cold start time
-		request(`/api/search`, { method: "PUT" }).catch(console.error);
+		request(`/api/ai/wake`, { method: "PUT" }).catch(console.error);
 	};
 
 	const hide = () => {
@@ -133,7 +133,7 @@ const SearchDialog = forwardRef(function SearchDialog(
 		queryKey: [submittedQuery],
 		enabled: !!submittedQuery,
 		queryFn: async () =>
-			request<SearchResult[]>(`/api/search?query=${submittedQuery}`),
+			request<SearchResult[]>(`/api/ai/search?query=${submittedQuery}`),
 		refetchOnWindowFocus: false,
 	});
 

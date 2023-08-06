@@ -5,6 +5,8 @@ import VolumeHeader from "components/VolumeHeader";
 import seoTitleForVolume from "helpers/seoTitleForVolume";
 import { Suspense } from "react";
 
+import Summarize from "./Summarize";
+
 export async function generateMetadata({ params }: { params: PageParams }) {
 	const volume = await getVolume(params.id);
 
@@ -29,6 +31,7 @@ const HighlightsFeed = async (props: {
 						: "No notes yet for this."}
 				</p>
 			)}
+			{highlights.length > 1 && <Summarize volumeId={props.volumeId} />}
 			{highlights.map((highlight) => (
 				<Highlight key={highlight.id} className="mb-12" {...highlight} />
 			))}

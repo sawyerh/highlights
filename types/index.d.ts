@@ -29,6 +29,11 @@ interface SearchResult {
 	volume_subtitle?: string;
 }
 
+interface SummarizationResult {
+	takeaway: string;
+	highlight_ids: string[];
+}
+
 interface Volume {
 	authors?: string[];
 	categories?: string[];
