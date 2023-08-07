@@ -54,7 +54,7 @@ functions:
     environment:
       NODE_OPTIONS: --enable-source-maps
       SERVICE_ACCOUNT: ${ssm(raw):/Highlights/Google-Service-Account}
-      AI_FUNCTION_URL: ${ssm:/Highlights/AI-Function-URL}
+      AI_FUNCTION_URL: https://${ssm:/Highlights/AiLambdaFunctionDomain}
       AI_API_SECRET: ${ssm:/Highlights/Clients-Secret}
     events:
       - s3:

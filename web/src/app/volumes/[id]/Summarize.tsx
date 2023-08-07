@@ -30,11 +30,16 @@ function Summarize(props: Props) {
 	const [showSummarize, setShowSummarize] = useState(false);
 	const summaryRef = useRef<HTMLDivElement>(null);
 
+	// TODO: This timesout when deployed to Vercel because it has a 10 second max
+	// for functions on their free plan. Just make a request directly to the Lambda
+	// function URL from the client-side, but pass it through Cloudfront for protections.
 	const { isFetching, data: summarizationResults } = useQuery({
 		queryKey: [volumeId],
 		enabled: !!showSummarize,
 		queryFn: async () =>
-			request<SummarizationResult[]>(`/api/ai/summarize?volume_id=${volumeId}`),
+			request<{ data: SummarizationResult[] }>(
+				`${process.env.NEXT_PUBLIC_AI_CDN_URL}/${volumeId}`,
+			),
 		refetchOnWindowFocus: false,
 	});
 
@@ -58,7 +63,7 @@ function Summarize(props: Props) {
 					</span>{" "}
 					Generated takeaways
 				</h2>
-				{summarizationResults.map((result, index) => {
+				{summarizationResults.data.map((result, index) => {
 					return (
 						<div key={index} className="mb-4">
 							{result.takeaway}

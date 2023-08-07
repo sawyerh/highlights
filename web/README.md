@@ -17,7 +17,7 @@ npm install
 
 In `.env.local`, set the following environment secrets:
 
-- `AI_URL`: URL of the AI API
+- `NEXT_PUBLIC_AI_CDN_URL`: URL of the AI API CDN. You can grab this from AWS SSM or it's also listed as `AiCloudfrontDomain` in the "Stack outputs" when you deploy the AI function using the Serverless CLI.
 
 ### Local development
 

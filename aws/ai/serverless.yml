@@ -54,6 +54,42 @@ functions:
       POWERTOOLS_SERVICE_NAME: ${self:service}-${sls:stage}
       POWERTOOLS_METRICS_NAMESPACE: ${self:service}
 
+resources:
+  Outputs:
+    AiCloudfrontDomain:
+      Value: !GetAtt CDN.DomainName
+      Description: Domain name of the Cloudfront distribution.
+  Resources:
+    AiLambdaFunctionDomain:
+      Type: "AWS::SSM::Parameter"
+      Properties:
+        Name: /Highlights/AiLambdaFunctionDomain
+        Type: String
+        Value:
+          !Select [2, !Split ["/", !GetAtt AiLambdaFunctionUrl.FunctionUrl]]
+        Description: Domain name of the Lambda function. Used for passing to Cloudfront.
+    # Create a Cloudfront distribution to serve the AI Lambda function URL
+    # to clients, as a poor man's rate limiter.
+    CDN:
+      Type: AWS::CloudFront::Distribution
+      Properties:
+        DistributionConfig:
+          Enabled: true
+          Origins:
+            - DomainName: !GetAtt AiLambdaFunctionDomain.Value
+              Id: AiLambdaFunctionOrigin
+              CustomOriginConfig:
+                HTTPPort: 80
+                HTTPSPort: 443
+                OriginProtocolPolicy: https-only
+          DefaultCacheBehavior:
+            TargetOriginId: AiLambdaFunctionOrigin
+            ViewerProtocolPolicy: redirect-to-https
+            ForwardedValues:
+              QueryString: true
+              Headers:
+                - X-Api-Key
+
 plugins:
   - serverless-python-requirements
 

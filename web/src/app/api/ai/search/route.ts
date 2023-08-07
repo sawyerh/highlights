@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 import { request } from "helpers/request";
 
-const AI_URL = process.env.AI_URL;
+const AI_URL = process.env.NEXT_PUBLIC_AI_CDN_URL;
 
 /**
  * Perform a search

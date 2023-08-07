@@ -52,7 +52,6 @@ If you don't see data in the emulator, but expect to, make sure the Firebase CLI
 Two [SSM Parameters](https://us-east-1.console.aws.amazon.com/systems-manager/parameters) need created:
 
 1. A `SecureString` with the name of: `/Highlights/Google-Service-Account`. Add the Google Cloud Service Account JSON object as the value.
-1. A `String` with the name of `/Highlights/AI-Function-URL`. Add the function URL of the `aws/ai` Lambda.
 
 For other one-time configuration, see `serverless.yml`.
 
