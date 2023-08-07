@@ -85,10 +85,30 @@ resources:
           DefaultCacheBehavior:
             TargetOriginId: AiLambdaFunctionOrigin
             ViewerProtocolPolicy: redirect-to-https
+            ResponseHeadersPolicyId: !Ref CDNResponseHeadersPolicy
             ForwardedValues:
               QueryString: true
               Headers:
                 - X-Api-Key
+    CDNResponseHeadersPolicy:
+      Type: AWS::CloudFront::ResponseHeadersPolicy
+      Properties:
+        ResponseHeadersPolicyConfig:
+          Name: ${self:service}-${sls:stage}-cdn-response-headers-policy
+          CorsConfig:
+            AccessControlAllowOrigins:
+              Items:
+                - "*"
+            AccessControlAllowHeaders:
+              Items:
+                - "*"
+            AccessControlAllowMethods:
+              Items:
+                - GET
+                - HEAD
+                - OPTIONS
+            AccessControlAllowCredentials: false
+            OriginOverride: true
 
 plugins:
   - serverless-python-requirements

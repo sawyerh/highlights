@@ -37,7 +37,9 @@ function Summarize(props: Props) {
 			request<{ data: SummarizationResult[] }>(
 				`${process.env.NEXT_PUBLIC_AI_CDN_URL}/summarize/${volumeId}`,
 				{
-					mode: "no-cors",
+					next: {
+						revalidate: 60 * 60 * 24 * 7, // 1 week
+					},
 				},
 			),
 		refetchOnWindowFocus: false,
