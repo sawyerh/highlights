@@ -21,6 +21,8 @@ const HighlightsFeed = async (props: {
 	format: Volume["format"];
 }) => {
 	const highlights = await getHighlights(props.volumeId);
+	const showSummarize =
+		highlights.length > 10 || process.env.NODE_ENV === "development";
 
 	return (
 		<>
@@ -31,7 +33,7 @@ const HighlightsFeed = async (props: {
 						: "No notes yet for this."}
 				</p>
 			)}
-			{highlights.length > 10 && <Summarize volumeId={props.volumeId} />}
+			{showSummarize && <Summarize volumeId={props.volumeId} />}
 			{highlights.map((highlight) => (
 				<Highlight key={highlight.id} className="mb-12" {...highlight} />
 			))}
