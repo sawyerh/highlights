@@ -62,7 +62,11 @@ function useDialog(ref: React.MutableRefObject<HTMLDialogElement | null>) {
 		trackEvent("opened-ai-dialog");
 
 		// Wake the function up to reduce the cold start time
-		request(`/api/ai/wake`, { method: "PUT" }).catch(console.error);
+		request(`${process.env.NEXT_PUBLIC_AI_CDN_URL}/wake}`, {
+			next: {
+				revalidate: 60 * 30, // 30 minutes
+			},
+		}).catch(console.error);
 	};
 
 	const hide = () => {
@@ -130,10 +134,20 @@ const SearchDialog = forwardRef(function SearchDialog(
 	const [query, setQuery] = useState<string>("");
 	const [submittedQuery, setSubmittedQuery] = useState<string>("");
 	const { isFetching, data: queryResults } = useQuery({
-		queryKey: [submittedQuery],
+		queryKey: [submittedQuery, process.env.NEXT_PUBLIC_AI_CDN_URL],
 		enabled: !!submittedQuery,
-		queryFn: async () =>
-			request<SearchResult[]>(`/api/ai/search?query=${submittedQuery}`),
+		queryFn: async () => {
+			const { data } = await request<{ data: SearchResult[] }>(
+				`${process.env.NEXT_PUBLIC_AI_CDN_URL}/search?query=${submittedQuery}`,
+				{
+					next: {
+						revalidate: 60 * 60 * 24, // 24 hours
+					},
+				},
+			);
+
+			return data;
+		},
 		refetchOnWindowFocus: false,
 	});
 
