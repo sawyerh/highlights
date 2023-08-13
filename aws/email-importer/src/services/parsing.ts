@@ -42,14 +42,18 @@ export async function getHighlightsAndVolumeFromEmail(
 	for await (const parser of parsers) {
 		try {
 			const results = await parser(email);
-			if (!results.highlights.length) continue;
-			highlights = results.highlights;
-			volume = results.volume;
-			break;
+			if (results.volume) {
+				// Some exports may only have a volume
+				volume = results.volume;
+			}
+			if (results.highlights.length) {
+				highlights = results.highlights;
+				// Once we've found highlights, we don't need to try other parsers
+				break;
+			}
 		} catch (error) {
 			// Parsers reject when nothing was found
 			if (error instanceof Error) console.log(error.message);
-			continue;
 		}
 	}
 

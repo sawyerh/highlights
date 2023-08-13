@@ -39,9 +39,14 @@ export async function handler(event: ImporterEvent) {
 
 	const { highlights, volume } = await getHighlightsAndVolumeFromEmail(Body);
 
-	if (!highlights.length || !volume) {
-		console.warn("Highlights or a volume are missing in the email");
+	if (!volume) {
+		console.error("Volume is missing in the email");
+		// Can't associated highlights with a volume, so exit
 		return;
+	}
+
+	if (!highlights.length) {
+		console.warn("Highlights are missing in the email");
 	}
 
 	const syncResults = await syncDb(volume, highlights, {
