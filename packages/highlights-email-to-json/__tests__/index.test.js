@@ -16,4 +16,12 @@ describe("highlights-email-to-json", () => {
 				expect(data).toMatchSnapshot();
 			});
 	});
+
+	it("returns just the title if there's no body of notes", () => {
+		return readMail("just-title")
+			.then(toJSON)
+			.then((data) => {
+				expect(data).toMatchSnapshot();
+			});
+	});
 });

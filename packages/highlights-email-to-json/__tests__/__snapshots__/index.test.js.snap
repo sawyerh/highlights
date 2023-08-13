@@ -102,3 +102,16 @@ backgrounds makes this inevitable.",
   },
 }
 `;
+
+exports[`highlights-email-to-json returns just the title if there's no body of notes 1`] = `
+{
+  "highlights": [],
+  "volume": {
+    "authors": [
+      "Jo Freeman aka Joreen",
+      "Foo bar",
+    ],
+    "title": "The Tyranny of Stuctureless",
+  },
+}
+`;

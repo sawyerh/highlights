@@ -1,0 +1,23 @@
+Return-Path: <sender@example.com>
+MIME-Version: 1.0
+From: Sawyer Hollenshead <sender@example.com>
+Date: Mon, 09 Oct 2017 02:49:24 +0000
+Subject: My Export
+To: "foo@example.com" <foo@example.com>
+Content-Type: multipart/alternative; boundary="94eb2c06b99aa1cc87055b143def"
+
+--94eb2c06b99aa1cc87055b143def
+Content-Type: text/plain; charset="UTF-8"
+
+---
+title: The Tyranny of Stuctureless
+authors: Jo Freeman aka Joreen; Foo bar
+---
+
+--94eb2c06b99aa1cc87055b143def
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">++Jo Freeman aka Joreen <br><div><br></div></div>
+
+--94eb2c06b99aa1cc87055b143def--
