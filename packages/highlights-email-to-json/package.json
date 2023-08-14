@@ -1,7 +1,7 @@
 {
 	"name": "highlights-email-to-json",
 	"description": "Converts an email of plain text notes into a JSON object",
-	"version": "1.1.2",
+	"version": "1.1.3",
 	"main": "index.js",
 	"author": {
 		"name": "Sawyer Hollenshead",
@@ -10,8 +10,8 @@
 	"repository": "sawyerh/highlights",
 	"license": "MIT",
 	"dependencies": {
-		"front-matter": "^4.0.0",
-		"mailparser": "^3.6.2"
+		"front-matter": "^4.0.1",
+		"mailparser": "^3.6.5"
 	},
 	"devDependencies": {
 		"mz": "^2.7.0"
