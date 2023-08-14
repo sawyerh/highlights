@@ -30,7 +30,7 @@ const HighlightsFeed = async (props: {
 				<p className="text-center">
 					{props.format === "audiobook"
 						? "I listened to this as an audiobook."
-						: "No notes yet for this."}
+						: "No notes."}
 				</p>
 			)}
 			{showSummarize && <Summarize volumeId={props.volumeId} />}
