@@ -7,6 +7,7 @@ This only runs locally.
 An `.env` file in this directory with:
 
 - `AWS_PROFILE` to use for retrieving the highlights.
+- `OPENAI_API_KEY`
 
 ## Usage
 

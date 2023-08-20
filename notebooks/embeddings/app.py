@@ -1,12 +1,18 @@
+import os
+
 import numpy as np
+import openai
 import pandas as pd
+import plotly.express as px
 import streamlit as st
 from dotenv import load_dotenv
-from openai.embeddings_utils import chart_from_components
+from openai.embeddings_utils import chart_from_components, get_embedding
 from sklearn.manifold import TSNE
 
 load_dotenv()
 S3_EMBEDDINGS_PATH = "s3://highlights.sawyerh.com/ai/embeddings.parquet"
+
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 
 # ==========================================
@@ -29,18 +35,26 @@ def get_unique_volumes():
     return _volumes
 
 
+def to_2d_array(embeddings: list):
+    """
+    Reduce the dimensionality to 2 dimensions
+    """
+
+    tsne = TSNE(
+        n_components=2, perplexity=15, random_state=42, init="random", learning_rate=200
+    )
+    matrix = np.array(embeddings)
+    visual_dimensions = tsne.fit_transform(matrix)
+    return visual_dimensions
+
+
 def get_chart(chart_df: pd.DataFrame):
     """
     Largely based on
     https://github.com/openai/openai-cookbook/blob/main/examples/Visualizing_embeddings_in_2D.ipynb
     """
 
-    # Reduce the dimensionality to 2 dimensions
-    tsne = TSNE(
-        n_components=2, perplexity=15, random_state=42, init="random", learning_rate=200
-    )
-    matrix = np.array(chart_df["embedding"].tolist())
-    visual_dimensions = tsne.fit_transform(matrix)
+    visual_dimensions = to_2d_array(chart_df["embedding"].tolist())
 
     # Render the chart
     x = [x for x, y in visual_dimensions]
@@ -56,12 +70,21 @@ def get_chart(chart_df: pd.DataFrame):
         mark_size=10,
         x_title="x",
         y_title="y",
+        color_discrete_sequence=px.colors.qualitative.Plotly,
     )
     figure.update_xaxes(showgrid=True)
     figure.update_yaxes(showgrid=True)
     figure.update_layout(
-        legend=dict(yanchor="top", y=0.99, xanchor="left", x=0.01, title_text="Book")
+        legend=dict(
+            yanchor="top",
+            y=0.99,
+            xanchor="left",
+            x=0.01,
+            title_text="Book",
+            font_size=16,
+        ),
     )
+
     return figure
 
 
@@ -95,9 +118,29 @@ st.multiselect(
     format_func=lambda volume: volume["volume_title"],
 )
 
+query = st.text_input("Custom query to include in plot", "", key="query")
+
 selected_volumes = st.session_state.selected_volumes or []
 selected_volume_keys = [volume["volume_key"] for volume in selected_volumes]
-selected_volume_df = df[df.volume_key.isin(selected_volume_keys)]
+selected_volumes_df = df[df.volume_key.isin(selected_volume_keys)]
 
-st.plotly_chart(get_chart(selected_volume_df))
-st.dataframe(selected_volume_df, use_container_width=True)
+if query:
+    query_embedding = get_embedding(query, "text-embedding-ada-002")
+    selected_volumes_df = pd.concat(
+        [
+            selected_volumes_df,
+            pd.DataFrame(
+                [
+                    {
+                        "volume_key": "query",
+                        "volume_title": "query",
+                        "body": query,
+                        "embedding": query_embedding,
+                    }
+                ]
+            ),
+        ]
+    )
+
+st.plotly_chart(get_chart(selected_volumes_df))
+st.dataframe(selected_volumes_df, use_container_width=True)
