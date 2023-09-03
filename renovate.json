@@ -11,33 +11,33 @@
 	"packageRules": [
 		{
 			"automerge": true,
-			"groupName": "root",
+			"groupName": "Root (JS)",
 			"matchFileNames": ["package.json"]
 		},
 		{
 			"automerge": true,
-			"groupName": "root",
+			"groupName": "Root (Python)",
 			"matchFileNames": ["pyproject.toml"]
 		},
 		{
-			"groupName": "aws-js",
+			"groupName": "Serverless (JS)",
 			"matchFileNames": ["aws/**/package.json"]
 		},
 		{
-			"groupName": "aws-python",
+			"groupName": "Serverless (Python)",
 			"matchFileNames": ["aws/**/pyproject.toml"]
 		},
 		{
-			"groupName": "firebase",
+			"groupName": "Firebase",
 			"matchFileNames": ["firebase/functions/package.json"]
 		},
 		{
-			"groupName": "packages",
+			"groupName": "Highlight parsers",
 			"matchFileNames": ["packages/**/package.json"],
 			"schedule": ["every 12 months on the first day of the month"]
 		},
 		{
-			"groupName": "web",
+			"groupName": "Website",
 			"matchFileNames": ["web/package.json"]
 		}
 	]
