@@ -11,7 +11,7 @@ streamlit = "^1.25.0"
 fsspec = "^2023.6.0"
 s3fs = "^2023.6.0"
 python-dotenv = "^1.0.0"
-openai = { version = "^0.27.8", extras = ["embeddings"]}
+openai = { version = "^0.28.0", extras = ["embeddings"]}
 
 
 [build-system]
