@@ -20,7 +20,7 @@
 		"prettier": "^2.0.0",
 		"prettier-plugin-tailwindcss": "^0.4.0",
 		"serverless": "^3.33.0",
-		"serverless-python-requirements": "^6.0.0"
+		"serverless-python-requirements": "^6.1.0"
 	},
 	"jest": {
 		"testPathIgnorePatterns": [
