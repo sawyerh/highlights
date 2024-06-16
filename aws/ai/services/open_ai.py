@@ -68,7 +68,7 @@ def get_chat_completion(system_message: str, user_message: str):
                 "content": user_message,
             },
         ],
-        model="gpt-3.5-turbo-16k",
+        model="gpt-3.5-turbo",
         temperature=0.1,
     )
     track_total_tokens(response)
