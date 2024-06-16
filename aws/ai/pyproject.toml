@@ -3,6 +3,7 @@ name = "highlights-ai"
 version = "1.0.0"
 description = "AI features for my reading highlights"
 authors = ["Sawyer <git@sawyerh.com>"]
+package-mode = false
 
 [tool.poetry.dependencies]
 python = "^3.10"

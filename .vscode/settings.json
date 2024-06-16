@@ -15,13 +15,13 @@
 		"editor.defaultFormatter": "ms-python.black-formatter",
 		"editor.formatOnSave": true,
 		"editor.codeActionsOnSave": {
-			"source.organizeImports": true
+			"source.organizeImports": "explicit"
 		}
 	},
 	"[typescriptreact]": {
 		"editor.codeActionsOnSave": {
-			"source.addMissingImports": true,
-			"source.fixAll": true
+			"source.addMissingImports": "explicit",
+			"source.fixAll": "explicit"
 		}
 	},
 	"isort.args": ["--profile", "black"]
