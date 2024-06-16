@@ -1,21 +1,19 @@
-import os
 from typing import List
 
-import openai
 from aws_lambda_powertools import Logger, Metrics
 from aws_lambda_powertools.metrics import MetricUnit
+from openai import OpenAI
 from tenacity import retry, stop_after_attempt, wait_random_exponential
 
 EMBEDDINGS_ENGINE = "text-embedding-ada-002"
-OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
-openai.api_key = OPENAI_API_KEY
 
+client = OpenAI()
 logger = Logger()
 metrics = Metrics()
 
 
 def track_total_tokens(response):
-    total_tokens = response["usage"]["total_tokens"]
+    total_tokens = response.usage.total_tokens
     metrics.add_metric(
         name="QueryTotalTokens", unit=MetricUnit.Count, value=total_tokens
     )
@@ -45,10 +43,10 @@ def get_embeddings(list_of_text: List[str]) -> List[List[float]]:
     # replace newlines, which can negatively affect performance.
     list_of_text = [text.replace("\n", " ") for text in list_of_text]
 
-    response = openai.Embedding.create(input=list_of_text, engine=EMBEDDINGS_ENGINE)
+    response = client.embeddings.create(input=list_of_text, model=EMBEDDINGS_ENGINE)
     track_total_tokens(response)
 
-    return [d["embedding"] for d in response["data"]]
+    return [d.embedding for d in response.data]
 
 
 def get_chat_completion(system_message: str, user_message: str):
@@ -57,7 +55,7 @@ def get_chat_completion(system_message: str, user_message: str):
         extra={"system_message": system_message, "user_message": user_message},
     )
 
-    response = openai.ChatCompletion.create(
+    response = client.chat.completions.create(
         messages=[
             {
                 "role": "system",
@@ -73,4 +71,4 @@ def get_chat_completion(system_message: str, user_message: str):
     )
     track_total_tokens(response)
 
-    return response["choices"][0]["message"]["content"]
+    return response.choices[0].message.content

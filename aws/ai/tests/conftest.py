@@ -5,6 +5,7 @@ import pandas as pd
 import pytest
 
 os.environ.setdefault("CLIENTS_SECRET", "test-secret")
+os.environ.setdefault("OPENAI_API_KEY", "test-secret")
 
 
 @pytest.fixture
