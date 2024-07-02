@@ -24,25 +24,26 @@ trio = ["trio (>=0.23)"]
 
 [[package]]
 name = "aws-lambda-powertools"
-version = "2.38.1"
+version = "2.40.1"
 description = "Powertools for AWS Lambda (Python) is a developer toolkit to implement Serverless best practices and increase developer velocity."
 optional = false
 python-versions = "<4.0.0,>=3.8"
 files = [
-    {file = "aws_lambda_powertools-2.38.1-py3-none-any.whl", hash = "sha256:4235f517a8429a0e4dd2f76ac3f2d0a77b4a8061fd75ca9da013e7a1b4d17699"},
-    {file = "aws_lambda_powertools-2.38.1.tar.gz", hash = "sha256:3e25a51c0dc022b4ab733582ab4f39764831b31369a56424ac9f07139b5e96b3"},
+    {file = "aws_lambda_powertools-2.40.1-py3-none-any.whl", hash = "sha256:606feeb4c233d9f2cfbccc44789cf44e0790ddec6ae9d290dff9ca330ae51934"},
+    {file = "aws_lambda_powertools-2.40.1.tar.gz", hash = "sha256:d7a1e2fdf4c8089e5d65fc54ac2f0f4e7fc46ae17f806737e6a1bec494095daf"},
 ]
 
 [package.dependencies]
 aws-xray-sdk = {version = ">=2.8.0,<3.0.0", optional = true, markers = "extra == \"tracer\" or extra == \"all\""}
 fastjsonschema = {version = ">=2.14.5,<3.0.0", optional = true, markers = "extra == \"validation\" or extra == \"all\""}
+jmespath = ">=1.0.1,<2.0.0"
 pydantic = {version = ">=1.8.2,<2.0.0", optional = true, markers = "extra == \"parser\" or extra == \"all\""}
 typing-extensions = ">=4.11.0,<5.0.0"
 
 [package.extras]
 all = ["aws-xray-sdk (>=2.8.0,<3.0.0)", "fastjsonschema (>=2.14.5,<3.0.0)", "pydantic (>=1.8.2,<2.0.0)"]
 aws-sdk = ["boto3 (>=1.26.164,<2.0.0)"]
-datadog = ["datadog-lambda (>=4.77,<6.0)"]
+datadog = ["datadog-lambda (>=4.77,<7.0)"]
 datamasking = ["aws-encryption-sdk (>=3.1.1,<4.0.0)", "jsonpath-ng (>=1.6.0,<2.0.0)"]
 parser = ["pydantic (>=1.8.2,<2.0.0)"]
 redis = ["redis (>=4.4,<6.0)"]
@@ -66,13 +67,13 @@ wrapt = "*"
 
 [[package]]
 name = "awswrangler"
-version = "3.7.3"
+version = "3.8.0"
 description = "Pandas on AWS."
 optional = false
 python-versions = "<4.0,>=3.8"
 files = [
-    {file = "awswrangler-3.7.3-py3-none-any.whl", hash = "sha256:4fe535dfe221d33cc8cf0f0c6bde6e76c7183f9c7ba9bd8212bb22a5fcbacab8"},
-    {file = "awswrangler-3.7.3.tar.gz", hash = "sha256:76c56477ae46b0c3cd5d7ad2704d112f2e5f77125e9cd387297e2fc3013039ce"},
+    {file = "awswrangler-3.8.0-py3-none-any.whl", hash = "sha256:a1d72cff0d8f1ad380b25661775d1bd4616b3966fb9d9e6298d025ec0072014f"},
+    {file = "awswrangler-3.8.0.tar.gz", hash = "sha256:5f61ded812ad0c9ee0b0156ae940292d204089e9be5b2c2ba32c6908c0fb498b"},
 ]
 
 [package.dependencies]
@@ -89,7 +90,7 @@ setuptools = {version = "*", markers = "python_version >= \"3.12\""}
 typing-extensions = ">=4.4.0,<5.0.0"
 
 [package.extras]
-deltalake = ["deltalake (>=0.6.4,<0.17.0)"]
+deltalake = ["deltalake (>=0.6.4,<0.18.0)"]
 geopandas = ["geopandas (>=0.13.2,<0.14.0)", "geopandas (>=0.14.1,<0.15.0)"]
 gremlin = ["aiohttp (>=3.9.0,<4.0.0)", "async-timeout (>=4.0.3,<5.0.0)", "gremlinpython (>=3.7.1,<4.0.0)", "requests (>=2.0.0,<3.0.0)"]
 modin = ["modin (==0.23.1post0)", "modin (>=0.26.0,<0.27.0)"]
@@ -100,7 +101,7 @@ opensearch = ["jsonpath-ng (>=1.5.3,<2.0.0)", "opensearch-py (>=2.0.0,<3.0.0)", 
 oracle = ["oracledb (>=1,<3)"]
 postgres = ["pg8000 (>=1.29.0,<2.0.0)"]
 progressbar = ["progressbar2 (>=4.0.0,<5.0.0)"]
-ray = ["ray[data,default] (>=2.10.0,<3.0.0)"]
+ray = ["ray[data,default] (>=2.20.0,<3.0.0)"]
 redshift = ["redshift-connector (>=2.0.0,<3.0.0)"]
 sparql = ["SPARQLWrapper (>=2.0.0,<3.0.0)", "requests (>=2.0.0,<3.0.0)"]
 sqlserver = ["pyodbc (>=4,<6)"]
@@ -350,13 +351,13 @@ files = [
 
 [[package]]
 name = "openai"
-version = "1.34.0"
+version = "1.35.8"
 description = "The official Python library for the openai API"
 optional = false
 python-versions = ">=3.7.1"
 files = [
-    {file = "openai-1.34.0-py3-none-any.whl", hash = "sha256:018623c2f795424044675c6230fa3bfbf98d9e0aab45d8fd116f2efb2cfb6b7e"},
-    {file = "openai-1.34.0.tar.gz", hash = "sha256:95c8e2da4acd6958e626186957d656597613587195abd0fb2527566a93e76770"},
+    {file = "openai-1.35.8-py3-none-any.whl", hash = "sha256:69d5b0f47f0c806d5da83fb0f84c147661395226d7f79acc78aa1d9b8c635887"},
+    {file = "openai-1.35.8.tar.gz", hash = "sha256:3f6101888bb516647edade74c503f2b937b8bab73408e799d58f2aba68bbe51c"},
 ]
 
 [package.dependencies]
@@ -710,13 +711,13 @@ files = [
 
 [[package]]
 name = "tenacity"
-version = "8.3.0"
+version = "8.4.2"
 description = "Retry code until it succeeds"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "tenacity-8.3.0-py3-none-any.whl", hash = "sha256:3649f6443dbc0d9b01b9d8020a9c4ec7a1ff5f6f3c6c8a036ef371f573fe9185"},
-    {file = "tenacity-8.3.0.tar.gz", hash = "sha256:953d4e6ad24357bceffbc9707bc74349aca9d245f68eb65419cf0c249a1949a2"},
+    {file = "tenacity-8.4.2-py3-none-any.whl", hash = "sha256:9e6f7cf7da729125c7437222f8a522279751cdfbe6b67bfe64f75d3a348661b2"},
+    {file = "tenacity-8.4.2.tar.gz", hash = "sha256:cd80a53a79336edba8489e767f729e4f391c896956b57140b5d7511a64bbd3ef"},
 ]
 
 [package.extras]
