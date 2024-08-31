@@ -75,3 +75,11 @@ import pandas as pd
 df = pd.read_parquet('tmp/embeddings.parquet')
 df.tail()
 ```
+
+## Manual testing
+
+Run `test.py`:
+
+```sh
+poetry run python3 test.py
+```

@@ -56,7 +56,8 @@ def test_summarize_volume_non_json_completion(
         return_value=embeddings,
     )
     mocker.patch(
-        "services.summarize.get_chat_completion", return_value="This is not JSON"
+        "services.summarize.get_chat_completion",
+        return_value={"content": "This is not JSON"},
     )
 
     results = summarize_volume("mock-volume-1")

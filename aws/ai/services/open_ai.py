@@ -49,13 +49,13 @@ def get_embeddings(list_of_text: List[str]) -> List[List[float]]:
     return [d.embedding for d in response.data]
 
 
-def get_chat_completion(system_message: str, user_message: str):
+def get_chat_completion(system_message: str, user_message: str, response_format):
     logger.debug(
         "Chat completion prompts",
         extra={"system_message": system_message, "user_message": user_message},
     )
 
-    response = client.chat.completions.create(
+    response = client.beta.chat.completions.parse(
         messages=[
             {
                 "role": "system",
@@ -66,9 +66,10 @@ def get_chat_completion(system_message: str, user_message: str):
                 "content": user_message,
             },
         ],
-        model="gpt-3.5-turbo",
+        model="gpt-4o-mini",
         temperature=0.1,
+        response_format=response_format,
     )
     track_total_tokens(response)
 
-    return response.choices[0].message.content
+    return response.choices[0].message
