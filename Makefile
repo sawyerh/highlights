@@ -9,7 +9,7 @@ js-init:
 
 py-init:
 	poetry lock --no-update
-	poetry install --sync
+	poetry install --sync --no-root
 
 py-format: # Format the code
 	poetry run black .
