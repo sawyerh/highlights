@@ -10,6 +10,7 @@ python = "^3.11"
 openai = "^1.43.0"
 tenacity = "^8.2.2"
 jiter = "^0.5.0"
+pydantic = "<2"
 
 [tool.poetry.group.dev.dependencies]
 aws-lambda-powertools = {extras = ["all"], version = "^2.43.1"} # included in Lambda layer

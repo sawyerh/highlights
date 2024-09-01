@@ -2,15 +2,11 @@
 	"typescript.tsdk": "web/node_modules/typescript/lib",
 	"typescript.enablePromptUseWorkspaceTsdk": true,
 	"python.analysis.extraPaths": [
-		"aws/ai/.venv/lib/python3.10/site-packages",
-		"notebooks/embeddings/.venv/lib/python3.10/site-packages"
+		"aws/ai/.venv/lib/python3.11/site-packages",
+		"notebooks/embeddings/.venv/lib/python3.11/site-packages"
 	],
-	"python.linting.mypyEnabled": false,
-	"python.linting.enabled": true,
-	"python.linting.flake8Enabled": true,
-	"python.linting.flake8Path": ".venv/bin/flake8",
-	"python.linting.flake8Args": ["--config", "setup.cfg"],
-	"python.formatting.provider": "black",
+	"flake8.args": ["--config", "setup.cfg"],
+	"flake8.path": [".venv/bin/flake8"],
 	"[python]": {
 		"editor.defaultFormatter": "ms-python.black-formatter",
 		"editor.formatOnSave": true,
