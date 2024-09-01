@@ -41,9 +41,9 @@ def summarize_volume(volume_key: str):
     )
 
     completion = get_chat_completion(system_prompt, user_prompt, Summarization)
-    summarization = completion.parsed.summaries
+    summaries = completion.parsed.summaries
 
-    if isinstance(summarization, list):
-        summarization.sort(key=lambda x: len(x.highlight_ids), reverse=True)
+    if isinstance(summaries, list):
+        summaries.sort(key=lambda x: len(x.highlight_ids), reverse=True)
 
-    return summarization
+    return [summary.model_dump() for summary in summaries]
