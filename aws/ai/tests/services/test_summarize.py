@@ -1,5 +1,5 @@
 import pandas as pd
-from pydantic import BaseModel
+from openai import BaseModel
 from pytest_mock import MockerFixture
 from services.summarize import Summarization, Summary, summarize_volume
 
