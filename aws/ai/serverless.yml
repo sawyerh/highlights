@@ -5,8 +5,10 @@ frameworkVersion: "3"
 
 provider:
   name: aws
-  runtime: python3.10
-  architecture: x86_64
+  runtime: python3.11
+  # "...significantly better price and performance"
+  # https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html#foundation-arch-adv
+  architecture: arm64
   # "faster and have no downsides (unless you specifically use the generated change sets).
   #    They will become the default in Serverless Framework 4."
   deploymentMethod: direct
@@ -41,9 +43,9 @@ functions:
     layers:
       - !Ref PythonRequirementsLambdaLayer
       # https://aws-sdk-pandas.readthedocs.io/en/stable/layers.html
-      - arn:aws:lambda:${aws:region}:336392948345:layer:AWSSDKPandas-Python310:20
+      - arn:aws:lambda:${aws:region}:336392948345:layer:AWSSDKPandas-Python311-Arm64:17
       # https://docs.powertools.aws.dev/lambda/python/latest/
-      - arn:aws:lambda:${aws:region}:017000801446:layer:AWSLambdaPowertoolsPythonV2:79
+      - arn:aws:lambda:${aws:region}:017000801446:layer:AWSLambdaPowertoolsPythonV2-Arm64:79
     environment:
       EMBEDDINGS_S3_BUCKET: highlights.sawyerh.com
       EMBEDDINGS_S3_KEY: ai/embeddings.parquet
