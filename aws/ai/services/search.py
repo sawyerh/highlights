@@ -1,7 +1,8 @@
 import numpy as np
 import pandas as pd
 from aws_lambda_powertools import Logger, Tracer
-from services.open_ai import get_embedding
+
+from services.ai import get_embedding
 from services.persistence import get_embeddings_from_s3
 
 logger = Logger()

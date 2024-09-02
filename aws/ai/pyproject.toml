@@ -9,6 +9,7 @@ package-mode = false
 python = "^3.10"
 openai = "^1.34.0"
 tenacity = "^8.2.2"
+anthropic = "^0.34.1"
 
 [tool.poetry.group.dev.dependencies]
 aws-lambda-powertools = {extras = ["all"], version = "^2.19.0"} # included in Lambda layer

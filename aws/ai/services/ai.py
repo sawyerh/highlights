@@ -1,22 +1,16 @@
 from typing import List
 
+import anthropic
 from aws_lambda_powertools import Logger, Metrics
-from aws_lambda_powertools.metrics import MetricUnit
 from openai import OpenAI
 from tenacity import retry, stop_after_attempt, wait_random_exponential
 
 EMBEDDINGS_ENGINE = "text-embedding-ada-002"
 
-client = OpenAI()
+ac_client = anthropic.Anthropic()
+openai_client = OpenAI()
 logger = Logger()
 metrics = Metrics()
-
-
-def track_total_tokens(response):
-    total_tokens = response.usage.total_tokens
-    metrics.add_metric(
-        name="QueryTotalTokens", unit=MetricUnit.Count, value=total_tokens
-    )
 
 
 def get_embedding(text: str):
@@ -43,32 +37,33 @@ def get_embeddings(list_of_text: List[str]) -> List[List[float]]:
     # replace newlines, which can negatively affect performance.
     list_of_text = [text.replace("\n", " ") for text in list_of_text]
 
-    response = client.embeddings.create(input=list_of_text, model=EMBEDDINGS_ENGINE)
-    track_total_tokens(response)
+    response = openai_client.embeddings.create(
+        input=list_of_text, model=EMBEDDINGS_ENGINE
+    )
 
     return [d.embedding for d in response.data]
 
 
 def get_chat_completion(system_message: str, user_message: str):
+    client = ac_client
+    model = "claude-3-5-sonnet-20240620"
+
     logger.debug(
         "Chat completion prompts",
         extra={"system_message": system_message, "user_message": user_message},
     )
 
-    response = client.chat.completions.create(
+    message = client.messages.create(
+        model=model,
+        system=system_message,
+        max_tokens=8192,
         messages=[
-            {
-                "role": "system",
-                "content": system_message,
-            },
             {
                 "role": "user",
                 "content": user_message,
             },
         ],
-        model="gpt-3.5-turbo",
         temperature=0.1,
     )
-    track_total_tokens(response)
 
-    return response.choices[0].message.content
+    return message.content[0].text

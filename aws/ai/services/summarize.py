@@ -1,7 +1,8 @@
 import json
 
 from aws_lambda_powertools import Logger, Tracer
-from services.open_ai import get_chat_completion
+
+from services.ai import get_chat_completion
 from services.persistence import get_embeddings_from_s3
 
 logger = Logger()

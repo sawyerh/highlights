@@ -2,7 +2,8 @@ from typing import List, NamedTuple
 
 import pandas as pd
 from aws_lambda_powertools import Logger
-from services.open_ai import get_embeddings
+
+from services.ai import get_embeddings
 from services.persistence import get_embeddings_from_s3, save_embeddings_to_s3
 
 logger = Logger()
