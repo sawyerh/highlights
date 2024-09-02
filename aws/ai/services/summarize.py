@@ -16,8 +16,9 @@ def summarize_volume(volume_key: str):
         extra={"volume_key": volume_key, "total_found": len(data)},
     )
 
-    data["xml_highlight"] = (
-        f"<highlight id=\"{data['highlight_key']}\">{data['body']}</highlight>"
+    data["xml_highlight"] = data.apply(
+        lambda row: f'<highlight id="{row["highlight_key"]}">{row["body"]}</highlight>',
+        axis=1,
     )
     highlights_xml = "".join(data["xml_highlight"])
 

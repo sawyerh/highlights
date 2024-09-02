@@ -53,7 +53,7 @@ def get_chat_completion(
     model = "claude-3-5-sonnet-20240620"
     tool_choice = {"type": "tool", "name": tool_name} if tool_name else None
 
-    logger.debug(
+    logger.info(
         "Chat completion prompts",
         extra={"system_message": system_message, "user_message": user_message},
     )
