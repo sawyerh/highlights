@@ -50,7 +50,7 @@ def get_chat_completion(
     tool_name: Optional[Literal["summarize_highlights"]] = None,
 ):
     client = ac_client
-    model = "claude-3-5-sonnet-20240620"
+    model = "claude-3-haiku-20240307"
     tool_choice = {"type": "tool", "name": tool_name} if tool_name else None
 
     logger.debug(
