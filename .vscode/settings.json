@@ -5,12 +5,8 @@
 		"aws/ai/.venv/lib/python3.10/site-packages",
 		"notebooks/embeddings/.venv/lib/python3.10/site-packages"
 	],
-	"python.linting.mypyEnabled": false,
-	"python.linting.enabled": true,
-	"python.linting.flake8Enabled": true,
-	"python.linting.flake8Path": ".venv/bin/flake8",
-	"python.linting.flake8Args": ["--config", "setup.cfg"],
-	"python.formatting.provider": "black",
+	"flake8.path": [".venv/bin/flake8"],
+	"flake8.args": ["--config", "setup.cfg"],
 	"[python]": {
 		"editor.defaultFormatter": "ms-python.black-formatter",
 		"editor.formatOnSave": true,
