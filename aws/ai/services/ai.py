@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Literal, Optional
 
 import anthropic
 from aws_lambda_powertools import Logger, Metrics
@@ -44,9 +44,14 @@ def get_embeddings(list_of_text: List[str]) -> List[List[float]]:
     return [d.embedding for d in response.data]
 
 
-def get_chat_completion(system_message: str, user_message: str):
+def get_chat_completion(
+    user_message: str,
+    system_message: Optional[str] = None,
+    tool_name: Optional[Literal["summarize_highlights"]] = None,
+):
     client = ac_client
     model = "claude-3-5-sonnet-20240620"
+    tool_choice = {"type": "tool", "name": tool_name} if tool_name else None
 
     logger.debug(
         "Chat completion prompts",
@@ -56,14 +61,47 @@ def get_chat_completion(system_message: str, user_message: str):
     message = client.messages.create(
         model=model,
         system=system_message,
-        max_tokens=8192,
         messages=[
             {
                 "role": "user",
                 "content": user_message,
             },
         ],
-        temperature=0.1,
+        max_tokens=4096,
+        temperature=0,
+        tool_choice=tool_choice,
+        tools=[
+            {
+                "name": "summarize_highlights",
+                "description": "Output a summary of reading highlights as a list of takeaways",
+                "input_schema": {
+                    "type": "object",
+                    "required": ["takeaways"],
+                    "properties": {
+                        "takeaways": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "takeaway": {
+                                        "type": "string",
+                                        "description": "A summary for a highlight or set of highlights",
+                                    },
+                                    "highlight_ids": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string",
+                                            "description": "ID of the highlight related to this takeaway",
+                                        },
+                                    },
+                                },
+                                "required": ["takeaway", "highlight_ids"],
+                            },
+                        },
+                    },
+                },
+            }
+        ],
     )
 
-    return message.content[0].text
+    return message.content[0]
