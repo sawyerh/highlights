@@ -20,6 +20,11 @@ C4Container
    Rel(web, api, "")
 ```
 
+## Prerequisites
+
+- [Firebase CLI](https://firebase.google.com/docs/cli)
+- [Java](https://www.oracle.com/java/technologies/downloads)
+
 ## 🐣 Creating a new Firebase project
 
 1. Create a new Firebase project in the [Firebase console](https://console.firebase.google.com/).
@@ -30,22 +35,29 @@ C4Container
 
 ## 🧰 Local development
 
+### Setup environment
+
+**Non-Firebase services (Google Books) are live**, so you it's best to run tests against a test environment:
+
+1. Setup a new Firebase project for testing following the steps above, or find an existing project by running `firebase projects:list`
+1. Copy the Firebase app config: `firebase apps:sdkconfig --project <project-id>`
+1. Paste the config JSON into `/secrets/test-app.json`.
+
+### Environment variables:
+
+- `AI_FUNCTION_URL`: `aws ssm get-parameter --name /Highlights/AiLambdaFunctionDomain --query Parameter.Value --output text`
+- `AI_API_SECRET`: `aws ssm get-parameter --name /Highlights/Clients-Secret --query Parameter.Value --output text`
+
+### Running the emulator
+
 1. To run TypeScript compilation in watch-mode and the Firebase emulator with seeded data:
    ```
    npm run dev
    ```
 
-## 🧪 Testing
+### Testing
 
-### Setup test environment
-
-Tests run against the Firebase emulator, however **other non-Firebase services (Google Books) are live**, so you it's best to run tests against a test environment:
-
-1. Setup a new Firebase project for testing following the steps above.
-1. Copy the Firebase app config: `firebase apps:sdkconfig --project <project-id>`
-1. Paste the config JSON into `/secrets/test-app.json`.
-
-### Run tests
+#### Run tests
 
 ```
 npm test
@@ -59,7 +71,7 @@ npm run test:watch
 
 If you don't see data in the emulator, but expect to, make sure the Firebase CLI is using the same project as the tests: `firebase use <project id>`
 
-### Exporting seed data
+#### Exporting seed data
 
 To update the DB seed data:
 
@@ -67,7 +79,7 @@ To update the DB seed data:
 npm run emulators:export
 ```
 
-### Switching projects
+#### Switching projects
 
 To switch between a test project and production, use the `firebase` cli:
 
@@ -75,7 +87,7 @@ To switch between a test project and production, use the `firebase` cli:
 firebase use PROJECT-NAME
 ```
 
-### Non-HTTP functions
+#### Non-HTTP functions
 
 Run `npm run shell` to emulate an environment to test non-HTTP Functions.
 
@@ -92,7 +104,6 @@ For an HTTP function, it's easiest to run `npm run dev` and then use the HTTP UR
 ## 🚀 Deployment
 
 ```
-$ npm i -g firebase-tools
 $ firebase login
 $ firebase deploy
 ```
