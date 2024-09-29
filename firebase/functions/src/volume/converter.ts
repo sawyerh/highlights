@@ -20,6 +20,7 @@ const converter: FirestoreDataConverter<Volume> = {
 			format: data.format,
 			id: snapshot.id,
 			image: data.image,
+			industryIdentifiers: data.industryIdentifiers,
 			subtitle: data.subtitle,
 			title: data.title,
 			visible: data.visible,

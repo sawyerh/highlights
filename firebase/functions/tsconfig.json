@@ -11,6 +11,10 @@
 		"strict": true,
 		"target": "es2017"
 	},
+	"ts-node": {
+		"transpileOnly": true,
+		"files": true
+	},
 	"compileOnSave": true,
 	"include": ["**/*.ts", "../../types/**/*.ts"],
 	"exclude": ["node_modules"]
