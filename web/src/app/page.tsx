@@ -34,7 +34,7 @@ const Page = async () => {
 	const { volumes } = await getVolumes();
 
 	return (
-		<main className="mx-auto max-w-5xl px-4">
+		<main className="mx-auto max-w-5xl px-4 mb-12">
 			<h1 className="my-16 font-serif text-4xl font-bold">
 				What I&rsquo;ve been reading
 			</h1>
