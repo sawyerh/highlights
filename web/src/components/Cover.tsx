@@ -14,6 +14,7 @@ const Cover = (props: {
 			priority={props.priority}
 			sizes="(min-width: 600px) 200px, 150px"
 			src={props.image}
+			style={{ objectPosition: "center bottom", objectFit: "contain" }}
 		/>
 	) : (
 		<figcaption className="aspect-cover block bg-stone-800 p-4 text-white">

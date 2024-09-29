@@ -27,7 +27,7 @@ h3 {
 }
 
 .cover-link:is(:hover, :focus) .cover-link__cover {
-	@apply -translate-y-4 rotate-2 scale-105 shadow-xl shadow-black/20;
+	@apply -translate-y-4 rotate-2 scale-105;
 }
 
 /*

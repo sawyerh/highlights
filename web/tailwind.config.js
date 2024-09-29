@@ -12,10 +12,10 @@ module.exports = {
 				serif: ["var(--font-noto-serif)", "serif"],
 			},
 			gridTemplateColumns: {
-				volumes: "repeat(auto-fill, minmax(150px, 1fr))",
+				volumes: "repeat(auto-fill, minmax(170px, 1fr))",
 			},
 			maxWidth: {
-				"cover-sm": "150px",
+				"cover-sm": "170px",
 				cover: "200px",
 			},
 		},
