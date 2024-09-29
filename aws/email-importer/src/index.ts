@@ -37,7 +37,9 @@ export async function handler(event: ImporterEvent) {
 		Key: s3Record.s3.object.key,
 	});
 
-	const { highlights, volume } = await getHighlightsAndVolumeFromEmail(Body);
+	const email = (await Body?.transformToString("utf-8")) ?? "";
+
+	const { highlights, volume } = await getHighlightsAndVolumeFromEmail(email);
 
 	if (!volume) {
 		console.error("Volume is missing in the email");

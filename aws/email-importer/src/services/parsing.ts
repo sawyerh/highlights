@@ -1,4 +1,3 @@
-import { GetObjectCommandOutput } from "@aws-sdk/client-s3";
 import textToJSON from "highlights-email-to-json";
 import kindleClippingsToJSON from "kindle-clippings-to-json";
 import kindleEmailToJSON from "kindle-email-to-json";
@@ -18,7 +17,7 @@ export interface ParsedVolume {
 	title: string;
 }
 
-export type ParserFn = (mail: GetObjectCommandOutput["Body"]) => Promise<{
+export type ParserFn = (mail: string) => Promise<{
 	highlights: ParsedHighlight[];
 	volume?: ParsedVolume;
 }>;
@@ -33,9 +32,7 @@ const parsers: ParserFn[] = [
 /**
  * Run all parsers on the email body until one finds highlights
  */
-export async function getHighlightsAndVolumeFromEmail(
-	email: GetObjectCommandOutput["Body"],
-) {
+export async function getHighlightsAndVolumeFromEmail(email: string) {
 	let highlights: ParsedHighlight[] = [];
 	let volume: ParsedVolume | undefined;
 
