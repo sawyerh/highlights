@@ -12,7 +12,7 @@ function CoverLink(props: CoverLinkProps) {
 	const { priority, volume } = props;
 
 	return (
-		<Link className="cover-link" href={`/volumes/${volume.id}`}>
+		<Link className="cover-link content-auto" href={`/volumes/${volume.id}`}>
 			<Cover
 				authors={volume.authors}
 				className="cover-link__cover mb-2"
@@ -40,7 +40,7 @@ const Page = async () => {
 			</h1>
 			<ul className="grid-cols-volumes grid gap-8">
 				{volumes.map((volume: Volume, index) => (
-					<li key={volume.id} className="pb-4 content-auto">
+					<li key={volume.id} className="pb-4">
 						<CoverLink priority={index < 10} volume={volume} />
 					</li>
 				))}
