@@ -40,7 +40,7 @@ const Page = async () => {
 			</h1>
 			<ul className="grid-cols-volumes grid gap-8">
 				{volumes.map((volume: Volume, index) => (
-					<li key={volume.id} className="pb-4">
+					<li key={volume.id} className="pb-4 content-auto">
 						<CoverLink priority={index < 10} volume={volume} />
 					</li>
 				))}
