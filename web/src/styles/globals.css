@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-	background-color: #f6f6f1;
-}
-
 h1,
 h2,
 h3 {
@@ -59,6 +55,10 @@ mark,
 	background-repeat: no-repeat;
 	box-decoration-break: clone;
 	color: theme("colors.black");
+
+	@media (prefers-color-scheme: dark) {
+		--mark-color: rgba(255, 226, 130, 0.75);
+	}
 }
 
 .cover-link:is(:active, :focus) .cover-link__text {

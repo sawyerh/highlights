@@ -13,7 +13,7 @@ const Highlight = (props: {
 				<mark>{props.body}</mark>
 			</blockquote>
 			<Link
-				className="text-sm text-slate-600 hover:underline"
+				className="text-sm text-slate-600 dark:text-stone-400 hover:underline"
 				href={`/highlights/${props.id}`}
 				onClick={props.onLinkClick}
 				prefetch={false}

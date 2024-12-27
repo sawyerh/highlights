@@ -6,6 +6,9 @@ module.exports = {
 			aspectRatio: {
 				cover: "5 / 8",
 			},
+			colors: {
+				lightBg: "#f6f6f1",
+			},
 			fontFamily: {
 				// var's are set via @next/font
 				sans: ["var(--font-ibm-plex)", "sans-serif"],

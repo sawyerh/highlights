@@ -57,7 +57,7 @@ function Summarize(props: Props) {
 		return (
 			<section
 				ref={summaryRef}
-				className="border-t-2 border-b-2 pt-9 pb-5 my-9 border-neutral-300"
+				className="border-t-2 border-b-2 pt-9 pb-5 my-9 border-neutral-300 dark:border-stone-700"
 			>
 				<h2 className="text-xl font-bold mb-4 text-center flex items-center">
 					<span className="text-yellow-600 inline-block mr-2">
@@ -72,7 +72,7 @@ function Summarize(props: Props) {
 							{result.highlight_ids.map((highlightId, index) => (
 								<sup key={highlightId}>
 									<Link
-										className="underline text-neutral-500 inline-block ml-1"
+										className="underline text-neutral-500 dark:text-stone-400 inline-block ml-1"
 										href={`/highlights/${highlightId}`}
 									>
 										{index + 1}
@@ -89,7 +89,7 @@ function Summarize(props: Props) {
 	return (
 		<div className="text-center mb-10 lg:fixed lg:right-0 lg:bottom-0 lg:pb-2 lg:pr-2 lg:m-0">
 			<button
-				className="inline-flex bg-neutral-200 hover:bg-neutral-800 hover:text-white p-1 rounded-sm items-center text-xs"
+				className="inline-flex bg-neutral-200 hover:bg-neutral-800 dark:bg-neutral-800 hover:text-white p-1 rounded-sm items-center text-xs"
 				disabled={isFetching}
 				onClick={() => setShowSummarize(true)}
 				type="button"

@@ -50,7 +50,9 @@ export default function RootLayout({
 					gtag('config', 'G-ZP11FFWXRN');`}
 				</Script>
 			</head>
-			<body className={`${fontSerif.variable} ${fontSans.variable} font-sans`}>
+			<body
+				className={`${fontSerif.variable} ${fontSans.variable} font-sans bg-lightBg dark:bg-stone-900 dark:text-stone-200`}
+			>
 				{children}
 				<AI />
 			</body>

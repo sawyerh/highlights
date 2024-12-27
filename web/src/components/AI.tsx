@@ -260,7 +260,7 @@ export default function AI() {
 	return (
 		<QueryClientProvider client={queryClient}>
 			<button
-				className="fixed right-1 top-1 rounded-sm p-2 text-neutral-500 hover:text-black"
+				className="fixed right-1 top-1 rounded-sm p-2 text-neutral-500 hover:text-black dark:hover:text-blue-600"
 				onClick={showDialog}
 				title="Open search"
 				type="button"

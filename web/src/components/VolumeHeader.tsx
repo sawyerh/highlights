@@ -24,7 +24,7 @@ const VolumeHeader = (props: { small?: boolean; volume: Volume }) => {
 					{volume.title}
 				</h1>
 				{volume.subtitle && (
-					<h2 className="text-center font-serif text-2xl font-normal italic antialiased">
+					<h2 className="text-center font-serif text-2xl font-normal italic antialiased dark:text-stone-400">
 						{volume.subtitle}
 					</h2>
 				)}
