@@ -21,7 +21,7 @@ This repo contains all of the code for my personal reading highlight system. You
 
 ### Pre-requisites
 
-- Node.js 18+
+- Node.js 24 (see `.tool-versions`)
 - Python 3.10+
 - [poetry](https://python-poetry.org/docs/#installation)
 

@@ -40,5 +40,6 @@ Auto-deploys on commits to `main` via a Vercel GitHub integration
 
 ### Requirements
 
+- Node.js 24.x, declared in `package.json`. In Vercel, set **Settings → Build and Deployment → Node.js Version** to **24.x** to match, and use `web` as the project Root Directory.
 - `AI_URL` environment variable must be set in the Vercel console
 - `FIREBASE_API_URL` environment variable must be set in the Vercel console
